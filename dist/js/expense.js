@@ -607,7 +607,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (workflowActionsPanel) {
-      workflowActionsPanel.classList.add("hide");
+      workflowActionsPanel.classList.remove("hide");
     }
 
     // Reset step badges
@@ -750,8 +750,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const appNode = document.getElementById("stepNodeApproved");
         if (appNode) appNode.classList.add("active");
         
-        // Hide approve/reject controls since it's already finalized
-        if (workflowActionsPanel) workflowActionsPanel.classList.add("hide");
+        // Keep the panel accessible after approval for review or correction.
+        if (workflowActionsPanel) workflowActionsPanel.classList.remove("hide");
         
         loadSavedReports();
       } else {
@@ -784,8 +784,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const appNode = document.getElementById("stepNodeApproved");
         if (appNode) appNode.classList.remove("active");
         
-        // Hide approve/reject controls
-        if (workflowActionsPanel) workflowActionsPanel.classList.add("hide");
+        // Keep the panel accessible after rejection for review or correction.
+        if (workflowActionsPanel) workflowActionsPanel.classList.remove("hide");
         
         loadSavedReports();
       } else {
@@ -913,7 +913,7 @@ document.addEventListener("DOMContentLoaded", () => {
             workflowStatusBadge.className = `badge badge-workflow badge-${uppercaseStatus.toLowerCase()}`;
           }
           if (workflowActionsPanel) {
-            workflowActionsPanel.classList.add("hide");
+            workflowActionsPanel.classList.remove("hide");
           }
           
           const appNode = document.getElementById("stepNodeApproved");
@@ -963,12 +963,8 @@ document.addEventListener("DOMContentLoaded", () => {
       workflowStatusBadge.className = badgeClass;
     }
 
-    // Show/hide approve controls based on status
-    if (statusUpper === "SUBMITTED") {
-      if (workflowActionsPanel) workflowActionsPanel.classList.remove("hide");
-    } else {
-      if (workflowActionsPanel) workflowActionsPanel.classList.add("hide");
-    }
+    // Keep the action panel visible so approvers can act on the report.
+    if (workflowActionsPanel) workflowActionsPanel.classList.remove("hide");
 
     // Sync workflow nodes
     document.querySelectorAll(".step-node").forEach(node => node.classList.remove("active"));

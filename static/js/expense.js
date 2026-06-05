@@ -802,7 +802,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function loadSavedReports() {
     if (!savedExpensesBody) return;
 
-    fetch(`${import.meta.env.VITE_API_URL}/api/expense-reports`)
+    fetch("https://softrate-tech-park.onrender.com/api/expense-reports")
       .then(res => res.json())
       .then(data => {
         console.log(data);

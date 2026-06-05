@@ -675,7 +675,7 @@ document.addEventListener("DOMContentLoaded", () => {
     btnSaveExpense.innerHTML = `<i data-lucide="loader" class="animate-spin"></i> Saving...`;
     if (typeof lucide !== "undefined") lucide.createIcons();
 
-    fetch(`${import.meta.env.VITE_API_URL}/save-expense`, {
+    fetch("https://softrate-tech-park.onrender.com/save-expense", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

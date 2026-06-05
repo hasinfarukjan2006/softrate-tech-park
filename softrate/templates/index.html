@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Softrate Tech Park GST Calculator - A modern, high-fidelity corporate utility for quick and precise GST calculations. Compute CGST, SGST, IGST in real-time.">
+  <meta name="keywords" content="GST Calculator, Softrate Tech Park, Inclusive GST, Exclusive GST, CGST, SGST, IGST, India Tax Calculator, Tax slab table">
+  <meta name="author" content="Softrate Tech Park Pvt. Ltd.">
+  <!-- OpenGraph Tags for SEO -->
+  <meta property="og:title" content="Softrate GST Calculator - Premium Tax Utility">
+  <meta property="og:description" content="Calculate GST (CGST, SGST, IGST) in real-time using our responsive corporate tool. Standard and customized slabs available.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="/static/images/logo.svg">
+  
+  <title>Softrate GST Calculator | Softrate Tech Park Pvt. Ltd.</title>
+  
+  <!-- Fonts: Outfit (headings) and Inter (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  
+  <!-- Style Sheet -->
+  <link rel="stylesheet" href="/static/css/style.css">
+  
+  <!-- Lucide Icons Library -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <!-- Fixed Header -->
+  <header class="main-header">
+    <div class="header-container">
+      <div class="logo-wrapper">
+        <a href="/" class="logo-link">
+          <img src="/static/images/logo.svg" alt="Softrate Tech Park Pvt. Ltd. Logo" class="brand-logo">
+        </a>
+      </div>
+      
+      <!-- Mobile Navigation Hamburger -->
+      <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle Navigation Menu">
+        <i data-lucide="menu"></i>
+      </button>
+
+      <nav class="nav-menu" id="navMenu">
+        <a href="#calculator-section" class="nav-link active">Home</a>
+        <a href="#rates-section" class="nav-link">GST Rates</a>
+        <a href="#faq-section" class="nav-link">FAQs</a>
+        <a href="#about-section" class="nav-link">About Us</a>
+        <div class="theme-toggle-wrapper">
+          <button id="themeToggleBtn" class="icon-btn theme-toggle-btn" aria-label="Toggle Dark Mode">
+            <i data-lucide="moon" class="moon-icon"></i>
+            <i data-lucide="sun" class="sun-icon"></i>
+          </button>
+        </div>
+        <a href="#contact-section" class="cta-btn">Contact Us</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Dashboard Container -->
+  <div class="dashboard-layout">
+    <!-- Left Sidebar Navigation -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-sticky">
+        <div class="sidebar-section-title">Calculator Modes</div>
+        <ul class="sidebar-menu">
+          <li>
+            <a href="#" class="sidebar-link active" data-mode="standard">
+              <i data-lucide="calculator"></i>
+              <span>GST Calculator</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="sidebar-link" data-mode="inclusive">
+              <i data-lucide="arrow-down-left"></i>
+              <span>Inclusive GST Calculator</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="sidebar-link" data-mode="exclusive">
+              <i data-lucide="arrow-up-right"></i>
+              <span>Exclusive GST Calculator</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="sidebar-link" data-mode="split">
+              <i data-lucide="git-fork"></i>
+              <span>GST Split Calculator</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="sidebar-link" data-mode="cgst-sgst">
+              <i data-lucide="coins"></i>
+              <span>CGST & SGST Calculator</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="sidebar-link" data-mode="igst">
+              <i data-lucide="globe"></i>
+              <span>IGST Calculator</span>
+            </a>
+          </li>
+        </ul>
+
+        <div class="sidebar-section-title">Resources</div>
+        <ul class="sidebar-menu">
+          <li>
+            <a href="#rates-section" class="sidebar-link scroll-link">
+              <i data-lucide="table"></i>
+              <span>GST Rates Slab</span>
+            </a>
+          </li>
+          <li>
+            <a href="#faq-section" class="sidebar-link scroll-link">
+              <i data-lucide="help-circle"></i>
+              <span>GST FAQ</span>
+            </a>
+          </li>
+          <li>
+            <a href="#about-section" class="sidebar-link scroll-link">
+              <i data-lucide="building"></i>
+              <span>About Softrate</span>
+            </a>
+          </li>
+          <li>
+            <a href="#contact-section" class="sidebar-link scroll-link">
+              <i data-lucide="mail"></i>
+              <span>Contact Us</span>
+            </a>
+          </li>
+        </ul>
+        
+        <!-- Connection Banner -->
+        <div class="db-status-banner offline" id="dbStatusBanner">
+          <i data-lucide="database"></i>
+          <span id="dbStatusText">Connecting Database...</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      
+      <!-- Calculator Dashboard Row -->
+      <section id="calculator-section" class="content-section active-tab-content">
+        <div class="welcome-banner">
+          <h1>GST Intelligence Dashboard</h1>
+          <p>Configure amounts, select slabs, and analyze federal/state tax partitions instantly.</p>
+        </div>
+
+        <div class="dashboard-grid">
+          <!-- GST Calculator Card -->
+          <div class="card calc-card animate-fade-in">
+            <div class="card-header">
+              <h2 id="calculatorModeTitle"><i data-lucide="sliders" class="header-icon"></i>GST Settings</h2>
+              <span class="badge" id="calculatorModeBadge">Standard</span>
+            </div>
+            
+            <form id="gstForm" class="calc-form" novalidate>
+              <!-- Input Amount -->
+              <div class="form-group">
+                <label for="gstAmount">Transaction Amount (₹)</label>
+                <div class="input-with-icon">
+                  <span class="input-icon-left">₹</span>
+                  <input type="number" id="gstAmount" placeholder="Enter base amount" min="0.01" step="any" required>
+                </div>
+                <div class="error-msg" id="amountError">Please enter a valid positive number.</div>
+              </div>
+
+              <!-- GST Rate Slabs -->
+              <div class="form-group">
+                <label for="gstRate">GST Rate Slab (%)</label>
+                <div class="select-wrapper">
+                  <select id="gstRate" required>
+                    <option value="0">0% (Exempted)</option>
+                    <option value="3">3% (Precious Metals)</option>
+                    <option value="5">5% (Lower)</option>
+                    <option value="12">12% (Standard Lower)</option>
+                    <option value="18" selected>18% (Standard Higher)</option>
+                    <option value="28">28% (Luxury)</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Inclusive/Exclusive Toggle Toggle -->
+              <div class="form-group">
+                <label>Tax Valuation Mode</label>
+                <div class="toggle-container">
+                  <input type="radio" id="modeExclusive" name="gstMode" value="exclusive" checked>
+                  <label for="modeExclusive" class="toggle-btn">GST Exclusive (+)</label>
+                  
+                  <input type="radio" id="modeInclusive" name="gstMode" value="inclusive">
+                  <label for="modeInclusive" class="toggle-btn">GST Inclusive (-)</label>
+                </div>
+              </div>
+
+              <!-- Transaction Type: CGST/SGST vs IGST -->
+              <div class="form-group" id="transactionTypeGroup">
+                <label>Supply Destination (Tax Type)</label>
+                <div class="toggle-container secondary-toggle">
+                  <input type="radio" id="transIntra" name="transType" value="intra" checked>
+                  <label for="transIntra" class="toggle-btn">Intra-State (CGST + SGST)</label>
+                  
+                  <input type="radio" id="transInter" name="transType" value="inter">
+                  <label for="transInter" class="toggle-btn">Inter-State (IGST)</label>
+                </div>
+              </div>
+
+              <!-- Actions -->
+              <div class="form-actions">
+                <button type="submit" class="btn btn-primary" id="btnCalculate">
+                  <i data-lucide="play-circle"></i> Calculate Tax
+                </button>
+                <button type="button" class="btn btn-secondary" id="btnReset">
+                  <i data-lucide="rotate-ccw"></i> Reset
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Results Summary Card -->
+          <div class="card result-card animate-fade-in">
+            <div class="card-header">
+              <h2><i data-lucide="receipt" class="header-icon"></i>Calculated Summary</h2>
+              <button class="btn-icon" id="btnCopy" title="Copy results to clipboard">
+                <i data-lucide="copy" id="copyIcon"></i>
+                <span class="tooltip" id="copyTooltip">Copy Result</span>
+              </button>
+            </div>
+            
+            <div class="result-body">
+              <div class="result-row bg-highlight">
+                <span class="result-label">Base (Original) Amount</span>
+                <span class="result-value text-primary" id="resOriginal">₹0.00</span>
+              </div>
+              <div class="result-row">
+                <span class="result-label">Applied GST Rate</span>
+                <span class="result-value" id="resRate">18%</span>
+              </div>
+              
+              <div class="result-divider">Tax Component Breakdowns</div>
+              
+              <div class="result-row sub-row" id="cgstRow">
+                <span class="result-label">CGST (Central Tax)</span>
+                <span class="result-value" id="resCGST">₹0.00</span>
+              </div>
+              <div class="result-row sub-row" id="sgstRow">
+                <span class="result-label">SGST (State Tax)</span>
+                <span class="result-value" id="resSGST">₹0.00</span>
+              </div>
+              <div class="result-row sub-row hide" id="igstRow">
+                <span class="result-label">IGST (Integrated Tax)</span>
+                <span class="result-value" id="resIGST">₹0.00</span>
+              </div>
+              <div class="result-row highlight-gst">
+                <span class="result-label">Total GST Amount</span>
+                <span class="result-value text-secondary" id="resGST">₹0.00</span>
+              </div>
+              
+              <div class="result-divider">Grand Total</div>
+              
+              <div class="result-row grand-total-row">
+                <span class="result-label">Final Gross Amount</span>
+                <span class="result-value text-accent" id="resTotal">₹0.00</span>
+              </div>
+            </div>
+
+            <div class="result-footer-text">
+              Calculations rounded to nearest rupee. Powered by Softrate.
+            </div>
+          </div>
+        </div>
+
+        <!-- Calculation History Dashboard -->
+        <div class="card history-card mt-6">
+          <div class="card-header">
+            <h2><i data-lucide="history" class="header-icon"></i>Recent Computations</h2>
+            <button class="btn btn-danger-link" id="btnClearHistory">
+              <i data-lucide="trash-2"></i> Clear History
+            </button>
+          </div>
+          <div class="history-table-container">
+            <table class="history-table" id="historyTable">
+              <thead>
+                <tr>
+                  <th>Timestamp</th>
+                  <th>Base Amount</th>
+                  <th>GST Rate</th>
+                  <th>Mode</th>
+                  <th>GST Amount</th>
+                  <th>Gross Amount</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="historyBody">
+                <tr>
+                  <td colspan="7" class="text-center py-6 text-gray-400">
+                    <i data-lucide="inbox" class="empty-icon"></i>
+                    <p>No recent calculation logs found</p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- GST Information Slabs Section -->
+      <section id="rates-section" class="content-section mt-8">
+        <div class="section-title-wrapper">
+          <div class="section-subtitle">Tax Structures</div>
+          <h2>GST Rate Slabs in India</h2>
+          <div class="accent-bar"></div>
+        </div>
+
+        <div class="rates-layout-grid">
+          <!-- Rates Slabs Table -->
+          <div class="card rate-table-card">
+            <div class="card-header">
+              <h3>Official Tax Slabs</h3>
+              <span class="table-subtext">Subject to GST Council alterations</span>
+            </div>
+            <table class="slabs-table" id="ratesSlabTable">
+              <thead>
+                <tr>
+                  <th>Slab Rate</th>
+                  <th>Classification Name</th>
+                  <th>Associated Category / Examples</th>
+                </tr>
+              </thead>
+              <tbody id="ratesTableBody">
+                <!-- Loaded dynamically from API -->
+                <tr>
+                  <td colspan="3" class="text-center py-4">Fetching GST rates...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Info Cards -->
+          <div class="info-cards-column">
+            <div class="card info-box border-primary">
+              <h4>What is GST?</h4>
+              <p>Goods and Services Tax (GST) is a unified, multi-stage, destination-based indirect tax that replaced numerous federal and state taxes like VAT, Service Tax, and Excise Duty in India.</p>
+            </div>
+            <div class="card info-box border-secondary">
+              <h4>CGST vs SGST vs IGST</h4>
+              <ul>
+                <li><strong>CGST & SGST:</strong> Levied on <strong>Intra-State</strong> transactions (within the same state). The tax collected is shared equally between the Central Government (CGST) and State Government (SGST).</li>
+                <li><strong>IGST:</strong> Levied on <strong>Inter-State</strong> transactions (between two different states). Collected by the Central Government and apportioned to the destination state.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQs Section -->
+      <section id="faq-section" class="content-section mt-8">
+        <div class="section-title-wrapper">
+          <div class="section-subtitle">Got Questions?</div>
+          <h2>Frequently Asked Questions</h2>
+          <div class="accent-bar"></div>
+        </div>
+
+        <div class="faq-container">
+          <div class="faq-item">
+            <button class="faq-trigger">
+              <span>What is the difference between GST Inclusive and GST Exclusive amount?</span>
+              <i data-lucide="chevron-down" class="faq-icon"></i>
+            </button>
+            <div class="faq-content">
+              <p><strong>GST Exclusive:</strong> The amount entered represents the raw price of the product or service before taxes. The GST calculation adds the tax amount on top of this base amount.</p>
+              <p><strong>GST Inclusive:</strong> The amount entered represents the final price paid, which already includes the tax. The calculator extracts the base price and the tax component from this total.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-trigger">
+              <span>How is CGST and SGST split on an intra-state purchase?</span>
+              <i data-lucide="chevron-down" class="faq-icon"></i>
+            </button>
+            <div class="faq-content">
+              <p>For transactions occurring within a single state (Intra-state), the total GST rate is divided equally into Central GST (CGST) and State GST (SGST). For example, a transaction subject to an 18% GST slab will be split into 9% CGST and 9% SGST.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-trigger">
+              <span>When does IGST apply?</span>
+              <i data-lucide="chevron-down" class="faq-icon"></i>
+            </button>
+            <div class="faq-content">
+              <p>Integrated GST (IGST) applies when the location of the supplier and the place of supply are in different states (Inter-state supply). It also applies on import of goods or services into India.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-trigger">
+              <span>Who sets the GST rate slabs in India?</span>
+              <i data-lucide="chevron-down" class="faq-icon"></i>
+            </button>
+            <div class="faq-content">
+              <p>GST rate structures and adjustments are governed by the <strong>GST Council</strong>, a joint forum of the Center and States chaired by the Union Finance Minister of India.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- About Section -->
+      <section id="about-section" class="content-section mt-8">
+        <div class="card about-card">
+          <div class="about-grid">
+            <div class="about-info">
+              <div class="section-subtitle">Our Workspace</div>
+              <h2>Softrate Tech Park Pvt. Ltd.</h2>
+              <p class="lead">A leading software infrastructure and corporate workspace hub, enabling developers and enterprises to scale with cutting-edge digital portals and services.</p>
+              <p>This GST Service Portal is part of Softrate's civic utility initiatives, ensuring small-scale builders, financial advisors, and corporate tenants have access to instantaneous, validated tax analytics tools.</p>
+              
+              <div class="stats-row">
+                <div class="stat-box">
+                  <span class="stat-number">50+</span>
+                  <span class="stat-desc">Tech Enterprises</span>
+                </div>
+                <div class="stat-box">
+                  <span class="stat-number">10k+</span>
+                  <span class="stat-desc">Active Users</span>
+                </div>
+                <div class="stat-box">
+                  <span class="stat-number">99.9%</span>
+                  <span class="stat-desc">Uptime Guarantee</span>
+                </div>
+              </div>
+            </div>
+            <div class="about-visual">
+              <div class="visual-card">
+                <i data-lucide="shield-check" class="visual-icon text-secondary"></i>
+                <h5>Compliance Checked</h5>
+                <p>Tax algorithms conform strictly to guidelines established by the GST Council of India.</p>
+              </div>
+              <div class="visual-card">
+                <i data-lucide="zap" class="visual-icon text-accent"></i>
+                <h5>Real-time Processing</h5>
+                <p>Engineered with zero latency client calculation overrides, with persistent database synchronization.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section id="contact-section" class="content-section mt-8 mb-8">
+        <div class="section-title-wrapper">
+          <div class="section-subtitle">Reach Out</div>
+          <h2>Contact Softrate Portal Support</h2>
+          <div class="accent-bar"></div>
+        </div>
+
+        <div class="contact-grid">
+          <!-- Contact Info -->
+          <div class="card contact-info-card">
+            <h3>Headquarters Office</h3>
+            <p class="contact-desc">Visit us or drop an inquiry for corporate space, developer workspaces, or custom software licensing.</p>
+            
+            <div class="contact-methods">
+              <div class="method-item">
+                <i data-lucide="map-pin" class="method-icon"></i>
+                <div>
+                  <h4>Location</h4>
+                  <p>Building 7A, Softrate Tech Park, IT Corridor, Phase-II, Bangalore, India</p>
+                </div>
+              </div>
+              <div class="method-item">
+                <i data-lucide="phone" class="method-icon"></i>
+                <div>
+                  <h4>Phone</h4>
+                  <p>+91 (80) 4567-8900</p>
+                </div>
+              </div>
+              <div class="method-item">
+                <i data-lucide="mail" class="method-icon"></i>
+                <div>
+                  <h4>Email</h4>
+                  <p>portal-support@softrate.com</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact Form -->
+          <div class="card contact-form-card">
+            <h3>Send a Message</h3>
+            
+            <!-- Alert message boxes -->
+            <div id="contactStatusBox" class="alert-box hide"></div>
+            
+            <form id="contactForm" novalidate>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="contactName">Full Name</label>
+                  <input type="text" id="contactName" placeholder="Your name" required>
+                  <div class="error-msg" id="contactNameError">Please enter your name.</div>
+                </div>
+                <div class="form-group">
+                  <label for="contactEmail">Email Address</label>
+                  <input type="email" id="contactEmail" placeholder="yourname@example.com" required>
+                  <div class="error-msg" id="contactEmailError">Please enter a valid email address.</div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="contactSubject">Subject</label>
+                <input type="text" id="contactSubject" placeholder="Topic of interest" required>
+                <div class="error-msg" id="contactSubjectError">Please enter a subject.</div>
+              </div>
+
+              <div class="form-group">
+                <label for="contactMessage">Message / Description</label>
+                <textarea id="contactMessage" rows="5" placeholder="How can we assist you with our services?" required></textarea>
+                <div class="error-msg" id="contactMessageError">Please enter your message.</div>
+              </div>
+
+              <button type="submit" class="btn btn-primary" id="btnContactSubmit">
+                <i data-lucide="send"></i> Send Inquiry
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Main Footer -->
+  <footer class="main-footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <img src="/static/images/logo.svg" alt="Softrate Logo" class="footer-logo">
+        <p>Providing cutting edge workspaces and digital portals for enterprise excellence.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Legal & Compliance</h4>
+        <ul>
+          <li><a href="#">GST Council Guidelines</a></li>
+          <li><a href="#">Tax Slab Disclaimer</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Use</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Softrate Hub</h4>
+        <ul>
+          <li><a href="#calculator-section">Tax Calculator</a></li>
+          <li><a href="#rates-section">GST Rates</a></li>
+          <li><a href="#about-section">Workspace Slabs</a></li>
+          <li><a href="#contact-section">Support Ticket</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Softrate Tech Park Pvt. Ltd. All rights reserved. Developed under legal tax frameworks.</p>
+    </div>
+  </footer>
+
+  <!-- Core Javascript File -->
+  <script src="/static/js/app.js"></script>
+</body>
+</html>

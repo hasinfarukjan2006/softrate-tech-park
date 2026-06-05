@@ -1,0 +1,928 @@
+{
+    "gst_rates": [
+        {
+            "rate": 0,
+            "name": "Exempted / Zero Rated",
+            "description": "Essential items, grains, fresh fruits, vegetables.",
+            "_id": "6a21809b1ef775e113dfbd1f"
+        },
+        {
+            "rate": 3,
+            "name": "Special Rate (Gold/Silver)",
+            "description": "Precious metals, stones, and jewelry.",
+            "_id": "6a21809b1ef775e113dfbd20"
+        },
+        {
+            "rate": 5,
+            "name": "Lower Rate",
+            "description": "Mass consumption items like tea, coffee, edible oil, life-saving drugs.",
+            "_id": "6a21809b1ef775e113dfbd21"
+        },
+        {
+            "rate": 12,
+            "name": "Standard Rate (Lower)",
+            "description": "Processed food, computer accessories, writing instruments.",
+            "_id": "6a21809b1ef775e113dfbd22"
+        },
+        {
+            "rate": 18,
+            "name": "Standard Rate (Higher)",
+            "description": "IT services, telecom, capital goods, restaurants, steel, electronics.",
+            "_id": "6a21809b1ef775e113dfbd23"
+        },
+        {
+            "rate": 28,
+            "name": "Luxury / Demerit Rate",
+            "description": "Luxury items, automobiles, aerated drinks, tobacco products.",
+            "_id": "6a21809b1ef775e113dfbd24"
+        }
+    ],
+    "calculation_history": [],
+    "users": [
+        {
+            "name": "Jane Doe",
+            "email": "jane@example.com",
+            "subject": "GST Software licensing query",
+            "message": "Hi, we are looking to integrate your API within our tech park office space.",
+            "timestamp": "2026-06-04T19:11:47.436475",
+            "_id": "6a21809b1ef775e113dfbd27"
+        },
+        {
+            "name": "Jane Doe",
+            "email": "jane@example.com",
+            "subject": "GST Software licensing query",
+            "message": "Hi, we are looking to integrate your API within our tech park office space.",
+            "timestamp": "2026-06-04T20:00:07.647513",
+            "_id": "6a218bef9c69c226c0afb6d7"
+        },
+        {
+            "name": "Jane Doe",
+            "email": "jane@example.com",
+            "subject": "GST Software licensing query",
+            "message": "Hi, we are looking to integrate your API within our tech park office space.",
+            "timestamp": "2026-06-04T20:01:28.600436",
+            "_id": "6a218c40b00f94fa62ce4511"
+        },
+        {
+            "name": "Jane Doe",
+            "email": "jane@example.com",
+            "subject": "GST Software licensing query",
+            "message": "Hi, we are looking to integrate your API within our tech park office space.",
+            "timestamp": "2026-06-04T20:13:00.526424",
+            "_id": "6a218ef4b79bc0003431da0e"
+        },
+        {
+            "name": "Jane Doe",
+            "email": "jane@example.com",
+            "subject": "GST Software licensing query",
+            "message": "Hi, we are looking to integrate your API within our tech park office space.",
+            "timestamp": "2026-06-04T20:17:42.892721",
+            "_id": "6a21900e33e2fed1a334650a"
+        },
+        {
+            "name": "Jane Doe",
+            "email": "jane@example.com",
+            "subject": "GST Software licensing query",
+            "message": "Hi, we are looking to integrate your API within our tech park office space.",
+            "timestamp": "2026-06-04T20:42:14.001599",
+            "_id": "6a2195ce693641db7f67f630"
+        },
+        {
+            "name": "Jane Doe",
+            "email": "jane@example.com",
+            "subject": "GST Software licensing query",
+            "message": "Hi, we are looking to integrate your API within our tech park office space.",
+            "timestamp": "2026-06-04T20:50:57.746266",
+            "_id": "6a2197d92c407f52a0ec77d3"
+        },
+        {
+            "name": "Jane Doe",
+            "email": "jane@example.com",
+            "subject": "GST Software licensing query",
+            "message": "Hi, we are looking to integrate your API within our tech park office space.",
+            "timestamp": "2026-06-04T21:10:40.398143",
+            "_id": "6a219c78ae371b0ebe836798"
+        },
+        {
+            "name": "Jane Doe",
+            "email": "jane@example.com",
+            "subject": "GST Software licensing query",
+            "message": "Hi, we are looking to integrate your API within our tech park office space.",
+            "timestamp": "2026-06-04T21:31:56.293319",
+            "_id": "6a21a174dc7b8e28dc872d44"
+        },
+        {
+            "name": "Jane Doe",
+            "email": "jane@example.com",
+            "subject": "GST Software licensing query",
+            "message": "Hi, we are looking to integrate your API within our tech park office space.",
+            "timestamp": "2026-06-04T21:36:46.162454",
+            "_id": "6a21a2964ba3ac5048a63d65"
+        },
+        {
+            "name": "Jane Doe",
+            "email": "jane@example.com",
+            "subject": "GST Software licensing query",
+            "message": "Hi, we are looking to integrate your API within our tech park office space.",
+            "timestamp": "2026-06-04T21:41:12.834329",
+            "_id": "6a21a3a0c18e297cca5be294"
+        },
+        {
+            "name": "Jane Doe",
+            "email": "jane@example.com",
+            "subject": "GST Software licensing query",
+            "message": "Hi, we are looking to integrate your API within our tech park office space.",
+            "timestamp": "2026-06-04T21:46:04.879599",
+            "_id": "6a21a4c472275237b9c562bb"
+        },
+        {
+            "name": "Jane Doe",
+            "email": "jane@example.com",
+            "subject": "GST Software licensing query",
+            "message": "Hi, we are looking to integrate your API within our tech park office space.",
+            "timestamp": "2026-06-04T21:49:07.028046",
+            "_id": "6a21a57b5bc0e97b39640c9e"
+        },
+        {
+            "name": "Jane Doe",
+            "email": "jane@example.com",
+            "subject": "GST Software licensing query",
+            "message": "Hi, we are looking to integrate your API within our tech park office space.",
+            "timestamp": "2026-06-04T23:15:30.028820",
+            "_id": "6a21b9ba59e1dd7223101fe1"
+        },
+        {
+            "name": "Jane Doe",
+            "email": "jane@example.com",
+            "subject": "GST Software licensing query",
+            "message": "Hi, we are looking to integrate your API within our tech park office space.",
+            "timestamp": "2026-06-04T23:18:39.531055",
+            "_id": "6a21ba7762f1c374b69f305c"
+        },
+        {
+            "name": "Jane Doe",
+            "email": "jane@example.com",
+            "subject": "GST Software licensing query",
+            "message": "Hi, we are looking to integrate your API within our tech park office space.",
+            "timestamp": "2026-06-04T23:40:59.131693",
+            "_id": "6a21bfb3ae1b0e1390c49e59"
+        },
+        {
+            "name": "Jane Doe",
+            "email": "jane@example.com",
+            "subject": "GST Software licensing query",
+            "message": "Hi, we are looking to integrate your API within our tech park office space.",
+            "timestamp": "2026-06-04T23:46:20.977469",
+            "_id": "6a21c0f48867857886c5eaab"
+        },
+        {
+            "name": "Jane Doe",
+            "email": "jane@example.com",
+            "subject": "GST Software licensing query",
+            "message": "Hi, we are looking to integrate your API within our tech park office space.",
+            "timestamp": "2026-06-04T23:48:43.911203",
+            "_id": "6a21c183b555b4efacdc3e82"
+        },
+        {
+            "name": "Jane Doe",
+            "email": "jane@example.com",
+            "subject": "GST Software licensing query",
+            "message": "Hi, we are looking to integrate your API within our tech park office space.",
+            "timestamp": "2026-06-04T23:56:51.066451",
+            "_id": "6a21c36b85d08a63a7657616"
+        },
+        {
+            "name": "Jane Doe",
+            "email": "jane@example.com",
+            "subject": "GST Software licensing query",
+            "message": "Hi, we are looking to integrate your API within our tech park office space.",
+            "timestamp": "2026-06-04T23:58:03.841494",
+            "_id": "6a21c3b31562acdc0fb90224"
+        },
+        {
+            "name": "Jane Doe",
+            "email": "jane@example.com",
+            "subject": "GST Software licensing query",
+            "message": "Hi, we are looking to integrate your API within our tech park office space.",
+            "timestamp": "2026-06-05T00:12:56.410422",
+            "_id": "6a21c730bde2a51f76a9526e"
+        },
+        {
+            "name": "Jane Doe",
+            "email": "jane@example.com",
+            "subject": "GST Software licensing query",
+            "message": "Hi, we are looking to integrate your API within our tech park office space.",
+            "timestamp": "2026-06-05T00:14:44.622845",
+            "_id": "6a21c79c13a114abba705c35"
+        },
+        {
+            "name": "Jane Doe",
+            "email": "jane@example.com",
+            "subject": "GST Software licensing query",
+            "message": "Hi, we are looking to integrate your API within our tech park office space.",
+            "timestamp": "2026-06-05T00:22:14.220198",
+            "_id": "6a21c95ecdcb00b3d2c9e30b"
+        },
+        {
+            "name": "Jane Doe",
+            "email": "jane@example.com",
+            "subject": "GST Software licensing query",
+            "message": "Hi, we are looking to integrate your API within our tech park office space.",
+            "timestamp": "2026-06-05T00:27:42.808750",
+            "_id": "6a21caa62587a8fb29784b6b"
+        },
+        {
+            "name": "Jane Doe",
+            "email": "jane@example.com",
+            "subject": "GST Software licensing query",
+            "message": "Hi, we are looking to integrate your API within our tech park office space.",
+            "timestamp": "2026-06-05T00:53:20.026932",
+            "_id": "6a21d0a863e24c2b88021a07"
+        },
+        {
+            "name": "Jane Doe",
+            "email": "jane@example.com",
+            "subject": "GST Software licensing query",
+            "message": "Hi, we are looking to integrate your API within our tech park office space.",
+            "timestamp": "2026-06-05T15:17:33.743311",
+            "_id": "6a229b350597ae1edd9e562f"
+        },
+        {
+            "record_type": "registration",
+            "user_type": "Business User",
+            "company_name": "company",
+            "email": "hasinfarukjan@gmail.com",
+            "mobile_number": "9344475074",
+            "password": "scrypt:32768:8:1$X4uwxMLZ4T2ul0p6$0785d8bf8c7b380f4b28f338e30224c8345ac5633f8a987fb187ac00bf4419166093d25b62f0bb3ff523ef1d324939366158c38d187480c2f2ea7d41e580aec1",
+            "country": "India",
+            "state": "Tamil Nadu",
+            "timestamp": "2026-06-05T15:20:04.539959",
+            "_id": "6a229bccb06a87f0385c59f2"
+        },
+        {
+            "name": "Jane Doe",
+            "email": "jane@example.com",
+            "subject": "GST Software licensing query",
+            "message": "Hi, we are looking to integrate your API within our tech park office space.",
+            "timestamp": "2026-06-05T15:27:51.364752",
+            "_id": "6a229d9f853f32be7530edf7"
+        },
+        {
+            "name": "Jane Doe",
+            "email": "jane@example.com",
+            "subject": "GST Software licensing query",
+            "message": "Hi, we are looking to integrate your API within our tech park office space.",
+            "timestamp": "2026-06-05T15:35:02.358381",
+            "_id": "6a229f4e242cbaa70b0fcb7f"
+        },
+        {
+            "name": "Jane Doe",
+            "email": "jane@example.com",
+            "subject": "GST Software licensing query",
+            "message": "Hi, we are looking to integrate your API within our tech park office space.",
+            "timestamp": "2026-06-05T15:37:02.470953",
+            "_id": "6a229fc6192e55ebaf0af629"
+        },
+        {
+            "record_type": "registration",
+            "user_type": "Business User",
+            "company_name": "Demo_oauth",
+            "email": "demo_oauth@softrate.com",
+            "mobile_number": "",
+            "password": "",
+            "country": "India",
+            "state": "General",
+            "oauth_provider": "Google",
+            "timestamp": "2026-06-05T15:48:56.095932",
+            "_id": "6a22a290af72f210c7c492ca"
+        },
+        {
+            "name": "Jane Doe",
+            "email": "jane@example.com",
+            "subject": "GST Software licensing query",
+            "message": "Hi, we are looking to integrate your API within our tech park office space.",
+            "timestamp": "2026-06-05T15:48:56.150042",
+            "_id": "6a22a290af72f210c7c492cd"
+        },
+        {
+            "record_type": "registration",
+            "user_type": "Business User",
+            "company_name": "Test Company Ltd",
+            "email": "signup_test@softrate.com",
+            "mobile_number": "1234567890",
+            "password": "scrypt:32768:8:1$rMuwOavYFgL3BKAc$293ba102d0f99b1134e2970a9cb62ba57cf18a0ca4cfb59b05979a6a0604b6e2b8658e7a12214eb5e6e0467f1ce2cd6fb976f0f9c60ec8db7067ad2cb4744675",
+            "country": "India",
+            "state": "Karnataka",
+            "timestamp": "2026-06-05T15:48:56.635277",
+            "_id": "6a22a290af72f210c7c492d0"
+        },
+        {
+            "record_type": "registration",
+            "user_type": "Business User",
+            "company_name": "Softrate",
+            "email": "hasin@softrate.com",
+            "mobile_number": "9344475074",
+            "password": "scrypt:32768:8:1$7cU7qrmL0iMaWqGE$e11fc2adb63b4d6008f122b98084e3d81a738ac8f4c789013ed1cd52769778bb97495b1d2f960036cb6f10f7ca515599d22905c573d94a2e696a280fadbec842",
+            "country": "India",
+            "state": "Tamil Nadu",
+            "timestamp": "2026-06-05T15:53:10.756927",
+            "_id": "6a22a38e02bb7ddb4996d4ae"
+        }
+    ],
+    "expense_reports": [
+        {
+            "report_id": "EXP-TEST-9999",
+            "employee_name": "Test Employee",
+            "employee_email": "employee@softrate.com",
+            "department": "Finance",
+            "project_name": "Test Project",
+            "travel_purpose": "Testing",
+            "report_period": "June 2026",
+            "items": [
+                {
+                    "date": "2026-06-04",
+                    "category": "Software",
+                    "merchant": "AWS",
+                    "payment_mode": "Credit Card",
+                    "description": "Test SaaS",
+                    "gst_percentage": 18,
+                    "amount": 1000.0,
+                    "gst_amount": 180.0,
+                    "total": 1180.0
+                }
+            ],
+            "budget_limit": 50000.0,
+            "subtotal": 1000.0,
+            "gst_amount": 180.0,
+            "grand_total": 1180.0,
+            "status": "Approved",
+            "timestamp": "2026-06-04T23:18:39.537820",
+            "_id": "6a21ba7762f1c374b69f305d"
+        },
+        {
+            "report_id": "EXP-20260604-7011",
+            "employee_name": "Rahul Kumar",
+            "employee_email": "rahulkumar@softrate.com",
+            "department": "IT",
+            "project_name": "GST Calculator Website",
+            "travel_purpose": "clinet meeting and software development",
+            "report_period": "01-06-2026 to 04-06-2026",
+            "items": [
+                {
+                    "date": "2026-06-01",
+                    "category": "Travel",
+                    "merchant": "ola cabs",
+                    "payment_mode": "Credit Card",
+                    "description": "Cab travel for client meeting",
+                    "gst_percentage": 5,
+                    "amount": 2500,
+                    "gst_amount": 125,
+                    "total": 2625,
+                    "receipt_base64": null,
+                    "receipt_name": ""
+                },
+                {
+                    "date": "2026-06-02",
+                    "category": "Meals",
+                    "merchant": "Hotel A2B",
+                    "payment_mode": "Cash",
+                    "description": "Team lunch during project discussion",
+                    "gst_percentage": 5,
+                    "amount": 1800,
+                    "gst_amount": 90,
+                    "total": 1890,
+                    "receipt_base64": null,
+                    "receipt_name": ""
+                },
+                {
+                    "date": "2026-06-03",
+                    "category": "Software",
+                    "merchant": "GitHub",
+                    "payment_mode": "Credit Card",
+                    "description": "Developer tools subscriptionD",
+                    "gst_percentage": 18,
+                    "amount": 4500,
+                    "gst_amount": 810,
+                    "total": 5310,
+                    "receipt_base64": null,
+                    "receipt_name": ""
+                },
+                {
+                    "date": "2026-06-04",
+                    "category": "Lodging",
+                    "merchant": "Hotel Grand Palace",
+                    "payment_mode": "Credit Card",
+                    "description": "One day business stay",
+                    "gst_percentage": 12,
+                    "amount": 8500,
+                    "gst_amount": 1020,
+                    "total": 9520,
+                    "receipt_base64": null,
+                    "receipt_name": ""
+                }
+            ],
+            "budget_limit": 50000.0,
+            "subtotal": 17300.0,
+            "gst_amount": 0.0,
+            "grand_total": 19345.0,
+            "status": "APPROVED",
+            "timestamp": "2026-06-04T23:33:18.308175",
+            "_id": "6a21bde67a5e8905116888c4"
+        },
+        {
+            "report_id": "EXP-TEST-9999",
+            "employee_name": "Test Employee",
+            "employee_email": "employee@softrate.com",
+            "department": "Finance",
+            "project_name": "Test Project",
+            "travel_purpose": "Testing",
+            "report_period": "June 2026",
+            "items": [
+                {
+                    "date": "2026-06-04",
+                    "category": "Software",
+                    "merchant": "AWS",
+                    "payment_mode": "Credit Card",
+                    "description": "Test SaaS",
+                    "gst_percentage": 18,
+                    "amount": 1000.0,
+                    "gst_amount": 180.0,
+                    "total": 1180.0
+                }
+            ],
+            "budget_limit": 50000.0,
+            "subtotal": 1000.0,
+            "gst_amount": 180.0,
+            "grand_total": 1180.0,
+            "status": "Approved",
+            "timestamp": "2026-06-04T23:40:59.141282",
+            "_id": "6a21bfb3ae1b0e1390c49e5a"
+        },
+        {
+            "report_id": "EXP-CUSTOM-8888",
+            "employee_name": "Custom Tester",
+            "employee_email": "tester@softrate.com",
+            "department": "IT",
+            "project_name": "Test project",
+            "travel_purpose": "Testing custom routes",
+            "report_period": "June 2026",
+            "items": [
+                {
+                    "date": "2026-06-04",
+                    "category": "Travel",
+                    "merchant": "Uber",
+                    "payment_mode": "Cash",
+                    "description": "Taxi ride",
+                    "gst_percentage": 18,
+                    "amount": 500.0,
+                    "gst_amount": 90.0,
+                    "total": 590.0
+                }
+            ],
+            "budget_limit": 10000.0,
+            "subtotal": 500.0,
+            "gst_amount": 90.0,
+            "grand_total": 590.0,
+            "status": "REJECTED",
+            "timestamp": "2026-06-05 15:48:56.266644",
+            "_id": "6a21c0e31f66422d8c882228"
+        },
+        {
+            "report_id": "EXP-TEST-9999",
+            "employee_name": "Test Employee",
+            "employee_email": "employee@softrate.com",
+            "department": "Finance",
+            "project_name": "Test Project",
+            "travel_purpose": "Testing",
+            "report_period": "June 2026",
+            "items": [
+                {
+                    "date": "2026-06-04",
+                    "category": "Software",
+                    "merchant": "AWS",
+                    "payment_mode": "Credit Card",
+                    "description": "Test SaaS",
+                    "gst_percentage": 18,
+                    "amount": 1000.0,
+                    "gst_amount": 180.0,
+                    "total": 1180.0
+                }
+            ],
+            "budget_limit": 50000.0,
+            "subtotal": 1000.0,
+            "gst_amount": 180.0,
+            "grand_total": 1180.0,
+            "status": "Approved",
+            "timestamp": "2026-06-04T23:46:20.986291",
+            "_id": "6a21c0f48867857886c5eaac"
+        },
+        {
+            "report_id": "EXP-TEST-9999",
+            "employee_name": "Test Employee",
+            "employee_email": "employee@softrate.com",
+            "department": "Finance",
+            "project_name": "Test Project",
+            "travel_purpose": "Testing",
+            "report_period": "June 2026",
+            "items": [
+                {
+                    "date": "2026-06-04",
+                    "category": "Software",
+                    "merchant": "AWS",
+                    "payment_mode": "Credit Card",
+                    "description": "Test SaaS",
+                    "gst_percentage": 18,
+                    "amount": 1000.0,
+                    "gst_amount": 180.0,
+                    "total": 1180.0
+                }
+            ],
+            "budget_limit": 50000.0,
+            "subtotal": 1000.0,
+            "gst_amount": 180.0,
+            "grand_total": 1180.0,
+            "status": "Approved",
+            "timestamp": "2026-06-04T23:48:43.919433",
+            "_id": "6a21c183b555b4efacdc3e83"
+        },
+        {
+            "report_id": "EXP-TEST-9999",
+            "employee_name": "Test Employee",
+            "employee_email": "employee@softrate.com",
+            "department": "Finance",
+            "project_name": "Test Project",
+            "travel_purpose": "Testing",
+            "report_period": "June 2026",
+            "items": [
+                {
+                    "date": "2026-06-04",
+                    "category": "Software",
+                    "merchant": "AWS",
+                    "payment_mode": "Credit Card",
+                    "description": "Test SaaS",
+                    "gst_percentage": 18,
+                    "amount": 1000.0,
+                    "gst_amount": 180.0,
+                    "total": 1180.0
+                }
+            ],
+            "budget_limit": 50000.0,
+            "subtotal": 1000.0,
+            "gst_amount": 180.0,
+            "grand_total": 1180.0,
+            "status": "Approved",
+            "timestamp": "2026-06-04T23:56:51.074054",
+            "_id": "6a21c36b85d08a63a7657617"
+        },
+        {
+            "report_id": "EXP-TEST-9999",
+            "employee_name": "Test Employee",
+            "employee_email": "employee@softrate.com",
+            "department": "Finance",
+            "project_name": "Test Project",
+            "travel_purpose": "Testing",
+            "report_period": "June 2026",
+            "items": [
+                {
+                    "date": "2026-06-04",
+                    "category": "Software",
+                    "merchant": "AWS",
+                    "payment_mode": "Credit Card",
+                    "description": "Test SaaS",
+                    "gst_percentage": 18,
+                    "amount": 1000.0,
+                    "gst_amount": 180.0,
+                    "total": 1180.0
+                }
+            ],
+            "budget_limit": 50000.0,
+            "subtotal": 1000.0,
+            "gst_amount": 180.0,
+            "grand_total": 1180.0,
+            "status": "Approved",
+            "timestamp": "2026-06-04T23:58:03.856773",
+            "_id": "6a21c3b31562acdc0fb90225"
+        },
+        {
+            "report_id": "EXP-20260604-9962",
+            "employee_name": "Rahul Kumar",
+            "employee_email": "rahul.kumar@softrate.com",
+            "department": "IT",
+            "project_name": "GST Calculator Website",
+            "travel_purpose": "Client meeting and software project development",
+            "report_period": "04-06-2026",
+            "items": [
+                {
+                    "date": "2026-06-04",
+                    "category": "Travel",
+                    "merchant": "Ola Cabs",
+                    "payment_mode": "Credit Card",
+                    "description": "Cab travel for client meeting",
+                    "gst_percentage": 5,
+                    "amount": 2500,
+                    "gst_amount": 125,
+                    "total": 2625,
+                    "receipt_base64": null,
+                    "receipt_name": ""
+                }
+            ],
+            "budget_limit": 50000.0,
+            "subtotal": 2500.0,
+            "gst_amount": 125.0,
+            "grand_total": 2625.0,
+            "status": "APPROVED",
+            "timestamp": "2026-06-05T00:04:21.273530",
+            "_id": "6a21c52db8261661929dfe7a"
+        },
+        {
+            "report_id": "EXP-TEST-9999",
+            "employee_name": "Test Employee",
+            "employee_email": "employee@softrate.com",
+            "department": "Finance",
+            "project_name": "Test Project",
+            "travel_purpose": "Testing",
+            "report_period": "June 2026",
+            "items": [
+                {
+                    "date": "2026-06-04",
+                    "category": "Software",
+                    "merchant": "AWS",
+                    "payment_mode": "Credit Card",
+                    "description": "Test SaaS",
+                    "gst_percentage": 18,
+                    "amount": 1000.0,
+                    "gst_amount": 180.0,
+                    "total": 1180.0
+                }
+            ],
+            "budget_limit": 50000.0,
+            "subtotal": 1000.0,
+            "gst_amount": 180.0,
+            "grand_total": 1180.0,
+            "status": "Approved",
+            "timestamp": "2026-06-05T00:12:56.427943",
+            "_id": "6a21c730bde2a51f76a9526f"
+        },
+        {
+            "report_id": "EXP-TEST-9999",
+            "employee_name": "Test Employee",
+            "employee_email": "employee@softrate.com",
+            "department": "Finance",
+            "project_name": "Test Project",
+            "travel_purpose": "Testing",
+            "report_period": "June 2026",
+            "items": [
+                {
+                    "date": "2026-06-04",
+                    "category": "Software",
+                    "merchant": "AWS",
+                    "payment_mode": "Credit Card",
+                    "description": "Test SaaS",
+                    "gst_percentage": 18,
+                    "amount": 1000.0,
+                    "gst_amount": 180.0,
+                    "total": 1180.0
+                }
+            ],
+            "budget_limit": 50000.0,
+            "subtotal": 1000.0,
+            "gst_amount": 180.0,
+            "grand_total": 1180.0,
+            "status": "Approved",
+            "timestamp": "2026-06-05T00:14:44.631277",
+            "_id": "6a21c79c13a114abba705c36"
+        },
+        {
+            "report_id": "EXP-TEST-9999",
+            "employee_name": "Test Employee",
+            "employee_email": "employee@softrate.com",
+            "department": "Finance",
+            "project_name": "Test Project",
+            "travel_purpose": "Testing",
+            "report_period": "June 2026",
+            "items": [
+                {
+                    "date": "2026-06-04",
+                    "category": "Software",
+                    "merchant": "AWS",
+                    "payment_mode": "Credit Card",
+                    "description": "Test SaaS",
+                    "gst_percentage": 18,
+                    "amount": 1000.0,
+                    "gst_amount": 180.0,
+                    "total": 1180.0
+                }
+            ],
+            "budget_limit": 50000.0,
+            "subtotal": 1000.0,
+            "gst_amount": 180.0,
+            "grand_total": 1180.0,
+            "status": "Approved",
+            "timestamp": "2026-06-05T00:22:14.273280",
+            "_id": "6a21c95ecdcb00b3d2c9e30c"
+        },
+        {
+            "report_id": "EXP-TEST-9999",
+            "employee_name": "Test Employee",
+            "employee_email": "employee@softrate.com",
+            "department": "Finance",
+            "project_name": "Test Project",
+            "travel_purpose": "Testing",
+            "report_period": "June 2026",
+            "items": [
+                {
+                    "date": "2026-06-04",
+                    "category": "Software",
+                    "merchant": "AWS",
+                    "payment_mode": "Credit Card",
+                    "description": "Test SaaS",
+                    "gst_percentage": 18,
+                    "amount": 1000.0,
+                    "gst_amount": 180.0,
+                    "total": 1180.0
+                }
+            ],
+            "budget_limit": 50000.0,
+            "subtotal": 1000.0,
+            "gst_amount": 180.0,
+            "grand_total": 1180.0,
+            "status": "Approved",
+            "timestamp": "2026-06-05T00:27:42.817283",
+            "_id": "6a21caa62587a8fb29784b6c"
+        },
+        {
+            "report_id": "EXP-TEST-9999",
+            "employee_name": "Test Employee",
+            "employee_email": "employee@softrate.com",
+            "department": "Finance",
+            "project_name": "Test Project",
+            "travel_purpose": "Testing",
+            "report_period": "June 2026",
+            "items": [
+                {
+                    "date": "2026-06-04",
+                    "category": "Software",
+                    "merchant": "AWS",
+                    "payment_mode": "Credit Card",
+                    "description": "Test SaaS",
+                    "gst_percentage": 18,
+                    "amount": 1000.0,
+                    "gst_amount": 180.0,
+                    "total": 1180.0
+                }
+            ],
+            "budget_limit": 50000.0,
+            "subtotal": 1000.0,
+            "gst_amount": 180.0,
+            "grand_total": 1180.0,
+            "status": "Approved",
+            "timestamp": "2026-06-05T00:53:20.034562",
+            "_id": "6a21d0a863e24c2b88021a08"
+        },
+        {
+            "report_id": "EXP-TEST-9999",
+            "employee_name": "Test Employee",
+            "employee_email": "employee@softrate.com",
+            "department": "Finance",
+            "project_name": "Test Project",
+            "travel_purpose": "Testing",
+            "report_period": "June 2026",
+            "items": [
+                {
+                    "date": "2026-06-04",
+                    "category": "Software",
+                    "merchant": "AWS",
+                    "payment_mode": "Credit Card",
+                    "description": "Test SaaS",
+                    "gst_percentage": 18,
+                    "amount": 1000.0,
+                    "gst_amount": 180.0,
+                    "total": 1180.0
+                }
+            ],
+            "budget_limit": 50000.0,
+            "subtotal": 1000.0,
+            "gst_amount": 180.0,
+            "grand_total": 1180.0,
+            "status": "Approved",
+            "timestamp": "2026-06-05T15:17:33.766326",
+            "_id": "6a229b350597ae1edd9e5630"
+        },
+        {
+            "report_id": "EXP-TEST-9999",
+            "employee_name": "Test Employee",
+            "employee_email": "employee@softrate.com",
+            "department": "Finance",
+            "project_name": "Test Project",
+            "travel_purpose": "Testing",
+            "report_period": "June 2026",
+            "items": [
+                {
+                    "date": "2026-06-04",
+                    "category": "Software",
+                    "merchant": "AWS",
+                    "payment_mode": "Credit Card",
+                    "description": "Test SaaS",
+                    "gst_percentage": 18,
+                    "amount": 1000.0,
+                    "gst_amount": 180.0,
+                    "total": 1180.0
+                }
+            ],
+            "budget_limit": 50000.0,
+            "subtotal": 1000.0,
+            "gst_amount": 180.0,
+            "grand_total": 1180.0,
+            "status": "Approved",
+            "timestamp": "2026-06-05T15:27:51.373762",
+            "_id": "6a229d9f853f32be7530edf8"
+        },
+        {
+            "report_id": "EXP-TEST-9999",
+            "employee_name": "Test Employee",
+            "employee_email": "employee@softrate.com",
+            "department": "Finance",
+            "project_name": "Test Project",
+            "travel_purpose": "Testing",
+            "report_period": "June 2026",
+            "items": [
+                {
+                    "date": "2026-06-04",
+                    "category": "Software",
+                    "merchant": "AWS",
+                    "payment_mode": "Credit Card",
+                    "description": "Test SaaS",
+                    "gst_percentage": 18,
+                    "amount": 1000.0,
+                    "gst_amount": 180.0,
+                    "total": 1180.0
+                }
+            ],
+            "budget_limit": 50000.0,
+            "subtotal": 1000.0,
+            "gst_amount": 180.0,
+            "grand_total": 1180.0,
+            "status": "Approved",
+            "timestamp": "2026-06-05T15:35:02.365937",
+            "_id": "6a229f4e242cbaa70b0fcb80"
+        },
+        {
+            "report_id": "EXP-TEST-9999",
+            "employee_name": "Test Employee",
+            "employee_email": "employee@softrate.com",
+            "department": "Finance",
+            "project_name": "Test Project",
+            "travel_purpose": "Testing",
+            "report_period": "June 2026",
+            "items": [
+                {
+                    "date": "2026-06-04",
+                    "category": "Software",
+                    "merchant": "AWS",
+                    "payment_mode": "Credit Card",
+                    "description": "Test SaaS",
+                    "gst_percentage": 18,
+                    "amount": 1000.0,
+                    "gst_amount": 180.0,
+                    "total": 1180.0
+                }
+            ],
+            "budget_limit": 50000.0,
+            "subtotal": 1000.0,
+            "gst_amount": 180.0,
+            "grand_total": 1180.0,
+            "status": "Approved",
+            "timestamp": "2026-06-05T15:37:02.487367",
+            "_id": "6a229fc6192e55ebaf0af62a"
+        },
+        {
+            "report_id": "EXP-TEST-9999",
+            "employee_name": "Test Employee",
+            "employee_email": "employee@softrate.com",
+            "department": "Finance",
+            "project_name": "Test Project",
+            "travel_purpose": "Testing",
+            "report_period": "June 2026",
+            "items": [
+                {
+                    "date": "2026-06-04",
+                    "category": "Software",
+                    "merchant": "AWS",
+                    "payment_mode": "Credit Card",
+                    "description": "Test SaaS",
+                    "gst_percentage": 18,
+                    "amount": 1000.0,
+                    "gst_amount": 180.0,
+                    "total": 1180.0
+                }
+            ],
+            "budget_limit": 50000.0,
+            "subtotal": 1000.0,
+            "gst_amount": 180.0,
+            "grand_total": 1180.0,
+            "status": "Approved",
+            "timestamp": "2026-06-05T15:48:56.168665",
+            "_id": "6a22a290af72f210c7c492ce"
+        }
+    ]
+}

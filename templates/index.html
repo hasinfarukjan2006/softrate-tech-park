@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Softrate Tech Park GST Calculator - A modern, high-fidelity corporate utility for quick and precise GST calculations. Compute CGST, SGST, IGST in real-time.">
+  <meta name="keywords" content="GST Calculator, Softrate Tech Park, Inclusive GST, Exclusive GST, CGST, SGST, IGST, India Tax Calculator, Tax slab table">
+  <meta name="author" content="Softrate Tech Park Pvt. Ltd.">
+  <!-- OpenGraph Tags for SEO -->
+  <meta property="og:title" content="Softrate GST Calculator - Premium Tax Utility">
+  <meta property="og:description" content="Calculate GST (CGST, SGST, IGST) in real-time using our responsive corporate tool. Standard and customized slabs available.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="/static/images/logo.svg">
+  
+  <title>Softrate GST Calculator | Softrate Tech Park Pvt. Ltd.</title>
+  
+  <!-- Fonts: Outfit (headings) and Inter (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  
+  <!-- Style Sheet -->
+  <link rel="stylesheet" href="/static/css/style.css">
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- jsPDF and AutoTable for Client-Side PDF Generation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.29/jspdf.plugin.autotable.min.js"></script>
+  <!-- SheetJS for Client-Side Excel/CSV Generation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  
+  <!-- Top Header Bar -->
+  <header class="top-header-bar">
+    <div class="header-left">
+      <button id="sidebarCollapseBtn" class="hamburger-btn" aria-label="Collapse Sidebar">☰</button>
+      <div class="header-titles">
+        <h1 class="header-title">Free GST Calculator</h1>
+        <span class="header-subtitle">By Softrate</span>
+      </div>
+    </div>
+    <div class="header-right">
+      <span class="promo-text">Check out Softrate</span>
+      <a href="/signup" class="trial-btn">SIGN UP FOR FREE TRIAL</a>
+    </div>
+  </header>
+
+  <!-- Dashboard Container -->
+  <div class="dashboard-layout">
+    <!-- Left Sidebar Navigation -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-sticky">
+        <!-- Sidebar Brand / Logo Section -->
+        <div class="sidebar-brand">
+          <img src="/static/images/logo.png" alt="Softrate Tech Park Pvt. Ltd." class="sidebar-brand-logo">
+          <div class="sidebar-brand-text">
+            <div class="sidebar-brand-title">SOFTRATE</div>
+            <div class="sidebar-brand-subtitle">TECH PARK PVT. LTD.</div>
+            <div class="sidebar-brand-tagline">Smart Business Finance Solutions</div>
+          </div>
+        </div>
+
+        <!-- Billing Category -->
+        <div class="sidebar-section-title">
+          <i data-lucide="receipt"></i>
+          <span>Billing</span>
+        </div>
+        <ul class="sidebar-menu">
+          <li>
+            <a href="#" class="sidebar-link" data-route="invoice">
+            <span>Invoice Generator</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="sidebar-link" data-route="quote">
+            <span>Quote Generator</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="sidebar-link" data-route="receipts">
+            <span>Receipt Generator</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="sidebar-link" data-route="forecaster">
+            <span>Revenue Forecaster</span>
+            </a>
+          </li>
+        </ul>
+
+        <!-- Finance & Payroll Category -->
+        <div class="sidebar-section-title">
+          <i data-lucide="banknote"></i>
+          <span>Finance & Payroll</span>
+        </div>
+        <ul class="sidebar-menu">
+          <li>
+            <a href="#" class="sidebar-link active" data-route="gst">
+            <span>India GST Calculator</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="sidebar-link" data-route="uk-vat">
+            <span>UK VAT Calculator</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="sidebar-link" data-route="uae-vat">
+            <span>UAE VAT Calculator</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="sidebar-link" data-route="uk-flat">
+            <span>UK Flat Rate Calculator</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="sidebar-link" data-route="uk-corp">
+            <span>UK Corporation Tax Calculator</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="sidebar-link" data-route="hmrc-furlough">
+            <span>HMRC Furlough Claim Calculator</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="sidebar-link" data-route="income-tax">
+            <span>Income Tax Calculator</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="sidebar-link" data-route="paycheck">
+            <span>Paycheck Calculator</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="sidebar-link" data-route="reports">
+            <span>Financial Report Templates</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="sidebar-link" data-route="project-cost">
+            <span>Free Project Cost Estimate Calculator</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="sidebar-link" data-route="w9">
+            <span>Form W-9 Generator</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="sidebar-link" data-route="payslip">
+            <span>Payslip Generator</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="sidebar-link" data-route="nps">
+            <span>NPS Calculator</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="sidebar-link" data-route="eps">
+            <span>EPS Pension Calculator</span>
+            </a>
+          </li>
+        </ul>
+
+        <!-- Inventory Category -->
+        <div class="sidebar-section-title">
+          <i data-lucide="package"></i>
+          <span>Inventory</span>
+        </div>
+        <ul class="sidebar-menu">
+          <li>
+            <a href="#" class="sidebar-link" data-route="sku">
+            <span>SKU Generator</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="sidebar-link" data-route="po">
+            <span>Purchase Order Generator</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="sidebar-link" data-route="reorder">
+            <span>Calculate Reorder Point</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="sidebar-link" data-route="eoq">
+            <span>Economic Order Quantity</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="sidebar-link" data-route="break-even">
+            <span>Break-even Point Calculator</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="sidebar-link" data-route="inventory-turnover">
+            <span>Inventory Turnover Ratio</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="sidebar-link" data-route="packing-slip">
+            <span>Packing Slip Generator</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="sidebar-link" data-route="barcode">
+            <span>Barcode Generator</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="sidebar-link" data-route="shipping-label">
+            <span>Shipping Label Generator</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="sidebar-link" data-route="wholesale">
+            <span>Wholesale price calculator</span>
+            </a>
+          </li>
+        </ul>
+
+        <!-- Expense Category -->
+        <div class="sidebar-section-title">
+          <i data-lucide="coins"></i>
+          <span>Expense</span>
+        </div>
+        <ul class="sidebar-menu" style="margin-bottom: 2rem;">
+          <li>
+            <a href="#" class="sidebar-link" data-route="expense">
+            <span>Expense Report Generator</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="sidebar-link" data-route="per-diem">
+            <span>Per diem calculator</span>
+            </a>
+          </li>
+        </ul>
+        
+      </div>
+      
+      <!-- Connection Banner -->
+      <div class="db-status-banner offline hide" id="dbStatusBanner">
+        <i data-lucide="database"></i>
+        <span id="dbStatusText">Connecting Database...</span>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      <div class="page-container">
+      
+      <!-- Calculator Dashboard Row -->
+      <section id="calculator-section" class="content-section active-tab-content">
+        <div class="welcome-banner">
+          <h1>GST Intelligence Dashboard</h1>
+          <p>Configure amounts, select slabs, and analyze federal/state tax partitions instantly.</p>
+        </div>
+
+        <div class="dashboard-grid">
+          <!-- GST Calculator Card -->
+          <div class="card calc-card animate-fade-in">
+            <div class="card-header">
+              <h2 id="calculatorModeTitle"><i data-lucide="sliders" class="header-icon"></i>GST Settings</h2>
+              <span class="badge" id="calculatorModeBadge">Standard</span>
+            </div>
+            
+            <form id="gstForm" class="calc-form" novalidate>
+              <!-- Input Amount -->
+              <div class="form-group">
+                <label for="gstAmount">Transaction Amount (₹)</label>
+                <div class="input-with-icon">
+                  <span class="input-icon-left">₹</span>
+                  <input type="number" id="gstAmount" placeholder="Enter base amount" min="0.01" step="any" required>
+                </div>
+                <div class="error-msg" id="amountError">Please enter a valid positive number.</div>
+              </div>
+
+              <!-- GST Rate Slabs -->
+              <div class="form-group">
+                <label for="gstRate">GST Rate Slab (%)</label>
+                <div class="select-wrapper">
+                  <select id="gstRate" required>
+                    <option value="0">0% (Exempted)</option>
+                    <option value="3">3% (Precious Metals)</option>
+                    <option value="5">5% (Lower)</option>
+                    <option value="12">12% (Standard Lower)</option>
+                    <option value="18" selected>18% (Standard Higher)</option>
+                    <option value="28">28% (Luxury)</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Inclusive/Exclusive Toggle Toggle -->
+              <div class="form-group">
+                <label>Tax Valuation Mode</label>
+                <div class="toggle-container">
+                  <input type="radio" id="modeExclusive" name="gstMode" value="exclusive" checked>
+                  <label for="modeExclusive" class="toggle-btn">GST Exclusive (+)</label>
+                  
+                  <input type="radio" id="modeInclusive" name="gstMode" value="inclusive">
+                  <label for="modeInclusive" class="toggle-btn">GST Inclusive (-)</label>
+                </div>
+              </div>
+
+              <!-- Transaction Type: CGST/SGST vs IGST -->
+              <div class="form-group" id="transactionTypeGroup">
+                <label>Supply Destination (Tax Type)</label>
+                <div class="toggle-container secondary-toggle">
+                  <input type="radio" id="transIntra" name="transType" value="intra" checked>
+                  <label for="transIntra" class="toggle-btn">Intra-State (CGST + SGST)</label>
+                  
+                  <input type="radio" id="transInter" name="transType" value="inter">
+                  <label for="transInter" class="toggle-btn">Inter-State (IGST)</label>
+                </div>
+              </div>
+
+              <!-- Actions -->
+              <div class="form-actions">
+                <button type="submit" class="btn btn-primary" id="btnCalculate">
+                  <i data-lucide="play-circle"></i> Calculate Tax
+                </button>
+                <button type="button" class="btn btn-secondary" id="btnReset">
+                  <i data-lucide="rotate-ccw"></i> Reset
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Results Summary Card -->
+          <div class="card result-card animate-fade-in">
+            <div class="card-header">
+              <h2><i data-lucide="receipt" class="header-icon"></i>Calculated Summary</h2>
+              <button class="btn-icon" id="btnCopy" title="Copy results to clipboard">
+                <i data-lucide="copy" id="copyIcon"></i>
+                <span class="tooltip" id="copyTooltip">Copy Result</span>
+              </button>
+            </div>
+            
+            <div class="result-body">
+              <div class="result-row bg-highlight">
+                <span class="result-label">Base (Original) Amount</span>
+                <span class="result-value text-primary" id="resOriginal">₹0.00</span>
+              </div>
+              <div class="result-row">
+                <span class="result-label">Applied GST Rate</span>
+                <span class="result-value" id="resRate">18%</span>
+              </div>
+              
+              <div class="result-divider">Tax Component Breakdowns</div>
+              
+              <div class="result-row sub-row" id="cgstRow">
+                <span class="result-label">CGST (Central Tax)</span>
+                <span class="result-value" id="resCGST">₹0.00</span>
+              </div>
+              <div class="result-row sub-row" id="sgstRow">
+                <span class="result-label">SGST (State Tax)</span>
+                <span class="result-value" id="resSGST">₹0.00</span>
+              </div>
+              <div class="result-row sub-row hide" id="igstRow">
+                <span class="result-label">IGST (Integrated Tax)</span>
+                <span class="result-value" id="resIGST">₹0.00</span>
+              </div>
+              <div class="result-row highlight-gst">
+                <span class="result-label">Total GST Amount</span>
+                <span class="result-value text-secondary" id="resGST">₹0.00</span>
+              </div>
+              
+              <div class="result-divider">Grand Total</div>
+              
+              <div class="result-row grand-total-row">
+                <span class="result-label">Final Gross Amount</span>
+                <span class="result-value text-accent" id="resTotal">₹0.00</span>
+              </div>
+            </div>
+
+            <div class="result-footer-text">
+              Calculations rounded to nearest rupee. Powered by Softrate.
+            </div>
+          </div>
+        </div>
+
+        <!-- Calculation History Dashboard -->
+        <div class="card history-card mt-6">
+          <div class="card-header">
+            <h2><i data-lucide="history" class="header-icon"></i>Recent Computations</h2>
+            <button class="btn btn-danger-link" id="btnClearHistory">
+              <i data-lucide="trash-2"></i> Clear History
+            </button>
+          </div>
+          <div class="history-table-container">
+            <table class="history-table" id="historyTable">
+              <thead>
+                <tr>
+                  <th>Timestamp</th>
+                  <th>Base Amount</th>
+                  <th>GST Rate</th>
+                  <th>Mode</th>
+                  <th>GST Amount</th>
+                  <th>Gross Amount</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="historyBody">
+                <tr>
+                  <td colspan="7" class="text-center py-6 text-gray-400">
+                    <i data-lucide="inbox" class="empty-icon"></i>
+                    <p>No recent calculation logs found</p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        <!-- Section 1: GST - Goods and Services Tax -->
+        <div class="card info-card mt-8">
+          <div class="section-title-wrapper">
+            <h2 class="section-heading-blue">GST - Goods and Services Tax</h2>
+            <div class="accent-bar"></div>
+          </div>
+          <p class="info-paragraph">
+            The Goods and Services Tax (GST) is a comprehensive indirect tax introduced in India to replace multiple central and state taxes. GST was implemented on July 1, 2017, with the objective of creating a unified tax structure across the country. It applies to the supply of goods and services and helps eliminate the cascading effect of taxation.
+          </p>
+          <p class="info-paragraph mt-4">
+            GST improves transparency, simplifies tax compliance, and enables businesses to operate under a single tax framework. Different categories of goods and services are taxed at various GST rates such as 0%, 5%, 12%, 18%, and 28%.
+          </p>
+        </div>
+
+        <!-- Section 2: How can you calculate GST with this tool? -->
+        <div class="card info-card mt-8">
+          <div class="section-title-wrapper">
+            <h2 class="section-heading-blue">How can you calculate GST with this tool?</h2>
+            <div class="accent-bar"></div>
+          </div>
+          
+          <div class="vertical-timeline">
+            <div class="timeline-item">
+              <div class="timeline-badge">1</div>
+              <div class="timeline-content">
+                <p>Enter the transaction value of the goods or services in the Amount field.</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-badge">2</div>
+              <div class="timeline-content">
+                <p>Select the GST slab percentage applicable to the product or service.</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-badge">3</div>
+              <div class="timeline-content">
+                <p>Choose whether the entered amount is GST Inclusive or GST Exclusive.</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-badge">4</div>
+              <div class="timeline-content">
+                <p>For Inclusive GST, the system automatically extracts the GST portion from the entered amount.</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-badge">5</div>
+              <div class="timeline-content">
+                <p>For Exclusive GST, the system calculates GST separately and displays the final gross amount.</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-badge">6</div>
+              <div class="timeline-content">
+                <p>View CGST, SGST, IGST, Total GST Amount and Final Gross Amount instantly.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 3: More on GST -->
+        <div class="card info-card mt-8">
+          <div class="section-title-wrapper">
+            <h2 class="section-heading-blue">More on GST</h2>
+            <div class="accent-bar"></div>
+          </div>
+          <p class="info-paragraph">
+            GST is one of the most significant tax reforms in India. It simplifies indirect taxation by combining several taxes into one unified system. Businesses benefit from easier compliance, improved tax credit mechanisms, and streamlined reporting requirements.
+          </p>
+          <p class="info-paragraph mt-4">
+            GST rates vary depending on the nature of goods and services. Essential items may attract lower tax rates while luxury products and selected services may fall under higher GST slabs.
+          </p>
+        </div>
+
+        <!-- Section 4: Four Types of GST in India -->
+        <div class="card info-card mt-8">
+          <div class="section-title-wrapper">
+            <h2 class="section-heading-blue">There are four types of GST active in India. They are:</h2>
+            <div class="accent-bar"></div>
+          </div>
+          
+          <div class="cards-grid-4">
+            <div class="sub-feature-card">
+              <div class="card-tag">CGST</div>
+              <h5>Central Goods and Services Tax</h5>
+              <p>CGST is levied by the Central Government on intra-state supplies of goods and services. Revenue collected under CGST is retained by the Central Government.</p>
+            </div>
+            <div class="sub-feature-card">
+              <div class="card-tag">SGST</div>
+              <h5>State Goods and Services Tax</h5>
+              <p>SGST is levied by the State Government on intra-state supplies. Revenue collected under SGST belongs to the respective state government.</p>
+            </div>
+            <div class="sub-feature-card">
+              <div class="card-tag">IGST</div>
+              <h5>Integrated Goods and Services Tax</h5>
+              <p>IGST is applicable on inter-state transactions and imports. Revenue collected under IGST is shared between the Central Government and the destination state.</p>
+            </div>
+            <div class="sub-feature-card">
+              <div class="card-tag">UTGST</div>
+              <h5>Union Territory Goods and Services Tax</h5>
+              <p>UTGST is applicable in Union Territories where no legislature exists. It is collected alongside CGST.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Coming Soon Section -->
+      <section id="coming-soon-section" class="content-section mt-8 hide">
+        <div class="card about-card" style="text-align: center; padding: 4rem 2rem;">
+          <div style="margin: 0 auto 1.5rem auto; width: 80px; height: 80px; background-color: rgba(0, 168, 168, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+            <i data-lucide="construction" style="width: 40px; height: 40px; color: var(--secondary-color);"></i>
+          </div>
+          <h2 id="comingSoonTitle" style="font-size: 2rem; font-weight: 800; color: var(--primary-color); margin-bottom: 1rem;">Coming Soon</h2>
+          <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 500px; margin: 0 auto 2rem auto;">
+            We are working hard to bring this financial utility to the Softrate Tech Park portal. Stay tuned for real-time analytics and calculation tools!
+          </p>
+          <button class="btn btn-primary" id="btnBackToGst" style="margin: 0 auto;">
+            <i data-lucide="calculator"></i> Back to GST Calculator
+          </button>
+        </div>
+      </section>
+
+      <!-- Section: Expense Report Generator -->
+      <section id="expense-section" class="content-section mt-8 hide">
+        <div class="welcome-banner">
+          <h1>Expense Report Generator</h1>
+          <p>SOFTRATE TECH PARK PVT. LTD. | Smart Business Finance Solutions</p>
+        </div>
+
+        <div class="expense-dashboard-grid mt-6">
+          <!-- Budget Tracker Card -->
+          <div class="card budget-card animate-fade-in">
+            <div class="card-header">
+              <h2><i data-lucide="wallet" class="header-icon"></i>Budget Tracker</h2>
+              <div class="budget-input-group">
+                <label for="budgetLimitInput">Set Limit (₹):</label>
+                <input type="number" id="budgetLimitInput" value="50000" min="0" step="1000">
+              </div>
+            </div>
+            <div class="budget-status-body">
+              <div class="budget-stats">
+                <div>
+                  <span class="stat-label">Total Budget:</span>
+                  <span class="stat-val" id="displayBudget">₹50,000.00</span>
+                </div>
+                <div>
+                  <span class="stat-label">Spent So Far:</span>
+                  <span class="stat-val text-primary" id="displaySpent">₹0.00</span>
+                </div>
+              </div>
+              <div class="progress-bar-container">
+                <div class="progress-bar-fill" id="budgetProgressBar" style="width: 0%"></div>
+              </div>
+              <div id="budgetExceededWarning" class="alert-box danger hide">
+                <i data-lucide="alert-triangle"></i> Warning: Expense budget limit exceeded!
+              </div>
+            </div>
+          </div>
+
+          <!-- Workflow Status Card -->
+          <div class="card status-card animate-fade-in">
+            <div class="card-header">
+              <h2><i data-lucide="check-square" class="header-icon"></i>Report State</h2>
+              <span class="badge badge-workflow" id="workflowStatusBadge">Draft</span>
+            </div>
+            <div class="workflow-body">
+              <p class="text-muted">Report ID: <strong id="expenseReportIdText" class="text-primary">EXP-PENDING</strong></p>
+              <p class="workflow-desc mt-2">Manage the workflow of this report. Click save and submit to push it to the approval feed.</p>
+              <div class="workflow-progress-steps">
+                <div class="step-node active" id="stepNodeDraft" data-step="Draft">Draft</div>
+                <div class="step-connector"></div>
+                <div class="step-node" id="stepNodeSubmitted" data-step="Submitted">Submitted</div>
+                <div class="step-connector"></div>
+                <div class="step-node" id="stepNodeApproved" data-step="Approved">Approved</div>
+              </div>
+              <div class="workflow-actions-panel mt-4 hide" id="workflowActionsPanel" style="display:flex; gap:0.5rem; justify-content:center;">
+                <button type="button" class="btn btn-primary text-xs py-1 px-3" id="btnApproveActiveReport"><i data-lucide="check" style="width:14px;height:14px;vertical-align:middle;margin-right:2px;"></i> Approve</button>
+                <button type="button" class="btn btn-danger text-xs py-1 px-3" id="btnRejectActiveReport"><i data-lucide="x" style="width:14px;height:14px;vertical-align:middle;margin-right:2px;"></i> Reject</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Smart Expense Form Card -->
+        <div class="card form-card mt-6 animate-fade-in">
+          <div class="card-header">
+            <h2><i data-lucide="file-text" class="header-icon"></i>Smart Expense Report Form</h2>
+            <span class="table-subtext">Softrate Tech Park Pvt. Ltd.</span>
+          </div>
+          <form id="expenseReportForm" class="calc-form" novalidate>
+            <div class="form-grid-3">
+              <div class="form-group">
+                <label for="expEmployeeName">Employee Name</label>
+                <input type="text" id="expEmployeeName" placeholder="Enter name" required>
+              </div>
+              <div class="form-group">
+                <label for="expEmployeeEmail">Employee Email</label>
+                <input type="email" id="expEmployeeEmail" placeholder="name@softrate.com" required>
+              </div>
+              <div class="form-group">
+                <label for="expDepartment">Department</label>
+                <div class="select-wrapper">
+                  <select id="expDepartment" required>
+                    <option value="IT">IT / Systems</option>
+                    <option value="Finance" selected>Finance / Accounting</option>
+                    <option value="HR">Human Resources</option>
+                    <option value="Operations">Operations</option>
+                    <option value="Legal">Legal & Compliance</option>
+                    <option value="Sales">Sales & Marketing</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="form-grid-3 mt-4">
+              <div class="form-group">
+                <label for="expProjectName">Project Name</label>
+                <input type="text" id="expProjectName" placeholder="e.g. Server Migration" required>
+              </div>
+              <div class="form-group">
+                <label for="expTravelPurpose">Travel / Business Purpose</label>
+                <input type="text" id="expTravelPurpose" placeholder="e.g. Client Summit" required>
+              </div>
+              <div class="form-group">
+                <label for="expReportPeriod">Report Period</label>
+                <input type="text" id="expReportPeriod" placeholder="e.g. June 2026" required>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <!-- Dynamic Expense Items Builder & Table -->
+        <div class="card table-card mt-6 animate-fade-in">
+          <div class="card-header">
+            <h2><i data-lucide="list" class="header-icon"></i>Expense Items Log</h2>
+            <span class="table-subtext">Dynamic entry log table</span>
+          </div>
+          
+          <!-- Expense Table -->
+          <div class="rate-table-container">
+            <table class="slabs-table" id="expenseItemsTable">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Category</th>
+                  <th>Description</th>
+                  <th>Merchant</th>
+                  <th>Payment Mode</th>
+                  <th>GST %</th>
+                  <th>Amount</th>
+                  <th>Receipt</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="expenseItemsBody">
+                <tr id="emptyTablePlaceholder">
+                  <td colspan="9" class="text-center py-6 text-gray-400">
+                    <p>No line items added yet. Use the form below to append expenses.</p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Add Line Item Form Builder -->
+          <div class="add-item-form-container mt-6">
+            <h4 class="section-heading-blue text-sm">Add New Expense Item</h4>
+            <div class="item-builder-grid mt-3">
+              <div class="form-group">
+                <label for="itemDate">Date</label>
+                <input type="date" id="itemDate" required>
+              </div>
+              <div class="form-group">
+                <label for="itemCategory">Category</label>
+                <div class="select-wrapper">
+                  <select id="itemCategory">
+                    <option value="Travel">Travel</option>
+                    <option value="Meals">Meals</option>
+                    <option value="Lodging">Lodging</option>
+                    <option value="Office Supplies">Office Supplies</option>
+                    <option value="Software">Software</option>
+                    <option value="Subscriptions">Subscriptions</option>
+                    <option value="Utilities">Utilities</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="itemMerchant">Merchant</label>
+                <input type="text" id="itemMerchant" placeholder="e.g. AWS" required>
+              </div>
+              <div class="form-group">
+                <label for="itemPaymentMode">Payment Mode</label>
+                <div class="select-wrapper">
+                  <select id="itemPaymentMode">
+                    <option value="Credit Card">Credit Card</option>
+                    <option value="Cash">Cash</option>
+                    <option value="Bank Transfer">Bank Transfer</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="item-builder-grid mt-4">
+              <div class="form-group">
+                <label for="itemDescription">Description</label>
+                <input type="text" id="itemDescription" placeholder="e.g. Cloud server hosting fee" required>
+              </div>
+              <div class="form-group">
+                <label for="itemGst">GST (%)</label>
+                <div class="select-wrapper">
+                  <select id="itemGst">
+                    <option value="0">0%</option>
+                    <option value="5">5%</option>
+                    <option value="12">12%</option>
+                    <option value="18" selected>18%</option>
+                    <option value="28">28%</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="itemAmount">Amount (₹)</label>
+                <input type="number" id="itemAmount" placeholder="e.g. 8500" min="0.01" step="any" required>
+              </div>
+              <div class="form-group">
+                <label for="itemReceipt">Receipt Upload</label>
+                <div class="file-upload-wrapper">
+                  <input type="file" id="itemReceipt" accept="image/*,application/pdf" style="display:none;">
+                  <button type="button" class="btn btn-secondary text-xs" id="btnUploadTrigger"><i data-lucide="upload"></i> Upload</button>
+                  <span id="uploadFileName" class="text-xs text-muted">No file</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="item-builder-actions mt-4">
+              <button type="button" class="btn btn-primary" id="btnAppendItem"><i data-lucide="plus"></i> Add Item</button>
+              <div id="receiptPreviewContainer" class="receipt-preview-thumbnail hide">
+                <img id="receiptPreviewImg" src="" alt="Receipt Preview">
+                <button type="button" class="btn-remove-receipt" id="btnRemoveReceipt"><i data-lucide="x"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Calculations Summary & Analytics -->
+        <div class="expense-dashboard-grid mt-6">
+          <!-- Calculations Totals Card -->
+          <div class="card totals-card animate-fade-in">
+            <div class="card-header">
+              <h2><i data-lucide="calculator" class="header-icon"></i>Calculations Breakdown</h2>
+              <span class="badge">Auto</span>
+            </div>
+            <div class="result-body">
+              <div class="result-row bg-highlight">
+                <span class="result-label">Subtotal</span>
+                <span class="result-value text-primary" id="expSubtotal">₹0.00</span>
+              </div>
+              <div class="result-row">
+                <span class="result-label">Total GST Portion</span>
+                <span class="result-value text-secondary" id="expGstTotal">₹0.00</span>
+              </div>
+              <div class="result-divider">Grand Total</div>
+              <div class="result-row grand-total-row">
+                <span class="result-label">Grand Total Claim</span>
+                <span class="result-value text-accent" id="expGrandTotal">₹0.00</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Analytics Visualizations Card -->
+          <div class="card analytics-card animate-fade-in">
+            <div class="card-header">
+              <h2><i data-lucide="bar-chart-3" class="header-icon"></i>Spend Analytics</h2>
+              <span class="badge badge-workflow">Real-time</span>
+            </div>
+            <div class="charts-container">
+              <div class="chart-box">
+                <canvas id="categoryChart" width="200" height="200"></canvas>
+              </div>
+              <div class="chart-box">
+                <canvas id="monthlyChart" width="200" height="200"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action Buttons Bar -->
+        <div class="card actions-bar mt-6 animate-fade-in">
+          <div class="actions-bar-layout">
+            <div class="action-status-feedback">
+              <div id="expenseSubmitStatus" class="alert-box hide"></div>
+            </div>
+            <div class="actions-buttons-group">
+              <button type="button" class="btn btn-primary" id="btnSaveExpense"><i data-lucide="save"></i> Save & Submit Report</button>
+              <button type="button" class="btn btn-secondary" id="btnExportExcel"><i data-lucide="file-spreadsheet"></i> Export Excel</button>
+              <button type="button" class="btn btn-secondary" id="btnExportPdf"><i data-lucide="file-text"></i> Export PDF</button>
+              <button type="button" class="btn btn-secondary" id="btnPrintReport"><i data-lucide="printer"></i> Print Report</button>
+              <button type="button" class="btn btn-danger-link" id="btnResetExpense"><i data-lucide="rotate-ccw"></i> Reset Form</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Saved Reports Grid (Approval Workflow Dashboard) -->
+        <div class="card history-card mt-6 animate-fade-in">
+          <div class="card-header">
+            <h2><i data-lucide="history" class="header-icon"></i>Submitted Expense Reports</h2>
+            <span class="table-subtext">Reports Database & Approval Workflow</span>
+          </div>
+          <div class="rate-table-container">
+            <table class="slabs-table" id="savedExpensesTable">
+              <thead>
+                <tr>
+                  <th>Report ID</th>
+                  <th>Employee</th>
+                  <th>Department</th>
+                  <th>Period</th>
+                  <th>Grand Total</th>
+                  <th>Status</th>
+                  <th>Submission Date</th>
+                  <th>Workflow Action</th>
+                </tr>
+              </thead>
+              <tbody id="savedExpensesBody">
+                <tr>
+                  <td colspan="8" class="text-center py-6 text-gray-400">
+                    <p>No submitted expense reports logged in database.</p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 5: GST Rate Slabs in India -->
+      <section id="rates-section" class="content-section mt-8">
+        <div class="card info-card">
+          <div class="section-title-wrapper">
+            <h2 class="section-heading-blue">GST Rate Slabs</h2>
+            <div class="accent-bar"></div>
+          </div>
+          
+          <div class="rate-table-container">
+            <table class="slabs-table" id="ratesSlabTable">
+              <thead>
+                <tr>
+                  <th>GST Rate</th>
+                  <th>Applicable Examples</th>
+                </tr>
+              </thead>
+              <tbody id="ratesTableBody">
+                <!-- Loaded dynamically from API -->
+                <tr>
+                  <td colspan="2" class="text-center py-4">Fetching GST rates...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Section 6: Benefits of GST -->
+        <div class="card info-card mt-8">
+          <div class="section-title-wrapper">
+            <h2 class="section-heading-blue">Benefits of GST</h2>
+            <div class="accent-bar"></div>
+          </div>
+          
+          <div class="cards-grid-3">
+            <div class="benefit-card">
+              <div class="benefit-icon-wrapper">
+                <i data-lucide="shield-check"></i>
+              </div>
+              <h5>Unified Tax Structure</h5>
+            </div>
+            <div class="benefit-card">
+              <div class="benefit-icon-wrapper">
+                <i data-lucide="trending-down"></i>
+              </div>
+              <h5>Reduced Tax Cascading</h5>
+            </div>
+            <div class="benefit-card">
+              <div class="benefit-icon-wrapper">
+                <i data-lucide="smile"></i>
+              </div>
+              <h5>Easier Compliance</h5>
+            </div>
+            <div class="benefit-card">
+              <div class="benefit-icon-wrapper">
+                <i data-lucide="eye"></i>
+              </div>
+              <h5>Better Transparency</h5>
+            </div>
+            <div class="benefit-card">
+              <div class="benefit-icon-wrapper">
+                <i data-lucide="truck"></i>
+              </div>
+              <h5>Improved Logistics</h5>
+            </div>
+            <div class="benefit-card">
+              <div class="benefit-icon-wrapper">
+                <i data-lucide="monitor"></i>
+              </div>
+              <h5>Digital Tax Administration</h5>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 7: Why Choose Softrate GST Calculator? -->
+        <div class="card info-card mt-8">
+          <div class="section-title-wrapper">
+            <h2 class="section-heading-blue">Why Choose Softrate GST Calculator?</h2>
+            <div class="accent-bar"></div>
+          </div>
+          <p class="info-paragraph">
+            The Softrate GST Calculator helps businesses, accountants, tax professionals, students, and entrepreneurs calculate GST quickly and accurately. The platform provides instant calculations, GST component breakdowns, inclusive and exclusive tax computations, and support for both intra-state and inter-state transactions.
+          </p>
+        </div>
+
+        <!-- Section 8: More of Softrate Capabilities for Business -->
+        <div class="card info-card mt-8">
+          <div class="section-title-wrapper">
+            <h2 class="section-heading-blue">More of Softrate Capabilities for Business</h2>
+            <div class="accent-bar"></div>
+          </div>
+          
+          <div class="cards-grid-4">
+            <div class="capability-card">
+              <div class="capability-icon">
+                <i data-lucide="receipt"></i>
+              </div>
+              <h5>Invoice Management</h5>
+            </div>
+            <div class="capability-card">
+              <div class="capability-icon">
+                <i data-lucide="boxes"></i>
+              </div>
+              <h5>Inventory Management</h5>
+            </div>
+            <div class="capability-card">
+              <div class="capability-icon">
+                <i data-lucide="credit-card"></i>
+              </div>
+              <h5>Expense Tracking</h5>
+            </div>
+            <div class="capability-card">
+              <div class="capability-icon">
+                <i data-lucide="file-text"></i>
+              </div>
+              <h5>Tax Reporting</h5>
+            </div>
+            <div class="capability-card">
+              <div class="capability-icon">
+                <i data-lucide="bar-chart-3"></i>
+              </div>
+              <h5>Financial Analytics</h5>
+            </div>
+            <div class="capability-card">
+              <div class="capability-icon">
+                <i data-lucide="layout-dashboard"></i>
+              </div>
+              <h5>Business Dashboards</h5>
+            </div>
+            <div class="capability-card">
+              <div class="capability-icon">
+                <i data-lucide="wallet"></i>
+              </div>
+              <h5>Payroll Processing</h5>
+            </div>
+            <div class="capability-card">
+              <div class="capability-icon">
+                <i data-lucide="clipboard-check"></i>
+              </div>
+              <h5>GST Compliance Management</h5>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      </div> <!-- end of page-container -->
+
+      <!-- Main Footer -->
+      <footer class="main-footer">
+        <div class="footer-container">
+          <div class="footer-brand">
+            <div class="logo-wrapper">
+              <a href="/" class="logo-link">
+                <img src="/static/images/logo.png" alt="Softrate Tech Park Pvt. Ltd." class="brand-logo footer-logo">
+                <div class="brand-text">
+                  <div class="brand-title">SOFTRATE</div>
+                  <div class="brand-subtitle">TECH PARK PVT. LTD.</div>
+                  <div class="brand-tagline">Smart Business Finance Solutions</div>
+                </div>
+              </a>
+            </div>
+            <p>Providing cutting edge workspaces and digital portals for enterprise excellence.</p>
+          </div>
+          <div class="footer-links">
+            <h4>Legal & Compliance</h4>
+            <ul>
+              <li><a href="#">GST Council Guidelines</a></li>
+              <li><a href="#">Tax Slab Disclaimer</a></li>
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Terms of Use</a></li>
+            </ul>
+          </div>
+          <div class="footer-links">
+            <h4>Softrate Hub</h4>
+            <ul>
+              <li><a href="#calculator-section">Tax Calculator</a></li>
+              <li><a href="#rates-section">GST Rates</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2026, Softrate Tech Park Pvt. Ltd. All Rights Reserved.</p>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <!-- Core Javascript File -->
+  <script type="module" src="/static/js/app.js"></script>
+  <script type="module" src="/static/js/expense.js"></script>
+</body>
+</html>

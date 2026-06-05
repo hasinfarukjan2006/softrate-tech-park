@@ -1,0 +1,51 @@
+{
+    "gst_rates": [
+        {
+            "rate": 0,
+            "name": "Exempted / Zero Rated",
+            "description": "Essential items, grains, fresh fruits, vegetables.",
+            "_id": "6a21809b1ef775e113dfbd1f"
+        },
+        {
+            "rate": 3,
+            "name": "Special Rate (Gold/Silver)",
+            "description": "Precious metals, stones, and jewelry.",
+            "_id": "6a21809b1ef775e113dfbd20"
+        },
+        {
+            "rate": 5,
+            "name": "Lower Rate",
+            "description": "Mass consumption items like tea, coffee, edible oil, life-saving drugs.",
+            "_id": "6a21809b1ef775e113dfbd21"
+        },
+        {
+            "rate": 12,
+            "name": "Standard Rate (Lower)",
+            "description": "Processed food, computer accessories, writing instruments.",
+            "_id": "6a21809b1ef775e113dfbd22"
+        },
+        {
+            "rate": 18,
+            "name": "Standard Rate (Higher)",
+            "description": "IT services, telecom, capital goods, restaurants, steel, electronics.",
+            "_id": "6a21809b1ef775e113dfbd23"
+        },
+        {
+            "rate": 28,
+            "name": "Luxury / Demerit Rate",
+            "description": "Luxury items, automobiles, aerated drinks, tobacco products.",
+            "_id": "6a21809b1ef775e113dfbd24"
+        }
+    ],
+    "calculation_history": [],
+    "users": [
+        {
+            "name": "Jane Doe",
+            "email": "jane@example.com",
+            "subject": "GST Software licensing query",
+            "message": "Hi, we are looking to integrate your API within our tech park office space.",
+            "timestamp": "2026-06-04T19:11:47.436475",
+            "_id": "6a21809b1ef775e113dfbd27"
+        }
+    ]
+}

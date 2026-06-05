@@ -822,6 +822,10 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   }
 
+  function loadExpenseReports() {
+    loadSavedReports();
+  }
+
   function renderSavedReportsTable(reports) {
     if (reports.length === 0) {
       savedExpensesBody.innerHTML = `
@@ -893,7 +897,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   async function approveReport(reportId) {
     const response = await fetch(
-      `https://softrate-tech-park.onrender.com/api/approve-report/${reportId}`,
+      `https://softrate-tech-park.onrender.com/expense-report/approve/${reportId}`,
       {
         method: "POST"
       }
@@ -901,12 +905,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const data = await response.json();
     alert(data.message);
-    location.reload();
+    loadExpenseReports();
   }
 
   async function rejectReport(reportId) {
     const response = await fetch(
-      `https://softrate-tech-park.onrender.com/api/reject-report/${reportId}`,
+      `https://softrate-tech-park.onrender.com/expense-report/reject/${reportId}`,
       {
         method: "POST"
       }
@@ -914,7 +918,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const data = await response.json();
     alert(data.message);
-    location.reload();
+    loadExpenseReports();
   }
 
   window.approveReport = approveReport;

@@ -1,5 +1,6 @@
 import datetime
 from datetime import datetime
+from bson import ObjectId
 from flask import Flask, jsonify, request, render_template, render_template_string
 from flask_cors import CORS
 from pymongo import MongoClient
@@ -733,6 +734,38 @@ def expense_report_reject(report_id):
     except Exception as e:
         return jsonify({"status": "error", "message": f"Failed to reject report: {str(e)}"}), 500
 
+@app.route("/api/approve-report/<report_id>", methods=["POST"])
+def api_approve_report(report_id):
+    db_conn, fallback_active = get_db()
+    try:
+        update_op = {"$set": {"status": "APPROVED"}}
+        result = db_conn.expense_reports.update_one({"report_id": report_id}, update_op)
+        if result.matched_count == 0:
+            try:
+                db_conn.expense_reports.update_one({"_id": ObjectId(report_id)}, update_op)
+            except Exception:
+                db_conn.expense_reports.update_one({"_id": report_id}, update_op)
+
+        return jsonify({"success": True, "message": "Report approved", "using_fallback": fallback_active})
+    except Exception as e:
+        return jsonify({"success": False, "message": f"Failed to approve report: {str(e)}"}), 500
+
+@app.route("/api/reject-report/<report_id>", methods=["POST"])
+def api_reject_report(report_id):
+    db_conn, fallback_active = get_db()
+    try:
+        update_op = {"$set": {"status": "REJECTED"}}
+        result = db_conn.expense_reports.update_one({"report_id": report_id}, update_op)
+        if result.matched_count == 0:
+            try:
+                db_conn.expense_reports.update_one({"_id": ObjectId(report_id)}, update_op)
+            except Exception:
+                db_conn.expense_reports.update_one({"_id": report_id}, update_op)
+
+        return jsonify({"success": True, "message": "Report rejected", "using_fallback": fallback_active})
+    except Exception as e:
+        return jsonify({"success": False, "message": f"Failed to reject report: {str(e)}"}), 500
+
 @app.route("/expense-report/export-pdf/<report_id>", methods=["GET"])
 def expense_report_export_pdf(report_id):
     db_conn, fallback_active = get_db()
@@ -985,7 +1018,6 @@ def test_expense():
     })
 
     return "Expense Added"
-from bson import ObjectId
 
 def fix_id(data):
     for item in data:

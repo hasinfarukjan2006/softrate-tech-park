@@ -865,8 +865,8 @@ document.addEventListener("DOMContentLoaded", () => {
       let actions = "";
       if (statusUpper === "SUBMITTED") {
         actions = `
-          <button type="button" class="btn btn-primary text-xs py-1 px-2 mr-1" onclick="window.updateStatus('${reportId}', 'Approved')">Approve</button>
-          <button type="button" class="btn btn-danger text-xs py-1 px-2" onclick="window.updateStatus('${reportId}', 'Rejected')">Reject</button>
+          <button type="button" class="btn btn-primary text-xs py-1 px-2 mr-1" onclick="approveReport('${reportId}')">Approve</button>
+          <button type="button" class="btn btn-danger text-xs py-1 px-2" onclick="rejectReport('${reportId}')">Reject</button>
         `;
       } else {
         actions = `
@@ -891,47 +891,39 @@ document.addEventListener("DOMContentLoaded", () => {
     savedExpensesBody.innerHTML = html;
   }
 
-  // Table action callback mapping to the requested POST endpoints
-  window.updateStatus = function(reportId, newStatus) {
-    const uppercaseStatus = newStatus.toUpperCase();
-    const endpoint = uppercaseStatus === "APPROVED" 
-      ? `${import.meta.env.VITE_API_URL}/expense-report/approve/${reportId}` 
-      : `${import.meta.env.VITE_API_URL}/expense-report/reject/${reportId}`;
-
-    fetch(endpoint, {
-      method: "POST"
-    })
-    .then(res => res.json())
-    .then(data => {
-      if (data.status === "success") {
-        showStatusMessage(`Report ${reportId} updated to ${uppercaseStatus} successfully.`, "success", 3000);
-        
-        // If this report is currently loaded in the active form, sync active view
-        if (reportId === activeReportId) {
-          if (workflowStatusBadge) {
-            workflowStatusBadge.textContent = uppercaseStatus;
-            workflowStatusBadge.className = `badge badge-workflow badge-${uppercaseStatus.toLowerCase()}`;
-          }
-          if (workflowActionsPanel) {
-            workflowActionsPanel.classList.remove("hide");
-          }
-          
-          const appNode = document.getElementById("stepNodeApproved");
-          if (uppercaseStatus === "APPROVED") {
-            if (appNode) appNode.classList.add("active");
-          } else {
-            if (appNode) appNode.classList.remove("active");
-          }
-        }
-        loadSavedReports();
-      } else {
-        showStatusMessage(data.message || "Failed to update status.", "danger");
+  async function approveReport(reportId) {
+    const response = await fetch(
+      `https://softrate-tech-park.onrender.com/api/approve-report/${reportId}`,
+      {
+        method: "POST"
       }
-    })
-    .catch(err => {
-      console.error("Update report status error:", err);
-      showStatusMessage("Network error updating report.", "danger");
-    });
+    );
+
+    const data = await response.json();
+    alert(data.message);
+    location.reload();
+  }
+
+  async function rejectReport(reportId) {
+    const response = await fetch(
+      `https://softrate-tech-park.onrender.com/api/reject-report/${reportId}`,
+      {
+        method: "POST"
+      }
+    );
+
+    const data = await response.json();
+    alert(data.message);
+    location.reload();
+  }
+
+  window.approveReport = approveReport;
+  window.rejectReport = rejectReport;
+  window.updateStatus = function(reportId, newStatus) {
+    if ((newStatus || "").toUpperCase() === "APPROVED") {
+      return approveReport(reportId);
+    }
+    return rejectReport(reportId);
   };
 
   // Inspect and load saved report detail items

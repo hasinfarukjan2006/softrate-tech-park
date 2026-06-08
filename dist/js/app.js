@@ -266,8 +266,7 @@ document.addEventListener("DOMContentLoaded", () => {
         break;
     }
     
-    // Recalculate instantly
-    calculateLocal();
+    // Sync toggles state without auto-calculating
     syncTogglesState();
   }
 
@@ -392,17 +391,9 @@ document.addEventListener("DOMContentLoaded", () => {
     syncTogglesState();
   }
 
-  // Bind inputs for real-time responsiveness
-  gstAmountInput.addEventListener("input", calculateLocal);
-  gstRateSelect.addEventListener("change", calculateLocal);
-  document.querySelectorAll('input[name="gstMode"]').forEach(radio => {
-    radio.addEventListener("change", () => {
-      calculateLocal();
-    });
-  });
+  // Bind inputs for state transitions (no auto-calculation)
   document.querySelectorAll('input[name="transType"]').forEach(radio => {
     radio.addEventListener("change", () => {
-      calculateLocal();
       syncTogglesState();
     });
   });

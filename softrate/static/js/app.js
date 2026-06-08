@@ -1,6 +1,32 @@
+import.meta.env = {
+  VITE_API_URL: window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
+    ? "http://127.0.0.1:5000"
+    : "https://softrate-tech-park-backend.onrender.com"
+};
+
 document.addEventListener("DOMContentLoaded", () => {
   // Initialize Lucide Icons
   lucide.createIcons();
+
+  // Check user session
+  const trialBtn = document.querySelector(".trial-btn");
+  const sessionUserName = localStorage.getItem("sessionUserName");
+  if (sessionUserName && trialBtn) {
+    trialBtn.textContent = `Welcome, ${sessionUserName}`;
+    trialBtn.href = "#";
+    trialBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      if (confirm("Would you like to log out of your trial account?")) {
+        localStorage.removeItem("sessionUserName");
+        localStorage.removeItem("sessionUserEmail");
+        window.location.reload();
+      }
+    });
+    const promoText = document.querySelector(".promo-text");
+    if (promoText) {
+      promoText.textContent = "Active Trial";
+    }
+  }
 
   // DOM Elements
   const body = document.body;
@@ -14,8 +40,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const gstForm = document.getElementById("gstForm");
   const gstAmountInput = document.getElementById("gstAmount");
   const gstRateSelect = document.getElementById("gstRate");
-  const modeRadios = document.querySelectorAll('name="gstMode"');
-  const transRadios = document.querySelectorAll('name="transType"');
+  const modeRadios = document.querySelectorAll('[name="gstMode"]');
+  const transRadios = document.querySelectorAll('[name="transType"]');
   const amountError = document.getElementById("amountError");
   
   // Results Elements
@@ -61,28 +87,58 @@ document.addEventListener("DOMContentLoaded", () => {
     body.classList.remove("dark");
   }
 
-  themeToggleBtn.addEventListener("click", () => {
-    body.classList.toggle("dark");
-    const currentTheme = body.classList.contains("dark") ? "dark" : "light";
-    localStorage.setItem("theme", currentTheme);
-  });
+  if (themeToggleBtn) {
+    themeToggleBtn.addEventListener("click", () => {
+      body.classList.toggle("dark");
+      const currentTheme = body.classList.contains("dark") ? "dark" : "light";
+      localStorage.setItem("theme", currentTheme);
+    });
+  }
 
   /* ==========================================================================
      2. Responsive Navigation & Sidebar Handling
      ========================================================================== */
   // Toggle mobile navigation menu
-  mobileNavToggle.addEventListener("click", () => {
-    navMenu.classList.toggle("mobile-open");
-    const isOpened = navMenu.classList.contains("mobile-open");
-    mobileNavToggle.innerHTML = isOpened ? '<i data-lucide="x"></i>' : '<i data-lucide="menu"></i>';
-    lucide.createIcons();
-  });
+  if (mobileNavToggle) {
+    mobileNavToggle.addEventListener("click", () => {
+      navMenu.classList.toggle("mobile-open");
+      const isOpened = navMenu.classList.contains("mobile-open");
+      mobileNavToggle.innerHTML = isOpened ? '<i data-lucide="x"></i>' : '<i data-lucide="menu"></i>';
+      lucide.createIcons();
+    });
+  }
+
+  // Sidebar Collapse / Expand Toggle
+  const sidebarCollapseBtn = document.getElementById("sidebarCollapseBtn");
+  const sidebar = document.getElementById("sidebar");
+  
+  // Collapse sidebar by default on mobile load
+  if (sidebar && window.innerWidth <= 768) {
+    sidebar.classList.add("collapsed");
+  }
+
+  if (sidebarCollapseBtn && sidebar) {
+    sidebarCollapseBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      sidebar.classList.toggle("collapsed");
+    });
+  }
+
+  // Close sidebar on mobile when clicking main content
+  const mainContent = document.querySelector(".main-content");
+  if (mainContent && sidebar) {
+    mainContent.addEventListener("click", () => {
+      if (window.innerWidth <= 768 && !sidebar.classList.contains("collapsed")) {
+        sidebar.classList.add("collapsed");
+      }
+    });
+  }
 
   // Sidebar Mode Selection Handling
   sidebarLinks.forEach(link => {
     link.addEventListener("click", (e) => {
-      const mode = link.getAttribute("data-mode");
-      if (!mode) return; // Allow normal scrolling for resource links
+      const route = link.getAttribute("data-route");
+      if (!route) return;
 
       e.preventDefault();
       
@@ -90,13 +146,85 @@ document.addEventListener("DOMContentLoaded", () => {
       sidebarLinks.forEach(l => l.classList.remove("active"));
       link.classList.add("active");
       
-      activeMode = mode;
-      updateCalculatorForMode(mode);
+      // Preserve page state
+      localStorage.setItem("activeRoute", route);
+      window.location.hash = route;
+      
+      // Close sidebar on mobile after selection
+      if (sidebar && window.innerWidth <= 768) {
+        sidebar.classList.add("collapsed");
+      }
+      
+      const labelText = link.querySelector("span") ? link.querySelector("span").textContent : "Utility";
+      
+      // Update page title in top-header-bar and document title
+      const headerTitleEl = document.querySelector(".header-title");
+      if (headerTitleEl) {
+        headerTitleEl.textContent = labelText;
+      }
+      document.title = `${labelText} | Softrate Tech Park Pvt. Ltd.`;
+      
+      const calcSection = document.getElementById("calculator-section");
+      const ratesSection = document.getElementById("rates-section");
+      const faqSection = document.getElementById("faq-section");
+      const aboutSection = document.getElementById("about-section");
+      const contactSection = document.getElementById("contact-section");
+      const comingSoonSection = document.getElementById("coming-soon-section");
+      const comingSoonTitle = document.getElementById("comingSoonTitle");
+      const expenseSection = document.getElementById("expense-section");
 
-      // Scroll smoothly back to calculator top on mobile
-      document.getElementById("calculator-section").scrollIntoView({ behavior: "smooth" });
+      if (route === "gst") {
+        // Show GST Calculator view
+        if (calcSection) calcSection.classList.remove("hide");
+        if (ratesSection) ratesSection.classList.remove("hide");
+        if (faqSection) faqSection.classList.remove("hide");
+        if (aboutSection) aboutSection.classList.remove("hide");
+        if (contactSection) contactSection.classList.remove("hide");
+        if (comingSoonSection) comingSoonSection.classList.add("hide");
+        if (expenseSection) expenseSection.classList.add("hide");
+        
+        // Scroll smoothly back to calculator top
+        if (calcSection) calcSection.scrollIntoView({ behavior: "smooth" });
+      } else if (route === "expense") {
+        // Show Expense Report Generator
+        if (calcSection) calcSection.classList.add("hide");
+        if (ratesSection) ratesSection.classList.add("hide");
+        if (faqSection) faqSection.classList.add("hide");
+        if (aboutSection) aboutSection.classList.add("hide");
+        if (contactSection) contactSection.classList.add("hide");
+        if (comingSoonSection) comingSoonSection.classList.add("hide");
+        if (expenseSection) expenseSection.classList.remove("hide");
+        
+        if (expenseSection) expenseSection.scrollIntoView({ behavior: "smooth" });
+        // Dispatch custom event to initialize/sync expense module
+        document.dispatchEvent(new CustomEvent("expenseRouteLoaded"));
+      } else {
+        // Show Coming Soon placeholder view
+        if (calcSection) calcSection.classList.add("hide");
+        if (ratesSection) ratesSection.classList.add("hide");
+        if (faqSection) faqSection.classList.add("hide");
+        if (aboutSection) aboutSection.classList.add("hide");
+        if (contactSection) contactSection.classList.add("hide");
+        if (expenseSection) expenseSection.classList.add("hide");
+        if (comingSoonSection) comingSoonSection.classList.remove("hide");
+        
+        if (comingSoonTitle) comingSoonTitle.textContent = `${labelText} - Coming Soon`;
+        
+        if (comingSoonSection) comingSoonSection.scrollIntoView({ behavior: "smooth" });
+      }
     });
   });
+
+  // Handle Back to GST Calculator button inside coming-soon placeholder
+  const btnBackToGst = document.getElementById("btnBackToGst");
+  if (btnBackToGst) {
+    btnBackToGst.addEventListener("click", () => {
+      const gstLink = Array.from(sidebarLinks).find(l => l.getAttribute("data-route") === "gst");
+      if (gstLink) {
+        gstLink.click();
+      }
+    });
+  }
 
   // Helper to sync UI configuration based on sidebar selection
   function updateCalculatorForMode(mode) {
@@ -138,8 +266,7 @@ document.addEventListener("DOMContentLoaded", () => {
         break;
     }
     
-    // Recalculate instantly
-    calculateLocal();
+    // Sync toggles state without auto-calculating
     syncTogglesState();
   }
 
@@ -163,6 +290,32 @@ document.addEventListener("DOMContentLoaded", () => {
       navMenu.classList.remove("mobile-open");
       mobileNavToggle.innerHTML = '<i data-lucide="menu"></i>';
       lucide.createIcons();
+
+      // Check if calculator section is currently hidden
+      const calcSection = document.getElementById("calculator-section");
+      if (calcSection && calcSection.classList.contains("hide")) {
+        const ratesSection = document.getElementById("rates-section");
+        const faqSection = document.getElementById("faq-section");
+        const aboutSection = document.getElementById("about-section");
+        const contactSection = document.getElementById("contact-section");
+        const comingSoonSection = document.getElementById("coming-soon-section");
+        const expenseSection = document.getElementById("expense-section");
+        
+        calcSection.classList.remove("hide");
+        if (ratesSection) ratesSection.classList.remove("hide");
+        if (faqSection) faqSection.classList.remove("hide");
+        if (aboutSection) aboutSection.classList.remove("hide");
+        if (contactSection) contactSection.classList.remove("hide");
+        if (comingSoonSection) comingSoonSection.classList.add("hide");
+        if (expenseSection) expenseSection.classList.add("hide");
+
+        // Highlight India GST Calculator in sidebar as active
+        sidebarLinks.forEach(l => l.classList.remove("active"));
+        const gstLink = Array.from(sidebarLinks).find(l => l.getAttribute("data-route") === "gst");
+        if (gstLink) {
+          gstLink.classList.add("active");
+        }
+      }
 
       // Highlight active nav item
       if (link.classList.contains("nav-link")) {
@@ -222,9 +375,9 @@ document.addEventListener("DOMContentLoaded", () => {
       totalAmount = originalAmount + gstAmount;
     }
 
-    const cgst = gstAmount / 2;
-    const sgst = gstAmount / 2;
-    const igst = gstAmount;
+    const cgst = isInterstate ? 0 : gstAmount / 2;
+    const sgst = isInterstate ? 0 : gstAmount / 2;
+    const igst = isInterstate ? gstAmount : 0;
 
     // Render results
     resOriginal.textContent = `₹${originalAmount.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
@@ -238,17 +391,9 @@ document.addEventListener("DOMContentLoaded", () => {
     syncTogglesState();
   }
 
-  // Bind inputs for real-time responsiveness
-  gstAmountInput.addEventListener("input", calculateLocal);
-  gstRateSelect.addEventListener("change", calculateLocal);
-  document.querySelectorAll('input[name="gstMode"]').forEach(radio => {
-    radio.addEventListener("change", () => {
-      calculateLocal();
-    });
-  });
+  // Bind inputs for state transitions (no auto-calculation)
   document.querySelectorAll('input[name="transType"]').forEach(radio => {
     radio.addEventListener("change", () => {
-      calculateLocal();
       syncTogglesState();
     });
   });
@@ -277,7 +422,7 @@ document.addEventListener("DOMContentLoaded", () => {
     btnCalculate.innerHTML = '<i data-lucide="loader" class="animate-spin"></i> Calculating...';
     lucide.createIcons();
 
-    fetch("/api/calculate", {
+    fetch(`${import.meta.env.VITE_API_URL}/api/calculate`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -294,16 +439,46 @@ document.addEventListener("DOMContentLoaded", () => {
         const data = resData.data;
         
         // Update results card with final server math
+        const isInterstate = document.getElementById("transInter").checked;
+        const cgstVal = isInterstate ? 0 : data.cgst;
+        const sgstVal = isInterstate ? 0 : data.sgst;
+        const igstVal = isInterstate ? data.igst : 0;
+
         resOriginal.textContent = `₹${data.original_amount.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
         resRate.textContent = `${data.gst_rate}%`;
-        resCGST.textContent = `₹${data.cgst.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-        resSGST.textContent = `₹${data.sgst.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-        resIGST.textContent = `₹${data.igst.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+        resCGST.textContent = `₹${cgstVal.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+        resSGST.textContent = `₹${sgstVal.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+        resIGST.textContent = `₹${igstVal.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
         resGST.textContent = `₹${data.gst_amount.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
         resTotal.textContent = `₹${data.total_amount.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
         
         updateDbStatusBanner(resData.using_fallback);
-        loadHistory(); // Reload history logs
+
+        const amount = payload.amount;
+        const rate = payload.rate;
+        const mode = payload.type;
+        const gstAmount = data.gst_amount;
+        const totalAmount = data.total_amount;
+
+        fetch(`${import.meta.env.VITE_API_URL}/save-gst`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            amount: amount,
+            rate: rate,
+            type: mode,
+            gst_amount: gstAmount,
+            total: totalAmount
+          })
+        })
+        .then(res => res.json())
+        .then(saveRes => {
+          console.log("Saved to MongoDB:", saveRes);
+          loadHistory(); // Reload history logs after saving
+        })
+        .catch(err => console.error("MongoDB save error:", err));
       } else {
         alert("Calculation error: " + resData.message);
       }
@@ -313,7 +488,8 @@ document.addEventListener("DOMContentLoaded", () => {
       btnCalculate.innerHTML = '<i data-lucide="play-circle"></i> Calculate Tax';
       lucide.createIcons();
       console.error("Calculate API error:", err);
-      // Fail-safe: Local calculation was already rendered
+      updateDbStatusBanner(true);
+      calculateLocal(); // Fail-safe: Local calculation was already rendered
     });
   });
 
@@ -328,6 +504,19 @@ document.addEventListener("DOMContentLoaded", () => {
     amountError.style.display = "none";
     gstAmountInput.classList.remove("border-danger");
     
+    // Reset sidebar and calculator mode
+    sidebarLinks.forEach(l => l.classList.remove("active"));
+    const gstLink = Array.from(sidebarLinks).find(l => l.getAttribute("data-route") === "gst");
+    if (gstLink) {
+      gstLink.classList.add("active");
+    }
+    
+    activeMode = "standard";
+    const titleEl = document.getElementById("calculatorModeTitle");
+    const badgeEl = document.getElementById("calculatorModeBadge");
+    titleEl.innerHTML = '<i data-lucide="sliders" class="header-icon"></i>GST Settings';
+    badgeEl.textContent = "Standard";
+
     resOriginal.textContent = "₹0.00";
     resRate.textContent = "18%";
     resCGST.textContent = "₹0.00";
@@ -386,16 +575,15 @@ Report generated by Softrate Tech Park Pvt. Ltd.`;
      6. History & Rates Loaders (API GET /history & /gst-rates)
      ========================================================================== */
   function loadHistory() {
-    fetch("/api/history")
+    fetch(`${import.meta.env.VITE_API_URL}/api/gst-history`)
     .then(res => res.json())
     .then(resData => {
-      if (resData.status === "success") {
-        updateDbStatusBanner(resData.using_fallback);
-        renderHistoryRows(resData.history);
-      }
+      console.log(resData);
+      renderHistoryRows(resData);
     })
     .catch(err => {
       console.error("Error loading history:", err);
+      updateDbStatusBanner(true);
     });
   }
 
@@ -414,6 +602,12 @@ Report generated by Softrate Tech Park Pvt. Ltd.`;
 
     let rowsHTML = "";
     history.forEach(item => {
+      const rateVal = item.gst_rate !== undefined ? item.gst_rate : (item.rate !== undefined ? item.rate : 0);
+      const typeVal = item.gst_type !== undefined ? item.gst_type : (item.type !== undefined ? item.type : "exclusive");
+      const gstAmtVal = item.gst_amount !== undefined ? item.gst_amount : 0;
+      const finalAmtVal = item.final_amount !== undefined ? item.final_amount : (item.total !== undefined ? item.total : 0);
+      const itemId = item.id || item._id;
+
       // Formatting time
       let timeStr = "Just now";
       if (item.timestamp) {
@@ -426,7 +620,7 @@ Report generated by Softrate Tech Park Pvt. Ltd.`;
         }
       }
 
-      const modeBadge = item.gst_type === "inclusive" 
+      const modeBadge = typeVal === "inclusive" 
         ? '<span class="badge" style="background-color:rgba(0, 168, 168, 0.15); color:#00A8A8;">Inclusive</span>'
         : '<span class="badge" style="background-color:rgba(15, 76, 129, 0.15); color:#0F4C81;">Exclusive</span>';
 
@@ -434,12 +628,12 @@ Report generated by Softrate Tech Park Pvt. Ltd.`;
         <tr>
           <td>${timeStr}</td>
           <td>₹${item.amount.toFixed(2)}</td>
-          <td>${item.gst_rate}%</td>
+          <td>${rateVal}%</td>
           <td>${modeBadge}</td>
-          <td>₹${item.gst_amount.toFixed(2)}</td>
-          <td class="font-bold text-primary">₹${item.final_amount.toFixed(2)}</td>
+          <td>₹${gstAmtVal.toFixed(2)}</td>
+          <td class="font-bold text-primary">₹${finalAmtVal.toFixed(2)}</td>
           <td>
-            <button class="btn-delete-row" data-id="${item.id}" title="Remove entry">
+            <button class="btn-delete-row" data-id="${itemId}" title="Remove entry">
               <i data-lucide="trash-2" style="width:16px;height:16px;"></i>
             </button>
           </td>
@@ -464,7 +658,7 @@ Report generated by Softrate Tech Park Pvt. Ltd.`;
   }
 
   function clearAllHistory() {
-    fetch("/api/history", {
+    fetch(`${import.meta.env.VITE_API_URL}/api/history`, {
       method: "DELETE"
     })
     .then(res => res.json())
@@ -487,7 +681,7 @@ Report generated by Softrate Tech Park Pvt. Ltd.`;
 
   // Fetch official GST Slabs
   function loadGstRates() {
-    fetch("/api/gst-rates")
+    fetch(`${import.meta.env.VITE_API_URL}/api/gst-rates`)
     .then(res => res.json())
     .then(resData => {
       if (resData.status === "success") {
@@ -497,22 +691,35 @@ Report generated by Softrate Tech Park Pvt. Ltd.`;
     })
     .catch(err => {
       console.error("Error loading GST rates:", err);
+      updateDbStatusBanner(true);
     });
   }
 
   function renderRatesTable(rates) {
-    if (!rates || rates.length === 0) {
-      ratesTableBody.innerHTML = "<tr><td colspan='3'>No GST rates found.</td></tr>";
-      return;
+    const tableHeader = document.querySelector("#ratesSlabTable thead");
+    if (tableHeader) {
+      tableHeader.innerHTML = `
+        <tr>
+          <th>GST Rate</th>
+          <th>Applicable Examples</th>
+        </tr>`;
     }
 
+    const examplesMap = {
+      0: "Essential goods",
+      5: "Household necessities",
+      12: "Processed products",
+      18: "Standard business goods and services",
+      28: "Luxury and premium products"
+    };
+
     let rowsHTML = "";
-    rates.forEach(item => {
+    const targetRates = [0, 5, 12, 18, 28];
+    targetRates.forEach(rateVal => {
       rowsHTML += `
         <tr>
-          <td><strong>${item.rate}%</strong></td>
-          <td>${item.name}</td>
-          <td>${item.description}</td>
+          <td><strong>${rateVal}%</strong></td>
+          <td>${examplesMap[rateVal]}</td>
         </tr>`;
     });
     ratesTableBody.innerHTML = rowsHTML;
@@ -527,121 +734,132 @@ Report generated by Softrate Tech Park Pvt. Ltd.`;
   /* ==========================================================================
      7. Contact Form Handling (POST /api/contact)
      ========================================================================== */
-  contactForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    
-    // Inputs
-    const nameInput = document.getElementById("contactName");
-    const emailInput = document.getElementById("contactEmail");
-    const subjectInput = document.getElementById("contactSubject");
-    const messageInput = document.getElementById("contactMessage");
-    
-    // Errors
-    const nameErr = document.getElementById("contactNameError");
-    const emailErr = document.getElementById("contactEmailError");
-    const subjectErr = document.getElementById("contactSubjectError");
-    const messageErr = document.getElementById("contactMessageError");
-    
-    let isValid = true;
-    
-    // Name validation
-    if (!nameInput.value.trim()) {
-      nameErr.style.display = "block";
-      nameInput.classList.add("border-danger");
-      isValid = false;
-    } else {
-      nameErr.style.display = "none";
-      nameInput.classList.remove("border-danger");
-    }
-    
-    // Email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailInput.value.trim() || !emailRegex.test(emailInput.value.trim())) {
-      emailErr.style.display = "block";
-      emailInput.classList.add("border-danger");
-      isValid = false;
-    } else {
-      emailErr.style.display = "none";
-      emailInput.classList.remove("border-danger");
-    }
-    
-    // Subject validation
-    if (!subjectInput.value.trim()) {
-      subjectErr.style.display = "block";
-      subjectInput.classList.add("border-danger");
-      isValid = false;
-    } else {
-      subjectErr.style.display = "none";
-      subjectInput.classList.remove("border-danger");
-    }
-    
-    // Message validation
-    if (!messageInput.value.trim()) {
-      messageErr.style.display = "block";
-      messageInput.classList.add("border-danger");
-      isValid = false;
-    } else {
-      messageErr.style.display = "none";
-      messageInput.classList.remove("border-danger");
-    }
-    
-    if (!isValid) return;
-
-    // Submit API
-    const payload = {
-      name: nameInput.value.trim(),
-      email: emailInput.value.trim(),
-      subject: subjectInput.value.trim(),
-      message: messageInput.value.trim()
-    };
-
-    const submitBtn = document.getElementById("btnContactSubmit");
-    submitBtn.disabled = true;
-    submitBtn.innerHTML = '<i data-lucide="loader" class="animate-spin"></i> Submitting...';
-    lucide.createIcons();
-
-    fetch("/api/contact", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(payload)
-    })
-    .then(res => res.json())
-    .then(resData => {
-      submitBtn.disabled = false;
-      submitBtn.innerHTML = '<i data-lucide="send"></i> Send Inquiry';
-      lucide.createIcons();
+  if (contactForm) {
+    contactForm.addEventListener("submit", (e) => {
+      e.preventDefault();
       
-      contactStatusBox.classList.remove("hide", "success", "danger");
+      // Inputs
+      const nameInput = document.getElementById("contactName");
+      const emailInput = document.getElementById("contactEmail");
+      const subjectInput = document.getElementById("contactSubject");
+      const messageInput = document.getElementById("contactMessage");
       
-      if (resData.status === "success") {
-        contactStatusBox.classList.add("success");
-        contactStatusBox.textContent = resData.message;
-        contactForm.reset();
-        
-        // Hide success message after 5 seconds
-        setTimeout(() => {
-          contactStatusBox.classList.add("hide");
-        }, 5000);
+      // Errors
+      const nameErr = document.getElementById("contactNameError");
+      const emailErr = document.getElementById("contactEmailError");
+      const subjectErr = document.getElementById("contactSubjectError");
+      const messageErr = document.getElementById("contactMessageError");
+      
+      let isValid = true;
+      
+      // Name validation
+      if (!nameInput.value.trim()) {
+        nameErr.style.display = "block";
+        nameInput.classList.add("border-danger");
+        isValid = false;
       } else {
-        contactStatusBox.classList.add("danger");
-        contactStatusBox.textContent = "Failed: " + resData.message;
+        nameErr.style.display = "none";
+        nameInput.classList.remove("border-danger");
       }
-    })
-    .catch(err => {
-      submitBtn.disabled = false;
-      submitBtn.innerHTML = '<i data-lucide="send"></i> Send Inquiry';
-      lucide.createIcons();
       
-      contactStatusBox.classList.remove("hide", "success", "danger");
-      contactStatusBox.classList.add("danger");
-      contactStatusBox.textContent = "A network error occurred. Please try again later.";
-      console.error("Contact Form submission error:", err);
+      // Email validation
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailInput.value.trim() || !emailRegex.test(emailInput.value.trim())) {
+        emailErr.style.display = "block";
+        emailInput.classList.add("border-danger");
+        isValid = false;
+      } else {
+        emailErr.style.display = "none";
+        emailInput.classList.remove("border-danger");
+      }
+      
+      // Subject validation
+      if (!subjectInput.value.trim()) {
+        subjectErr.style.display = "block";
+        subjectInput.classList.add("border-danger");
+        isValid = false;
+      } else {
+        subjectErr.style.display = "none";
+        subjectInput.classList.remove("border-danger");
+      }
+      
+      // Message validation
+      if (!messageInput.value.trim()) {
+        messageErr.style.display = "block";
+        messageInput.classList.add("border-danger");
+        isValid = false;
+      } else {
+        messageErr.style.display = "none";
+        messageInput.classList.remove("border-danger");
+      }
+      
+      if (!isValid) return;
+
+      // Submit API
+      const payload = {
+        name: nameInput.value.trim(),
+        email: emailInput.value.trim(),
+        subject: subjectInput.value.trim(),
+        message: messageInput.value.trim()
+      };
+
+      const submitBtn = document.getElementById("btnContactSubmit");
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<i data-lucide="loader" class="animate-spin"></i> Submitting...';
+      lucide.createIcons();
+
+      fetch(`${import.meta.env.VITE_API_URL}/api/contact`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+      })
+      .then(res => res.json())
+      .then(resData => {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<i data-lucide="send"></i> Send Inquiry';
+        lucide.createIcons();
+        
+        contactStatusBox.classList.remove("hide", "success", "danger");
+        
+        if (resData.status === "success") {
+          contactStatusBox.classList.add("success");
+          contactStatusBox.textContent = resData.message;
+          contactForm.reset();
+          
+          // Hide success message after 5 seconds
+          setTimeout(() => {
+            contactStatusBox.classList.add("hide");
+          }, 5000);
+        } else {
+          contactStatusBox.classList.add("danger");
+          contactStatusBox.textContent = "Failed: " + resData.message;
+        }
+      })
+      .catch(err => {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<i data-lucide="send"></i> Send Inquiry';
+        lucide.createIcons();
+        
+        contactStatusBox.classList.remove("hide", "success", "danger");
+        contactStatusBox.classList.add("danger");
+        contactStatusBox.textContent = "A network error occurred. Please try again later.";
+        console.error("Contact Form submission error:", err);
+      });
     });
-  });
+  }
 
   // Initial Data Load
   loadHistory();
   loadGstRates();
+
+  // Restore page state on load
+  const savedRoute = window.location.hash.substring(1) || localStorage.getItem("activeRoute") || "gst";
+  const savedLink = Array.from(sidebarLinks).find(l => l.getAttribute("data-route") === savedRoute);
+  if (savedLink) {
+    setTimeout(() => {
+      savedLink.click();
+    }, 50);
+  }
 });

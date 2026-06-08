@@ -3013,7 +3013,7 @@ body.dark .expense-doc-paper {
 }
 
 /* Mobile Responsiveness for Expense Report Generator */
-@media screen and (max-width: 768px) {
+@media (max-width: 768px) {
   /* Header title and free trial button should not overlap */
   .header-left {
     max-width: 50% !important;
@@ -3031,10 +3031,15 @@ body.dark .expense-doc-paper {
     white-space: nowrap !important;
   }
 
-  /* Prevent horizontal page overflow */
+  /* Prevent horizontal page overflow and force 100% width card */
   .expense-page-grid {
     grid-template-columns: 1fr !important;
     gap: 1.5rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 1.5rem 0 0 0 !important;
+    box-sizing: border-box !important;
   }
   
   #expense-report-print-area {
@@ -3042,6 +3047,7 @@ body.dark .expense-doc-paper {
     max-width: 100% !important;
     margin: 0 !important;
     padding: 0 !important;
+    box-sizing: border-box !important;
   }
 
   .expense-doc-paper {
@@ -3065,6 +3071,8 @@ body.dark .expense-doc-paper {
   .expense-doc-logo {
     text-align: center !important;
     width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
   }
 
   .expense-doc-tagline {
@@ -3093,6 +3101,7 @@ body.dark .expense-doc-paper {
   .expense-doc-field input,
   .expense-doc-field textarea {
     width: 100% !important;
+    box-sizing: border-box !important;
   }
 
   /* Table scrolling to prevent squishing and overlap */

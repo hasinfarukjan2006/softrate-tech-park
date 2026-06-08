@@ -3037,6 +3037,7 @@ body.dark .expense-doc-paper {
     gap: 1.5rem !important;
     width: 100% !important;
     max-width: 100% !important;
+    min-width: 0 !important;
     padding: 0 !important;
     margin: 1.5rem 0 0 0 !important;
     box-sizing: border-box !important;
@@ -3045,6 +3046,7 @@ body.dark .expense-doc-paper {
   #expense-report-print-area {
     width: 100% !important;
     max-width: 100% !important;
+    min-width: 0 !important;
     margin: 0 !important;
     padding: 0 !important;
     box-sizing: border-box !important;
@@ -3053,9 +3055,11 @@ body.dark .expense-doc-paper {
   .expense-doc-paper {
     width: 100% !important;
     max-width: 100% !important;
+    min-width: 0 !important;
     padding: 16px !important;
     border-radius: 8px !important;
     box-sizing: border-box !important;
+    overflow-x: hidden !important; /* Prevent layout bleed */
   }
 
   /* Header elements stacking and center alignment */
@@ -3066,6 +3070,7 @@ body.dark .expense-doc-paper {
     gap: 1rem !important;
     padding-bottom: 1rem !important;
     margin-bottom: 1.5rem !important;
+    width: 100% !important;
   }
 
   .expense-doc-logo {
@@ -3089,6 +3094,7 @@ body.dark .expense-doc-paper {
   .expense-doc-title-text {
     text-align: center !important;
     padding: 0 !important;
+    width: 100% !important;
   }
 
   /* Form Grid to single column */
@@ -3096,6 +3102,11 @@ body.dark .expense-doc-paper {
     grid-template-columns: 1fr !important;
     gap: 1rem !important;
     margin-bottom: 1.5rem !important;
+    width: 100% !important;
+  }
+
+  .expense-doc-field {
+    width: 100% !important;
   }
 
   .expense-doc-field input,
@@ -3107,13 +3118,16 @@ body.dark .expense-doc-paper {
   /* Table scrolling to prevent squishing and overlap */
   .expense-doc-table-wrapper {
     width: 100% !important;
+    max-width: 100% !important;
     overflow-x: auto !important;
     -webkit-overflow-scrolling: touch !important;
     margin-bottom: 1.5rem !important;
+    box-sizing: border-box !important;
   }
 
   .expense-doc-table {
     min-width: 650px !important; /* Forces scroll bar rather than overlapping inputs */
+    width: 100% !important;
   }
 
   /* Full-width buttons */
@@ -3121,6 +3135,7 @@ body.dark .expense-doc-paper {
     width: 100% !important;
     justify-content: center !important;
     display: flex !important;
+    box-sizing: border-box !important;
   }
 
   /* Grand Total neatly positioned at the bottom */

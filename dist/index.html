@@ -320,6 +320,9 @@
 
               <!-- Actions -->
               <div class="form-actions">
+                <button type="submit" class="btn btn-primary hide" id="btnCalculate">
+                  <i data-lucide="play-circle"></i> Calculate Tax
+                </button>
                 <button type="button" class="btn btn-secondary" id="btnReset">
                   <i data-lucide="rotate-ccw"></i> Reset
                 </button>
@@ -380,37 +383,7 @@
           </div>
         </div>
 
-        <!-- Calculation History Dashboard -->
-        <div class="card history-card mt-6">
-          <div class="card-header">
-            <h2><i data-lucide="history" class="header-icon"></i>Recent Computations</h2>
-            <button class="btn btn-danger-link" id="btnClearHistory">
-              <i data-lucide="trash-2"></i> Clear History
-            </button>
-          </div>
-          <div class="history-table-container">
-            <table class="history-table" id="historyTable">
-              <thead>
-                <tr>
-                  <th>Timestamp</th>
-                  <th>Base Amount</th>
-                  <th>GST Rate</th>
-                  <th>Mode</th>
-                  <th>GST Amount</th>
-                  <th>Gross Amount</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody id="historyBody">
-                <tr>
-                  <td colspan="7" class="text-center py-6 text-gray-400">
-                    <i data-lucide="inbox" class="empty-icon"></i>
-                    <p>No recent calculation logs found</p>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+
         <!-- Section 1: GST - Goods and Services Tax -->
         <div class="card info-card mt-8">
           <div class="section-title-wrapper">
@@ -531,314 +504,120 @@
           <button class="btn btn-primary" id="btnBackToGst" style="margin: 0 auto;">
             <i data-lucide="calculator"></i> Back to GST Calculator
           </button>
-        </div>
       </section>
 
       <!-- Section: Expense Report Generator -->
       <section id="expense-section" class="content-section mt-8 hide">
         <div class="welcome-banner">
           <h1>Expense Report Generator</h1>
-          <p>SOFTRATE TECH PARK PVT. LTD. | Smart Business Finance Solutions</p>
+          <p>Create, manage, export, and save your business expense reports in a professional layout.</p>
         </div>
 
-        <div class="expense-dashboard-grid mt-6">
-          <!-- Budget Tracker Card -->
-          <div class="card budget-card animate-fade-in">
-            <div class="card-header">
-              <h2><i data-lucide="wallet" class="header-icon"></i>Budget Tracker</h2>
-              <div class="budget-input-group">
-                <label for="budgetLimitInput">Set Limit (₹):</label>
-                <input type="number" id="budgetLimitInput" value="50000" min="0" step="1000">
-              </div>
-            </div>
-            <div class="budget-status-body">
-              <div class="budget-stats">
+        <div class="expense-page-grid">
+          <!-- Left Side: Editable Expense Report Document -->
+          <div id="expense-report-print-area">
+            <div class="expense-doc-paper" id="expenseDocPaper">
+              <!-- Header -->
+              <div class="expense-doc-header">
                 <div>
-                  <span class="stat-label">Total Budget:</span>
-                  <span class="stat-val" id="displayBudget">₹50,000.00</span>
+                  <div class="expense-doc-logo">SOFTRATE <span>TECH</span></div>
+                  <div class="expense-doc-tagline">Softrate Tech Park Pvt. Ltd.</div>
                 </div>
-                <div>
-                  <span class="stat-label">Spent So Far:</span>
-                  <span class="stat-val text-primary" id="displaySpent">₹0.00</span>
-                </div>
-              </div>
-              <div class="progress-bar-container">
-                <div class="progress-bar-fill" id="budgetProgressBar" style="width: 0%"></div>
-              </div>
-              <div id="budgetExceededWarning" class="alert-box danger hide">
-                <i data-lucide="alert-triangle"></i> Warning: Expense budget limit exceeded!
-              </div>
-            </div>
-          </div>
-
-          <!-- Workflow Status Card -->
-          <div class="card status-card animate-fade-in">
-            <div class="card-header">
-              <h2><i data-lucide="check-square" class="header-icon"></i>Report State</h2>
-              <span class="badge badge-workflow" id="workflowStatusBadge">Draft</span>
-            </div>
-            <div class="workflow-body">
-              <p class="text-muted">Report ID: <strong id="expenseReportIdText" class="text-primary">EXP-PENDING</strong></p>
-              <p class="workflow-desc mt-2">Manage the workflow of this report. Click save and submit to push it to the approval feed.</p>
-              <div class="workflow-progress-steps">
-                <div class="step-node active" id="stepNodeDraft" data-step="Draft">Draft</div>
-                <div class="step-connector"></div>
-                <div class="step-node" id="stepNodeSubmitted" data-step="Submitted">Submitted</div>
-                <div class="step-connector"></div>
-                <div class="step-node" id="stepNodeApproved" data-step="Approved">Approved</div>
-              </div>
-              <div class="workflow-actions-panel mt-4" id="workflowActionsPanel" style="display:flex; gap:0.5rem; justify-content:center;">
-                <span class="text-muted">Pending Review</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Smart Expense Form Card -->
-        <div class="card form-card mt-6 animate-fade-in">
-          <div class="card-header">
-            <h2><i data-lucide="file-text" class="header-icon"></i>Smart Expense Report Form</h2>
-            <span class="table-subtext">Softrate Tech Park Pvt. Ltd.</span>
-          </div>
-          <form id="expenseReportForm" class="calc-form" novalidate>
-            <div class="form-grid-3">
-              <div class="form-group">
-                <label for="expEmployeeName">Employee Name</label>
-                <input type="text" id="expEmployeeName" placeholder="Enter name" required>
-              </div>
-              <div class="form-group">
-                <label for="expEmployeeEmail">Employee Email</label>
-                <input type="email" id="expEmployeeEmail" placeholder="name@softrate.com" required>
-              </div>
-              <div class="form-group">
-                <label for="expDepartment">Department</label>
-                <div class="select-wrapper">
-                  <select id="expDepartment" required>
-                    <option value="IT">IT / Systems</option>
-                    <option value="Finance" selected>Finance / Accounting</option>
-                    <option value="HR">Human Resources</option>
-                    <option value="Operations">Operations</option>
-                    <option value="Legal">Legal & Compliance</option>
-                    <option value="Sales">Sales & Marketing</option>
-                  </select>
+                <div class="expense-doc-title-area">
+                  <div class="expense-doc-title-text" id="reportTitle">Expense Report</div>
                 </div>
               </div>
-            </div>
-            <div class="form-grid-3 mt-4">
-              <div class="form-group">
-                <label for="expProjectName">Project Name</label>
-                <input type="text" id="expProjectName" placeholder="e.g. Server Migration" required>
-              </div>
-              <div class="form-group">
-                <label for="expTravelPurpose">Travel / Business Purpose</label>
-                <input type="text" id="expTravelPurpose" placeholder="e.g. Client Summit" required>
-              </div>
-              <div class="form-group">
-                <label for="expReportPeriod">Report Period</label>
-                <input type="text" id="expReportPeriod" placeholder="e.g. June 2026" required>
-              </div>
-            </div>
-          </form>
-        </div>
 
-        <!-- Dynamic Expense Items Builder & Table -->
-        <div class="card table-card mt-6 animate-fade-in">
-          <div class="card-header">
-            <h2><i data-lucide="list" class="header-icon"></i>Expense Items Log</h2>
-            <span class="table-subtext">Dynamic entry log table</span>
-          </div>
-          
-          <!-- Expense Table -->
-          <div class="rate-table-container">
-            <table class="slabs-table" id="expenseItemsTable">
-              <thead>
-                <tr>
-                  <th>Date</th>
-                  <th>Category</th>
-                  <th>Description</th>
-                  <th>Merchant</th>
-                  <th>Payment Mode</th>
-                  <th>GST %</th>
-                  <th>Amount</th>
-                  <th>Receipt</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody id="expenseItemsBody">
-                <tr id="emptyTablePlaceholder">
-                  <td colspan="9" class="text-center py-6 text-gray-400">
-                    <p>No line items added yet. Use the form below to append expenses.</p>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <!-- Add Line Item Form Builder -->
-          <div class="add-item-form-container mt-6">
-            <h4 class="section-heading-blue text-sm">Add New Expense Item</h4>
-            <div class="item-builder-grid mt-3">
-              <div class="form-group">
-                <label for="itemDate">Date</label>
-                <input type="date" id="itemDate" required>
-              </div>
-              <div class="form-group">
-                <label for="itemCategory">Category</label>
-                <div class="select-wrapper">
-                  <select id="itemCategory">
-                    <option value="Travel">Travel</option>
-                    <option value="Meals">Meals</option>
-                    <option value="Lodging">Lodging</option>
-                    <option value="Office Supplies">Office Supplies</option>
-                    <option value="Software">Software</option>
-                    <option value="Subscriptions">Subscriptions</option>
-                    <option value="Utilities">Utilities</option>
-                    <option value="Other">Other</option>
-                  </select>
+              <!-- Metadata Grid -->
+              <div class="expense-doc-meta-grid">
+                <div class="expense-doc-field">
+                  <label for="companyName">Company Name</label>
+                  <input type="text" id="companyName" value="Softrate Tech Park Pvt. Ltd.">
+                </div>
+                <div class="expense-doc-field">
+                  <label for="companyAddress">Company Address</label>
+                  <textarea id="companyAddress">123 Tech Park Avenue, Bangalore, India</textarea>
+                </div>
+                <div class="expense-doc-field">
+                  <label for="businessPurpose">Business Purpose</label>
+                  <input type="text" id="businessPurpose" placeholder="e.g. Client Summit / Project Launch">
+                </div>
+                <div class="expense-doc-field">
+                  <label for="submittedBy">Submitted By</label>
+                  <input type="text" id="submittedBy" placeholder="Employee Name">
+                </div>
+                <div class="expense-doc-field">
+                  <label for="submittedDate">Submitted Date</label>
+                  <input type="date" id="submittedDate">
+                </div>
+                <div class="expense-doc-field">
+                  <label for="reportTo">Report To</label>
+                  <input type="text" id="reportTo" placeholder="Manager Name / Department Head">
+                </div>
+                <div class="expense-doc-field">
+                  <label for="reportingPeriod">Reporting Period</label>
+                  <input type="text" id="reportingPeriod" placeholder="e.g. June 2026">
                 </div>
               </div>
-              <div class="form-group">
-                <label for="itemMerchant">Merchant</label>
-                <input type="text" id="itemMerchant" placeholder="e.g. AWS" required>
+
+              <!-- Expense Table -->
+              <div class="expense-doc-table-wrapper">
+                <table class="expense-doc-table" id="expenseDocTable">
+                  <thead>
+                    <tr>
+                      <th style="width: 15%;">Date</th>
+                      <th style="width: 35%;">Expense Description</th>
+                      <th style="width: 20%;">Merchant</th>
+                      <th style="width: 15%;">Category</th>
+                      <th style="width: 10%;">Amount (₹)</th>
+                      <th style="width: 5%;"></th>
+                    </tr>
+                  </thead>
+                  <tbody id="expenseDocTableBody">
+                    <!-- Dynamic rows go here -->
+                  </tbody>
+                </table>
+                <button type="button" class="btn-add-expense-row" id="btnAddExpenseRow">
+                  <i data-lucide="plus"></i> Add New Expense
+                </button>
               </div>
-              <div class="form-group">
-                <label for="itemPaymentMode">Payment Mode</label>
-                <div class="select-wrapper">
-                  <select id="itemPaymentMode">
-                    <option value="Credit Card">Credit Card</option>
-                    <option value="Cash">Cash</option>
-                    <option value="Bank Transfer">Bank Transfer</option>
-                  </select>
+
+              <!-- Totals -->
+              <div class="expense-doc-totals">
+                <div class="totals-summary-box">
+                  <div class="totals-summary-row grand-total">
+                    <span>GRAND TOTAL:</span>
+                    <span id="grandTotalText">₹0.00</span>
+                  </div>
                 </div>
               </div>
             </div>
-            <div class="item-builder-grid mt-4">
-              <div class="form-group">
-                <label for="itemDescription">Description</label>
-                <input type="text" id="itemDescription" placeholder="e.g. Cloud server hosting fee" required>
-              </div>
-              <div class="form-group">
-                <label for="itemGst">GST (%)</label>
-                <div class="select-wrapper">
-                  <select id="itemGst">
-                    <option value="0">0%</option>
-                    <option value="5">5%</option>
-                    <option value="12">12%</option>
-                    <option value="18" selected>18%</option>
-                    <option value="28">28%</option>
-                  </select>
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="itemAmount">Amount (₹)</label>
-                <input type="number" id="itemAmount" placeholder="e.g. 8500" min="0.01" step="any" required>
-              </div>
-              <div class="form-group">
-                <label for="itemReceipt">Receipt Upload</label>
-                <div class="file-upload-wrapper">
-                  <input type="file" id="itemReceipt" accept="image/*,application/pdf" style="display:none;">
-                  <button type="button" class="btn btn-secondary text-xs" id="btnUploadTrigger"><i data-lucide="upload"></i> Upload</button>
-                  <span id="uploadFileName" class="text-xs text-muted">No file</span>
-                </div>
-              </div>
-            </div>
-            
-            <div class="item-builder-actions mt-4">
-              <button type="button" class="btn btn-primary" id="btnAppendItem"><i data-lucide="plus"></i> Add Item</button>
-              <div id="receiptPreviewContainer" class="receipt-preview-thumbnail hide">
-                <img id="receiptPreviewImg" src="" alt="Receipt Preview">
-                <button type="button" class="btn-remove-receipt" id="btnRemoveReceipt"><i data-lucide="x"></i></button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Calculations Summary & Analytics -->
-        <div class="expense-dashboard-grid mt-6">
-          <!-- Calculations Totals Card -->
-          <div class="card totals-card animate-fade-in">
-            <div class="card-header">
-              <h2><i data-lucide="calculator" class="header-icon"></i>Calculations Breakdown</h2>
-              <span class="badge">Auto</span>
-            </div>
-            <div class="result-body">
-              <div class="result-row bg-highlight">
-                <span class="result-label">Subtotal</span>
-                <span class="result-value text-primary" id="expSubtotal">₹0.00</span>
-              </div>
-              <div class="result-row">
-                <span class="result-label">Total GST Portion</span>
-                <span class="result-value text-secondary" id="expGstTotal">₹0.00</span>
-              </div>
-              <div class="result-divider">Grand Total</div>
-              <div class="result-row grand-total-row">
-                <span class="result-label">Grand Total Claim</span>
-                <span class="result-value text-accent" id="expGrandTotal">₹0.00</span>
-              </div>
-            </div>
           </div>
 
-          <!-- Analytics Visualizations Card -->
-          <div class="card analytics-card animate-fade-in">
-            <div class="card-header">
-              <h2><i data-lucide="bar-chart-3" class="header-icon"></i>Spend Analytics</h2>
-              <span class="badge badge-workflow">Real-time</span>
+          <!-- Right Side: Action Panel -->
+          <div class="expense-action-panel">
+            <div class="action-card">
+              <div class="action-card-title">Document Actions</div>
+              <button type="button" class="btn-action-panel primary" id="btnSaveExpenseReport">
+                <i data-lucide="save"></i> Save Report
+              </button>
+              <button type="button" class="btn-action-panel secondary mt-3" id="btnExportExpenseReportPdf">
+                <i data-lucide="file-text"></i> Export as PDF
+              </button>
+              <button type="button" class="btn-action-panel outline mt-3" id="btnPrintExpenseReport">
+                <i data-lucide="printer"></i> Print Report
+              </button>
             </div>
-            <div class="charts-container">
-              <div class="chart-box">
-                <canvas id="categoryChart" width="200" height="200"></canvas>
-              </div>
-              <div class="chart-box">
-                <canvas id="monthlyChart" width="200" height="200"></canvas>
-              </div>
-            </div>
-          </div>
-        </div>
 
-        <!-- Action Buttons Bar -->
-        <div class="card actions-bar mt-6 animate-fade-in">
-          <div class="actions-bar-layout">
-            <div class="action-status-feedback">
-              <div id="expenseSubmitStatus" class="alert-box hide"></div>
+            <div class="action-card mt-4">
+              <div class="action-card-title">Help & Instructions</div>
+              <p class="text-sm text-muted">
+                1. Edit document title and details directly inside the fields on the left.<br><br>
+                2. Add rows to record each business expense item (date, details, merchant, category, and amount).<br><br>
+                3. Total amount is calculated automatically in real-time.<br><br>
+                4. Save the report to persist in database, or export/print for audit submission.
+              </p>
             </div>
-            <div class="actions-buttons-group">
-              <button type="button" class="btn btn-primary" id="btnSaveExpense"><i data-lucide="save"></i> Save & Submit Report</button>
-              <button type="button" class="btn btn-secondary" id="btnExportExcel"><i data-lucide="file-spreadsheet"></i> Export Excel</button>
-              <button type="button" class="btn btn-secondary" id="btnExportPdf"><i data-lucide="file-text"></i> Export PDF</button>
-              <button type="button" class="btn btn-secondary" id="btnPrintReport"><i data-lucide="printer"></i> Print Report</button>
-              <button type="button" class="btn btn-danger-link" id="btnResetExpense"><i data-lucide="rotate-ccw"></i> Reset Form</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Saved Reports Grid (Approval Workflow Dashboard) -->
-        <div class="card history-card mt-6 animate-fade-in">
-          <div class="card-header">
-            <h2><i data-lucide="history" class="header-icon"></i>Submitted Expense Reports</h2>
-            <span class="table-subtext">Reports Database & Approval Workflow</span>
-          </div>
-          <div class="rate-table-container">
-            <table class="slabs-table" id="savedExpensesTable">
-              <thead>
-                <tr>
-                  <th>Report ID</th>
-                  <th>Employee</th>
-                  <th>Department</th>
-                  <th>Period</th>
-                  <th>Grand Total</th>
-                  <th>Status</th>
-                  <th>Submission Date</th>
-                  <th>Workflow Action</th>
-                </tr>
-              </thead>
-              <tbody id="savedExpensesBody">
-                <tr>
-                  <td colspan="8" class="text-center py-6 text-gray-400">
-                    <p>No submitted expense reports logged in database.</p>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
           </div>
         </div>
       </section>
@@ -1032,5 +811,6 @@
   <!-- Core Javascript File -->
   <script type="module" src="js/app.js"></script>
   <script type="module" src="js/expense.js"></script>
+
 </body>
 </html>

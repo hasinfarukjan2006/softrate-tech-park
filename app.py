@@ -24,6 +24,7 @@ db_conn, using_fallback = get_db()
 
 users = db_conn["users"]
 gst_history = db_conn["gst_history"]
+expense_reports = db_conn["expense_reports"]
 
 @app.route("/")
 def index():
@@ -571,6 +572,25 @@ def fix_id(data):
 def get_gst_history():
     data = list(gst_history.find())
     return jsonify(fix_id(data))
+
+
+@app.route("/save-expense", methods=["POST"])
+@app.route("/api/save-expense-report", methods=["POST"])
+def save_expense_report():
+    data = request.json or {}
+    try:
+        db_conn, fallback_active = get_db()
+        db_conn.expense_reports.insert_one(data)
+        return jsonify({
+            "success": True,
+            "message": "Expense report saved successfully"
+        })
+    except Exception as e:
+        print(f"Error saving expense report: {e}")
+        return jsonify({
+            "success": False,
+            "message": f"Database insertion failed: {str(e)}"
+        }), 500
 
 
 if __name__ == "__main__":

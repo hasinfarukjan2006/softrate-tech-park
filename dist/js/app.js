@@ -177,6 +177,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const contactSection = document.getElementById("contact-section");
       const comingSoonSection = document.getElementById("coming-soon-section");
       const comingSoonTitle = document.getElementById("comingSoonTitle");
+      const expenseSection = document.getElementById("expense-section");
 
       if (route === "gst") {
         // Show GST Calculator view
@@ -186,9 +187,23 @@ document.addEventListener("DOMContentLoaded", () => {
         if (aboutSection) aboutSection.classList.remove("hide");
         if (contactSection) contactSection.classList.remove("hide");
         if (comingSoonSection) comingSoonSection.classList.add("hide");
+        if (expenseSection) expenseSection.classList.add("hide");
         
         // Scroll smoothly back to calculator top
         if (calcSection) calcSection.scrollIntoView({ behavior: "smooth" });
+      } else if (route === "expense") {
+        // Show Expense Report Generator
+        if (calcSection) calcSection.classList.add("hide");
+        if (ratesSection) ratesSection.classList.add("hide");
+        if (faqSection) faqSection.classList.add("hide");
+        if (aboutSection) aboutSection.classList.add("hide");
+        if (contactSection) contactSection.classList.add("hide");
+        if (comingSoonSection) comingSoonSection.classList.add("hide");
+        if (expenseSection) expenseSection.classList.remove("hide");
+        
+        if (expenseSection) expenseSection.scrollIntoView({ behavior: "smooth" });
+        // Dispatch custom event to initialize/sync expense module
+        document.dispatchEvent(new CustomEvent("expenseRouteLoaded"));
       } else {
         // Show Coming Soon placeholder view
         if (calcSection) calcSection.classList.add("hide");
@@ -196,6 +211,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (faqSection) faqSection.classList.add("hide");
         if (aboutSection) aboutSection.classList.add("hide");
         if (contactSection) contactSection.classList.add("hide");
+        if (expenseSection) expenseSection.classList.add("hide");
         if (comingSoonSection) comingSoonSection.classList.remove("hide");
         
         if (comingSoonTitle) comingSoonTitle.textContent = `${labelText} - Coming Soon`;
@@ -290,6 +306,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const aboutSection = document.getElementById("about-section");
         const contactSection = document.getElementById("contact-section");
         const comingSoonSection = document.getElementById("coming-soon-section");
+        const expenseSection = document.getElementById("expense-section");
         
         calcSection.classList.remove("hide");
         if (ratesSection) ratesSection.classList.remove("hide");
@@ -297,6 +314,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (aboutSection) aboutSection.classList.remove("hide");
         if (contactSection) contactSection.classList.remove("hide");
         if (comingSoonSection) comingSoonSection.classList.add("hide");
+        if (expenseSection) expenseSection.classList.add("hide");
 
         // Highlight India GST Calculator in sidebar as active
         sidebarLinks.forEach(l => l.classList.remove("active"));
@@ -446,10 +464,9 @@ document.addEventListener("DOMContentLoaded", () => {
       },
       body: JSON.stringify({
         amount: amount,
-        gst_rate: rate,
-        gst_amount: gst_amount,
-        total_amount: final_amount,
-        type: mode,
+        gstRate: rate,
+        gstAmount: gst_amount,
+        grandTotal: final_amount,
         created_at: new Date().toISOString()
       })
     })

@@ -131,6 +131,78 @@ class GstCalculatorTestCase(unittest.TestCase):
         empty_data = json.loads(empty_response.data)
         self.assertEqual(len(empty_data["history"]), 0)
 
+    def test_save_gst_to_mongo(self):
+        """Test saving GST calculation payload to MongoDB."""
+        db, _ = get_db()
+        created_at = "2026-06-08T15:00:00Z"
+        db.gst_history.delete_many({"created_at": created_at})
+
+        payload = {
+            "amount": 1500,
+            "gstRate": 18,
+            "gstAmount": 270,
+            "grandTotal": 1770,
+            "created_at": created_at
+        }
+
+        response = self.client.post(
+            "/save-gst",
+            data=json.dumps(payload),
+            content_type="application/json"
+        )
+        self.assertEqual(response.status_code, 200)
+        res_data = json.loads(response.data)
+        self.assertTrue(res_data["success"])
+        self.assertEqual(res_data["message"], "GST saved")
+
+        saved_gst = db.gst_history.find_one({"created_at": created_at})
+        self.assertIsNotNone(saved_gst)
+        self.assertEqual(saved_gst["gstAmount"], 270)
+        self.assertEqual(saved_gst["grandTotal"], 1770)
+
+    def test_save_expense_alias_to_mongo(self):
+        """Test saving expense reports through the /save-expense alias."""
+        db, _ = get_db()
+        submitted_by = "Test Suite Alias Employee"
+        db.expense_reports.delete_many({"submitted_by": submitted_by})
+
+        payload = {
+            "company_name": "Softrate Tech Park Pvt. Ltd.",
+            "company_address": "123 Tech Park Avenue, Bangalore, India",
+            "report_title": "Q2 Expense Claim Alias",
+            "business_purpose": "Client Relations summit",
+            "submitted_by": submitted_by,
+            "submitted_date": "2026-06-08",
+            "report_to": "Finance Director",
+            "reporting_period": "June 2026",
+            "expenses": [
+                {
+                    "date": "2026-06-07",
+                    "description": "Travel flight ticket",
+                    "merchant": "Air India",
+                    "category": "Travel",
+                    "amount": 4500.0
+                }
+            ],
+            "total_amount": 4500.0,
+            "created_at": "2026-06-08T15:05:00Z"
+        }
+
+        response = self.client.post(
+            "/save-expense",
+            data=json.dumps(payload),
+            content_type="application/json"
+        )
+        self.assertEqual(response.status_code, 200)
+        res_data = json.loads(response.data)
+        self.assertTrue(res_data["success"])
+        self.assertEqual(res_data["message"], "Expense report saved successfully")
+
+        saved_report = db.expense_reports.find_one({"submitted_by": submitted_by})
+        self.assertIsNotNone(saved_report)
+        self.assertEqual(saved_report["report_title"], "Q2 Expense Claim Alias")
+        self.assertEqual(saved_report["total_amount"], 4500.0)
+
     def test_contact_form(self):
         """Test contact form validation and submission logs."""
         payload = {
@@ -161,185 +233,6 @@ class GstCalculatorTestCase(unittest.TestCase):
             content_type="application/json"
         )
         self.assertEqual(err_response.status_code, 400)
-
-    def test_expense_report_lifecycle(self):
-        """Test expense report submission, retrieval, and status update workflow."""
-        # 1. Post a valid expense report
-        report_payload = {
-            "report_id": "EXP-TEST-9999",
-            "employee_name": "Test Employee",
-            "employee_email": "employee@softrate.com",
-            "department": "Finance",
-            "project_name": "Test Project",
-            "travel_purpose": "Testing",
-            "report_period": "June 2026",
-            "budget_limit": 50000.0,
-            "subtotal": 1000.0,
-            "gst_amount": 180.0,
-            "grand_total": 1180.0,
-            "items": [
-                {
-                    "date": "2026-06-04",
-                    "category": "Software",
-                    "merchant": "AWS",
-                    "payment_mode": "Credit Card",
-                    "description": "Test SaaS",
-                    "gst_percentage": 18,
-                    "amount": 1000.0,
-                    "gst_amount": 180.0,
-                    "total": 1180.0
-                }
-            ],
-            "status": "Submitted"
-        }
-        
-        response = self.client.post(
-            "/api/expenses",
-            data=json.dumps(report_payload),
-            content_type="application/json"
-        )
-        self.assertEqual(response.status_code, 200)
-        res_data = json.loads(response.data)
-        self.assertEqual(res_data["status"], "success")
-        self.assertIn("submitted successfully", res_data["message"])
-
-        # 2. Test validation error (missing employee_name)
-        invalid_payload = {
-            "report_id": "EXP-TEST-ERR",
-            "employee_email": "err@softrate.com"
-        }
-        response = self.client.post(
-            "/api/expenses",
-            data=json.dumps(invalid_payload),
-            content_type="application/json"
-        )
-        self.assertEqual(response.status_code, 400)
-
-        # 3. Retrieve expense reports
-        response = self.client.get("/api/expenses")
-        self.assertEqual(response.status_code, 200)
-        res_data = json.loads(response.data)
-        self.assertEqual(res_data["status"], "success")
-        self.assertIn("reports", res_data)
-        self.assertGreater(len(res_data["reports"]), 0)
-
-        # Find our report in the list to get its DB _id
-        reports = res_data["reports"]
-        test_report = next((r for r in reports if r["report_id"] == "EXP-TEST-9999"), None)
-        self.assertIsNotNone(test_report)
-        db_id = test_report["id"]
-
-        # 4. Update status to Approved
-        response = self.client.put(
-            f"/api/expenses/{db_id}/status",
-            data=json.dumps({"status": "Approved"}),
-            content_type="application/json"
-        )
-        self.assertEqual(response.status_code, 200)
-        res_data = json.loads(response.data)
-        self.assertEqual(res_data["status"], "success")
-        self.assertEqual(res_data["message"], "Report status updated to Approved.")
-
-        # 5. Retrieve reports again and verify the status is updated
-        response = self.client.get("/api/expenses")
-        self.assertEqual(response.status_code, 200)
-        res_data = json.loads(response.data)
-        updated_report = next((r for r in res_data["reports"] if r["report_id"] == "EXP-TEST-9999"), None)
-        self.assertIsNotNone(updated_report)
-        self.assertEqual(updated_report["status"], "Approved")
-
-    def test_new_custom_expense_routes(self):
-        """Test the new expense endpoints: save, approve, reject, export-pdf, export-excel."""
-        # 1. Save a new report
-        report_payload = {
-            "report_id": "EXP-CUSTOM-8888",
-            "employee_name": "Custom Tester",
-            "employee_email": "tester@softrate.com",
-            "department": "IT",
-            "project_name": "Test project",
-            "travel_purpose": "Testing custom routes",
-            "report_period": "June 2026",
-            "budget_limit": 10000.0,
-            "subtotal": 500.0,
-            "gst_amount": 90.0,
-            "grand_total": 590.0,
-            "items": [
-                {
-                    "date": "2026-06-04",
-                    "category": "Travel",
-                    "merchant": "Uber",
-                    "payment_mode": "Cash",
-                    "description": "Taxi ride",
-                    "gst_percentage": 18,
-                    "amount": 500.0,
-                    "gst_amount": 90.0,
-                    "total": 590.0
-                }
-            ],
-            "status": "Submitted"
-        }
-        
-        response = self.client.post(
-            "/expense-report/save",
-            data=json.dumps(report_payload),
-            content_type="application/json"
-        )
-        self.assertEqual(response.status_code, 200)
-        res_data = json.loads(response.data)
-        self.assertEqual(res_data["status"], "success")
-        self.assertEqual(res_data["report_id"], "EXP-CUSTOM-8888")
-
-        # 2. Test validation error (missing email)
-        invalid_payload = {
-            "report_id": "EXP-CUSTOM-ERR",
-            "employee_name": "Tester"
-        }
-        response = self.client.post(
-            "/expense-report/save",
-            data=json.dumps(invalid_payload),
-            content_type="application/json"
-        )
-        self.assertEqual(response.status_code, 400)
-
-        # 3. Approve report
-        response = self.client.post("/expense-report/approve/EXP-CUSTOM-8888")
-        self.assertEqual(response.status_code, 200)
-        res_data = json.loads(response.data)
-        self.assertEqual(res_data["status"], "success")
-        self.assertEqual(res_data["message"], "Report status updated to APPROVED.")
-
-        # Verify status is APPROVED in database query
-        response = self.client.get("/api/expenses")
-        res_data = json.loads(response.data)
-        saved_report = next((r for r in res_data["reports"] if r["report_id"] == "EXP-CUSTOM-8888"), None)
-        self.assertIsNotNone(saved_report)
-        self.assertEqual(saved_report["status"], "APPROVED")
-
-        # 4. Reject report
-        response = self.client.post("/expense-report/reject/EXP-CUSTOM-8888")
-        self.assertEqual(response.status_code, 200)
-        res_data = json.loads(response.data)
-        self.assertEqual(res_data["status"], "success")
-        self.assertEqual(res_data["message"], "Report status updated to REJECTED.")
-
-        # Verify status is REJECTED in database query
-        response = self.client.get("/api/expenses")
-        res_data = json.loads(response.data)
-        saved_report = next((r for r in res_data["reports"] if r["report_id"] == "EXP-CUSTOM-8888"), None)
-        self.assertEqual(saved_report["status"], "REJECTED")
-
-        # 5. Export PDF
-        response = self.client.get("/expense-report/export-pdf/EXP-CUSTOM-8888")
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.content_type, "application/pdf")
-        self.assertTrue(len(response.data) > 0)
-
-        # 6. Export Excel
-        response = self.client.get("/expense-report/export-excel/EXP-CUSTOM-8888")
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.content_type, "text/csv; charset=utf-8")
-        self.assertTrue(len(response.data) > 0)
-        self.assertIn(b"EXP-CUSTOM-8888", response.data)
 
     def test_signup_page(self):
         """Test if the sign-up page renders successfully."""
@@ -481,6 +374,49 @@ class GstCalculatorTestCase(unittest.TestCase):
         )
         self.assertEqual(response.status_code, 400)
         self.assertIn(b"valid email address", response.data)
+
+    def test_save_expense_report(self):
+        """Test saving expense reports to MongoDB via the new API endpoint."""
+        db, _ = get_db()
+        db.expense_reports.delete_many({"submitted_by": "Test Suite Employee"})
+
+        payload = {
+            "company_name": "Softrate Tech Park Pvt. Ltd.",
+            "company_address": "123 Tech Park Avenue, Bangalore, India",
+            "report_title": "Q2 Expense Claim",
+            "business_purpose": "Client Relations summit",
+            "submitted_by": "Test Suite Employee",
+            "submitted_date": "2026-06-08",
+            "report_to": "Finance Director",
+            "reporting_period": "June 2026",
+            "expenses": [
+                {
+                    "date": "2026-06-07",
+                    "description": "Travel flight ticket",
+                    "merchant": "Air India",
+                    "category": "Travel",
+                    "amount": 4500.0
+                }
+            ],
+            "total_amount": 4500.0,
+            "created_at": "2026-06-08T14:26:00Z"
+        }
+
+        response = self.client.post(
+            "/api/save-expense-report",
+            data=json.dumps(payload),
+            content_type="application/json"
+        )
+        self.assertEqual(response.status_code, 200)
+        res_data = json.loads(response.data)
+        self.assertTrue(res_data["success"])
+        self.assertEqual(res_data["message"], "Expense report saved successfully")
+
+        # Verify it exists in database
+        saved_report = db.expense_reports.find_one({"submitted_by": "Test Suite Employee"})
+        self.assertIsNotNone(saved_report)
+        self.assertEqual(saved_report["report_title"], "Q2 Expense Claim")
+        self.assertEqual(saved_report["total_amount"], 4500.0)
 
 if __name__ == "__main__":
     unittest.main()

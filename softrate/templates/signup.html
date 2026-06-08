@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sign up for a free trial of Softrate Tech Park Business Finance Solutions. Start managing your invoices, expenses, and GST calculations.">
+  <title>Sign Up | Softrate Tech Park Pvt. Ltd.</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <style>
+    :root {
+      --primary-color: #0F4C81;
+      --secondary-color: #00A8A8;
+      --dark-bg: #0F172A;
+      --accent-color: #FBBF24;
+      --border-color: #E2E8F0;
+      --text-main: #334155;
+      --text-muted: #64748B;
+      --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text-main);
+      background-color: #F8FAFC;
+      line-height: 1.5;
+      min-height: 100vh;
+      display: flex;
+    }
+
+    /* Split Screen Layout */
+    .signup-wrapper {
+      display: flex;
+      width: 100%;
+      min-height: 100vh;
+    }
+
+    /* Left Testimonial Panel */
+    .left-panel {
+      flex: 1.1;
+      background: linear-gradient(135deg, var(--dark-bg) 0%, #1E293B 50%, var(--primary-color) 100%);
+      color: #FFFFFF;
+      padding: 4.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .left-panel::before {
+      content: '';
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(0, 168, 168, 0.15) 0%, transparent 70%);
+      top: -10%;
+      left: -10%;
+      border-radius: 50%;
+    }
+
+    .left-panel::after {
+      content: '';
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(15, 76, 129, 0.2) 0%, transparent 75%);
+      bottom: -15%;
+      right: -10%;
+      border-radius: 50%;
+    }
+
+    .brand-header {
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .brand-logo-icon {
+      width: 45px;
+      height: 45px;
+      background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0, 168, 168, 0.3);
+    }
+
+    .brand-logo-icon i {
+      color: #FFFFFF;
+      width: 22px;
+      height: 22px;
+    }
+
+    .brand-title-text h2 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      background: linear-gradient(to right, #FFFFFF, #E2E8F0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .brand-title-text p {
+      font-size: 0.75rem;
+      color: var(--secondary-color);
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    .marketing-content {
+      z-index: 10;
+      margin: 4rem 0;
+    }
+
+    .marketing-content h3 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 2.25rem;
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 1.5rem;
+      color: #FFFFFF;
+    }
+
+    .feature-list {
+      list-style: none;
+      margin-bottom: 2.5rem;
+    }
+
+    .feature-list li {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+      color: #E2E8F0;
+    }
+
+    .feature-list li i {
+      color: var(--secondary-color);
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+    }
+
+    /* Testimonial slider */
+    .testimonial-card {
+      background: rgba(30, 41, 59, 0.5);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 16px;
+      padding: 2rem;
+      position: relative;
+      transition: opacity 0.5s ease, transform 0.5s ease;
+      min-height: 180px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .testimonial-text {
+      font-style: italic;
+      color: #F1F5F9;
+      font-size: 1.05rem;
+      line-height: 1.6;
+      margin-bottom: 1.25rem;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .testimonial-avatar {
+      width: 40px;
+      height: 40px;
+      background-color: var(--primary-color);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: #FFFFFF;
+      border: 2px solid var(--secondary-color);
+      font-size: 0.9rem;
+    }
+
+    .testimonial-info h5 {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: #FFFFFF;
+    }
+
+    .testimonial-info p {
+      font-size: 0.8rem;
+      color: var(--secondary-color);
+    }
+
+    .testimonial-dots {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 1rem;
+      justify-content: flex-end;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      background-color: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background-color var(--transition-normal);
+    }
+
+    .dot.active {
+      background-color: var(--secondary-color);
+      width: 20px;
+      border-radius: 4px;
+    }
+
+    .left-panel-footer {
+      z-index: 10;
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.4);
+      display: flex;
+      justify-content: space-between;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: 1.5rem;
+    }
+
+    /* Right Form Panel */
+    .right-panel {
+      flex: 0.9;
+      background-color: #FFFFFF;
+      padding: 4.5rem 6rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      overflow-y: auto;
+    }
+
+    .form-container {
+      max-width: 500px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .form-header {
+      margin-bottom: 2.5rem;
+    }
+
+    .form-header h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: var(--primary-color);
+      margin-bottom: 0.5rem;
+    }
+
+    .form-header p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .form-header a {
+      color: var(--secondary-color);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color var(--transition-normal);
+    }
+
+    .form-header a:hover {
+      color: var(--primary-color);
+      text-decoration: underline;
+    }
+
+    /* OAuth Buttons */
+    .social-auth-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+    }
+
+    .social-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      background-color: #FFFFFF;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-main);
+      cursor: pointer;
+      transition: all var(--transition-normal);
+    }
+
+    .social-btn:hover {
+      background-color: #F8FAFC;
+      border-color: #CBD5E1;
+      transform: translateY(-1px);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    }
+
+    .social-btn svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .separator {
+      display: flex;
+      align-items: center;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      font-weight: 500;
+      margin-bottom: 2rem;
+    }
+
+    .separator::before, .separator::after {
+      content: '';
+      flex: 1;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .separator:not(:empty)::before {
+      margin-right: .75em;
+    }
+
+    .separator:not(:empty)::after {
+      margin-left: .75em;
+    }
+
+    /* Form Design */
+    .signup-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .form-row-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      position: relative;
+    }
+
+    .input-group label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .input-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .input-wrapper i.input-icon-left {
+      position: absolute;
+      left: 1rem;
+      color: var(--text-muted);
+      width: 16px;
+      height: 16px;
+      pointer-events: none;
+    }
+
+    .signup-input {
+      width: 100%;
+      padding: 0.8rem 1rem 0.8rem 2.6rem;
+      border: 1.5px solid var(--border-color);
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: 0.95rem;
+      color: var(--text-main);
+      background-color: #FFFFFF;
+      transition: all var(--transition-normal);
+      outline: none;
+    }
+
+    .signup-input:focus {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(15, 76, 129, 0.1);
+      background-color: #FFFFFF;
+    }
+
+    /* Password show/hide toggle */
+    .password-toggle-btn {
+      position: absolute;
+      right: 1rem;
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.25rem;
+    }
+
+    .password-toggle-btn:hover {
+      color: var(--primary-color);
+    }
+
+    .password-toggle-btn i {
+      width: 16px;
+      height: 16px;
+    }
+
+    /* Custom select dropdown styling */
+    select.signup-input {
+      appearance: none;
+      -webkit-appearance: none;
+      cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%2364748B' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      background-size: 16px;
+      padding-right: 2.5rem;
+    }
+
+    /* Error Handling styling */
+    .input-group.error .signup-input {
+      border-color: #EF4444 !important;
+      background-color: #FEF2F2;
+    }
+
+    .error-text {
+      font-size: 0.75rem;
+      color: #EF4444;
+      font-weight: 500;
+      margin-top: 0.2rem;
+      display: none;
+    }
+
+    .input-group.error .error-text {
+      display: block;
+    }
+
+    /* Checkbox terms styling */
+    .terms-group {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      margin-top: 0.5rem;
+      user-select: none;
+    }
+
+    .terms-checkbox {
+      width: 18px;
+      height: 18px;
+      border-radius: 4px;
+      border: 1.5px solid var(--border-color);
+      cursor: pointer;
+      margin-top: 0.1rem;
+      accent-color: var(--primary-color);
+    }
+
+    .terms-text {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    .terms-text a {
+      color: var(--primary-color);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color var(--transition-normal);
+    }
+
+    .terms-text a:hover {
+      text-decoration: underline;
+    }
+
+    /* Submit Button */
+    .btn-submit {
+      width: 100%;
+      padding: 0.9rem 1.5rem;
+      background-color: var(--accent-color);
+      color: #1E293B;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      box-shadow: 0 4px 12px rgba(251, 191, 36, 0.2);
+      transition: all var(--transition-normal);
+      margin-top: 1rem;
+    }
+
+    .btn-submit:hover {
+      background-color: #F59E0B;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(245, 158, 11, 0.35);
+    }
+
+    .btn-submit:active {
+      transform: translateY(0);
+    }
+
+    .btn-submit:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none !important;
+      box-shadow: none !important;
+    }
+
+    /* Success Overlay Modal */
+    .success-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+    }
+
+    .success-modal.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .success-card {
+      background-color: #FFFFFF;
+      border-radius: 20px;
+      padding: 3rem 2.5rem;
+      max-width: 420px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      transform: scale(0.9);
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .success-modal.show .success-card {
+      transform: scale(1);
+    }
+
+    .success-icon-wrapper {
+      width: 72px;
+      height: 72px;
+      background-color: rgba(16, 185, 129, 0.1);
+      color: #10B981;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem auto;
+      border: 2px solid rgba(16, 185, 129, 0.2);
+    }
+
+    .success-icon-wrapper i {
+      width: 36px;
+      height: 36px;
+    }
+
+    .success-card h2 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: var(--primary-color);
+      margin-bottom: 0.75rem;
+    }
+
+    .success-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+
+    .countdown-bar {
+      height: 4px;
+      background-color: #E2E8F0;
+      border-radius: 2px;
+      overflow: hidden;
+      width: 150px;
+      margin: 0 auto;
+    }
+
+    .countdown-fill {
+      height: 100%;
+      background-color: #10B981;
+      width: 100%;
+      animation: countdown 2s linear forwards;
+    }
+
+    @keyframes countdown {
+      from { width: 100%; }
+      to { width: 0%; }
+    }
+
+    /* Global API response alerts */
+    .alert-box {
+      padding: 1rem;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+      border: 1px solid transparent;
+    }
+
+    .alert-box.danger {
+      background-color: #FEF2F2;
+      border-color: #FEE2E2;
+      color: #EF4444;
+    }
+
+    .alert-box.danger i {
+      width: 16px;
+      height: 16px;
+    }
+
+    .hide {
+      display: none !important;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1024px) {
+      .left-panel {
+        display: none;
+      }
+      .right-panel {
+        flex: 1;
+        padding: 4rem 2rem;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .right-panel {
+        padding: 2rem 1.25rem;
+      }
+      .form-row-2 {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+      }
+      .form-header {
+        margin-bottom: 1.75rem;
+      }
+      .form-header h1 {
+        font-size: 1.75rem;
+      }
+      /* Ensure signup-input has adequate right padding on password field to prevent eye overlap */
+      #password {
+        padding-right: 2.75rem;
+      }
+      /* Adjust inputs and buttons to stretch and be fully visible */
+      .signup-form {
+        gap: 1rem;
+      }
+      .btn-submit {
+        margin-top: 0.75rem;
+        padding: 0.85rem 1.25rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="signup-wrapper">
+    <!-- Left Testimonial Panel -->
+    <div class="left-panel">
+      <!-- Brand Header -->
+      <div class="brand-header">
+        <div class="brand-logo-icon">
+          <i data-lucide="trending-up"></i>
+        </div>
+        <div class="brand-title-text">
+          <h2>SOFTRATE</h2>
+          <p>TECH PARK PVT. LTD.</p>
+        </div>
+      </div>
+
+      <!-- Testimonial and Capabilities Column -->
+      <div class="marketing-content">
+        <h3>Smart Business Finance Solutions</h3>
+        
+        <ul class="feature-list">
+          <li>
+            <i data-lucide="check-circle-2"></i>
+            <span>Real-time GST Calculations & splits</span>
+          </li>
+          <li>
+            <i data-lucide="check-circle-2"></i>
+            <span>Dynamic Expense Claim tracking & approval</span>
+          </li>
+          <li>
+            <i data-lucide="check-circle-2"></i>
+            <span>Instant PDF and Excel reporting summaries</span>
+          </li>
+          <li>
+            <i data-lucide="check-circle-2"></i>
+            <span>Enterprise-grade secure workspaces & database logs</span>
+          </li>
+        </ul>
+
+        <!-- Testimonial Slider Card -->
+        <div class="testimonial-card" id="testimonialCard">
+          <p class="testimonial-text" id="testimonialText">
+            "Softrate's GST Intelligence Dashboard has streamlined our financial calculations completely. It's fast, intuitive, and responsive."
+          </p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar" id="testimonialAvatar">AS</div>
+            <div class="testimonial-info">
+              <h5 id="testimonialName">Arpit Sharma</h5>
+              <p id="testimonialRole">Finance Director, TechCorp</p>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-dots">
+          <div class="dot active" data-index="0"></div>
+          <div class="dot" data-index="1"></div>
+          <div class="dot" data-index="2"></div>
+        </div>
+      </div>
+
+      <!-- Footer copyright panel -->
+      <div class="left-panel-footer">
+        <span>&copy; 2026 Softrate Tech Park Pvt. Ltd.</span>
+        <span>Secure Business Portal</span>
+      </div>
+    </div>
+
+    <!-- Right Sign Up Form Panel -->
+    <div class="right-panel">
+      <div class="form-container">
+        
+        <!-- Header -->
+        <div class="form-header">
+          <h1>Start Free Trial</h1>
+          <p>Already have an account? <a href="/">Log In</a></p>
+        </div>
+
+        <!-- Signup API Error Message block -->
+        <div class="alert-box danger hide" id="signupErrorMsgBlock">
+          <i data-lucide="alert-triangle"></i>
+          <span id="signupErrorText">Failed to create account. Please fix errors.</span>
+        </div>
+
+        <!-- Registration Form -->
+        <form class="signup-form" id="signupForm" novalidate>
+          
+          <!-- Company Name -->
+          <div class="input-group" id="companyNameGroup">
+            <label for="companyName">Company / Organization</label>
+            <div class="input-wrapper">
+              <i data-lucide="briefcase" class="input-icon-left"></i>
+              <input type="text" id="companyName" class="signup-input" placeholder="e.g. Acme Corp" required>
+            </div>
+            <div class="error-text">Company name is required.</div>
+          </div>
+
+          <!-- Email address -->
+          <div class="input-group" id="emailGroup">
+            <label for="email">Email Address</label>
+            <div class="input-wrapper">
+              <i data-lucide="mail" class="input-icon-left"></i>
+              <input type="email" id="email" class="signup-input" placeholder="name@company.com" required>
+            </div>
+            <div class="error-text">Please enter a valid email address.</div>
+          </div>
+
+          <!-- Mobile number -->
+          <div class="input-group" id="mobileGroup">
+            <label for="mobileNumber">Mobile Number</label>
+            <div class="input-wrapper">
+              <i data-lucide="phone" class="input-icon-left"></i>
+              <input type="tel" id="mobileNumber" class="signup-input" placeholder="10-digit mobile number" required>
+            </div>
+            <div class="error-text">Please enter a valid 10-digit mobile number.</div>
+          </div>
+
+          <!-- Password -->
+          <div class="input-group" id="passwordGroup">
+            <label for="password">Password</label>
+            <div class="input-wrapper">
+              <i data-lucide="lock" class="input-icon-left"></i>
+              <input type="password" id="password" class="signup-input" placeholder="Min. 8 characters" required>
+              <button type="button" class="password-toggle-btn" id="btnTogglePassword" aria-label="Toggle Password Visibility">
+                <i data-lucide="eye" id="passwordToggleIcon"></i>
+              </button>
+            </div>
+            <div class="error-text">Password must be at least 8 characters long.</div>
+          </div>
+
+          <!-- Country & State Row -->
+          <div class="form-row-2">
+            <div class="input-group" id="countryGroup">
+              <label for="country">Country</label>
+              <div class="input-wrapper">
+                <i data-lucide="globe" class="input-icon-left"></i>
+                <select id="country" class="signup-input" required>
+                  <option value="" disabled selected>Select country</option>
+                  <option value="India">India</option>
+                  <option value="United States">United States</option>
+                  <option value="United Kingdom">United Kingdom</option>
+                  <option value="Canada">Canada</option>
+                  <option value="Australia">Australia</option>
+                </select>
+              </div>
+              <div class="error-text">Please select a country.</div>
+            </div>
+
+            <div class="input-group" id="stateGroup">
+              <label for="state">State / Province</label>
+              <div class="input-wrapper">
+                <i data-lucide="map-pin" class="input-icon-left"></i>
+                <select id="state" class="signup-input" required disabled>
+                  <option value="" disabled selected>Select state</option>
+                </select>
+              </div>
+              <div class="error-text">Please select a state.</div>
+            </div>
+          </div>
+
+          <!-- Terms Checkbox -->
+          <div class="input-group" id="termsGroup">
+            <div class="terms-group">
+              <input type="checkbox" id="termsCheckbox" class="terms-checkbox" required>
+              <label for="termsCheckbox" class="terms-text">
+                I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a> of Softrate Tech Park Pvt. Ltd.
+              </label>
+            </div>
+            <div class="error-text" style="margin-left: 1.6rem;">You must accept the terms to continue.</div>
+          </div>
+
+          <!-- Submit Button -->
+          <button type="submit" class="btn-submit" id="btnCreateAccount">
+            <i data-lucide="user-plus"></i> Create My Account
+          </button>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Success Overlay Modal -->
+  <div class="success-modal" id="successModal">
+    <div class="success-card">
+      <div class="success-icon-wrapper">
+        <i data-lucide="shield-check"></i>
+      </div>
+      <h2 id="successMessageTitle">Account Created!</h2>
+      <p id="successMessageText">Welcome to Softrate. Your free trial is active. Redirecting you to the portal...</p>
+      <div class="countdown-bar">
+        <div class="countdown-fill"></div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import.meta.env = {
+      VITE_API_URL: window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
+        ? "http://127.0.0.1:5000"
+        : "https://softrate-tech-park-backend.onrender.com"
+    };
+
+    // Initialize Lucide Icons
+    lucide.createIcons();
+
+    // DOM Elements
+    const signupForm = document.getElementById("signupForm");
+    const companyName = document.getElementById("companyName");
+    const email = document.getElementById("email");
+    const mobileNumber = document.getElementById("mobileNumber");
+    const password = document.getElementById("password");
+    const country = document.getElementById("country");
+    const state = document.getElementById("state");
+    const termsCheckbox = document.getElementById("termsCheckbox");
+    const btnCreateAccount = document.getElementById("btnCreateAccount");
+    const btnTogglePassword = document.getElementById("btnTogglePassword");
+    const passwordToggleIcon = document.getElementById("passwordToggleIcon");
+    const signupErrorMsgBlock = document.getElementById("signupErrorMsgBlock");
+    const signupErrorText = document.getElementById("signupErrorText");
+    const successModal = document.getElementById("successModal");
+
+
+    // Dynamic Country/State mapping data
+    const countryStates = {
+      "India": [
+        "Andhra Pradesh", "Delhi", "Gujarat", "Karnataka", "Maharashtra", "Tamil Nadu", "Telangana", "Uttar Pradesh"
+      ],
+      "United States": [
+        "California", "New York", "Texas", "Florida", "Washington", "Illinois", "Massachusetts"
+      ],
+      "United Kingdom": [
+        "England", "Scotland", "Wales", "Northern Ireland"
+      ],
+      "Canada": [
+        "Ontario", "Quebec", "British Columbia", "Alberta", "Manitoba"
+      ],
+      "Australia": [
+        "New South Wales", "Victoria", "Queensland", "Western Australia"
+      ]
+    };
+
+    // Load states dynamically when country changes
+    country.addEventListener("change", () => {
+      const selectedCountry = country.value;
+      const statesList = countryStates[selectedCountry] || [];
+      
+      // Clear current states
+      state.innerHTML = '<option value="" disabled selected>Select state</option>';
+      
+      if (statesList.length > 0) {
+        statesList.forEach(stateName => {
+          const opt = document.createElement("option");
+          opt.value = stateName;
+          opt.textContent = stateName;
+          state.appendChild(opt);
+        });
+        state.disabled = false;
+      } else {
+        state.disabled = true;
+      }
+      
+      // Re-validate country if error is active
+      validateField(country, document.getElementById("countryGroup"));
+    });
+
+    // Toggle Password visibility
+    btnTogglePassword.addEventListener("click", () => {
+      const isPassword = password.type === "password";
+      password.type = isPassword ? "text" : "password";
+      passwordToggleIcon.setAttribute("data-lucide", isPassword ? "eye-off" : "eye");
+      lucide.createIcons();
+    });
+
+    // Testimonial Slider Setup
+    const testimonials = [
+      {
+        text: '"Softrate\'s GST Intelligence Dashboard has streamlined our financial calculations completely. It\'s fast, intuitive, and responsive."',
+        avatar: "AS",
+        name: "Arpit Sharma",
+        role: "Finance Director, TechCorp"
+      },
+      {
+        text: '"The Expense Report Generator saved our operations team hours of manually processing claims. An excellent tool."',
+        avatar: "SJ",
+        name: "Sarah Jenkins",
+        role: "Operations Lead, VeloSync"
+      },
+      {
+        text: '"A highly reliable platform for business tax filing and analytics. Strongly recommended."',
+        avatar: "MS",
+        name: "M. K. Subramanian",
+        role: "Senior Tax Consultant"
+      }
+    ];
+
+    let currentTestimonialIndex = 0;
+    const testimonialCard = document.getElementById("testimonialCard");
+    const testimonialText = document.getElementById("testimonialText");
+    const testimonialAvatar = document.getElementById("testimonialAvatar");
+    const testimonialName = document.getElementById("testimonialName");
+    const testimonialRole = document.getElementById("testimonialRole");
+    const dots = document.querySelectorAll(".dot");
+
+    function showTestimonial(index) {
+      testimonialCard.style.opacity = 0;
+      testimonialCard.style.transform = "translateY(5px)";
+      
+      setTimeout(() => {
+        const item = testimonials[index];
+        testimonialText.textContent = item.text;
+        testimonialAvatar.textContent = item.avatar;
+        testimonialName.textContent = item.name;
+        testimonialRole.textContent = item.role;
+        
+        // Update dots
+        dots.forEach((dot, idx) => {
+          dot.classList.toggle("active", idx === index);
+        });
+        
+        testimonialCard.style.opacity = 1;
+        testimonialCard.style.transform = "translateY(0)";
+      }, 300);
+    }
+
+    dots.forEach((dot, idx) => {
+      dot.addEventListener("click", () => {
+        currentTestimonialIndex = idx;
+        showTestimonial(idx);
+        resetTestimonialInterval();
+      });
+    });
+
+    let testimonialInterval = setInterval(() => {
+      currentTestimonialIndex = (currentTestimonialIndex + 1) % testimonials.length;
+      showTestimonial(currentTestimonialIndex);
+    }, 6000);
+
+    function resetTestimonialInterval() {
+      clearInterval(testimonialInterval);
+      testimonialInterval = setInterval(() => {
+        currentTestimonialIndex = (currentTestimonialIndex + 1) % testimonials.length;
+        showTestimonial(currentTestimonialIndex);
+      }, 6000);
+    }
+
+    // Validation helpers
+    function validateField(inputEl, groupEl, customCheck = null) {
+      let isValid = true;
+      if (inputEl.type === "checkbox") {
+        isValid = inputEl.checked;
+      } else {
+        isValid = inputEl.value.trim() !== "";
+      }
+      
+      if (isValid && customCheck) {
+        isValid = customCheck();
+      }
+
+      if (isValid) {
+        groupEl.classList.remove("error");
+      } else {
+        groupEl.classList.add("error");
+      }
+      return isValid;
+    }
+
+    // Bind real-time input validation triggers
+    companyName.addEventListener("input", () => validateField(companyName, document.getElementById("companyNameGroup")));
+    email.addEventListener("input", () => validateField(email, document.getElementById("emailGroup"), () => {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.test(email.value.trim());
+    }));
+    mobileNumber.addEventListener("input", () => validateField(mobileNumber, document.getElementById("mobileGroup"), () => {
+      const mobileRegex = /^\d{10}$/;
+      return mobileRegex.test(mobileNumber.value.trim());
+    }));
+    password.addEventListener("input", () => validateField(password, document.getElementById("passwordGroup"), () => {
+      return password.value.trim().length >= 8;
+    }));
+    state.addEventListener("change", () => validateField(state, document.getElementById("stateGroup")));
+    termsCheckbox.addEventListener("change", () => validateField(termsCheckbox, document.getElementById("termsGroup")));
+
+
+
+
+    // Form Submit handling
+    signupForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      
+      let isFormValid = true;
+      
+      // Run full form validation
+      isFormValid &= validateField(companyName, document.getElementById("companyNameGroup"));
+      
+      isFormValid &= validateField(email, document.getElementById("emailGroup"), () => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email.value.trim());
+      });
+      
+      isFormValid &= validateField(mobileNumber, document.getElementById("mobileGroup"), () => {
+        const mobileRegex = /^\d{10}$/;
+        return mobileRegex.test(mobileNumber.value.trim());
+      });
+      
+      isFormValid &= validateField(password, document.getElementById("passwordGroup"), () => {
+        return password.value.trim().length >= 8;
+      });
+      
+      isFormValid &= validateField(country, document.getElementById("countryGroup"));
+      isFormValid &= validateField(state, document.getElementById("stateGroup"));
+      isFormValid &= validateField(termsCheckbox, document.getElementById("termsGroup"));
+      
+      if (!isFormValid) {
+        signupErrorMsgBlock.classList.remove("hide");
+        signupErrorText.textContent = "Please resolve the highlights highlighted in red.";
+        return;
+      }
+
+      // If valid, submit payload to Flask registration API
+      signupErrorMsgBlock.classList.add("hide");
+      btnCreateAccount.disabled = true;
+      btnCreateAccount.innerHTML = '<i class="animate-spin" style="border: 2px solid #1E293B; border-top: 2px solid transparent; border-radius: 50%; width: 16px; height: 16px; display: inline-block; vertical-align: middle; margin-right: 5px;"></i> Registering...';
+
+      const payload = {
+        user_type: "Business User",
+        company_name: companyName.value.trim(),
+        email: email.value.trim(),
+        mobile_number: mobileNumber.value.trim(),
+        password: password.value,
+        country: country.value,
+        state: state.value,
+        terms_accepted: termsCheckbox.checked
+      };
+
+      fetch(`https://softrate-tech-park.onrender.com/api/signup`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+      })
+      .then(res => {
+        if (!res.ok) {
+          return res.json().then(errData => {
+            throw new Error(errData.message || "Signup failed.");
+          }).catch(() => {
+            throw new Error(`HTTP error ${res.status}`);
+          });
+        }
+        return res.json();
+      })
+      .then(data => {
+        console.log(data);
+        btnCreateAccount.disabled = false;
+        btnCreateAccount.innerHTML = '<i data-lucide="user-plus"></i> Create My Account';
+        lucide.createIcons();
+
+        if (data.status === "success") {
+          // Store user details in localStorage to simulate registration state
+          localStorage.setItem("sessionUserName", payload.company_name);
+          localStorage.setItem("sessionUserEmail", payload.email);
+          
+          // Display success popover and redirect to main dashboard
+          successModal.classList.add("show");
+          setTimeout(() => {
+            window.location.href = "/";
+          }, 2000);
+        } else {
+          signupErrorMsgBlock.classList.remove("hide");
+          signupErrorText.textContent = data.message || "An error occurred during sign up.";
+        }
+      })
+      .catch(err => {
+        btnCreateAccount.disabled = false;
+        btnCreateAccount.innerHTML = '<i data-lucide="user-plus"></i> Create My Account';
+        lucide.createIcons();
+        console.error("Sign up error:", err);
+        signupErrorMsgBlock.classList.remove("hide");
+        signupErrorText.textContent = err.message || "A network error occurred. Please check your connection.";
+      });
+    });
+  </script>
+</body>
+</html>

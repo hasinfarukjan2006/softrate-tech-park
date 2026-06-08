@@ -26,9 +26,9 @@ users = db_conn["users"]
 gst_history = db_conn["gst_history"]
 expense_reports = db_conn["expense_reports"]
 
-@app.route("/")
-def home():
-    return "Softrate Tech Park Backend is running"
+# @app.route("/")
+# def home():
+#     return "Softrate Tech Park Backend is running"
 
 @app.route("/signup")
 def signup():

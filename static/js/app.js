@@ -76,9 +76,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // State Management
   let activeMode = "standard";
-  let inputAmount = "";
-  let calculatedResult = null;
-  let hasCalculated = false;
 
   /* ==========================================================================
      1. Theme Management (Dark / Light Mode)
@@ -269,8 +266,10 @@ document.addEventListener("DOMContentLoaded", () => {
         break;
     }
     
-    // Sync toggles state without auto-calculating
+    // Sync toggles state, auto-calculate, and save
     syncTogglesState();
+    calculateLocal();
+    debounceSave();
   }
 
   // Sync state between radios and visibility classes
@@ -352,9 +351,10 @@ document.addEventListener("DOMContentLoaded", () => {
      4. Mathematical Calculation Engine
      ========================================================================== */
   
-  // Render calculated results to the UI summary card
-  function renderSummary() {
-    if (!hasCalculated || !calculatedResult) {
+  // Local calculations for a responsive user interface
+  function calculateLocal() {
+    const rawVal = gstAmountInput.value.trim();
+    if (!rawVal || isNaN(rawVal) || parseFloat(rawVal) <= 0) {
       resOriginal.textContent = "₹0.00";
       resRate.textContent = "18%";
       resCGST.textContent = "₹0.00";
@@ -363,28 +363,6 @@ document.addEventListener("DOMContentLoaded", () => {
       resGST.textContent = "₹0.00";
       resTotal.textContent = "₹0.00";
       return;
-    }
-
-    const data = calculatedResult;
-    const isInterstate = document.getElementById("transInter").checked;
-    const cgstVal = isInterstate ? 0 : data.cgst;
-    const sgstVal = isInterstate ? 0 : data.sgst;
-    const igstVal = isInterstate ? data.igst : 0;
-
-    resOriginal.textContent = `₹${data.original_amount.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-    resRate.textContent = `${data.gst_rate}%`;
-    resCGST.textContent = `₹${cgstVal.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-    resSGST.textContent = `₹${sgstVal.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-    resIGST.textContent = `₹${igstVal.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-    resGST.textContent = `₹${data.gst_amount.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-    resTotal.textContent = `₹${data.total_amount.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-  }
-
-  // Local calculations for a responsive user interface (fallback / offline mode)
-  function calculateLocal() {
-    const rawVal = inputAmount;
-    if (!rawVal || isNaN(rawVal) || parseFloat(rawVal) <= 0) {
-      return null;
     }
 
     const amount = parseFloat(rawVal);
@@ -410,55 +388,26 @@ document.addEventListener("DOMContentLoaded", () => {
     const sgst = isInterstate ? 0 : gstAmount / 2;
     const igst = isInterstate ? gstAmount : 0;
 
-    return {
-      original_amount: originalAmount,
-      gst_rate: rate,
-      cgst: cgst,
-      sgst: sgst,
-      igst: igst,
-      gst_amount: gstAmount,
-      total_amount: totalAmount
-    };
+    resOriginal.textContent = `₹${originalAmount.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+    resRate.textContent = `${rate}%`;
+    resCGST.textContent = `₹${cgst.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+    resSGST.textContent = `₹${sgst.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+    resIGST.textContent = `₹${igst.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+    resGST.textContent = `₹${gstAmount.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+    resTotal.textContent = `₹${totalAmount.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
   }
 
-  // Sync state between amount input field and state variable
-  gstAmountInput.addEventListener("input", (e) => {
-    inputAmount = e.target.value.trim();
-  });
-
-  // Bind inputs for state transitions (no auto-calculation)
-  document.querySelectorAll('input[name="transType"]').forEach(radio => {
-    radio.addEventListener("change", () => {
-      syncTogglesState();
-    });
-  });
-
-  // Server-side submission (POST /api/calculate) to log calculations in DB
-  gstForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    
-    // Sync inputAmount from the input field just in case
-    inputAmount = gstAmountInput.value.trim();
-    
-    const amountVal = inputAmount;
-    if (!amountVal || isNaN(amountVal) || parseFloat(amountVal) <= 0) {
-      amountError.style.display = "block";
-      gstAmountInput.classList.add("border-danger");
-      return;
-    } else {
-      amountError.style.display = "none";
-      gstAmountInput.classList.remove("border-danger");
-    }
+  // Debounced database logger to keep history logs populated without spamming
+  let saveTimeout = null;
+  function triggerServerSave() {
+    const amountVal = gstAmountInput.value.trim();
+    if (!amountVal || isNaN(amountVal) || parseFloat(amountVal) <= 0) return;
 
     const payload = {
       amount: parseFloat(amountVal),
       rate: parseFloat(gstRateSelect.value),
       type: document.getElementById("modeInclusive").checked ? "inclusive" : "exclusive"
     };
-
-    btnCalculate.disabled = true;
-    btnCalculate.innerHTML = '<i data-lucide="loader" class="animate-spin"></i> Calculating...';
-    lucide.createIcons();
 
     fetch(`${import.meta.env.VITE_API_URL}/api/calculate`, {
       method: "POST",
@@ -469,33 +418,9 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     .then(res => res.json())
     .then(resData => {
-      btnCalculate.disabled = false;
-      btnCalculate.innerHTML = '<i data-lucide="play-circle"></i> Calculate Tax';
-      lucide.createIcons();
-
       if (resData.status === "success") {
         const data = resData.data;
-        
-        // Update state
-        calculatedResult = {
-          original_amount: data.original_amount,
-          gst_rate: data.gst_rate,
-          cgst: data.cgst,
-          sgst: data.sgst,
-          igst: data.igst,
-          gst_amount: data.gst_amount,
-          total_amount: data.total_amount
-        };
-        hasCalculated = true;
-        
-        renderSummary();
         updateDbStatusBanner(resData.using_fallback);
-
-        const amount = payload.amount;
-        const rate = payload.rate;
-        const mode = payload.type;
-        const gstAmount = data.gst_amount;
-        const totalAmount = data.total_amount;
 
         fetch(`${import.meta.env.VITE_API_URL}/save-gst`, {
           method: "POST",
@@ -503,11 +428,11 @@ document.addEventListener("DOMContentLoaded", () => {
             "Content-Type": "application/json"
           },
           body: JSON.stringify({
-            amount: amount,
-            rate: rate,
-            type: mode,
-            gst_amount: gstAmount,
-            total: totalAmount
+            amount: payload.amount,
+            rate: payload.rate,
+            type: payload.type,
+            gst_amount: data.gst_amount,
+            total: data.total_amount
           })
         })
         .then(res => res.json())
@@ -516,25 +441,44 @@ document.addEventListener("DOMContentLoaded", () => {
           loadHistory();
         })
         .catch(err => console.error("MongoDB save error:", err));
-      } else {
-        alert("Calculation error: " + resData.message);
       }
     })
-    .catch(err => {
-      btnCalculate.disabled = false;
-      btnCalculate.innerHTML = '<i data-lucide="play-circle"></i> Calculate Tax';
-      lucide.createIcons();
-      console.error("Calculate API error:", err);
-      updateDbStatusBanner(true);
-      
-      // Fallback: Local calculation
-      const localRes = calculateLocal();
-      if (localRes) {
-        calculatedResult = localRes;
-        hasCalculated = true;
-        renderSummary();
-      }
+    .catch(err => console.error("Server save error:", err));
+  }
+
+  function debounceSave() {
+    if (saveTimeout) clearTimeout(saveTimeout);
+    saveTimeout = setTimeout(triggerServerSave, 1000);
+  }
+
+  // Bind inputs for auto-calculation and database logging
+  gstAmountInput.addEventListener("input", () => {
+    calculateLocal();
+    debounceSave();
+  });
+  gstRateSelect.addEventListener("change", () => {
+    calculateLocal();
+    debounceSave();
+  });
+  document.querySelectorAll('input[name="gstMode"]').forEach(radio => {
+    radio.addEventListener("change", () => {
+      calculateLocal();
+      debounceSave();
     });
+  });
+  document.querySelectorAll('input[name="transType"]').forEach(radio => {
+    radio.addEventListener("change", () => {
+      calculateLocal();
+      syncTogglesState();
+      debounceSave();
+    });
+  });
+
+  // Re-enable form enter key triggers
+  gstForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    calculateLocal();
+    triggerServerSave();
   });
 
   // Reset calculator values
@@ -561,11 +505,13 @@ document.addEventListener("DOMContentLoaded", () => {
     titleEl.innerHTML = '<i data-lucide="sliders" class="header-icon"></i>GST Settings';
     badgeEl.textContent = "Standard";
 
-    // Clear State
-    inputAmount = "";
-    calculatedResult = null;
-    hasCalculated = false;
-    renderSummary();
+    resOriginal.textContent = "₹0.00";
+    resRate.textContent = "18%";
+    resCGST.textContent = "₹0.00";
+    resSGST.textContent = "₹0.00";
+    resIGST.textContent = "₹0.00";
+    resGST.textContent = "₹0.00";
+    resTotal.textContent = "₹0.00";
     
     syncTogglesState();
   });

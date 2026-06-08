@@ -1,7 +1,8 @@
 import datetime
 from datetime import datetime
+import os
 from bson import ObjectId
-from flask import Flask, jsonify, request, render_template, render_template_string
+from flask import Flask, jsonify, request, render_template, render_template_string, send_from_directory
 from flask_cors import CORS
 from pymongo import MongoClient
 from config import Config
@@ -26,9 +27,19 @@ users = db_conn["users"]
 gst_history = db_conn["gst_history"]
 expense_reports = db_conn["expense_reports"]
 
-# @app.route("/")
-# def home():
-#     return "Softrate Tech Park Backend is running"
+DIST_DIR = os.path.join(app.root_path, "dist")
+
+@app.route("/")
+def home():
+    return send_from_directory(DIST_DIR, "index.html")
+
+
+@app.route("/<path:path>")
+def serve_dist(path):
+    file_path = os.path.join(DIST_DIR, path)
+    if os.path.isfile(file_path):
+        return send_from_directory(DIST_DIR, path)
+    return send_from_directory(DIST_DIR, "index.html")
 
 @app.route("/signup")
 def signup():

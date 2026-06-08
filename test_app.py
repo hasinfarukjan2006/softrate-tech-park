@@ -14,7 +14,7 @@ class GstCalculatorTestCase(unittest.TestCase):
         """Test if the main HTML landing page renders successfully."""
         response = self.client.get("/")
         self.assertEqual(response.status_code, 200)
-        self.assertIn(b"Softrate Tech Park Backend is running", response.data)
+        self.assertIn(b"Expense Report Generator", response.data)
 
     def test_calculate_exclusive(self):
         """Test Exclusive GST calculation logic and API."""

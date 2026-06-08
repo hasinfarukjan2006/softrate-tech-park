@@ -129,8 +129,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // Save Expense Report to MongoDB Atlas
   if (btnSaveExpenseReport) {
     btnSaveExpenseReport.addEventListener("click", () => {
-      const expenseData = gatherReportData();
-      if (!expenseData) return;
+      const payload = gatherReportData();
+      if (!payload) return;
 
       // Disable button
       btnSaveExpenseReport.disabled = true;
@@ -142,7 +142,7 @@ document.addEventListener("DOMContentLoaded", () => {
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify(expenseData)
+        body: JSON.stringify(payload)
       })
       .then(res => res.json())
       .then(resData => {

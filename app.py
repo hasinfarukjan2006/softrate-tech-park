@@ -24,7 +24,6 @@ db_conn, using_fallback = get_db()
 
 users = db_conn["users"]
 gst_history = db_conn["gst_history"]
-expense_reports = db_conn["expense_reports"]
 
 @app.route("/")
 def index():
@@ -94,9 +93,6 @@ def calculate_gst():
     sgst = gst_amount / 2.0
     igst = gst_amount
 
-    # Store calculation in database
-    db_conn, fallback_active = get_db()
-    
     record = {
         "amount": round(original_amount, 2),
         "gst_rate": rate,
@@ -107,9 +103,11 @@ def calculate_gst():
     }
     
     try:
-        db_conn.calculation_history.insert_one(record)
+        gst_history.insert_one(record)
     except Exception as e:
         print(f"Error logging calculation to database: {e}")
+
+    _, fallback_active = get_db()
 
     # Return calculated outputs formatted to 2 decimal places
     response_data = {
@@ -133,9 +131,9 @@ def calculate_gst():
 @app.route("/api/history", methods=["GET"])
 def get_history():
     """Fetch the last 15 calculations from database."""
-    db_conn, fallback_active = get_db()
+    _, fallback_active = get_db()
     try:
-        history_cursor = db_conn.calculation_history.find().sort("timestamp", -1).limit(15)
+        history_cursor = gst_history.find().sort("timestamp", -1).limit(15)
         history_list = []
         for doc in history_cursor:
             # Format documentation
@@ -160,9 +158,9 @@ def get_history():
 @app.route("/api/history", methods=["DELETE"])
 def clear_history():
     """Clear calculation history from database."""
-    db_conn, fallback_active = get_db()
+    _, fallback_active = get_db()
     try:
-        db_conn.calculation_history.delete_many({})
+        gst_history.delete_many({})
         return jsonify({
             "status": "success",
             "message": "Calculation history cleared successfully.",
@@ -539,456 +537,6 @@ def auth_callback(provider):
     """, name=name, email=email)
 
 
-@app.route("/api/expenses", methods=["POST"])
-def save_expense_report():
-    db_conn, fallback_active = get_db()
-    data = request.get_json() or {}
-    
-    report_id = data.get("report_id", "").strip()
-    employee_name = data.get("employee_name", "").strip()
-    employee_email = data.get("employee_email", "").strip()
-    
-    if not report_id or not employee_name or not employee_email:
-        return jsonify({"status": "error", "message": "Report ID, employee name, and email are required."}), 400
-        
-    record = {
-        "report_id": report_id,
-        "employee_name": employee_name,
-        "employee_email": employee_email,
-        "department": data.get("department", "General"),
-        "project_name": data.get("project_name", ""),
-        "travel_purpose": data.get("travel_purpose", ""),
-        "report_period": data.get("report_period", ""),
-        "items": data.get("items", []),
-        "budget_limit": float(data.get("budget_limit", 0)),
-        "subtotal": float(data.get("subtotal", 0)),
-        "gst_amount": float(data.get("gst_amount", 0)),
-        "grand_total": float(data.get("grand_total", 0)),
-        "status": data.get("status", "Submitted"),
-        "timestamp": datetime.now()
-    }
-    
-    try:
-        db_conn.expense_reports.insert_one(record)
-        return jsonify({
-            "status": "success",
-            "message": f"Expense report {report_id} has been submitted successfully.",
-            "using_fallback": fallback_active
-        })
-    except Exception as e:
-        return jsonify({"status": "error", "message": f"Failed to save report: {str(e)}"}), 500
-
-@app.route("/api/expenses", methods=["GET"])
-def get_expense_reports():
-    db_conn, fallback_active = get_db()
-    try:
-        reports_cursor = db_conn.expense_reports.find().sort("timestamp", -1)
-        reports_list = []
-        for doc in reports_cursor:
-            doc_id = str(doc.get("_id"))
-            reports_list.append({
-                "id": doc_id,
-                "report_id": doc.get("report_id"),
-                "employee_name": doc.get("employee_name"),
-                "employee_email": doc.get("employee_email"),
-                "department": doc.get("department"),
-                "project_name": doc.get("project_name"),
-                "travel_purpose": doc.get("travel_purpose"),
-                "report_period": doc.get("report_period"),
-                "items": doc.get("items", []),
-                "budget_limit": doc.get("budget_limit", 0),
-                "subtotal": doc.get("subtotal", 0),
-                "gst_amount": doc.get("gst_amount", 0),
-                "grand_total": doc.get("grand_total", 0),
-                "status": doc.get("status", "Submitted"),
-                "timestamp": doc.get("timestamp")
-            })
-        return jsonify({
-            "status": "success",
-            "reports": reports_list,
-            "using_fallback": fallback_active
-        })
-    except Exception as e:
-        return jsonify({"status": "error", "message": f"Could not retrieve expense reports: {str(e)}"}), 500
-
-@app.route("/api/expenses/<report_id>/status", methods=["PUT"])
-def update_expense_status(report_id):
-    db_conn, fallback_active = get_db()
-    data = request.get_json() or {}
-    new_status = data.get("status", "").strip()
-    
-    if not new_status:
-        return jsonify({"status": "error", "message": "Status field is required."}), 400
-        
-    try:
-        from bson import ObjectId
-        query = {}
-        try:
-            query = {"_id": ObjectId(report_id)}
-        except Exception:
-            query = {"_id": report_id}
-            
-        update_op = {"$set": {"status": new_status}}
-        result = db_conn.expense_reports.update_one(query, update_op)
-        
-        if result.modified_count == 0:
-            query = {"_id": report_id}
-            result = db_conn.expense_reports.update_one(query, update_op)
-            
-        return jsonify({
-            "status": "success",
-            "message": f"Report status updated to {new_status}.",
-            "using_fallback": fallback_active
-        })
-    except Exception as e:
-        return jsonify({"status": "error", "message": f"Failed to update status: {str(e)}"}), 500
-
-@app.route("/expense-report/save", methods=["POST"])
-def expense_report_save():
-    db_conn, fallback_active = get_db()
-    data = request.get_json() or {}
-    
-    report_id = data.get("report_id", "").strip()
-    employee_name = data.get("employee_name", "").strip()
-    employee_email = data.get("employee_email", "").strip()
-    
-    if not report_id or not employee_name or not employee_email:
-        return jsonify({"status": "error", "message": "Report ID, employee name, and email are required."}), 400
-        
-    record = {
-        "report_id": report_id,
-        "employee_name": employee_name,
-        "employee_email": employee_email,
-        "department": data.get("department", "General"),
-        "project_name": data.get("project_name", ""),
-        "travel_purpose": data.get("travel_purpose", ""),
-        "report_period": data.get("report_period", ""),
-        "items": data.get("items", []),
-        "budget_limit": float(data.get("budget_limit", 0)),
-        "subtotal": float(data.get("subtotal", 0)),
-        "gst_amount": float(data.get("gst_amount", data.get("gst_total", 0))),
-        "grand_total": float(data.get("grand_total", 0)),
-        "status": data.get("status", "Submitted"),
-        "timestamp": datetime.now()
-    }
-    
-    try:
-        existing = db_conn.expense_reports.find_one({"report_id": report_id})
-        if existing:
-            db_conn.expense_reports.update_one({"report_id": report_id}, {"$set": record})
-        else:
-            db_conn.expense_reports.insert_one(record)
-            
-        return jsonify({
-            "status": "success",
-            "message": f"Expense report {report_id} has been saved successfully.",
-            "report_id": report_id,
-            "using_fallback": fallback_active
-        })
-    except Exception as e:
-        return jsonify({"status": "error", "message": f"Failed to save report: {str(e)}"}), 500
-
-@app.route("/expense-report/approve/<report_id>", methods=["POST"])
-def expense_report_approve(report_id):
-    db_conn, fallback_active = get_db()
-    try:
-        from bson import ObjectId
-        query = {"report_id": report_id}
-        update_op = {"$set": {"status": "APPROVED"}}
-        
-        result = db_conn.expense_reports.update_one(query, update_op)
-        if result.modified_count == 0:
-            try:
-                result = db_conn.expense_reports.update_one({"_id": ObjectId(report_id)}, update_op)
-            except Exception:
-                result = db_conn.expense_reports.update_one({"_id": report_id}, update_op)
-                
-        return jsonify({
-            "status": "success",
-            "message": f"Report status updated to APPROVED.",
-            "using_fallback": fallback_active
-        })
-    except Exception as e:
-        return jsonify({"status": "error", "message": f"Failed to approve report: {str(e)}"}), 500
-
-@app.route("/expense-report/reject/<report_id>", methods=["POST"])
-def expense_report_reject(report_id):
-    db_conn, fallback_active = get_db()
-    try:
-        from bson import ObjectId
-        query = {"report_id": report_id}
-        update_op = {"$set": {"status": "REJECTED"}}
-        
-        result = db_conn.expense_reports.update_one(query, update_op)
-        if result.modified_count == 0:
-            try:
-                result = db_conn.expense_reports.update_one({"_id": ObjectId(report_id)}, update_op)
-            except Exception:
-                result = db_conn.expense_reports.update_one({"_id": report_id}, update_op)
-                
-        return jsonify({
-            "status": "success",
-            "message": f"Report status updated to REJECTED.",
-            "using_fallback": fallback_active
-        })
-    except Exception as e:
-        return jsonify({"status": "error", "message": f"Failed to reject report: {str(e)}"}), 500
-
-@app.route("/api/approve-report/<report_id>", methods=["POST"])
-def api_approve_report(report_id):
-    db_conn, fallback_active = get_db()
-    try:
-        update_op = {"$set": {"status": "APPROVED"}}
-        result = db_conn.expense_reports.update_one({"report_id": report_id}, update_op)
-        if result.matched_count == 0:
-            try:
-                db_conn.expense_reports.update_one({"_id": ObjectId(report_id)}, update_op)
-            except Exception:
-                db_conn.expense_reports.update_one({"_id": report_id}, update_op)
-
-        return jsonify({"success": True, "message": "Report approved", "using_fallback": fallback_active})
-    except Exception as e:
-        return jsonify({"success": False, "message": f"Failed to approve report: {str(e)}"}), 500
-
-@app.route("/api/reject-report/<report_id>", methods=["POST"])
-def api_reject_report(report_id):
-    db_conn, fallback_active = get_db()
-    try:
-        update_op = {"$set": {"status": "REJECTED"}}
-        result = db_conn.expense_reports.update_one({"report_id": report_id}, update_op)
-        if result.matched_count == 0:
-            try:
-                db_conn.expense_reports.update_one({"_id": ObjectId(report_id)}, update_op)
-            except Exception:
-                db_conn.expense_reports.update_one({"_id": report_id}, update_op)
-
-        return jsonify({"success": True, "message": "Report rejected", "using_fallback": fallback_active})
-    except Exception as e:
-        return jsonify({"success": False, "message": f"Failed to reject report: {str(e)}"}), 500
-
-@app.route("/expense-report/export-pdf/<report_id>", methods=["GET"])
-def expense_report_export_pdf(report_id):
-    db_conn, fallback_active = get_db()
-    report = db_conn.expense_reports.find_one({"report_id": report_id})
-    if not report:
-        from bson import ObjectId
-        try:
-            report = db_conn.expense_reports.find_one({"_id": ObjectId(report_id)})
-        except Exception:
-            pass
-            
-    if not report:
-        return "Report not found", 404
-        
-    import io
-    from flask import send_file
-    from reportlab.lib.pagesizes import letter
-    from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle
-    from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
-    from reportlab.lib import colors
-    
-    buffer = io.BytesIO()
-    doc = SimpleDocTemplate(buffer, pagesize=letter, rightMargin=36, leftMargin=36, topMargin=36, bottomMargin=36)
-    story = []
-    
-    styles = getSampleStyleSheet()
-    title_style = ParagraphStyle(
-        'DocTitle',
-        parent=styles['Heading1'],
-        fontName='Helvetica-Bold',
-        fontSize=18,
-        leading=22,
-        textColor=colors.HexColor('#0F4C81'),
-        alignment=1,
-        spaceAfter=15
-    )
-    section_style = ParagraphStyle(
-        'SecTitle',
-        parent=styles['Heading2'],
-        fontName='Helvetica-Bold',
-        fontSize=12,
-        leading=16,
-        textColor=colors.HexColor('#008080'),
-        spaceBefore=10,
-        spaceAfter=10
-    )
-    normal_style = ParagraphStyle(
-        'NormalText',
-        parent=styles['Normal'],
-        fontName='Helvetica',
-        fontSize=10,
-        leading=14,
-        textColor=colors.HexColor('#333333')
-    )
-    bold_style = ParagraphStyle(
-        'BoldText',
-        parent=normal_style,
-        fontName='Helvetica-Bold'
-    )
-    
-    story.append(Paragraph("SOFTRATE EXPENSE CLAIM REPORT", title_style))
-    story.append(Spacer(1, 10))
-    
-    ts = report.get("timestamp")
-    if ts:
-        if hasattr(ts, "strftime"):
-            ts_str = ts.strftime("%Y-%m-%d %H:%M:%S")
-        else:
-            ts_str = str(ts)
-    else:
-        ts_str = "N/A"
-
-    meta_data = [
-        [Paragraph("<b>Report ID:</b>", normal_style), Paragraph(str(report.get("report_id")), normal_style),
-         Paragraph("<b>Submission Date:</b>", normal_style), Paragraph(ts_str, normal_style)],
-        [Paragraph("<b>Employee Name:</b>", normal_style), Paragraph(str(report.get("employee_name")), normal_style),
-         Paragraph("<b>Employee Email:</b>", normal_style), Paragraph(str(report.get("employee_email")), normal_style)],
-        [Paragraph("<b>Department:</b>", normal_style), Paragraph(str(report.get("department")), normal_style),
-         Paragraph("<b>Project Name:</b>", normal_style), Paragraph(str(report.get("project_name")), normal_style)],
-        [Paragraph("<b>Travel Purpose:</b>", normal_style), Paragraph(str(report.get("travel_purpose")), normal_style),
-         Paragraph("<b>Report Period:</b>", normal_style), Paragraph(str(report.get("report_period")), normal_style)],
-        [Paragraph("<b>Budget Limit:</b>", normal_style), Paragraph(f"INR {report.get('budget_limit', 0):,.2f}", normal_style),
-         Paragraph("<b>Status:</b>", normal_style), Paragraph(str(report.get("status", "Submitted")), bold_style)]
-    ]
-    
-    meta_table = Table(meta_data, colWidths=[110, 160, 110, 160])
-    meta_table.setStyle(TableStyle([
-        ('ALIGN', (0,0), (-1,-1), 'LEFT'),
-        ('VALIGN', (0,0), (-1,-1), 'TOP'),
-        ('BOTTOMPADDING', (0,0), (-1,-1), 6),
-        ('LINEBELOW', (0,0), (-1,-1), 0.5, colors.lightgrey),
-    ]))
-    story.append(meta_table)
-    story.append(Spacer(1, 15))
-    
-    story.append(Paragraph("Expense Line Items", section_style))
-    
-    items_header = [
-        Paragraph("<b>Date</b>", bold_style),
-        Paragraph("<b>Category</b>", bold_style),
-        Paragraph("<b>Description</b>", bold_style),
-        Paragraph("<b>Merchant</b>", bold_style),
-        Paragraph("<b>Payment Mode</b>", bold_style),
-        Paragraph("<b>GST %</b>", bold_style),
-        Paragraph("<b>Amount</b>", bold_style),
-        Paragraph("<b>GST</b>", bold_style),
-        Paragraph("<b>Total</b>", bold_style)
-    ]
-    
-    items_data = [items_header]
-    for item in report.get("items", []):
-        row = [
-            Paragraph(str(item.get("date", "")), normal_style),
-            Paragraph(str(item.get("category", "")), normal_style),
-            Paragraph(str(item.get("description", "")), normal_style),
-            Paragraph(str(item.get("merchant", "")), normal_style),
-            Paragraph(str(item.get("payment_mode", "")), normal_style),
-            Paragraph(f"{item.get('gst_percentage', 0)}%", normal_style),
-            Paragraph(f"INR {item.get('amount', 0):,.2f}", normal_style),
-            Paragraph(f"INR {item.get('gst_amount', 0):,.2f}", normal_style),
-            Paragraph(f"INR {item.get('total', 0):,.2f}", normal_style)
-        ]
-        items_data.append(row)
-        
-    items_data.append([
-        "", "", "", "", "", "",
-        Paragraph("<b>Subtotal:</b>", bold_style), "",
-        Paragraph(f"<b>INR {report.get('subtotal', 0):,.2f}</b>", bold_style)
-    ])
-    items_data.append([
-        "", "", "", "", "", "",
-        Paragraph("<b>GST Total:</b>", bold_style), "",
-        Paragraph(f"<b>INR {report.get('gst_amount', report.get('gst_total', 0)):,.2f}</b>", bold_style)
-    ])
-    items_data.append([
-        "", "", "", "", "", "",
-        Paragraph("<b>Grand Total:</b>", bold_style), "",
-        Paragraph(f"<b>INR {report.get('grand_total', 0):,.2f}</b>", bold_style)
-    ])
-    
-    col_widths = [60, 60, 95, 60, 65, 35, 65, 65, 75]
-    items_table = Table(items_data, colWidths=col_widths)
-    items_table.setStyle(TableStyle([
-        ('BACKGROUND', (0,0), (-1,0), colors.HexColor('#0F4C81')),
-        ('TEXTCOLOR', (0,0), (-1,0), colors.white),
-        ('ALIGN', (0,0), (-1,-1), 'LEFT'),
-        ('VALIGN', (0,0), (-1,-1), 'MIDDLE'),
-        ('BOTTOMPADDING', (0,0), (-1,-1), 5),
-        ('TOPPADDING', (0,0), (-1,-1), 5),
-        ('GRID', (0,0), (-1, len(report.get("items", []))), 0.5, colors.grey),
-        ('SPAN', (6, -3), (7, -3)),
-        ('SPAN', (6, -2), (7, -2)),
-        ('SPAN', (6, -1), (7, -1)),
-        ('ALIGN', (6, -3), (6, -1), 'RIGHT'),
-        ('BACKGROUND', (6, -1), (8, -1), colors.HexColor('#e6f2f2')),
-    ]))
-    story.append(items_table)
-    
-    doc.build(story)
-    buffer.seek(0)
-    return send_file(
-        buffer,
-        as_attachment=True,
-        download_name=f"Softrate_Expense_Report_{report_id}.pdf",
-        mimetype="application/pdf"
-    )
-
-@app.route("/expense-report/export-excel/<report_id>", methods=["GET"])
-def expense_report_export_excel(report_id):
-    db_conn, fallback_active = get_db()
-    report = db_conn.expense_reports.find_one({"report_id": report_id})
-    if not report:
-        from bson import ObjectId
-        try:
-            report = db_conn.expense_reports.find_one({"_id": ObjectId(report_id)})
-        except Exception:
-            pass
-            
-    if not report:
-        return "Report not found", 404
-        
-    import io
-    import csv
-    from flask import Response
-    
-    output = io.StringIO()
-    writer = csv.writer(output)
-    
-    writer.writerow(["SOFTRATE EXPENSE CLAIM REPORT"])
-    writer.writerow(["Report ID", report.get("report_id")])
-    writer.writerow(["Employee Name", report.get("employee_name")])
-    writer.writerow(["Employee Email", report.get("employee_email")])
-    writer.writerow(["Department", report.get("department")])
-    writer.writerow(["Project Name", report.get("project_name")])
-    writer.writerow(["Travel Purpose", report.get("travel_purpose")])
-    writer.writerow(["Report Period", report.get("report_period")])
-    writer.writerow(["Budget Limit", report.get("budget_limit", 0)])
-    writer.writerow(["Status", report.get("status")])
-    writer.writerow([])
-    
-    writer.writerow(["Date", "Category", "Description", "Merchant", "Payment Mode", "GST %", "Amount", "GST Amount", "Total"])
-    for item in report.get("items", []):
-        writer.writerow([
-            item.get("date"),
-            item.get("category"),
-            item.get("description"),
-            item.get("merchant"),
-            item.get("payment_mode"),
-            f"{item.get('gst_percentage')}%",
-            item.get("amount"),
-            item.get("gst_amount"),
-            item.get("total")
-        ])
-        
-    writer.writerow([])
-    writer.writerow(["", "", "", "", "", "", "Subtotal", "", report.get("subtotal", 0)])
-    writer.writerow(["", "", "", "", "", "", "GST Total", "", report.get("gst_amount", report.get("gst_total", 0))])
-    writer.writerow(["", "", "", "", "", "", "Grand Total", "", report.get("grand_total", 0)])
-    
-    response = Response(output.getvalue(), mimetype="text/csv")
-    response.headers["Content-Disposition"] = f"attachment; filename=Softrate_Expense_Report_{report_id}.csv"
-    return response
-
 @app.route('/register', methods=['POST'])
 def register():
     data = request.json
@@ -1000,25 +548,20 @@ def register():
 
 @app.route('/save-gst', methods=['POST'])
 def save_gst():
-    data = request.json
+    data = request.json or {}
     print("GST DATA RECEIVED:", data)
-
-    gst_history.insert_one(data)
-
-    return jsonify({
-        "success": True,
-        "message": "GST saved"
-    })
-@app.route('/test-expense')
-def test_expense():
-    expense_reports.insert_one({
-        "category": "Office",
-        "amount": 1000,
-        "description": "Test Expense"
-    })
-
-    return "Expense Added"
-
+    try:
+        gst_history.insert_one(data)
+        return jsonify({
+            "success": True,
+            "message": "GST saved"
+        })
+    except Exception as e:
+        print(f"Error saving GST to database: {e}")
+        return jsonify({
+            "success": False,
+            "message": f"Database insertion failed: {str(e)}"
+        }), 500
 def fix_id(data):
     for item in data:
         item["_id"] = str(item["_id"])
@@ -1029,21 +572,6 @@ def get_gst_history():
     data = list(gst_history.find())
     return jsonify(fix_id(data))
 
-@app.route("/api/expense-reports", methods=["GET"])
-def get_expense_reports_direct():
-    data = list(expense_reports.find())
-    return jsonify(fix_id(data))
-@app.route('/save-expense', methods=['POST'])
-def save_expense():
-    data = request.json
-    print("EXPENSE DATA RECEIVED:", data)
-
-    expense_reports.insert_one(data)
-
-    return jsonify({
-        "success": True,
-        "message": "Expense saved successfully"
-    })
 
 if __name__ == "__main__":
     # Start Flask Server

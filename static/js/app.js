@@ -76,6 +76,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // State Management
   let activeMode = "standard";
+  let lastSavedState = {
+    amount: null,
+    rate: null,
+    mode: null,
+    tax_type: null
+  };
 
   /* ==========================================================================
      1. Theme Management (Dark / Light Mode)
@@ -171,7 +177,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const contactSection = document.getElementById("contact-section");
       const comingSoonSection = document.getElementById("coming-soon-section");
       const comingSoonTitle = document.getElementById("comingSoonTitle");
-      const expenseSection = document.getElementById("expense-section");
 
       if (route === "gst") {
         // Show GST Calculator view
@@ -181,23 +186,9 @@ document.addEventListener("DOMContentLoaded", () => {
         if (aboutSection) aboutSection.classList.remove("hide");
         if (contactSection) contactSection.classList.remove("hide");
         if (comingSoonSection) comingSoonSection.classList.add("hide");
-        if (expenseSection) expenseSection.classList.add("hide");
         
         // Scroll smoothly back to calculator top
         if (calcSection) calcSection.scrollIntoView({ behavior: "smooth" });
-      } else if (route === "expense") {
-        // Show Expense Report Generator
-        if (calcSection) calcSection.classList.add("hide");
-        if (ratesSection) ratesSection.classList.add("hide");
-        if (faqSection) faqSection.classList.add("hide");
-        if (aboutSection) aboutSection.classList.add("hide");
-        if (contactSection) contactSection.classList.add("hide");
-        if (comingSoonSection) comingSoonSection.classList.add("hide");
-        if (expenseSection) expenseSection.classList.remove("hide");
-        
-        if (expenseSection) expenseSection.scrollIntoView({ behavior: "smooth" });
-        // Dispatch custom event to initialize/sync expense module
-        document.dispatchEvent(new CustomEvent("expenseRouteLoaded"));
       } else {
         // Show Coming Soon placeholder view
         if (calcSection) calcSection.classList.add("hide");
@@ -205,7 +196,6 @@ document.addEventListener("DOMContentLoaded", () => {
         if (faqSection) faqSection.classList.add("hide");
         if (aboutSection) aboutSection.classList.add("hide");
         if (contactSection) contactSection.classList.add("hide");
-        if (expenseSection) expenseSection.classList.add("hide");
         if (comingSoonSection) comingSoonSection.classList.remove("hide");
         
         if (comingSoonTitle) comingSoonTitle.textContent = `${labelText} - Coming Soon`;
@@ -266,10 +256,9 @@ document.addEventListener("DOMContentLoaded", () => {
         break;
     }
     
-    // Sync toggles state, auto-calculate, and save
+    // Sync toggles state and auto-calculate
     syncTogglesState();
     calculateLocal();
-    debounceSave();
   }
 
   // Sync state between radios and visibility classes
@@ -301,7 +290,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const aboutSection = document.getElementById("about-section");
         const contactSection = document.getElementById("contact-section");
         const comingSoonSection = document.getElementById("coming-soon-section");
-        const expenseSection = document.getElementById("expense-section");
         
         calcSection.classList.remove("hide");
         if (ratesSection) ratesSection.classList.remove("hide");
@@ -309,7 +297,6 @@ document.addEventListener("DOMContentLoaded", () => {
         if (aboutSection) aboutSection.classList.remove("hide");
         if (contactSection) contactSection.classList.remove("hide");
         if (comingSoonSection) comingSoonSection.classList.add("hide");
-        if (expenseSection) expenseSection.classList.add("hide");
 
         // Highlight India GST Calculator in sidebar as active
         sidebarLinks.forEach(l => l.classList.remove("active"));
@@ -397,54 +384,91 @@ document.addEventListener("DOMContentLoaded", () => {
     resTotal.textContent = `₹${totalAmount.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
   }
 
-  // Debounced database logger to keep history logs populated without spamming
-  let saveTimeout = null;
+  // Database logger triggered automatically or on form submit
   function triggerServerSave() {
     const amountVal = gstAmountInput.value.trim();
-    if (!amountVal || isNaN(amountVal) || parseFloat(amountVal) <= 0) return;
+    if (!amountVal || isNaN(amountVal) || parseFloat(amountVal) <= 0) {
+      amountError.style.display = "block";
+      gstAmountInput.classList.add("border-danger");
+      return;
+    } else {
+      amountError.style.display = "none";
+      gstAmountInput.classList.remove("border-danger");
+    }
 
-    const payload = {
-      amount: parseFloat(amountVal),
-      rate: parseFloat(gstRateSelect.value),
-      type: document.getElementById("modeInclusive").checked ? "inclusive" : "exclusive"
+    const amount = parseFloat(amountVal);
+    const rate = parseFloat(gstRateSelect.value);
+    const mode = document.getElementById("modeInclusive").checked ? "inclusive" : "exclusive";
+    const tax_type = document.getElementById("transInter").checked ? "inter" : "intra";
+
+    // Prevent duplicate saving of same unchanged calculation
+    if (
+      lastSavedState.amount === amount &&
+      lastSavedState.rate === rate &&
+      lastSavedState.mode === mode &&
+      lastSavedState.tax_type === tax_type
+    ) {
+      return;
+    }
+
+    // Calculate result
+    let gst_amount = 0;
+    let final_amount = 0;
+    if (mode === "inclusive") {
+      const original = amount / (1 + (rate / 100));
+      gst_amount = amount - original;
+      final_amount = amount;
+    } else {
+      gst_amount = amount * (rate / 100);
+      final_amount = amount + gst_amount;
+    }
+
+    gst_amount = parseFloat(gst_amount.toFixed(2));
+    final_amount = parseFloat(final_amount.toFixed(2));
+
+    const cgst = tax_type === "inter" ? 0 : parseFloat((gst_amount / 2).toFixed(2));
+    const sgst = tax_type === "inter" ? 0 : parseFloat((gst_amount / 2).toFixed(2));
+    const igst = tax_type === "inter" ? gst_amount : 0;
+
+    // Update last saved state immediately before network call to prevent duplicate saves in flight
+    lastSavedState = {
+      amount: amount,
+      rate: rate,
+      mode: mode,
+      tax_type: tax_type
     };
 
-    fetch(`${import.meta.env.VITE_API_URL}/api/calculate`, {
+    // Save actual calculated result to MongoDB Atlas
+    fetch("https://softrate-tech-park.onrender.com/save-gst", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify(payload)
+      body: JSON.stringify({
+        amount: amount,
+        gst_rate: rate,
+        gst_amount: gst_amount,
+        total_amount: final_amount,
+        type: mode,
+        created_at: new Date().toISOString()
+      })
     })
     .then(res => res.json())
-    .then(resData => {
-      if (resData.status === "success") {
-        const data = resData.data;
-        updateDbStatusBanner(resData.using_fallback);
-
-        fetch(`${import.meta.env.VITE_API_URL}/save-gst`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            amount: payload.amount,
-            rate: payload.rate,
-            type: payload.type,
-            gst_amount: data.gst_amount,
-            total: data.total_amount
-          })
-        })
-        .then(res => res.json())
-        .then(saveRes => {
-          console.log("Saved to MongoDB:", saveRes);
-          loadHistory();
-        })
-        .catch(err => console.error("MongoDB save error:", err));
+    .then(saveRes => {
+      if (saveRes.success) {
+        alert("Saved to database");
+        loadHistory();
+      } else {
+        alert("Failed to save to MongoDB Atlas.");
       }
     })
-    .catch(err => console.error("Server save error:", err));
+    .catch(err => {
+      console.error("MongoDB save error:", err);
+      alert("Error: Connection to database failed.");
+    });
   }
+
+  let saveTimeout = null;
 
   function debounceSave() {
     if (saveTimeout) clearTimeout(saveTimeout);
@@ -474,15 +498,24 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Re-enable form enter key triggers
+  // Save/Calculate on form submit
   gstForm.addEventListener("submit", (e) => {
     e.preventDefault();
+    if (saveTimeout) clearTimeout(saveTimeout);
     calculateLocal();
     triggerServerSave();
   });
 
   // Reset calculator values
   btnReset.addEventListener("click", () => {
+    if (saveTimeout) clearTimeout(saveTimeout);
+    lastSavedState = {
+      amount: null,
+      rate: null,
+      mode: null,
+      tax_type: null
+    };
+
     gstForm.reset();
     gstAmountInput.value = "";
     gstRateSelect.value = "18";
@@ -563,6 +596,7 @@ Report generated by Softrate Tech Park Pvt. Ltd.`;
      6. History & Rates Loaders (API GET /history & /gst-rates)
      ========================================================================== */
   function loadHistory() {
+    if (!historyBody) return;
     fetch(`${import.meta.env.VITE_API_URL}/api/gst-history`)
     .then(res => res.json())
     .then(resData => {
@@ -661,11 +695,13 @@ Report generated by Softrate Tech Park Pvt. Ltd.`;
     });
   }
 
-  btnClearHistory.addEventListener("click", () => {
-    if (confirm("Are you sure you want to delete all calculation logs?")) {
-      clearAllHistory();
-    }
-  });
+  if (btnClearHistory) {
+    btnClearHistory.addEventListener("click", () => {
+      if (confirm("Are you sure you want to delete all calculation logs?")) {
+        clearAllHistory();
+      }
+    });
+  }
 
   // Fetch official GST Slabs
   function loadGstRates() {

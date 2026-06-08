@@ -105,32 +105,83 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Gather form data for submission
   function gatherReportData() {
-    const reportId = "EXP-" + Date.now();
-    const subtotalText = document.getElementById("grandTotalText").innerText;
-    const subtotal = Number(subtotalText.replace(/[₹,]/g, "")) || 0;
+    const companyName = document.getElementById("companyName").value.trim();
+    const companyAddress = document.getElementById("companyAddress").value.trim();
+    const reportTitle = document.getElementById("reportTitle").textContent.trim();
+    const businessPurpose = document.getElementById("businessPurpose").value.trim();
+    const submittedBy = document.getElementById("submittedBy").value.trim();
+    const submittedDate = document.getElementById("submittedDate").value;
+    const reportTo = document.getElementById("reportTo").value.trim();
+    const reportingPeriod = document.getElementById("reportingPeriod").value.trim();
+
+    // Validate main metadata
+    if (!submittedBy) {
+      alert("Please fill in the 'Submitted By' field.");
+      document.getElementById("submittedBy").focus();
+      return null;
+    }
+
+    const expenses = [];
+    let isValid = true;
+
+    const rows = expenseDocTableBody.querySelectorAll("tr");
+    rows.forEach((row, idx) => {
+      const date = row.querySelector(".row-date").value;
+      const description = row.querySelector(".row-desc").value.trim();
+      const merchant = row.querySelector(".row-merchant").value.trim();
+      const category = row.querySelector(".row-category").value;
+      const amountVal = row.querySelector(".row-amount").value.trim();
+
+      // Skip row if completely empty, but if partially filled validate it
+      if (!date && !description && !merchant && !amountVal) {
+        return; 
+      }
+
+      const amount = parseFloat(amountVal);
+      if (!date || !description || !merchant || isNaN(amount) || amount <= 0) {
+        alert(`Please fill all fields with valid values on row ${idx + 1}.`);
+        isValid = false;
+        return;
+      }
+
+      expenses.push({
+        date: date,
+        description: description,
+        merchant: merchant,
+        category: category,
+        amount: amount
+      });
+    });
+
+    if (!isValid) return null;
+
+    if (expenses.length === 0) {
+      alert("Please add at least one valid expense line item.");
+      return null;
+    }
+
+    const totalAmount = expenses.reduce((sum, item) => sum + item.amount, 0);
 
     return {
-      report_id: reportId,
-      employee_name: document.getElementById("submittedBy").value || "N/A",
-      employee_email: "expense@softrate.com",
-      department: "General",
-      project_name: document.getElementById("businessPurpose").value || "",
-      travel_purpose: document.getElementById("businessPurpose").value || "",
-      report_period: document.getElementById("reportingPeriod").value || "",
-      items: [],
-      budget_limit: 0,
-      subtotal: subtotal,
-      gst_amount: 0,
-      grand_total: subtotal,
-      status: "SUBMITTED"
+      company_name: companyName,
+      company_address: companyAddress,
+      report_title: reportTitle,
+      business_purpose: businessPurpose,
+      submitted_by: submittedBy,
+      submitted_date: submittedDate,
+      report_to: reportTo,
+      reporting_period: reportingPeriod,
+      expenses: expenses,
+      total_amount: totalAmount,
+      created_at: new Date().toISOString()
     };
   }
 
   // Save Expense Report to MongoDB Atlas
   if (btnSaveExpenseReport) {
     btnSaveExpenseReport.addEventListener("click", () => {
-      const payload = gatherReportData();
-      if (!payload) return;
+      const expenseData = gatherReportData();
+      if (!expenseData) return;
 
       // Disable button
       btnSaveExpenseReport.disabled = true;
@@ -142,7 +193,7 @@ document.addEventListener("DOMContentLoaded", () => {
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify(payload)
+        body: JSON.stringify(expenseData)
       })
       .then(res => res.json())
       .then(resData => {

@@ -464,10 +464,9 @@ document.addEventListener("DOMContentLoaded", () => {
       },
       body: JSON.stringify({
         amount: amount,
-        gst_rate: rate,
-        gst_amount: gst_amount,
-        total_amount: final_amount,
-        type: mode,
+        gstRate: rate,
+        gstAmount: gst_amount,
+        grandTotal: final_amount,
         created_at: new Date().toISOString()
       })
     })

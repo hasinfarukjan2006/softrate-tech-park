@@ -20,8 +20,8 @@
   --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
   
-  --font-heading: 'Outfit', 'Inter', -apple-system, sans-serif;
-  --font-body: 'Inter', -apple-system, sans-serif;
+  --font-heading: Arial, Helvetica, sans-serif;
+  --font-body: Arial, Helvetica, sans-serif;
   --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -54,25 +54,98 @@ html {
 }
 
 body {
-  font-family: var(--font-body);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  font-weight: 400;
   background-color: var(--bg-color);
-  color: var(--text-main);
-  line-height: 1.5;
+  color: #000;
+  line-height: 2;
   transition: background-color var(--transition-normal), color var(--transition-normal);
   -webkit-font-smoothing: antialiased;
+  text-align: left;
+}
+
+body.dark {
+  color: var(--text-main);
+}
+
+p {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 18px !important;
+  font-weight: 400 !important;
+  line-height: 2 !important;
+  color: inherit !important;
+  margin-bottom: 1rem;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-heading);
-  font-weight: 600;
-  color: var(--text-main);
-  line-height: 1.25;
+  font-family: Arial, Helvetica, sans-serif !important;
+  font-weight: 700 !important;
+  line-height: 1.4 !important;
+  color: inherit !important;
+  text-align: left;
+  letter-spacing: -0.3px;
+  margin-bottom: 0.75rem;
+}
+
+h1 {
+  font-size: 32px !important;
+  line-height: 1.3 !important;
+}
+
+h2 {
+  font-size: 26px !important;
+  line-height: 1.4 !important;
+}
+
+h3 {
+  font-size: 22px !important;
+  line-height: 1.4 !important;
 }
 
 a {
   color: inherit;
   text-decoration: none;
   transition: color var(--transition-fast);
+}
+
+button,
+.cta-btn,
+input[type="submit"],
+input[type="button"],
+input[type="reset"] {
+  font-family: Arial, Helvetica, sans-serif !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  line-height: 1.4 !important;
+}
+
+.form-group label,
+.expense-doc-field label,
+.budget-input-group label,
+label {
+  font-family: Arial, Helvetica, sans-serif !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+}
+
+input[type="number"],
+input[type="text"],
+input[type="email"],
+select,
+textarea {
+  font-family: Arial, Helvetica, sans-serif !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  line-height: 1.6 !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+  font-size: 15px !important;
+  font-weight: 400 !important;
+  color: inherit !important;
+  opacity: 1 !important;
 }
 
 ul {
@@ -97,7 +170,7 @@ ul {
 
 /* Top Header Bar Styling */
 .top-header-bar {
-  height: 60px;
+  height: 72px;
   background-color: #FFFFFF;
   border-bottom: 1px solid var(--border-color);
   display: flex;
@@ -120,7 +193,7 @@ body.dark .top-header-bar {
 .header-left {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 1.25rem;
 }
 
 .hamburger-btn {
@@ -141,14 +214,17 @@ body.dark .top-header-bar {
 .header-titles {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   line-height: 1.2;
 }
 
 .header-title {
   font-family: var(--font-heading);
   font-weight: 700;
-  font-size: 1.1rem;
-  color: var(--text-main);
+  font-size: 24px;
+  line-height: 32px;
+  letter-spacing: -0.3px;
+  color: #000;
 }
 
 .header-subtitle {
@@ -352,8 +428,8 @@ body.dark .brand-title {
 }
 
 .nav-link {
-  font-weight: 500;
-  font-size: 0.95rem;
+  font-weight: 600 !important;
+  font-size: 16px !important;
   padding: 0.5rem 0.75rem;
   color: var(--text-muted);
   border-radius: 6px;
@@ -407,7 +483,7 @@ body.dark .theme-toggle-btn .sun-icon {
   background-color: var(--primary-color);
   color: #FFFFFF;
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: 16px;
   padding: 0.6rem 1.25rem;
   border-radius: 8px;
   box-shadow: 0 4px 6px -1px rgba(var(--primary-rgb), 0.2);
@@ -532,8 +608,8 @@ body.dark .cta-btn:hover {
   gap: 0.65rem;
   padding: 0.5rem 0.75rem;
   color: #94A3B8; /* light gray menu text */
-  font-weight: 500;
-  font-size: 0.85rem;
+  font-weight: 600 !important;
+  font-size: 15px !important;
   line-height: 1.3;
   border-radius: 6px;
   transition: all var(--transition-fast);
@@ -1761,8 +1837,9 @@ body.dark .method-item p {
 .section-heading-blue {
   color: var(--primary-color);
   font-family: var(--font-heading);
-  font-size: 1.5rem;
+  font-size: 24px;
   font-weight: 700;
+  line-height: 32px;
   margin-bottom: 0.5rem;
 }
 
@@ -1771,9 +1848,11 @@ body.dark .section-heading-blue {
 }
 
 .info-paragraph {
-  color: var(--text-main);
-  font-size: 1rem;
-  line-height: 1.6;
+  font-family: var(--font-body);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 36px;
+  color: #000;
 }
 
 /* Grids */
@@ -2714,7 +2793,7 @@ html, body {
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   border: 1px solid #e2e8f0;
-  font-family: 'Inter', sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 body.dark .expense-doc-paper {
@@ -2731,7 +2810,7 @@ body.dark .expense-doc-paper {
 }
 
 .expense-doc-logo {
-  font-family: 'Outfit', sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   font-weight: 800;
   font-size: 1.8rem;
   color: #0f4c81;
@@ -2756,7 +2835,7 @@ body.dark .expense-doc-paper {
 }
 
 .expense-doc-title-text {
-  font-family: 'Outfit', sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 2rem;
   font-weight: 700;
   color: #0f4c81;
@@ -2960,7 +3039,7 @@ body.dark .expense-doc-paper {
 }
 
 .action-card-title {
-  font-family: 'Outfit', sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 1.1rem;
   font-weight: 700;
   color: var(--text-main);

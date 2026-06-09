@@ -521,19 +521,10 @@
                   <!-- Row 1 (Default) -->
                   <div class="itinerary-row" data-row-id="0">
                     <div class="pd-form-grid">
-                      <div class="pd-form-group">
+                      <div class="pd-form-group pd-autocomplete-wrapper">
                         <label>Destination City *</label>
-                        <select class="pd-city-select">
-                          <option value="standard">Standard Rate (Continental US)</option>
-                          <option value="nyc">New York City, NY</option>
-                          <option value="sfo">San Francisco, CA</option>
-                          <option value="lax">Los Angeles, CA</option>
-                          <option value="chi">Chicago, IL</option>
-                          <option value="was">Washington, DC</option>
-                          <option value="bos">Boston, MA</option>
-                          <option value="sea">Seattle, WA</option>
-                          <option value="mia">Miami, FL</option>
-                        </select>
+                        <input type="text" class="pd-city-input" placeholder="Search city (e.g. Austin, Texas)..." required autocomplete="off">
+                        <div class="pd-suggestions-dropdown hide"></div>
                       </div>
                       <div class="pd-form-group">
                         <label>Start Date *</label>

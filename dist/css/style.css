@@ -3862,3 +3862,60 @@ body.dark .expense-doc-paper {
   }
 }
 
+/* Autocomplete Search Dropdown for Cities */
+.pd-autocomplete-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.pd-city-input {
+  width: 100%;
+}
+
+.pd-suggestions-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #ffffff;
+  border: 1px solid #ffe4e6;
+  border-radius: 8px;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 9999;
+  box-shadow: 0 10px 15px -3px rgba(153, 27, 27, 0.1), 0 4px 6px -2px rgba(153, 27, 27, 0.05);
+  margin-top: 4px;
+}
+
+.pd-suggestions-dropdown.hide {
+  display: none !important;
+}
+
+.pd-suggestion-item {
+  padding: 0.65rem 0.85rem;
+  font-size: 0.9rem;
+  color: var(--pd-text-dark);
+  cursor: pointer;
+  transition: background-color 0.1s ease, color 0.1s ease;
+  text-align: left;
+}
+
+.pd-suggestion-item:hover, .pd-suggestion-item.active {
+  background-color: var(--pd-pink-light);
+  color: var(--pd-accent);
+}
+
+.pd-suggestion-item.custom-item {
+  font-style: italic;
+  font-weight: 600;
+  border-top: 1px dashed var(--pd-pink-mid);
+}
+
+.pd-suggestion-no-results {
+  padding: 0.65rem 0.85rem;
+  font-size: 0.85rem;
+  color: var(--pd-text-muted);
+  font-style: italic;
+  text-align: left;
+}
+

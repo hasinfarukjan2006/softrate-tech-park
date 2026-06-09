@@ -2592,31 +2592,49 @@ html, body {
 
 /* Print Overrides */
 @media print {
+  @page {
+    size: A4 portrait;
+    margin: 8mm;
+  }
+
+  html,
+  body {
+    width: 210mm !important;
+    height: 297mm !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+  }
+
   body * {
     visibility: hidden;
   }
 
+  .expense-report,
+  .expense-report *,
   #expense-report-print-area,
   #expense-report-print-area * {
     visibility: visible;
   }
 
+  .expense-report,
   #expense-report-print-area {
     position: absolute;
     left: 0;
     top: 0;
-    width: 100%;
+    width: 190mm;
+    min-height: auto;
+    max-height: 280mm;
+    padding: 8mm !important;
+    margin: 0 auto !important;
+    box-sizing: border-box;
+    page-break-after: avoid !important;
+    page-break-before: avoid !important;
+    page-break-inside: avoid !important;
+    transform: scale(0.92);
+    transform-origin: top center;
   }
 
-  /* Explicitly hide the action buttons, add row button, and the trash icon column */
-  #expense-report-print-area #btnAddExpenseRow,
-  #expense-report-print-area .btn-delete-row-doc,
-  #expense-report-print-area .expense-doc-table th:last-child,
-  #expense-report-print-area .expense-doc-table td:last-child {
-    display: none !important;
-  }
-
-  /* Make sure the page/paper background and layout prints correctly */
   .expense-doc-paper {
     padding: 0 !important;
     border: none !important;
@@ -2626,20 +2644,66 @@ html, body {
     max-width: 100% !important;
     background: transparent !important;
     color: #000000 !important;
+    font-size: 9.5pt !important;
   }
 
-  /* Flatten inputs so they look like plain text */
-  .expense-doc-paper input,
-  .expense-doc-paper select,
-  .expense-doc-paper textarea {
+  .expense-doc-header {
+    padding-bottom: 0.35rem !important;
+    margin-bottom: 0.35rem !important;
+    border-bottom: 1px solid #0f4c81 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .expense-doc-logo {
+    color: #0f4c81 !important;
+    font-size: 18px !important;
+    line-height: 1.1 !important;
+    margin-bottom: 0 !important;
+  }
+
+  .expense-doc-logo span {
+    font-size: 18px !important;
+  }
+
+  .expense-doc-tagline {
+    font-size: 10px !important;
+    margin: 0 !important;
+  }
+
+  .expense-doc-title-text {
+    color: #0f4c81 !important;
+    font-size: 22px !important;
+    margin: 0 !important;
+  }
+
+  .expense-doc-meta-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0.45rem !important;
+    margin-bottom: 0.35rem !important;
+  }
+
+  .expense-doc-field {
+    margin-bottom: 0.25rem !important;
+  }
+
+  .expense-doc-field label {
+    color: #0f4c81 !important;
+    font-size: 10px !important;
+    margin-bottom: 0 !important;
+  }
+
+  .expense-doc-field input,
+  .expense-doc-field select,
+  .expense-doc-field textarea {
+    font-size: 10px !important;
+    line-height: 1.2 !important;
+    padding: 2px 4px !important;
     border: none !important;
     background: transparent !important;
-    padding: 0.2rem 0 !important;
     box-shadow: none !important;
     outline: none !important;
-    appearance: none !important;
-    color: #000000 !important;
-    font-size: 10pt !important;
     width: 100% !important;
   }
 
@@ -2648,44 +2712,72 @@ html, body {
     resize: none !important;
   }
 
-  .expense-doc-header {
-    border-bottom: 2px solid #0f4c81 !important;
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
+  .expense-doc-table-wrapper {
+    margin: 0 !important;
   }
 
-  .expense-doc-logo {
-    color: #0f4c81 !important;
+  .expense-doc-table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    page-break-inside: avoid !important;
+    margin-bottom: 0.3rem !important;
   }
 
-  .expense-doc-logo span {
-    color: #00a8a8 !important;
+  .expense-doc-table thead {
+    display: table-header-group !important;
   }
 
-  .expense-doc-title-text {
-    color: #0f4c81 !important;
+  .expense-doc-table tbody tr {
+    page-break-inside: avoid !important;
+    page-break-after: auto !important;
   }
 
-  .expense-doc-field label {
-    color: #0f4c81 !important;
+  .expense-doc-table th,
+  .expense-doc-table td {
+    font-size: 9px !important;
+    padding: 5px !important;
+    line-height: 1.2 !important;
+    white-space: normal !important;
   }
 
   .expense-doc-table th {
     background-color: #f1f5f9 !important;
     color: #0f4c81 !important;
-    border-bottom: 2px solid #e2e8f0 !important;
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
+    border-bottom: 1px solid #e2e8f0 !important;
+  }
+
+  .expense-doc-table td {
+    border-top: 1px solid #e2e8f0 !important;
+  }
+
+  .expense-doc-totals,
+  .totals-summary-row.grand-total {
+    page-break-before: avoid !important;
+    page-break-inside: avoid !important;
+    margin-top: 0.5rem !important;
   }
 
   .expense-doc-totals {
-    border-top: 2px solid #0f4c81 !important;
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
+    border-top: 1px solid #0f4c81 !important;
+    padding-top: 0.35rem !important;
   }
 
   .totals-summary-row.grand-total {
     color: #0f4c81 !important;
+    font-size: 10px !important;
+    margin: 0 !important;
+  }
+
+  header,
+  nav,
+  aside,
+  footer,
+  .sidebar,
+  .topbar,
+  .no-print,
+  button,
+  .expense-action-panel {
+    display: none !important;
   }
 }
 

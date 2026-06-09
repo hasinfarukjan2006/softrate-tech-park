@@ -228,8 +228,13 @@ document.addEventListener("DOMContentLoaded", () => {
         const doc = new jsPDF({
           orientation: "portrait",
           unit: "pt",
-          format: "letter"
+          format: "a4"
         });
+
+        const pageWidth = doc.internal.pageSize.getWidth();
+        const pageHeight = doc.internal.pageSize.getHeight();
+        const margin = 36;
+        const rightMargin = pageWidth - margin;
 
         // Styles & Colors
         const primaryColor = "#0f4c81";
@@ -238,99 +243,92 @@ document.addEventListener("DOMContentLoaded", () => {
         const lightTextColor = "#64748b";
 
         // Margins and positions
-        let yPos = 50;
-        const leftMargin = 40;
-        const rightMargin = 572;
+        let yPos = 42;
 
         // Title Header
         doc.setFont("Helvetica", "bold");
-        doc.setFontSize(22);
+        doc.setFontSize(20);
         doc.setTextColor(primaryColor);
-        doc.text(payload.report_title.toUpperCase(), leftMargin, yPos);
+        doc.text(payload.report_title.toUpperCase(), margin, yPos);
 
         // Logo Header on Right
-        doc.setFontSize(16);
+        doc.setFontSize(14);
         doc.setFont("Helvetica", "bold");
-        
         const techStr = "TECH";
         const softrateStr = "SOFTRATE ";
         const techWidth = doc.getTextWidth(techStr);
-        
-        // Draw "SOFTRATE "
+
         doc.setTextColor(primaryColor);
         doc.text(softrateStr, rightMargin - techWidth, yPos, { align: "right" });
-        
-        // Draw "TECH"
         doc.setTextColor(secondaryColor);
         doc.text(techStr, rightMargin, yPos, { align: "right" });
-        
-        yPos += 15;
+
+        yPos += 14;
         doc.setFont("Helvetica", "normal");
         doc.setFontSize(8);
         doc.setTextColor(lightTextColor);
         doc.text("SOFTRATE TECH PARK PVT. LTD.", rightMargin, yPos, { align: "right" });
 
-        yPos += 15;
+        yPos += 12;
         doc.setDrawColor(primaryColor);
-        doc.setLineWidth(1.5);
-        doc.line(leftMargin, yPos, rightMargin, yPos);
+        doc.setLineWidth(0.8);
+        doc.line(margin, yPos, rightMargin, yPos);
 
         // Metadata Fields
-        yPos += 25;
+        yPos += 16;
         doc.setFont("Helvetica", "bold");
-        doc.setFontSize(9);
+        doc.setFontSize(8.5);
         doc.setTextColor(primaryColor);
-        doc.text("COMPANY DETAILS", leftMargin, yPos);
-        doc.text("REPORT INFO", leftMargin + 260, yPos);
+        doc.text("COMPANY DETAILS", margin, yPos);
+        doc.text("REPORT INFO", margin + 250, yPos);
 
-        yPos += 15;
+        yPos += 12;
         doc.setFont("Helvetica", "bold");
-        doc.setFontSize(9);
         doc.setTextColor(darkTextColor);
-        doc.text("Name:", leftMargin, yPos);
-        doc.text("Submitted By:", leftMargin + 260, yPos);
-        
-        doc.setFont("Helvetica", "normal");
-        doc.text(payload.company_name, leftMargin + 65, yPos);
-        doc.text(payload.submitted_by, leftMargin + 350, yPos);
+        doc.text("Name:", margin, yPos);
+        doc.text("Submitted By:", margin + 250, yPos);
 
-        yPos += 15;
-        doc.setFont("Helvetica", "bold");
-        doc.text("Address:", leftMargin, yPos);
-        doc.text("Submitted Date:", leftMargin + 260, yPos);
-        
         doc.setFont("Helvetica", "normal");
-        const splitAddress = doc.splitTextToSize(payload.company_address, 180);
-        doc.text(splitAddress, leftMargin + 65, yPos);
-        doc.text(payload.submitted_date, leftMargin + 350, yPos);
+        doc.text(payload.company_name, margin + 52, yPos);
+        doc.text(payload.submitted_by, margin + 340, yPos);
 
-        let addressHeight = splitAddress.length * 11;
-        
+        yPos += 12;
         doc.setFont("Helvetica", "bold");
-        doc.text("Purpose:", leftMargin + 260, yPos + 15);
+        doc.text("Address:", margin, yPos);
+        doc.text("Submitted Date:", margin + 250, yPos);
+
         doc.setFont("Helvetica", "normal");
-        doc.text(payload.business_purpose || "N/A", leftMargin + 350, yPos + 15);
+        const splitAddress = doc.splitTextToSize(payload.company_address, 170);
+        doc.text(splitAddress, margin + 52, yPos);
+        doc.text(payload.submitted_date, margin + 340, yPos);
+
+        const addressHeight = splitAddress.length * 10;
+        const infoSectionHeight = Math.max(addressHeight, 12);
 
         doc.setFont("Helvetica", "bold");
-        doc.text("Report To:", leftMargin + 260, yPos + 30);
+        doc.text("Purpose:", margin + 250, yPos + 12);
         doc.setFont("Helvetica", "normal");
-        doc.text(payload.report_to || "N/A", leftMargin + 350, yPos + 30);
+        doc.text(payload.business_purpose || "N/A", margin + 320, yPos + 12);
 
         doc.setFont("Helvetica", "bold");
-        doc.text("Period:", leftMargin + 260, yPos + 45);
+        doc.text("Report To:", margin + 250, yPos + 24);
         doc.setFont("Helvetica", "normal");
-        doc.text(payload.reporting_period || "N/A", leftMargin + 350, yPos + 45);
+        doc.text(payload.report_to || "N/A", margin + 320, yPos + 24);
 
-        yPos += Math.max(addressHeight + 15, 60);
+        doc.setFont("Helvetica", "bold");
+        doc.text("Period:", margin + 250, yPos + 36);
+        doc.setFont("Helvetica", "normal");
+        doc.text(payload.reporting_period || "N/A", margin + 320, yPos + 36);
+
+        yPos += Math.max(infoSectionHeight + 40, 40);
 
         // Expense Table Section
         doc.setFont("Helvetica", "bold");
         doc.setFontSize(10);
         doc.setTextColor(primaryColor);
-        doc.text("EXPENSE LINE ITEMS", leftMargin, yPos);
-        yPos += 10;
+        doc.text("EXPENSE LINE ITEMS", margin, yPos);
+        yPos += 12;
 
-        // AutoTable Generation
         const tableBody = payload.expenses.map(item => [
           item.date,
           item.description,
@@ -343,44 +341,50 @@ document.addEventListener("DOMContentLoaded", () => {
           startY: yPos,
           head: [["Date", "Description", "Merchant", "Category", "Amount"]],
           body: tableBody,
-          theme: "striped",
+          theme: "grid",
+          styles: {
+            fontSize: 8,
+            textColor: darkTextColor,
+            cellPadding: 3,
+            overflow: "linebreak",
+            valign: "middle"
+          },
           headStyles: {
             fillColor: primaryColor,
             textColor: "#ffffff",
             fontStyle: "bold",
-            fontSize: 9
-          },
-          bodyStyles: {
-            fontSize: 9,
-            textColor: darkTextColor
+            fontSize: 8,
+            cellPadding: 4
           },
           alternateRowStyles: {
             fillColor: "#f8fafc"
           },
           columnStyles: {
-            0: { cellWidth: 70 },
-            1: { cellWidth: 200 },
-            2: { cellWidth: 100 },
+            0: { cellWidth: 60 },
+            1: { cellWidth: 190 },
+            2: { cellWidth: 110 },
             3: { cellWidth: 80 },
             4: { cellWidth: 80, halign: "right" }
           },
-          margin: { left: leftMargin, right: rightMargin },
+          margin: { left: margin, right: margin },
+          pageBreak: "avoid",
+          tableWidth: "auto",
           didDrawPage: (data) => {
             yPos = data.cursor.y;
           }
         });
 
         // Grand Total Summary
-        yPos += 20;
+        yPos += 14;
         doc.setDrawColor("#e2e8f0");
-        doc.setLineWidth(1);
-        doc.line(leftMargin + 300, yPos, rightMargin, yPos);
+        doc.setLineWidth(0.8);
+        doc.line(margin + 280, yPos, rightMargin, yPos);
 
-        yPos += 15;
+        yPos += 10;
         doc.setFont("Helvetica", "bold");
-        doc.setFontSize(11);
+        doc.setFontSize(10);
         doc.setTextColor(darkTextColor);
-        doc.text("GRAND TOTAL:", leftMargin + 320, yPos);
+        doc.text("GRAND TOTAL:", margin + 290, yPos);
         doc.setTextColor(primaryColor);
         doc.text(`INR ${parseFloat(payload.total_amount).toFixed(2)}`, rightMargin, yPos, { align: "right" });
 

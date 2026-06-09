@@ -3923,3 +3923,76 @@ body.dark .expense-doc-paper {
   text-align: left;
 }
 
+/* ==========================================================================
+   Finance Free Apps Sidebar Custom Scoped Styles
+   ========================================================================== */
+#perDiemSidebar {
+  background-color: #1a1a24 !important; /* dark charcoal */
+  border-right: 1px solid #11111a !important;
+  width: 260px !important;
+}
+
+#perDiemSidebar .sidebar-sticky {
+  background-color: #1a1a24 !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+}
+
+#perDiemSidebar .sidebar-brand {
+  background-color: #1a1a24 !important;
+  border-bottom: 1px solid #11111a !important;
+}
+
+#perDiemSidebar .sidebar-brand-title {
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  font-size: 1.1rem !important;
+  text-transform: none !important;
+}
+
+#perDiemSidebar .sidebar-section-title {
+  color: #a0aec0 !important; /* light gray for titles */
+  font-weight: 700 !important; /* bold section titles */
+  text-transform: uppercase !important;
+  font-size: 0.75rem !important;
+  letter-spacing: 0.05em !important;
+  padding: 1.25rem 1rem 0.5rem 1.25rem !important;
+}
+
+#perDiemSidebar .sidebar-link {
+  color: #e2e8f0 !important; /* white/light gray menu text */
+  padding: 0.75rem 1rem 0.75rem 2.25rem !important; /* submenu items indented */
+  font-size: 0.85rem !important;
+  border-left: 4px solid transparent !important;
+  background-color: transparent !important;
+  transition: all 0.15s ease-in-out !important;
+}
+
+#perDiemSidebar .sidebar-link:hover {
+  background-color: #2a2a35 !important; /* slightly lighter gray background on hover */
+  color: #ffffff !important;
+}
+
+#perDiemSidebar .sidebar-link.active {
+  background-color: #2e2e3a !important; /* active item background: slightly lighter gray */
+  color: #ffffff !important;
+  border-left: 4px solid #facc15 !important; /* active item left border: yellow */
+  font-weight: 700 !important;
+}
+
+/* Custom smooth scrollbar for PerDiemSidebar */
+#perDiemSidebar .sidebar-sticky::-webkit-scrollbar {
+  width: 6px !important;
+}
+#perDiemSidebar .sidebar-sticky::-webkit-scrollbar-track {
+  background: #1a1a24 !important;
+}
+#perDiemSidebar .sidebar-sticky::-webkit-scrollbar-thumb {
+  background: #4a5568 !important;
+  border-radius: 3px !important;
+}
+#perDiemSidebar .sidebar-sticky::-webkit-scrollbar-thumb:hover {
+  background: #718096 !important;
+}
+
+

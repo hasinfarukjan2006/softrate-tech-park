@@ -156,7 +156,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Define routing function
   window.showRoute = function(route, updateHistory = true) {
-    const isPerDiemRoute = (route === "per-diem" || route === "per-diem-calculator" || window.location.pathname === "/per-diem-calculator");
+    const shouldGoToMainPage = (route === "gst" || route === "expense" || route === "invoice");
+    const isPerDiemRoute = (route === "per-diem" || route === "per-diem-calculator" || (window.location.pathname === "/per-diem-calculator" && !shouldGoToMainPage));
     let activeSidebarId = isPerDiemRoute ? "perDiemSidebar" : "sidebar";
 
     if (isPerDiemRoute) {
@@ -167,7 +168,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     } else {
       if (updateHistory) {
-        if (window.location.pathname === "/per-diem-calculator") {
+        if (window.location.pathname === "/per-diem-calculator" || shouldGoToMainPage) {
           window.history.pushState({ route: route }, "", "/" + (route === "gst" ? "" : "#" + route));
         } else {
           window.location.hash = route;

@@ -116,137 +116,185 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Sidebar Collapse / Expand Toggle
   const sidebarCollapseBtn = document.getElementById("sidebarCollapseBtn");
-  const sidebar = document.getElementById("sidebar");
+  const mainSidebar = document.getElementById("sidebar");
+  const pdSidebar = document.getElementById("perDiemSidebar");
   
   // Collapse sidebar by default on mobile load
-  if (sidebar && window.innerWidth <= 768) {
-    sidebar.classList.add("collapsed");
+  if (window.innerWidth <= 768) {
+    if (mainSidebar) mainSidebar.classList.add("collapsed");
+    if (pdSidebar) pdSidebar.classList.add("collapsed");
   }
 
-  if (sidebarCollapseBtn && sidebar) {
+  if (sidebarCollapseBtn) {
     sidebarCollapseBtn.addEventListener("click", (e) => {
       e.stopPropagation();
-      sidebar.classList.toggle("collapsed");
+      if (mainSidebar && pdSidebar) {
+        const isCollapsed = mainSidebar.classList.contains("collapsed") || pdSidebar.classList.contains("collapsed");
+        if (isCollapsed) {
+          mainSidebar.classList.remove("collapsed");
+          pdSidebar.classList.remove("collapsed");
+        } else {
+          mainSidebar.classList.add("collapsed");
+          pdSidebar.classList.add("collapsed");
+        }
+      } else if (mainSidebar) {
+        mainSidebar.classList.toggle("collapsed");
+      }
     });
   }
 
   // Close sidebar on mobile when clicking main content
   const mainContent = document.querySelector(".main-content");
-  if (mainContent && sidebar) {
+  if (mainContent) {
     mainContent.addEventListener("click", () => {
-      if (window.innerWidth <= 768 && !sidebar.classList.contains("collapsed")) {
-        sidebar.classList.add("collapsed");
+      if (window.innerWidth <= 768) {
+        if (mainSidebar) mainSidebar.classList.add("collapsed");
+        if (pdSidebar) pdSidebar.classList.add("collapsed");
       }
     });
   }
 
-  // Sidebar Mode Selection Handling
-  sidebarLinks.forEach(link => {
+  // Define routing function
+  window.showRoute = function(route, updateHistory = true) {
+    const isPerDiemRoute = (route === "per-diem" || route === "per-diem-calculator" || window.location.pathname === "/per-diem-calculator");
+    let activeSidebarId = isPerDiemRoute ? "perDiemSidebar" : "sidebar";
+
+    if (isPerDiemRoute) {
+      if (updateHistory) {
+        if (window.location.pathname !== "/per-diem-calculator") {
+          window.history.pushState({ route: "per-diem" }, "", "/per-diem-calculator");
+        }
+      }
+    } else {
+      if (updateHistory) {
+        if (window.location.pathname === "/per-diem-calculator") {
+          window.history.pushState({ route: route }, "", "/" + (route === "gst" ? "" : "#" + route));
+        } else {
+          window.location.hash = route;
+        }
+      }
+    }
+
+    // Hide/Show Sidebars
+    if (mainSidebar && pdSidebar) {
+      if (activeSidebarId === "perDiemSidebar") {
+        mainSidebar.classList.add("hide");
+        pdSidebar.classList.remove("hide");
+      } else {
+        pdSidebar.classList.add("hide");
+        mainSidebar.classList.remove("hide");
+      }
+    }
+
+    // Highlight active link in the active sidebar
+    const activeSidebar = document.getElementById(activeSidebarId);
+    if (activeSidebar) {
+      const links = activeSidebar.querySelectorAll(".sidebar-link");
+      links.forEach(l => l.classList.remove("active"));
+      
+      let searchRoute = route;
+      if (isPerDiemRoute && (route === "per-diem" || route === "per-diem-calculator")) {
+        const pdLink = Array.from(links).find(l => l.getAttribute("data-route") === "per-diem" || l.getAttribute("data-route") === "per-diem-calculator");
+        if (pdLink) pdLink.classList.add("active");
+      } else {
+        const matchingLink = Array.from(links).find(l => l.getAttribute("data-route") === route);
+        if (matchingLink) matchingLink.classList.add("active");
+      }
+    }
+
+    // Update title
+    let labelText = "Utility";
+    if (activeSidebar) {
+      const activeLink = activeSidebar.querySelector(".sidebar-link.active");
+      if (activeLink && activeLink.querySelector("span")) {
+        labelText = activeLink.querySelector("span").textContent;
+      }
+    }
+
+    const headerTitleEl = document.querySelector(".header-title");
+    if (headerTitleEl) {
+      headerTitleEl.textContent = labelText;
+    }
+    document.title = `${labelText} | Softrate Tech Park Pvt. Ltd.`;
+
+    // Views
+    const calcSection = document.getElementById("calculator-section");
+    const ratesSection = document.getElementById("rates-section");
+    const faqSection = document.getElementById("faq-section");
+    const aboutSection = document.getElementById("about-section");
+    const contactSection = document.getElementById("contact-section");
+    const comingSoonSection = document.getElementById("coming-soon-section");
+    const comingSoonTitle = document.getElementById("comingSoonTitle");
+    const expenseSection = document.getElementById("expense-section");
+    const perDiemSection = document.getElementById("per-diem-section");
+
+    if (calcSection) calcSection.classList.add("hide");
+    if (ratesSection) ratesSection.classList.add("hide");
+    if (faqSection) faqSection.classList.add("hide");
+    if (aboutSection) aboutSection.classList.add("hide");
+    if (contactSection) contactSection.classList.add("hide");
+    if (comingSoonSection) comingSoonSection.classList.add("hide");
+    if (expenseSection) expenseSection.classList.add("hide");
+    if (perDiemSection) perDiemSection.classList.add("hide");
+
+    if (isPerDiemRoute && (route === "per-diem" || route === "per-diem-calculator")) {
+      if (perDiemSection) perDiemSection.classList.remove("hide");
+      if (perDiemSection) perDiemSection.scrollIntoView({ behavior: "smooth" });
+      document.dispatchEvent(new CustomEvent("perDiemRouteLoaded"));
+    } else if (route === "gst") {
+      if (calcSection) calcSection.classList.remove("hide");
+      if (ratesSection) ratesSection.classList.remove("hide");
+      if (faqSection) faqSection.classList.remove("hide");
+      if (aboutSection) aboutSection.classList.remove("hide");
+      if (contactSection) contactSection.classList.remove("hide");
+      if (calcSection) calcSection.scrollIntoView({ behavior: "smooth" });
+    } else if (route === "expense") {
+      if (expenseSection) expenseSection.classList.remove("hide");
+      if (expenseSection) expenseSection.scrollIntoView({ behavior: "smooth" });
+      document.dispatchEvent(new CustomEvent("expenseRouteLoaded"));
+    } else {
+      if (comingSoonSection) comingSoonSection.classList.remove("hide");
+      if (comingSoonTitle) comingSoonTitle.textContent = `${labelText} - Coming Soon`;
+      if (comingSoonSection) comingSoonSection.scrollIntoView({ behavior: "smooth" });
+    }
+
+    if (!isPerDiemRoute) {
+      localStorage.setItem("activeRoute", route);
+    }
+  };
+
+  // Bind Sidebar Mode Selection Handling for all links
+  const allSidebarLinks = document.querySelectorAll(".sidebar-link");
+  allSidebarLinks.forEach(link => {
     link.addEventListener("click", (e) => {
       const route = link.getAttribute("data-route");
       if (!route) return;
 
       e.preventDefault();
-      
-      // Update sidebar active classes
-      sidebarLinks.forEach(l => l.classList.remove("active"));
-      link.classList.add("active");
-      
-      // Preserve page state
-      localStorage.setItem("activeRoute", route);
-      window.location.hash = route;
-      
-      // Close sidebar on mobile after selection
-      if (sidebar && window.innerWidth <= 768) {
-        sidebar.classList.add("collapsed");
-      }
-      
-      const labelText = link.querySelector("span") ? link.querySelector("span").textContent : "Utility";
-      
-      // Update page title in top-header-bar and document title
-      const headerTitleEl = document.querySelector(".header-title");
-      if (headerTitleEl) {
-        headerTitleEl.textContent = labelText;
-      }
-      document.title = `${labelText} | Softrate Tech Park Pvt. Ltd.`;
-      
-      const calcSection = document.getElementById("calculator-section");
-      const ratesSection = document.getElementById("rates-section");
-      const faqSection = document.getElementById("faq-section");
-      const aboutSection = document.getElementById("about-section");
-      const contactSection = document.getElementById("contact-section");
-      const comingSoonSection = document.getElementById("coming-soon-section");
-      const comingSoonTitle = document.getElementById("comingSoonTitle");
-      const expenseSection = document.getElementById("expense-section");
-      const perDiemSection = document.getElementById("per-diem-section");
+      showRoute(route);
 
-      if (route === "gst") {
-        // Show GST Calculator view
-        if (calcSection) calcSection.classList.remove("hide");
-        if (ratesSection) ratesSection.classList.remove("hide");
-        if (faqSection) faqSection.classList.remove("hide");
-        if (aboutSection) aboutSection.classList.remove("hide");
-        if (contactSection) contactSection.classList.remove("hide");
-        if (comingSoonSection) comingSoonSection.classList.add("hide");
-        if (expenseSection) expenseSection.classList.add("hide");
-        if (perDiemSection) perDiemSection.classList.add("hide");
-        
-        // Scroll smoothly back to calculator top
-        if (calcSection) calcSection.scrollIntoView({ behavior: "smooth" });
-      } else if (route === "expense") {
-        // Show Expense Report Generator
-        if (calcSection) calcSection.classList.add("hide");
-        if (ratesSection) ratesSection.classList.add("hide");
-        if (faqSection) faqSection.classList.add("hide");
-        if (aboutSection) aboutSection.classList.add("hide");
-        if (contactSection) contactSection.classList.add("hide");
-        if (comingSoonSection) comingSoonSection.classList.add("hide");
-        if (expenseSection) expenseSection.classList.remove("hide");
-        if (perDiemSection) perDiemSection.classList.add("hide");
-        
-        if (expenseSection) expenseSection.scrollIntoView({ behavior: "smooth" });
-        // Dispatch custom event to initialize/sync expense module
-        document.dispatchEvent(new CustomEvent("expenseRouteLoaded"));
-      } else if (route === "per-diem") {
-        // Show Per Diem Calculator view
-        if (calcSection) calcSection.classList.add("hide");
-        if (ratesSection) ratesSection.classList.add("hide");
-        if (faqSection) faqSection.classList.add("hide");
-        if (aboutSection) aboutSection.classList.add("hide");
-        if (contactSection) contactSection.classList.add("hide");
-        if (comingSoonSection) comingSoonSection.classList.add("hide");
-        if (expenseSection) expenseSection.classList.add("hide");
-        if (perDiemSection) perDiemSection.classList.remove("hide");
-        
-        if (perDiemSection) perDiemSection.scrollIntoView({ behavior: "smooth" });
-        // Dispatch custom event to initialize per diem module
-        document.dispatchEvent(new CustomEvent("perDiemRouteLoaded"));
-      } else {
-        // Show Coming Soon placeholder view
-        if (calcSection) calcSection.classList.add("hide");
-        if (ratesSection) ratesSection.classList.add("hide");
-        if (faqSection) faqSection.classList.add("hide");
-        if (aboutSection) aboutSection.classList.add("hide");
-        if (contactSection) contactSection.classList.add("hide");
-        if (expenseSection) expenseSection.classList.add("hide");
-        if (perDiemSection) perDiemSection.classList.add("hide");
-        if (comingSoonSection) comingSoonSection.classList.remove("hide");
-        
-        if (comingSoonTitle) comingSoonTitle.textContent = `${labelText} - Coming Soon`;
-        
-        if (comingSoonSection) comingSoonSection.scrollIntoView({ behavior: "smooth" });
+      // Close active sidebar on mobile after selection
+      if (window.innerWidth <= 768) {
+        if (mainSidebar) mainSidebar.classList.add("collapsed");
+        if (pdSidebar) pdSidebar.classList.add("collapsed");
       }
     });
   });
+
+  // Custom bindings for specific back button links
+  const btnSidebarBackToGst = document.getElementById("btnSidebarBackToGst");
+  if (btnSidebarBackToGst) {
+    btnSidebarBackToGst.addEventListener("click", (e) => {
+      e.preventDefault();
+      showRoute("gst");
+    });
+  }
 
   // Handle Back to GST Calculator button inside coming-soon placeholder
   const btnBackToGst = document.getElementById("btnBackToGst");
   if (btnBackToGst) {
     btnBackToGst.addEventListener("click", () => {
-      const gstLink = Array.from(sidebarLinks).find(l => l.getAttribute("data-route") === "gst");
-      if (gstLink) {
-        gstLink.click();
-      }
+      showRoute("gst");
     });
   }
 
@@ -913,12 +961,23 @@ Report generated by Softrate Tech Park Pvt. Ltd.`;
   loadHistory();
   loadGstRates();
 
+  // Handle popstate for history navigation
+  window.addEventListener("popstate", () => {
+    if (window.location.pathname === "/per-diem-calculator") {
+      showRoute("per-diem", false);
+    } else {
+      const savedRoute = window.location.hash.substring(1) || "gst";
+      showRoute(savedRoute, false);
+    }
+  });
+
   // Restore page state on load
-  const savedRoute = window.location.hash.substring(1) || localStorage.getItem("activeRoute") || "gst";
-  const savedLink = Array.from(sidebarLinks).find(l => l.getAttribute("data-route") === savedRoute);
-  if (savedLink) {
-    setTimeout(() => {
-      savedLink.click();
-    }, 50);
+  const isPerDiemPath = (window.location.pathname === "/per-diem-calculator");
+  if (isPerDiemPath) {
+    showRoute("per-diem", false);
+  } else {
+    const savedRoute = window.location.hash.substring(1) || localStorage.getItem("activeRoute") || "gst";
+    const initialRoute = savedRoute === "per-diem" ? "gst" : savedRoute;
+    showRoute(initialRoute, false);
   }
 });

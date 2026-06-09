@@ -62,6 +62,7 @@ def sync_files():
         if os.path.isfile(s):
             shutil.copy2(s, d)
             
+    shutil.copy2("test_app.py", "softrate/test_app.py")
     print("Synced templates/static files -> softrate/")
     print("Sync complete!")
 

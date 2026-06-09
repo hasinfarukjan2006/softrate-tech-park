@@ -23,6 +23,12 @@ class GstCalculatorTestCase(unittest.TestCase):
         self.assertIn(b"Per diem calculator 2026 for USA", response.data)
         self.assertIn(b"Calculate your travel per diem rate", response.data)
 
+    def test_per_diem_calculator_route(self):
+        """Test if the /per-diem-calculator route renders successfully and serves the page."""
+        response = self.client.get("/per-diem-calculator")
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b"Per diem calculator 2026 for USA", response.data)
+
     def test_calculate_exclusive(self):
         """Test Exclusive GST calculation logic and API."""
         payload = {

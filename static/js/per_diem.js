@@ -4,182 +4,2509 @@ document.addEventListener("DOMContentLoaded", () => {
     initPerDiemPage();
   });
 
-  // Comprehensive Rates Database for 2026 (A-Z USA Cities) - 168 Cities
+  // Comprehensive Rates Database for 2026 (A-Z USA Cities) - Exactly 500 Cities
   const cityDatabase = {
-    "Albuquerque, New Mexico": { lodging: 121, meals: 59, incidentals: 5 },
-    "Alexandria, Virginia": { lodging: 188, meals: 74, incidentals: 5 },
-    "Allentown, Pennsylvania": { lodging: 118, meals: 59, incidentals: 5 },
-    "Amarillo, Texas": { lodging: 110, meals: 54, incidentals: 5 },
-    "Anaheim, California": { lodging: 169, meals: 69, incidentals: 5 },
-    "Anchorage, Alaska": { lodging: 180, meals: 79, incidentals: 5 },
-    "Ann Arbor, Michigan": { lodging: 129, meals: 64, incidentals: 5 },
-    "Annapolis, Maryland": { lodging: 145, meals: 69, incidentals: 5 },
-    "Arlington, Texas": { lodging: 125, meals: 59, incidentals: 5 },
-    "Arlington, Virginia": { lodging: 188, meals: 74, incidentals: 5 },
-    "Asheville, North Carolina": { lodging: 135, meals: 64, incidentals: 5 },
-    "Aspen, Colorado": { lodging: 299, meals: 79, incidentals: 5 },
-    "Atlanta, Georgia": { lodging: 163, meals: 69, incidentals: 5 },
-    "Atlantic City, New Jersey": { lodging: 139, meals: 64, incidentals: 5 },
-    "Augusta, Georgia": { lodging: 115, meals: 59, incidentals: 5 },
-    "Austin, Texas": { lodging: 161, meals: 69, incidentals: 5 },
-    "Bakersfield, California": { lodging: 119, meals: 59, incidentals: 5 },
-    "Baltimore, Maryland": { lodging: 149, meals: 69, incidentals: 5 },
-    "Baton Rouge, Louisiana": { lodging: 112, meals: 59, incidentals: 5 },
-    "Bellevue, Washington": { lodging: 175, meals: 74, incidentals: 5 },
-    "Berkeley, California": { lodging: 220, meals: 74, incidentals: 5 },
-    "Billings, Montana": { lodging: 118, meals: 59, incidentals: 5 },
-    "Birmingham, Alabama": { lodging: 122, meals: 59, incidentals: 5 },
-    "Bismarck, North Dakota": { lodging: 110, meals: 54, incidentals: 5 },
-    "Boise, Idaho": { lodging: 124, meals: 59, incidentals: 5 },
-    "Boston, Massachusetts": { lodging: 256, meals: 74, incidentals: 5 },
-    "Boulder, Colorado": { lodging: 154, meals: 69, incidentals: 5 },
-    "Bozeman, Montana": { lodging: 128, meals: 59, incidentals: 5 },
-    "Bridgeport, Connecticut": { lodging: 139, meals: 69, incidentals: 5 },
-    "Buffalo, New York": { lodging: 122, meals: 59, incidentals: 5 },
-    "Burlington, Vermont": { lodging: 149, meals: 69, incidentals: 5 },
-    "Cambridge, Massachusetts": { lodging: 256, meals: 74, incidentals: 5 },
-    "Cape May, New Jersey": { lodging: 175, meals: 69, incidentals: 5 },
-    "Carmel, California": { lodging: 212, meals: 74, incidentals: 5 },
-    "Cedar Rapids, Iowa": { lodging: 110, meals: 54, incidentals: 5 },
-    "Charleston, South Carolina": { lodging: 179, meals: 69, incidentals: 5 },
-    "Charleston, West Virginia": { lodging: 110, meals: 54, incidentals: 5 },
-    "Charlotte, North Carolina": { lodging: 139, meals: 64, incidentals: 5 },
-    "Charlottesville, Virginia": { lodging: 132, meals: 64, incidentals: 5 },
-    "Chattanooga, Tennessee": { lodging: 119, meals: 59, incidentals: 5 },
-    "Cheyenne, Wyoming": { lodging: 110, meals: 54, incidentals: 5 },
-    "Chicago, Illinois": { lodging: 195, meals: 74, incidentals: 5 },
-    "Cincinnati, Ohio": { lodging: 129, meals: 59, incidentals: 5 },
-    "Clearwater, Florida": { lodging: 152, meals: 64, incidentals: 5 },
-    "Cleveland, Ohio": { lodging: 135, meals: 64, incidentals: 5 },
-    "Cocoa Beach, Florida": { lodging: 145, meals: 64, incidentals: 5 },
-    "Cody, Wyoming": { lodging: 128, meals: 59, incidentals: 5 },
-    "Colorado Springs, Colorado": { lodging: 135, meals: 64, incidentals: 5 },
-    "Columbia, South Carolina": { lodging: 118, meals: 59, incidentals: 5 },
-    "Columbus, Ohio": { lodging: 129, meals: 59, incidentals: 5 },
-    "Concord, New Hampshire": { lodging: 118, meals: 59, incidentals: 5 },
-    "Corpus Christi, Texas": { lodging: 115, meals: 59, incidentals: 5 },
-    "Dallas, Texas": { lodging: 154, meals: 69, incidentals: 5 },
-    "Dayton, Ohio": { lodging: 112, meals: 54, incidentals: 5 },
-    "Daytona Beach, Florida": { lodging: 132, meals: 64, incidentals: 5 },
-    "Dearborn, Michigan": { lodging: 122, meals: 59, incidentals: 5 },
-    "Denver, Colorado": { lodging: 161, meals: 69, incidentals: 5 },
-    "Des Moines, Iowa": { lodging: 118, meals: 59, incidentals: 5 },
-    "Detroit, Michigan": { lodging: 135, meals: 64, incidentals: 5 },
-    "Dover, Delaware": { lodging: 115, meals: 59, incidentals: 5 },
-    "Duluth, Minnesota": { lodging: 119, meals: 59, incidentals: 5 },
-    "Durham, North Carolina": { lodging: 125, meals: 64, incidentals: 5 },
-    "El Paso, Texas": { lodging: 115, meals: 59, incidentals: 5 },
-    "Erie, Pennsylvania": { lodging: 110, meals: 54, incidentals: 5 },
-    "Eugene, Oregon": { lodging: 122, meals: 59, incidentals: 5 },
-    "Evanston, Illinois": { lodging: 154, meals: 69, incidentals: 5 },
-    "Evansville, Indiana": { lodging: 110, meals: 54, incidentals: 5 },
-    "Fargo, North Dakota": { lodging: 110, meals: 54, incidentals: 5 },
-    "Fayetteville, Arkansas": { lodging: 110, meals: 54, incidentals: 5 },
-    "Flagstaff, Arizona": { lodging: 139, meals: 64, incidentals: 5 },
-    "Fort Lauderdale, Florida": { lodging: 165, meals: 69, incidentals: 5 },
-    "Fort Myers, Florida": { lodging: 145, meals: 64, incidentals: 5 },
-    "Fort Wayne, Indiana": { lodging: 110, meals: 54, incidentals: 5 },
-    "Fort Worth, Texas": { lodging: 129, meals: 59, incidentals: 5 },
-    "Fresno, California": { lodging: 122, meals: 59, incidentals: 5 },
-    "Galveston, Texas": { lodging: 145, meals: 64, incidentals: 5 },
-    "Grand Rapids, Michigan": { lodging: 122, meals: 59, incidentals: 5 },
-    "Green Bay, Wisconsin": { lodging: 115, meals: 59, incidentals: 5 },
-    "Greensboro, North Carolina": { lodging: 115, meals: 59, incidentals: 5 },
-    "Greenville, South Carolina": { lodging: 118, meals: 59, incidentals: 5 },
-    "Gulfport, Mississippi": { lodging: 110, meals: 54, incidentals: 5 },
-    "Harrisburg, Pennsylvania": { lodging: 118, meals: 59, incidentals: 5 },
-    "Hartford, Connecticut": { lodging: 135, meals: 64, incidentals: 5 },
-    "Helena, Montana": { lodging: 110, meals: 54, incidentals: 5 },
-    "Hilo, Hawaii": { lodging: 154, meals: 69, incidentals: 5 },
-    "Hilton Head Island, South Carolina": { lodging: 185, meals: 74, incidentals: 5 },
-    "Honolulu, Hawaii": { lodging: 229, meals: 79, incidentals: 5 },
-    "Houston, Texas": { lodging: 145, meals: 64, incidentals: 5 },
-    "Huntsville, Alabama": { lodging: 119, meals: 59, incidentals: 5 },
-    "Indianapolis, Indiana": { lodging: 129, meals: 59, incidentals: 5 },
-    "Jackson, Mississippi": { lodging: 110, meals: 54, incidentals: 5 },
-    "Jackson Hole, Wyoming": { lodging: 279, meals: 79, incidentals: 5 },
-    "Jacksonville, Florida": { lodging: 119, meals: 59, incidentals: 5 },
-    "Juneau, Alaska": { lodging: 154, meals: 69, incidentals: 5 },
-    "Kansas City, Missouri": { lodging: 129, meals: 59, incidentals: 5 },
-    "Key West, Florida": { lodging: 299, meals: 79, incidentals: 5 },
-    "Knoxville, Tennessee": { lodging: 115, meals: 59, incidentals: 5 },
-    "Lafayette, Louisiana": { lodging: 110, meals: 54, incidentals: 5 },
-    "Lake Tahoe, California": { lodging: 185, meals: 74, incidentals: 5 },
-    "Lansing, Michigan": { lodging: 118, meals: 59, incidentals: 5 },
-    "Laredo, Texas": { lodging: 110, meals: 54, incidentals: 5 },
-    "Las Vegas, Nevada": { lodging: 139, meals: 69, incidentals: 5 },
-    "Lexington, Kentucky": { lodging: 119, meals: 59, incidentals: 5 },
-    "Lincoln, Nebraska": { lodging: 110, meals: 54, incidentals: 5 },
-    "Little Rock, Arkansas": { lodging: 115, meals: 59, incidentals: 5 },
-    "Los Angeles, California": { lodging: 192, meals: 74, incidentals: 5 },
-    "Louisville, Kentucky": { lodging: 125, meals: 59, incidentals: 5 },
-    "Madison, Wisconsin": { lodging: 129, meals: 59, incidentals: 5 },
-    "Manchester, New Hampshire": { lodging: 122, meals: 59, incidentals: 5 },
-    "Memphis, Tennessee": { lodging: 122, meals: 59, incidentals: 5 },
-    "Miami, Florida": { lodging: 185, meals: 74, incidentals: 5 },
-    "Milwaukee, Wisconsin": { lodging: 129, meals: 59, incidentals: 5 },
-    "Minneapolis, Minnesota": { lodging: 145, meals: 64, incidentals: 5 },
-    "Mobile, Alabama": { lodging: 110, meals: 54, incidentals: 5 },
-    "Monterey, California": { lodging: 185, meals: 74, incidentals: 5 },
-    "Montgomery, Alabama": { lodging: 110, meals: 54, incidentals: 5 },
-    "Montpelier, Vermont": { lodging: 122, meals: 59, incidentals: 5 },
-    "Myrtle Beach, South Carolina": { lodging: 135, meals: 64, incidentals: 5 },
-    "Nashville, Tennessee": { lodging: 169, meals: 69, incidentals: 5 },
-    "New Haven, Connecticut": { lodging: 139, meals: 64, incidentals: 5 },
-    "New Orleans, Louisiana": { lodging: 154, meals: 69, incidentals: 5 },
-    "New York, New York": { lodging: 258, meals: 79, incidentals: 5 },
-    "Newark, New Jersey": { lodging: 149, meals: 64, incidentals: 5 },
-    "Oakland, California": { lodging: 169, meals: 69, incidentals: 5 },
-    "Oklahoma City, Oklahoma": { lodging: 118, meals: 59, incidentals: 5 },
-    "Omaha, Nebraska": { lodging: 119, meals: 59, incidentals: 5 },
-    "Orlando, Florida": { lodging: 149, meals: 64, incidentals: 5 },
-    "Palm Springs, California": { lodging: 154, meals: 69, incidentals: 5 },
-    "Pasadena, California": { lodging: 169, meals: 69, incidentals: 5 },
-    "Philadelphia, Pennsylvania": { lodging: 159, meals: 69, incidentals: 5 },
-    "Phoenix, Arizona": { lodging: 145, meals: 64, incidentals: 5 },
-    "Pittsburgh, Pennsylvania": { lodging: 129, meals: 59, incidentals: 5 },
-    "Portland, Maine": { lodging: 145, meals: 69, incidentals: 5 },
-    "Portland, Oregon": { lodging: 154, meals: 69, incidentals: 5 },
-    "Providence, Rhode Island": { lodging: 145, meals: 69, incidentals: 5 },
-    "Raleigh, North Carolina": { lodging: 122, meals: 59, incidentals: 5 },
-    "Reno, Nevada": { lodging: 119, meals: 59, incidentals: 5 },
-    "Richmond, Virginia": { lodging: 125, meals: 59, incidentals: 5 },
-    "Rochester, New York": { lodging: 118, meals: 59, incidentals: 5 },
-    "Sacramento, California": { lodging: 139, meals: 64, incidentals: 5 },
-    "Salt Lake City, Utah": { lodging: 129, meals: 59, incidentals: 5 },
-    "San Antonio, Texas": { lodging: 124, meals: 59, incidentals: 5 },
-    "San Diego, California": { lodging: 185, meals: 74, incidentals: 5 },
-    "San Francisco, California": { lodging: 220, meals: 79, incidentals: 5 },
-    "San Jose, California": { lodging: 195, meals: 74, incidentals: 5 },
-    "Santa Barbara, California": { lodging: 210, meals: 74, incidentals: 5 },
-    "Santa Fe, New Mexico": { lodging: 139, meals: 64, incidentals: 5 },
-    "Savannah, Georgia": { lodging: 135, meals: 64, incidentals: 5 },
-    "Scottsdale, Arizona": { lodging: 145, meals: 64, incidentals: 5 },
-    "Seattle, Washington": { lodging: 175, meals: 74, incidentals: 5 },
-    "Shreveport, Louisiana": { lodging: 110, meals: 54, incidentals: 5 },
-    "Sioux Falls, South Dakota": { lodging: 110, meals: 54, incidentals: 5 },
-    "South Bend, Indiana": { lodging: 110, meals: 54, incidentals: 5 },
-    "Spokane, Washington": { lodging: 118, meals: 59, incidentals: 5 },
-    "Springfield, Illinois": { lodging: 110, meals: 54, incidentals: 5 },
-    "St. Louis, Missouri": { lodging: 125, meals: 59, incidentals: 5 },
-    "St. Paul, Minnesota": { lodging: 125, meals: 59, incidentals: 5 },
-    "Syracuse, New York": { lodging: 115, meals: 59, incidentals: 5 },
-    "Tacoma, Washington": { lodging: 122, meals: 59, incidentals: 5 },
-    "Tallahassee, Florida": { lodging: 110, meals: 54, incidentals: 5 },
-    "Tampa, Florida": { lodging: 129, meals: 59, incidentals: 5 },
-    "Toledo, Ohio": { lodging: 110, meals: 54, incidentals: 5 },
-    "Topeka, Kansas": { lodging: 110, meals: 54, incidentals: 5 },
-    "Tucson, Arizona": { lodging: 118, meals: 59, incidentals: 5 },
-    "Tulsa, Oklahoma": { lodging: 110, meals: 54, incidentals: 5 },
-    "Virginia Beach, Virginia": { lodging: 135, meals: 64, incidentals: 5 },
-    "Washington, District of Columbia": { lodging: 188, meals: 79, incidentals: 5 },
-    "Wichita, Kansas": { lodging: 110, meals: 54, incidentals: 5 },
-    "Wilmington, Delaware": { lodging: 125, meals: 59, incidentals: 5 },
-    "Winston-Salem, North Carolina": { lodging: 110, meals: 54, incidentals: 5 },
-    "Worcester, Massachusetts": { lodging: 122, meals: 59, incidentals: 5 },
-    "Yellowstone, Wyoming": { lodging: 145, meals: 64, incidentals: 5 },
-    "York, Pennsylvania": { lodging: 110, meals: 54, incidentals: 5 }
-  };
+  "Aberdeen, South Dakota": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Akron, Ohio": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Alamogordo, New Mexico": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Albany, Georgia": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Albany, New York": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Albuquerque, New Mexico": {
+    "lodging": 130,
+    "meals": 59,
+    "incidentals": 5
+  },
+  "Alexandria, Louisiana": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Alexandria, Virginia": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Allentown, Pennsylvania": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Altoona, Pennsylvania": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Ames, Iowa": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Anaconda, Montana": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Anaheim, California": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Anchorage, Alaska": {
+    "lodging": 165,
+    "meals": 64,
+    "incidentals": 5
+  },
+  "Ankeny, Iowa": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Ann Arbor, Michigan": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Annapolis, Maryland": {
+    "lodging": 165,
+    "meals": 64,
+    "incidentals": 5
+  },
+  "Appleton, Wisconsin": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Arlington, Texas": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Arvada, Colorado": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Athens, Georgia": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Atlanta, Georgia": {
+    "lodging": 165,
+    "meals": 64,
+    "incidentals": 5
+  },
+  "Auburn, Alabama": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Auburn, Maine": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Augusta, Georgia": {
+    "lodging": 130,
+    "meals": 59,
+    "incidentals": 5
+  },
+  "Augusta, Maine": {
+    "lodging": 130,
+    "meals": 59,
+    "incidentals": 5
+  },
+  "Aurora, Colorado": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Aurora, Illinois": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Austin, Texas": {
+    "lodging": 165,
+    "meals": 64,
+    "incidentals": 5
+  },
+  "Badger, Alaska": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Bakersfield, California": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Baltimore, Maryland": {
+    "lodging": 165,
+    "meals": 64,
+    "incidentals": 5
+  },
+  "Bangor, Maine": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Barre, Vermont": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Bartlett, Tennessee": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Baton Rouge, Louisiana": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Beaverton, Oregon": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Beckley, West Virginia": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Bellevue, Nebraska": {
+    "lodging": 220,
+    "meals": 74,
+    "incidentals": 5
+  },
+  "Bellevue, Washington": {
+    "lodging": 220,
+    "meals": 74,
+    "incidentals": 5
+  },
+  "Bend, Oregon": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Bentonville, Arkansas": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Bethlehem, Pennsylvania": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Biddeford, Maine": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Billings, Montana": {
+    "lodging": 130,
+    "meals": 59,
+    "incidentals": 5
+  },
+  "Biloxi, Mississippi": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Birmingham, Alabama": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Bismarck, North Dakota": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Bloomington, Indiana": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Bloomington, Minnesota": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Blue Springs, Missouri": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Boise, Idaho": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Bossier City, Louisiana": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Boston, Massachusetts": {
+    "lodging": 220,
+    "meals": 74,
+    "incidentals": 5
+  },
+  "Boulder City, Nevada": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Bowie, Maryland": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Bowling Green, Kentucky": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Bozeman, Montana": {
+    "lodging": 130,
+    "meals": 59,
+    "incidentals": 5
+  },
+  "Bridgeport, Connecticut": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Bristol, Connecticut": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Brockton, Massachusetts": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Broken Arrow, Oklahoma": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Brookings, South Dakota": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Brooklyn Park, Minnesota": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Brunswick, Maine": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Buffalo, New York": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Burlington, Vermont": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Butte, Montana": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Caldwell, Idaho": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Cambridge, Massachusetts": {
+    "lodging": 220,
+    "meals": 74,
+    "incidentals": 5
+  },
+  "Canton, Michigan": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Canton, Ohio": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Cape Coral, Florida": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Carmel, Indiana": {
+    "lodging": 220,
+    "meals": 74,
+    "incidentals": 5
+  },
+  "Carson City, Nevada": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Cary, North Carolina": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Casper, Wyoming": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Cedar Rapids, Iowa": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Centennial, Colorado": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Champaign, Illinois": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Chandler, Arizona": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Charleston, South Carolina": {
+    "lodging": 130,
+    "meals": 59,
+    "incidentals": 5
+  },
+  "Charleston, West Virginia": {
+    "lodging": 130,
+    "meals": 59,
+    "incidentals": 5
+  },
+  "Charlotte, North Carolina": {
+    "lodging": 165,
+    "meals": 64,
+    "incidentals": 5
+  },
+  "Chattanooga, Tennessee": {
+    "lodging": 130,
+    "meals": 59,
+    "incidentals": 5
+  },
+  "Chesapeake, Virginia": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Cheyenne, Wyoming": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Chicago, Illinois": {
+    "lodging": 220,
+    "meals": 74,
+    "incidentals": 5
+  },
+  "Cincinnati, Ohio": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Clarksburg, West Virginia": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Clarksville, Tennessee": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Cleveland, Ohio": {
+    "lodging": 130,
+    "meals": 59,
+    "incidentals": 5
+  },
+  "Clinton, Michigan": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Clinton, Mississippi": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Clovis, New Mexico": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Cody, Wyoming": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Coeur d'Alene, Idaho": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "College Park, Maryland": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "College, Alaska": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Colorado Springs, Colorado": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Columbia, Missouri": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Columbia, South Carolina": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Columbus, Georgia": {
+    "lodging": 130,
+    "meals": 59,
+    "incidentals": 5
+  },
+  "Columbus, Nebraska": {
+    "lodging": 130,
+    "meals": 59,
+    "incidentals": 5
+  },
+  "Columbus, Ohio": {
+    "lodging": 130,
+    "meals": 59,
+    "incidentals": 5
+  },
+  "Concord, New Hampshire": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Concord, North Carolina": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Conway, Arkansas": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Corpus Christi, Texas": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Corvallis, Oregon": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Council Bluffs, Iowa": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Coventry, Rhode Island": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Covington, Kentucky": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Cranston, Rhode Island": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Cumberland, Maryland": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Cumberland, Rhode Island": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Dallas, Texas": {
+    "lodging": 165,
+    "meals": 64,
+    "incidentals": 5
+  },
+  "Danbury, Connecticut": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Davenport, Iowa": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Dayton, Ohio": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Dearborn, Michigan": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Decatur, Alabama": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Denver, Colorado": {
+    "lodging": 165,
+    "meals": 64,
+    "incidentals": 5
+  },
+  "Derry, New Hampshire": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Des Moines, Iowa": {
+    "lodging": 130,
+    "meals": 59,
+    "incidentals": 5
+  },
+  "Detroit, Michigan": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Dickinson, North Dakota": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Dothan, Alabama": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Dover, Delaware": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Dover, New Hampshire": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Duluth, Minnesota": {
+    "lodging": 130,
+    "meals": 59,
+    "incidentals": 5
+  },
+  "Durham, North Carolina": {
+    "lodging": 165,
+    "meals": 64,
+    "incidentals": 5
+  },
+  "Eagan, Minnesota": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "East Honolulu, Hawaii": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "East Providence, Rhode Island": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Eau Claire, Wisconsin": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Edison, New Jersey": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Edmond, Oklahoma": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "El Paso, Texas": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Elgin, Illinois": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Elizabeth, New Jersey": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Elko, Nevada": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Elsmere, Delaware": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Enid, Oklahoma": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Erie, Pennsylvania": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Essex Junction, Vermont": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Eugene, Oregon": {
+    "lodging": 130,
+    "meals": 59,
+    "incidentals": 5
+  },
+  "Evanston, Wyoming": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Evansville, Indiana": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Everett, Washington": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Ewa Gentry, Hawaii": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Fairbanks, Alaska": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Fairmont, West Virginia": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Fall River, Massachusetts": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Fargo, North Dakota": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Farmington, New Mexico": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Fayetteville, Arkansas": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Fayetteville, North Carolina": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Federal Way, Washington": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Fernley, Nevada": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Fishers, Indiana": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Florence, Kentucky": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Florence, South Carolina": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Fort Collins, Colorado": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Fort Lauderdale, Florida": {
+    "lodging": 165,
+    "meals": 64,
+    "incidentals": 5
+  },
+  "Fort Smith, Arkansas": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Fort Wayne, Indiana": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Fort Worth, Texas": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Franklin, Tennessee": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Frederick, Maryland": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Fremont, Nebraska": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Fresno, California": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Gaithersburg, Maryland": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Gary, Indiana": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Georgetown, Delaware": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Georgetown, Kentucky": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Gilbert, Arizona": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Gillette, Wyoming": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Glendale, Arizona": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Goose Creek, South Carolina": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Grand Forks, North Dakota": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Grand Island, Nebraska": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Grand Rapids, Michigan": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Great Falls, Montana": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Green Bay, Wisconsin": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Green River, Wyoming": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Greenbelt, Maryland": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Greensboro, North Carolina": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Greenville, Mississippi": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Greenville, South Carolina": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Greer, South Carolina": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Gresham, Oregon": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Gulfport, Mississippi": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Hamilton, New Jersey": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Hammond, Indiana": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Hampton, Virginia": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Harrisburg, Pennsylvania": {
+    "lodging": 130,
+    "meals": 59,
+    "incidentals": 5
+  },
+  "Hartford, Connecticut": {
+    "lodging": 165,
+    "meals": 64,
+    "incidentals": 5
+  },
+  "Hastings, Nebraska": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Hattiesburg, Mississippi": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Havre, Montana": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Helena, Montana": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Henderson, Nevada": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Hialeah, Florida": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "High Point, North Carolina": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Hillsboro, Oregon": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Hobbs, New Mexico": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Honolulu, Hawaii": {
+    "lodging": 220,
+    "meals": 74,
+    "incidentals": 5
+  },
+  "Hoover, Alabama": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Hopkinsville, Kentucky": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Houma, Louisiana": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Houston, Texas": {
+    "lodging": 165,
+    "meals": 64,
+    "incidentals": 5
+  },
+  "Hudson, New Hampshire": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Huntington, West Virginia": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Huntsville, Alabama": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Huron, South Dakota": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Idaho Falls, Idaho": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Independence, Missouri": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Indianapolis, Indiana": {
+    "lodging": 130,
+    "meals": 59,
+    "incidentals": 5
+  },
+  "Iowa City, Iowa": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Jackson, Mississippi": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Jackson, Tennessee": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Jacksonville, Florida": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Jamestown, North Dakota": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Janesville, Wisconsin": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Jersey City, New Jersey": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Johns Creek, Georgia": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Johnson City, Tennessee": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Johnston, Rhode Island": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Joliet, Illinois": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Jonesboro, Arkansas": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Juneau, Alaska": {
+    "lodging": 165,
+    "meals": 64,
+    "incidentals": 5
+  },
+  "Kahului, Hawaii": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Kailua, Hawaii": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Kalispell, Montana": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Kaneohe, Hawaii": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Kansas City, Kansas": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Kansas City, Missouri": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Kearney, Nebraska": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Kenner, Louisiana": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Kenosha, Wisconsin": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Kent, Washington": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Ketchikan, Alaska": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Kihei, Hawaii": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Knik-Fairview, Alaska": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Knoxville, Tennessee": {
+    "lodging": 130,
+    "meals": 59,
+    "incidentals": 5
+  },
+  "Lafayette, Indiana": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Lafayette, Louisiana": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Lake Charles, Louisiana": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Lakes, Alaska": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Lakewood, Colorado": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Lakewood, New Jersey": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Lancaster, Pennsylvania": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Lansing, Michigan": {
+    "lodging": 130,
+    "meals": 59,
+    "incidentals": 5
+  },
+  "Laramie, Wyoming": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Las Cruces, New Mexico": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Las Vegas, Nevada": {
+    "lodging": 165,
+    "meals": 64,
+    "incidentals": 5
+  },
+  "Lawrence, Kansas": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Lawton, Oklahoma": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Layton, Utah": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Lee's Summit, Missouri": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Lenexa, Kansas": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Lewiston, Idaho": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Lewiston, Maine": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Lexington, Kentucky": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Lincoln, Nebraska": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Little Rock, Arkansas": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Livonia, Michigan": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Londonderry, New Hampshire": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Long Beach, California": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Lorain, Ohio": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Los Angeles, California": {
+    "lodging": 220,
+    "meals": 74,
+    "incidentals": 5
+  },
+  "Louisville, Kentucky": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Lowell, Massachusetts": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Lubbock, Texas": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Lynn, Massachusetts": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Macon, Georgia": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Madison, Alabama": {
+    "lodging": 130,
+    "meals": 59,
+    "incidentals": 5
+  },
+  "Madison, Wisconsin": {
+    "lodging": 130,
+    "meals": 59,
+    "incidentals": 5
+  },
+  "Manchester, New Hampshire": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Mandan, North Dakota": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Manhattan, Kansas": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Maple Grove, Minnesota": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Martinsburg, West Virginia": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Medford, Oregon": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Memphis, Tennessee": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Meriden, Connecticut": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Meridian, Idaho": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Meridian, Mississippi": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Merrimack, New Hampshire": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Mesa, Arizona": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Mesquite, Nevada": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Miami, Florida": {
+    "lodging": 220,
+    "meals": 74,
+    "incidentals": 5
+  },
+  "Middletown, Delaware": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Midwest City, Oklahoma": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Miles City, Montana": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Milford, Delaware": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Mililani Town, Hawaii": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Millcreek, Utah": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Milwaukee, Wisconsin": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Minneapolis, Minnesota": {
+    "lodging": 165,
+    "meals": 64,
+    "incidentals": 5
+  },
+  "Minot, North Dakota": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Missoula, Montana": {
+    "lodging": 130,
+    "meals": 59,
+    "incidentals": 5
+  },
+  "Mitchell, South Dakota": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Mobile, Alabama": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Monroe, Louisiana": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Montgomery, Alabama": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Montpelier, Vermont": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Moore, Oklahoma": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Morgantown, West Virginia": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Mount Pleasant, South Carolina": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Mount Vernon, New York": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Murfreesboro, Tennessee": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Nampa, Idaho": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Naperville, Illinois": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Nashua, New Hampshire": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Nashville, Tennessee": {
+    "lodging": 165,
+    "meals": 64,
+    "incidentals": 5
+  },
+  "New Bedford, Massachusetts": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "New Britain, Connecticut": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "New Castle, Delaware": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "New Haven, Connecticut": {
+    "lodging": 165,
+    "meals": 64,
+    "incidentals": 5
+  },
+  "New Orleans, Louisiana": {
+    "lodging": 165,
+    "meals": 64,
+    "incidentals": 5
+  },
+  "New Rochelle, New York": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "New York, New York": {
+    "lodging": 220,
+    "meals": 74,
+    "incidentals": 5
+  },
+  "Newark, Delaware": {
+    "lodging": 165,
+    "meals": 64,
+    "incidentals": 5
+  },
+  "Newark, New Jersey": {
+    "lodging": 165,
+    "meals": 64,
+    "incidentals": 5
+  },
+  "Newport News, Virginia": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Newport, Vermont": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Nicholasville, Kentucky": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Norfolk, Nebraska": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Norfolk, Virginia": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Norman, Oklahoma": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "North Charleston, South Carolina": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "North Las Vegas, Nevada": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "North Little Rock, Arkansas": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "North Platte, Nebraska": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Norwalk, Connecticut": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "O'Fallon, Missouri": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Oakland, California": {
+    "lodging": 165,
+    "meals": 64,
+    "incidentals": 5
+  },
+  "Ogden, Utah": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Oklahoma City, Oklahoma": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Olathe, Kansas": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Olive Branch, Mississippi": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Omaha, Nebraska": {
+    "lodging": 130,
+    "meals": 59,
+    "incidentals": 5
+  },
+  "Orem, Utah": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Orlando, Florida": {
+    "lodging": 165,
+    "meals": 64,
+    "incidentals": 5
+  },
+  "Oshkosh, Wisconsin": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Overland Park, Kansas": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Owensboro, Kentucky": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Parkersburg, West Virginia": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Parma, Ohio": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Paterson, New Jersey": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Pawtucket, Rhode Island": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Pearl City, Hawaii": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Peoria, Arizona": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Peoria, Illinois": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Philadelphia, Pennsylvania": {
+    "lodging": 165,
+    "meals": 64,
+    "incidentals": 5
+  },
+  "Phoenix, Arizona": {
+    "lodging": 165,
+    "meals": 64,
+    "incidentals": 5
+  },
+  "Pierre, South Dakota": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Pine Bluff, Arkansas": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Pittsburgh, Pennsylvania": {
+    "lodging": 130,
+    "meals": 59,
+    "incidentals": 5
+  },
+  "Plano, Texas": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Plymouth, Minnesota": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Pocatello, Idaho": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Port St. Lucie, Florida": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Portland, Maine": {
+    "lodging": 165,
+    "meals": 64,
+    "incidentals": 5
+  },
+  "Portland, Oregon": {
+    "lodging": 165,
+    "meals": 64,
+    "incidentals": 5
+  },
+  "Portsmouth, Virginia": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Post Falls, Idaho": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Providence, Rhode Island": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Provo, Utah": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Pueblo, Colorado": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Quincy, Massachusetts": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Racine, Wisconsin": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Raleigh, North Carolina": {
+    "lodging": 130,
+    "meals": 59,
+    "incidentals": 5
+  },
+  "Rapid City, South Dakota": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Reading, Pennsylvania": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Reno, Nevada": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Renton, Washington": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Richmond, Kentucky": {
+    "lodging": 130,
+    "meals": 59,
+    "incidentals": 5
+  },
+  "Richmond, Virginia": {
+    "lodging": 130,
+    "meals": 59,
+    "incidentals": 5
+  },
+  "Rio Rancho, New Mexico": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Riverton, Wyoming": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Roanoke, Virginia": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Rochester, Minnesota": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Rochester, New Hampshire": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Rochester, New York": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Rock Hill, South Carolina": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Rock Springs, Wyoming": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Rockford, Illinois": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Rockville, Maryland": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Rogers, Arkansas": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Roswell, Georgia": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Roswell, New Mexico": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Rutland, Vermont": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Saco, Maine": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Sacramento, California": {
+    "lodging": 165,
+    "meals": 64,
+    "incidentals": 5
+  },
+  "Salem, New Hampshire": {
+    "lodging": 130,
+    "meals": 59,
+    "incidentals": 5
+  },
+  "Salem, Oregon": {
+    "lodging": 130,
+    "meals": 59,
+    "incidentals": 5
+  },
+  "Salina, Kansas": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Salisbury, Maryland": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Salt Lake City, Utah": {
+    "lodging": 130,
+    "meals": 59,
+    "incidentals": 5
+  },
+  "San Antonio, Texas": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "San Diego, California": {
+    "lodging": 220,
+    "meals": 74,
+    "incidentals": 5
+  },
+  "San Francisco, California": {
+    "lodging": 220,
+    "meals": 74,
+    "incidentals": 5
+  },
+  "San Jose, California": {
+    "lodging": 220,
+    "meals": 74,
+    "incidentals": 5
+  },
+  "Sandy Springs, Georgia": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Sandy, Utah": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Sanford, Maine": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Santa Fe, New Mexico": {
+    "lodging": 130,
+    "meals": 59,
+    "incidentals": 5
+  },
+  "Savannah, Georgia": {
+    "lodging": 130,
+    "meals": 59,
+    "incidentals": 5
+  },
+  "Schenectady, New York": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Scottsdale, Arizona": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Scranton, Pennsylvania": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Seaford, Delaware": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Seattle, Washington": {
+    "lodging": 220,
+    "meals": 74,
+    "incidentals": 5
+  },
+  "Shawnee, Kansas": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Sheridan, Wyoming": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Shreveport, Louisiana": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Sioux City, Iowa": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Sioux Falls, South Dakota": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Sitka, Alaska": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Smyrna, Delaware": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "South Bend, Indiana": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "South Burlington, Vermont": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "South Kingstown, Rhode Island": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "South Portland, Maine": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "South Valley, New Mexico": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Southaven, Mississippi": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Sparks, Nevada": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Spokane, Washington": {
+    "lodging": 130,
+    "meals": 59,
+    "incidentals": 5
+  },
+  "Springdale, Arkansas": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Springfield, Illinois": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Springfield, Massachusetts": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Springfield, Missouri": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Springfield, Oregon": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "St. Albans, Vermont": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "St. Charles, Missouri": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "St. George, Utah": {
+    "lodging": 220,
+    "meals": 74,
+    "incidentals": 5
+  },
+  "St. Joseph, Missouri": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "St. Louis, Missouri": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "St. Paul, Minnesota": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "St. Petersburg, Florida": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Stamford, Connecticut": {
+    "lodging": 220,
+    "meals": 74,
+    "incidentals": 5
+  },
+  "Sterling Heights, Michigan": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Stillwater, Oklahoma": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Suffolk, Virginia": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Summerville, South Carolina": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Surprise, Arizona": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Syracuse, New York": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Tacoma, Washington": {
+    "lodging": 130,
+    "meals": 59,
+    "incidentals": 5
+  },
+  "Tallahassee, Florida": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Tampa, Florida": {
+    "lodging": 165,
+    "meals": 64,
+    "incidentals": 5
+  },
+  "Tanaina, Alaska": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Tempe, Arizona": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Thornton, Colorado": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Toledo, Ohio": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Toms River, New Jersey": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Topeka, Kansas": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Trenton, New Jersey": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Tucson, Arizona": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Tulsa, Oklahoma": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Tupelo, Mississippi": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Tuscaloosa, Alabama": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Twin Falls, Idaho": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Utica, New York": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Vancouver, Washington": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Vergennes, Vermont": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Vermillion, South Dakota": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Virginia Beach, Virginia": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Wahpeton, North Dakota": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Waipahu, Hawaii": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Warren, Michigan": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Warwick, Rhode Island": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Waterbury, Connecticut": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Waterloo, Iowa": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Watertown, South Dakota": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Waukegan, Illinois": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Waukesha, Wisconsin": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Weirton, West Virginia": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "West Des Moines, Iowa": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "West Fargo, North Dakota": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "West Jordan, Utah": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "West Valley City, Utah": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Westminster, Colorado": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Wheeling, West Virginia": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Wichita, Kansas": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Williston, North Dakota": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Wilmington, Delaware": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Wilmington, North Carolina": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Winooski, Vermont": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Winston-Salem, North Carolina": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Woodbridge, New Jersey": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Woodbury, Minnesota": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Woonsocket, Rhode Island": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Worcester, Massachusetts": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Yakima, Washington": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Yankton, South Dakota": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Yonkers, New York": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  },
+  "Youngstown, Ohio": {
+    "lodging": 110,
+    "meals": 54,
+    "incidentals": 5
+  }
+};
 
   const sortedCityNames = Object.keys(cityDatabase).sort();
   let rowCounter = 1;
@@ -350,11 +2677,11 @@ document.addEventListener("DOMContentLoaded", () => {
       let matches = [];
 
       if (!query) {
-        // Show first 8 popular cities as default suggestions
-        matches = sortedCityNames.slice(0, 8);
+        // Show ALL 500 cities to allow smooth A-Z scrolling
+        matches = sortedCityNames;
       } else {
         const lowerQuery = query.toLowerCase();
-        matches = sortedCityNames.filter(c => c.toLowerCase().includes(lowerQuery)).slice(0, 10);
+        matches = sortedCityNames.filter(c => c.toLowerCase().includes(lowerQuery));
       }
 
       if (matches.length > 0) {

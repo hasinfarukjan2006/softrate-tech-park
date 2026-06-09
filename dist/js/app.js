@@ -178,6 +178,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const comingSoonSection = document.getElementById("coming-soon-section");
       const comingSoonTitle = document.getElementById("comingSoonTitle");
       const expenseSection = document.getElementById("expense-section");
+      const perDiemSection = document.getElementById("per-diem-section");
 
       if (route === "gst") {
         // Show GST Calculator view
@@ -188,6 +189,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (contactSection) contactSection.classList.remove("hide");
         if (comingSoonSection) comingSoonSection.classList.add("hide");
         if (expenseSection) expenseSection.classList.add("hide");
+        if (perDiemSection) perDiemSection.classList.add("hide");
         
         // Scroll smoothly back to calculator top
         if (calcSection) calcSection.scrollIntoView({ behavior: "smooth" });
@@ -200,10 +202,25 @@ document.addEventListener("DOMContentLoaded", () => {
         if (contactSection) contactSection.classList.add("hide");
         if (comingSoonSection) comingSoonSection.classList.add("hide");
         if (expenseSection) expenseSection.classList.remove("hide");
+        if (perDiemSection) perDiemSection.classList.add("hide");
         
         if (expenseSection) expenseSection.scrollIntoView({ behavior: "smooth" });
         // Dispatch custom event to initialize/sync expense module
         document.dispatchEvent(new CustomEvent("expenseRouteLoaded"));
+      } else if (route === "per-diem") {
+        // Show Per Diem Calculator view
+        if (calcSection) calcSection.classList.add("hide");
+        if (ratesSection) ratesSection.classList.add("hide");
+        if (faqSection) faqSection.classList.add("hide");
+        if (aboutSection) aboutSection.classList.add("hide");
+        if (contactSection) contactSection.classList.add("hide");
+        if (comingSoonSection) comingSoonSection.classList.add("hide");
+        if (expenseSection) expenseSection.classList.add("hide");
+        if (perDiemSection) perDiemSection.classList.remove("hide");
+        
+        if (perDiemSection) perDiemSection.scrollIntoView({ behavior: "smooth" });
+        // Dispatch custom event to initialize per diem module
+        document.dispatchEvent(new CustomEvent("perDiemRouteLoaded"));
       } else {
         // Show Coming Soon placeholder view
         if (calcSection) calcSection.classList.add("hide");
@@ -212,6 +229,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (aboutSection) aboutSection.classList.add("hide");
         if (contactSection) contactSection.classList.add("hide");
         if (expenseSection) expenseSection.classList.add("hide");
+        if (perDiemSection) perDiemSection.classList.add("hide");
         if (comingSoonSection) comingSoonSection.classList.remove("hide");
         
         if (comingSoonTitle) comingSoonTitle.textContent = `${labelText} - Coming Soon`;

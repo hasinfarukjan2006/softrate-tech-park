@@ -14,8 +14,14 @@ class GstCalculatorTestCase(unittest.TestCase):
         """Test if the main HTML landing page renders successfully."""
         response = self.client.get("/")
         self.assertEqual(response.status_code, 200)
-        self.assertIn(b"Softrate Tech Park", response.data)
-        self.assertIn(b"GST Calculator", response.data)
+        self.assertIn(b"Expense Report Generator", response.data)
+
+    def test_per_diem_calculator_content(self):
+        """Test if the Per Diem Calculator section is in the rendered landing page."""
+        response = self.client.get("/")
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b"Per diem calculator 2026 for USA", response.data)
+        self.assertIn(b"Calculate your travel per diem rate", response.data)
 
     def test_calculate_exclusive(self):
         """Test Exclusive GST calculation logic and API."""
@@ -131,6 +137,78 @@ class GstCalculatorTestCase(unittest.TestCase):
         empty_data = json.loads(empty_response.data)
         self.assertEqual(len(empty_data["history"]), 0)
 
+    def test_save_gst_to_mongo(self):
+        """Test saving GST calculation payload to MongoDB."""
+        db, _ = get_db()
+        created_at = "2026-06-08T15:00:00Z"
+        db.gst_history.delete_many({"created_at": created_at})
+
+        payload = {
+            "amount": 1500,
+            "gstRate": 18,
+            "gstAmount": 270,
+            "grandTotal": 1770,
+            "created_at": created_at
+        }
+
+        response = self.client.post(
+            "/save-gst",
+            data=json.dumps(payload),
+            content_type="application/json"
+        )
+        self.assertEqual(response.status_code, 200)
+        res_data = json.loads(response.data)
+        self.assertTrue(res_data["success"])
+        self.assertEqual(res_data["message"], "GST saved")
+
+        saved_gst = db.gst_history.find_one({"created_at": created_at})
+        self.assertIsNotNone(saved_gst)
+        self.assertEqual(saved_gst["gstAmount"], 270)
+        self.assertEqual(saved_gst["grandTotal"], 1770)
+
+    def test_save_expense_alias_to_mongo(self):
+        """Test saving expense reports through the /save-expense alias."""
+        db, _ = get_db()
+        submitted_by = "Test Suite Alias Employee"
+        db.expense_reports.delete_many({"submitted_by": submitted_by})
+
+        payload = {
+            "company_name": "Softrate Tech Park Pvt. Ltd.",
+            "company_address": "123 Tech Park Avenue, Bangalore, India",
+            "report_title": "Q2 Expense Claim Alias",
+            "business_purpose": "Client Relations summit",
+            "submitted_by": submitted_by,
+            "submitted_date": "2026-06-08",
+            "report_to": "Finance Director",
+            "reporting_period": "June 2026",
+            "expenses": [
+                {
+                    "date": "2026-06-07",
+                    "description": "Travel flight ticket",
+                    "merchant": "Air India",
+                    "category": "Travel",
+                    "amount": 4500.0
+                }
+            ],
+            "total_amount": 4500.0,
+            "created_at": "2026-06-08T15:05:00Z"
+        }
+
+        response = self.client.post(
+            "/save-expense",
+            data=json.dumps(payload),
+            content_type="application/json"
+        )
+        self.assertEqual(response.status_code, 200)
+        res_data = json.loads(response.data)
+        self.assertTrue(res_data["success"])
+        self.assertEqual(res_data["message"], "Expense report saved successfully")
+
+        saved_report = db.expense_reports.find_one({"submitted_by": submitted_by})
+        self.assertIsNotNone(saved_report)
+        self.assertEqual(saved_report["report_title"], "Q2 Expense Claim Alias")
+        self.assertEqual(saved_report["total_amount"], 4500.0)
+
     def test_contact_form(self):
         """Test contact form validation and submission logs."""
         payload = {
@@ -162,5 +240,190 @@ class GstCalculatorTestCase(unittest.TestCase):
         )
         self.assertEqual(err_response.status_code, 400)
 
+    def test_signup_page(self):
+        """Test if the sign-up page renders successfully."""
+        response = self.client.get("/signup")
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b"SOFTRATE", response.data)
+        self.assertIn(b"Start Free Trial", response.data)
+
+    def test_signup_api_success(self):
+        """Test successful registration API flow."""
+        db, _ = get_db()
+        db.users.delete_many({"email": "signup_test@softrate.com"})
+
+        payload = {
+            "user_type": "Business User",
+            "company_name": "Test Company Ltd",
+            "email": "signup_test@softrate.com",
+            "mobile_number": "1234567890",
+            "password": "securepassword123",
+            "country": "India",
+            "state": "Karnataka",
+            "terms_accepted": True
+        }
+        response = self.client.post(
+            "/api/signup",
+            data=json.dumps(payload),
+            content_type="application/json"
+        )
+        self.assertEqual(response.status_code, 200)
+        res_data = json.loads(response.data)
+        self.assertEqual(res_data["status"], "success")
+        self.assertEqual(res_data["user"]["name"], "Test Company Ltd")
+
+        # Verify doc saved in fallback DB
+        saved_user = db.users.find_one({"email": "signup_test@softrate.com", "record_type": "registration"})
+        self.assertIsNotNone(saved_user)
+        self.assertEqual(saved_user["company_name"], "Test Company Ltd")
+        self.assertEqual(saved_user["user_type"], "Business User")
+        self.assertNotEqual(saved_user["password"], "securepassword123")
+
+    def test_signup_api_validation(self):
+        """Test API registration validations."""
+        payload = {
+            "user_type": "Business User",
+            "company_name": "Test Company Ltd",
+            "email": "signup_test2@softrate.com",
+            "mobile_number": "1234567890",
+            "password": "securepassword123",
+            "country": "India",
+            "state": "Karnataka",
+            "terms_accepted": False
+        }
+        response = self.client.post(
+            "/api/signup",
+            data=json.dumps(payload),
+            content_type="application/json"
+        )
+        self.assertEqual(response.status_code, 400)
+        self.assertIn(b"must accept the Terms of Service", response.data)
+
+        payload_missing = {
+            "user_type": "Business User",
+            "company_name": "",
+            "email": "signup_test2@softrate.com",
+            "mobile_number": "1234567890",
+            "password": "securepassword123",
+            "country": "India",
+            "state": "Karnataka",
+            "terms_accepted": True
+        }
+        response = self.client.post(
+            "/api/signup",
+            data=json.dumps(payload_missing),
+            content_type="application/json"
+        )
+        self.assertEqual(response.status_code, 400)
+        self.assertIn(b"fields are required", response.data)
+
+    def test_oauth_url_missing_keys(self):
+        """Test that missing Client ID/Secret returns a 400 error."""
+        app.config["GOOGLE_CLIENT_ID"] = None
+        app.config["GOOGLE_CLIENT_SECRET"] = None
+        response = self.client.get("/api/auth/url/google")
+        self.assertEqual(response.status_code, 400)
+        res_data = json.loads(response.data)
+        self.assertEqual(res_data["status"], "error")
+        self.assertIn("OAuth not configured", res_data["message"])
+
+    def test_oauth_url_with_keys(self):
+        """Test that configured Client ID/Secret returns a valid redirect URL."""
+        app.config["GOOGLE_CLIENT_ID"] = "mock_client_id"
+        app.config["GOOGLE_CLIENT_SECRET"] = "mock_client_secret"
+        response = self.client.get("/api/auth/url/google")
+        self.assertEqual(response.status_code, 200)
+        res_data = json.loads(response.data)
+        self.assertEqual(res_data["status"], "success")
+        self.assertIn("accounts.google.com", res_data["url"])
+        self.assertIn("client_id=mock_client_id", res_data["url"])
+
+    def test_oauth_callback_unsupported_provider(self):
+        """Test callback behaviour with unsupported OAuth provider."""
+        response = self.client.get("/auth/callback/unsupported?code=123")
+        self.assertEqual(response.status_code, 400)
+
+    def test_api_auth_demo_success(self):
+        """Test successful demo OAuth endpoint."""
+        db, _ = get_db()
+        db.users.delete_many({"email": "demo_oauth@softrate.com"})
+        
+        payload = {
+            "email": "demo_oauth@softrate.com",
+            "provider": "Google"
+        }
+        response = self.client.post(
+            "/api/auth/demo",
+            data=json.dumps(payload),
+            content_type="application/json"
+        )
+        self.assertEqual(response.status_code, 200)
+        res_data = json.loads(response.data)
+        self.assertEqual(res_data["status"], "success")
+        self.assertEqual(res_data["user"]["email"], "demo_oauth@softrate.com")
+        self.assertEqual(res_data["user"]["name"], "Demo_oauth")
+        
+        saved_user = db.users.find_one({"email": "demo_oauth@softrate.com", "record_type": "registration"})
+        self.assertIsNotNone(saved_user)
+        self.assertEqual(saved_user["oauth_provider"], "Google")
+
+    def test_api_auth_demo_validation(self):
+        """Test validation error in demo OAuth endpoint."""
+        payload = {
+            "email": "invalidemail",
+            "provider": "Google"
+        }
+        response = self.client.post(
+            "/api/auth/demo",
+            data=json.dumps(payload),
+            content_type="application/json"
+        )
+        self.assertEqual(response.status_code, 400)
+        self.assertIn(b"valid email address", response.data)
+
+    def test_save_expense_report(self):
+        """Test saving expense reports to MongoDB via the new API endpoint."""
+        db, _ = get_db()
+        db.expense_reports.delete_many({"submitted_by": "Test Suite Employee"})
+
+        payload = {
+            "company_name": "Softrate Tech Park Pvt. Ltd.",
+            "company_address": "123 Tech Park Avenue, Bangalore, India",
+            "report_title": "Q2 Expense Claim",
+            "business_purpose": "Client Relations summit",
+            "submitted_by": "Test Suite Employee",
+            "submitted_date": "2026-06-08",
+            "report_to": "Finance Director",
+            "reporting_period": "June 2026",
+            "expenses": [
+                {
+                    "date": "2026-06-07",
+                    "description": "Travel flight ticket",
+                    "merchant": "Air India",
+                    "category": "Travel",
+                    "amount": 4500.0
+                }
+            ],
+            "total_amount": 4500.0,
+            "created_at": "2026-06-08T14:26:00Z"
+        }
+
+        response = self.client.post(
+            "/api/save-expense-report",
+            data=json.dumps(payload),
+            content_type="application/json"
+        )
+        self.assertEqual(response.status_code, 200)
+        res_data = json.loads(response.data)
+        self.assertTrue(res_data["success"])
+        self.assertEqual(res_data["message"], "Expense report saved successfully")
+
+        # Verify it exists in database
+        saved_report = db.expense_reports.find_one({"submitted_by": "Test Suite Employee"})
+        self.assertIsNotNone(saved_report)
+        self.assertEqual(saved_report["report_title"], "Q2 Expense Claim")
+        self.assertEqual(saved_report["total_amount"], 4500.0)
+
 if __name__ == "__main__":
     unittest.main()
+

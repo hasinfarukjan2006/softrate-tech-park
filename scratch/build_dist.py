@@ -32,6 +32,7 @@ def sync_files():
     shutil.copy2("static/css/style.css", "dist/css/style.css")
     shutil.copy2("static/js/app.js", "dist/js/app.js")
     shutil.copy2("static/js/expense.js", "dist/js/expense.js")
+    shutil.copy2("static/js/per_diem.js", "dist/js/per_diem.js")
     print("Synced static files -> dist/")
 
     # 4. Copy images to dist/images/
@@ -53,6 +54,7 @@ def sync_files():
     shutil.copy2("static/css/style.css", "softrate/static/css/style.css")
     shutil.copy2("static/js/app.js", "softrate/static/js/app.js")
     shutil.copy2("static/js/expense.js", "softrate/static/js/expense.js")
+    shutil.copy2("static/js/per_diem.js", "softrate/static/js/per_diem.js")
     
     for item in os.listdir("static/images"):
         s = os.path.join("static/images", item)

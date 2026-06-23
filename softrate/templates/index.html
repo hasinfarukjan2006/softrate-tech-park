@@ -38,7 +38,10 @@
   <link rel="stylesheet" href="/static/css/paycheck.css">
   <link rel="stylesheet" href="/static/css/income_tax.css">
   <link rel="stylesheet" href="/static/css/hmrc.css">
+  <link rel="stylesheet" href="/static/css/uk_corp.css">
   
+  <link rel="stylesheet" href="/static/css/vat.css">
+  <link rel="stylesheet" href="/static/css/billing.css">
   <!-- JsBarcode Library -->
   <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
   
@@ -3070,10 +3073,1606 @@
 </a><a href="https://play.google.com/store/apps/details?id=com.softrate.purchaseordergenerator&referrer=utm_source%3Dweb_app%26utm_medium%3Dbanner" target=_blank rel=nofollow><img class=mobile-badge src=/inventory/mobile/playstore-badge.svg alt="Android inventory app - Google Play| Softrate"></a></div><div></div></div>
 </section>
 
+      
+      <!-- Section: UK VAT Calculator -->
+      <section id="uk-vat-section" class="content-section mt-8 hide">
+        <div class="vat-hero">
+          <div class="vat-hero-inner">
+            <div class="vat-hero-text">
+              <h1><em>UK VAT</em> Calculator</h1>
+              <p>Quickly calculate the amount of Value Added Tax (VAT) you need to add or remove for your UK business transactions.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="vat-wrapper">
+          <div class="vat-card">
+            <div class="vat-form-group">
+              <label>Select Action</label>
+              <div class="vat-action-toggles">
+                <input type="radio" id="ukVatAdd" name="ukVatAction" value="add" checked>
+                <label for="ukVatAdd">Add VAT (Net to Gross)</label>
+                
+                <input type="radio" id="ukVatRemove" name="ukVatAction" value="remove">
+                <label for="ukVatRemove">Remove VAT (Gross to Net)</label>
+              </div>
+            </div>
+
+            <div class="vat-form-group">
+              <label for="ukVatAmount">Amount (<span class="vat-currency-symbol">&pound;</span>)</label>
+              <div class="vat-input-wrap">
+                <span class="vat-input-addon">&pound;</span>
+                <input type="number" id="ukVatAmount" placeholder="0.00" min="0" step="0.01">
+              </div>
+            </div>
+
+            <div class="vat-form-group">
+              <label>VAT Rate</label>
+              <div class="vat-rate-options">
+                <div class="vat-rate-option">
+                  <input type="radio" id="ukRateStd" name="ukVatRateOpt" value="20" checked>
+                  <label for="ukRateStd">Standard (20%)</label>
+                </div>
+                <div class="vat-rate-option">
+                  <input type="radio" id="ukRateRed" name="ukVatRateOpt" value="5">
+                  <label for="ukRateRed">Reduced (5%)</label>
+                </div>
+                <div class="vat-rate-option">
+                  <input type="radio" id="ukRateZero" name="ukVatRateOpt" value="0">
+                  <label for="ukRateZero">Zero (0%)</label>
+                </div>
+                <div class="vat-rate-option">
+                  <input type="radio" id="ukRateCust" name="ukVatRateOpt" value="custom">
+                  <label for="ukRateCust">Custom</label>
+                </div>
+              </div>
+              <div class="vat-custom-rate-wrap hide" id="ukVatCustomRateWrap">
+                <input type="number" id="ukVatCustomRate" placeholder="Enter custom rate" min="0" max="100" step="0.1">
+                <span class="vat-input-addon">%</span>
+              </div>
+            </div>
+
+            <div class="vat-results">
+              <div class="vat-result-row">
+                <span>Net Amount:</span>
+                <span class="vat-result-val" id="ukVatNet">&pound;0.00</span>
+              </div>
+              <div class="vat-result-row">
+                <span>VAT Amount:</span>
+                <span class="vat-result-val" id="ukVatAmt">&pound;0.00</span>
+              </div>
+              <div class="vat-result-row vat-result-total">
+                <span>Gross Amount (Total):</span>
+                <span class="vat-result-val" id="ukVatGross">&pound;0.00</span>
+              </div>
+            </div>
+
+            <button type="button" class="vat-reset-btn" id="ukVatReset">Reset Calculator</button>
+          </div>
+
+          <!-- Info Section -->
+          <div class="vat-info">
+            <h2>What is UK VAT?</h2>
+            <p>Value Added Tax (VAT) is a consumption tax placed on a product whenever value is added at each stage of the supply chain, from production to the point of sale. For businesses registered in the UK, VAT is charged on most goods and services.</p>
+
+            <h2>Current VAT Rates in the UK</h2>
+            <p>The UK has three main VAT categories:</p>
+            <ul>
+              <li><strong>Standard Rate (20%):</strong> Applies to most goods and services.</li>
+              <li><strong>Reduced Rate (5%):</strong> Applies to some goods and services, such as home energy, children's car seats, and certain renovations.</li>
+              <li><strong>Zero Rate (0%):</strong> Applies to zero-rated goods and services, such as most food items, books, children's clothes, and public transport.</li>
+            </ul>
+
+            <h2>How is VAT calculated?</h2>
+            <p>To add VAT to an amount, multiply the net amount by 1 plus the VAT rate (expressed as a decimal). For example, to add 20% VAT to &pound;100: &pound;100 &times; 1.20 = &pound;120.</p>
+            <p>To remove VAT from a gross amount, divide the gross amount by 1 plus the VAT rate (expressed as a decimal). For example, to remove 20% VAT from &pound;120: &pound;120 / 1.20 = &pound;100. The VAT amount is the difference: &pound;120 - &pound;100 = &pound;20.</p>
+          </div>
+
+          <!-- Promo Card -->
+          <div class="vat-promo">
+            <h2>Manage your UK VAT Compliance effortlessly with Softrate</h2>
+            <p>Softrate is built to help UK businesses track VAT on sales and purchases, generate VAT returns automatically, and keep your accounting Making Tax Digital (MTD) compliant.</p>
+          </div>
+        </div>
+      </section>
+
+      
+      <!-- Section: UAE VAT Calculator -->
+      <section id="uae-vat-section" class="content-section mt-8 hide">
+        <div class="vat-hero">
+          <div class="vat-hero-inner">
+            <div class="vat-hero-text">
+              <h1><em>UAE VAT</em> Calculator</h1>
+              <p>Easily calculate the amount of Value Added Tax (VAT) for your business transactions in the United Arab Emirates.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="vat-wrapper">
+          <div class="vat-card">
+            <div class="vat-form-group">
+              <label>Select Action</label>
+              <div class="vat-action-toggles">
+                <input type="radio" id="uaeVatAdd" name="uaeVatAction" value="add" checked>
+                <label for="uaeVatAdd">Add VAT (Net to Gross)</label>
+                
+                <input type="radio" id="uaeVatRemove" name="uaeVatAction" value="remove">
+                <label for="uaeVatRemove">Remove VAT (Gross to Net)</label>
+              </div>
+            </div>
+
+            <div class="vat-form-group">
+              <label for="uaeVatAmount">Amount (AED)</label>
+              <div class="vat-input-wrap">
+                <span class="vat-input-addon">AED</span>
+                <input type="number" id="uaeVatAmount" placeholder="0.00" min="0" step="0.01">
+              </div>
+            </div>
+
+            <div class="vat-form-group">
+              <label>VAT Rate</label>
+              <div class="vat-rate-options">
+                <div class="vat-rate-option">
+                  <input type="radio" id="uaeRateStd" name="uaeVatRateOpt" value="5" checked>
+                  <label for="uaeRateStd">Standard (5%)</label>
+                </div>
+                <div class="vat-rate-option">
+                  <input type="radio" id="uaeRateZero" name="uaeVatRateOpt" value="0">
+                  <label for="uaeRateZero">Zero (0%)</label>
+                </div>
+                <div class="vat-rate-option">
+                  <input type="radio" id="uaeRateCust" name="uaeVatRateOpt" value="custom">
+                  <label for="uaeRateCust">Custom</label>
+                </div>
+              </div>
+              <div class="vat-custom-rate-wrap hide" id="uaeVatCustomRateWrap">
+                <input type="number" id="uaeVatCustomRate" placeholder="Enter custom rate" min="0" max="100" step="0.1">
+                <span class="vat-input-addon">%</span>
+              </div>
+            </div>
+
+            <div class="vat-results">
+              <div class="vat-result-row">
+                <span>Net Amount:</span>
+                <span class="vat-result-val" id="uaeVatNet">AED 0.00</span>
+              </div>
+              <div class="vat-result-row">
+                <span>VAT Amount:</span>
+                <span class="vat-result-val" id="uaeVatAmt">AED 0.00</span>
+              </div>
+              <div class="vat-result-row vat-result-total">
+                <span>Gross Amount (Total):</span>
+                <span class="vat-result-val" id="uaeVatGross">AED 0.00</span>
+              </div>
+            </div>
+
+            <button type="button" class="vat-reset-btn" id="uaeVatReset">Reset Calculator</button>
+          </div>
+
+          <!-- Info Section -->
+          <div class="vat-info">
+            <h2>What is UAE VAT?</h2>
+            <p>Value Added Tax (VAT) was introduced in the United Arab Emirates on 1 January 2018. It is an indirect tax applied on most goods and services at each stage of the supply chain, collected by registered businesses on behalf of the Federal Tax Authority (FTA).</p>
+
+            <h2>Current VAT Rates in the UAE</h2>
+            <p>The UAE VAT system includes the following rates:</p>
+            <ul>
+              <li><strong>Standard Rate (5%):</strong> Applies to most goods and services, including food, commercial buildings, hotel services, and utilities.</li>
+              <li><strong>Zero Rate (0%):</strong> Applies to specific sectors such as international transport of passengers and goods, supply of certain educational and healthcare services, and first supply of residential buildings.</li>
+              <li><strong>Exempt:</strong> Certain financial services, residential buildings (other than the first supply), bare land, and local passenger transport are exempt from VAT.</li>
+            </ul>
+          </div>
+
+          <!-- Promo Card -->
+          <div class="vat-promo">
+            <h2>Stay compliant with FTA regulations using Softrate</h2>
+            <p>Generate FTA-compliant tax invoices, track input tax credits, and file your VAT returns accurately in just a few clicks with Softrate's robust accounting features.</p>
+          </div>
+        </div>
+      </section>
+
+      
+      <!-- Section: UK Flat Rate VAT Calculator -->
+      <section id="uk-flat-section" class="content-section mt-8 hide">
+        <div class="vat-hero">
+          <div class="vat-hero-inner">
+            <div class="vat-hero-text">
+              <h1><em>UK Flat Rate</em> VAT Calculator</h1>
+              <p>Calculate your VAT liability under the UK Flat Rate Scheme (FRS) and compare it against standard VAT to see your savings.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="vat-wrapper">
+          <div class="vat-card">
+            <div class="vat-form-group">
+              <label for="frsSector">Business Sector</label>
+              <div class="vat-select-wrap">
+                <select id="frsSector">
+                  <option value="14.5" selected>Computer or IT consultancy (14.5%)</option>
+                  <option value="14.5">Accountancy or book-keeping (14.5%)</option>
+                  <option value="14">Advertising (14%)</option>
+                  <option value="14.5">Architect, civil/structural engineer or surveyor (14.5%)</option>
+                  <option value="12">Boarding or care home (12%)</option>
+                  <option value="12">Business services not listed elsewhere (12%)</option>
+                  <option value="12.5">Catering services including restaurants & cafes (12.5%)</option>
+                  <option value="12">Estate agency or property management (12%)</option>
+                  <option value="9.5">General building or construction services (9.5%)</option>
+                  <option value="12">Hotel or accommodation (12%)</option>
+                  <option value="14.5">Legal services (14.5%)</option>
+                  <option value="14">Management consultancy (14%)</option>
+                  <option value="11">Photography (11%)</option>
+                  <option value="5">Post offices (5%)</option>
+                  <option value="6.5">Pubs (6.5%)</option>
+                  <option value="4">Retail food, confectionery, newspapers, children's clothes (4%)</option>
+                  <option value="8">Retail pharmaceuticals (8%)</option>
+                  <option value="7.5">Retail not listed elsewhere (7.5%)</option>
+                  <option value="10">Transport or storage, couriers and freight (10%)</option>
+                  <option value="10.5">Travel agency (10.5%)</option>
+                  <option value="4.5">Wholesaling food (4.5%)</option>
+                  <option value="8.5">Wholesaling not listed elsewhere (8.5%)</option>
+                  <option value="custom">Other sector (Custom %)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="vat-form-group hide" id="frsCustomRateWrap">
+              <label for="frsCustomRate">Custom Flat Rate (%)</label>
+              <input type="number" id="frsCustomRate" placeholder="e.g. 12" min="0" max="100" step="0.1">
+            </div>
+
+            <div class="vat-form-group">
+              <label class="vat-checkbox-label">
+                <input type="checkbox" id="frsFirstYear">
+                First year of VAT registration? (Get 1% discount on rate)
+              </label>
+            </div>
+
+            <div class="vat-form-group">
+              <label for="frsTurnover">Gross Turnover (including VAT) (&pound;)</label>
+              <div class="vat-input-wrap">
+                <span class="vat-input-addon">&pound;</span>
+                <input type="number" id="frsTurnover" placeholder="0.00" min="0" step="0.01">
+              </div>
+            </div>
+
+            <div class="vat-form-group">
+              <label for="frsGoodsCost">Cost of Relevant Goods/Materials (&pound;)</label>
+              <div class="vat-input-wrap">
+                <span class="vat-input-addon">&pound;</span>
+                <input type="number" id="frsGoodsCost" placeholder="0.00" min="0" step="0.01">
+              </div>
+              <p class="vat-input-help">Used to check if you are a "Limited Cost Trader" (rate increases to 16.5% if spending is too low).</p>
+            </div>
+
+            <!-- FRS Outputs -->
+            <div class="vat-results">
+              <div class="vat-result-row">
+                <span>Applied Flat Rate:</span>
+                <span class="vat-result-val" id="frsAppliedRate">14.5%</span>
+              </div>
+              <div class="vat-result-row" id="frsLimCostRow" style="display:none; color:#de7110;">
+                <span>Limited Cost Trader Status:</span>
+                <span class="vat-result-val">Active (Rate overridden to 16.5%)</span>
+              </div>
+              <div class="vat-result-row vat-result-total">
+                <span>Flat Rate VAT to Pay:</span>
+                <span class="vat-result-val" id="frsVatToPay">&pound;0.00</span>
+              </div>
+            </div>
+
+            <!-- FRS Comparison -->
+            <div class="vat-comparison-card">
+              <h3>Comparison vs Standard VAT (20%)</h3>
+              <div class="vat-comp-grid">
+                <div class="vat-comp-col">
+                  <div class="vat-comp-label">Standard Scheme (Est.)</div>
+                  <div class="vat-comp-val" id="frsStdEst">&pound;0.00</div>
+                  <small>Sales VAT (20%) minus standard inputs reclaim</small>
+                </div>
+                <div class="vat-comp-col">
+                  <div class="vat-comp-label">Flat Rate Scheme</div>
+                  <div class="vat-comp-val" id="frsFlatEst">&pound;0.00</div>
+                  <small> turnover &times; flat rate percentage</small>
+                </div>
+              </div>
+              <div class="vat-comp-summary" id="frsSavingsBox">
+                VAT Savings: <span id="frsSavingsAmt">&pound;0.00</span>
+              </div>
+            </div>
+
+            <button type="button" class="vat-reset-btn" id="frsReset">Reset Calculator</button>
+          </div>
+
+          <!-- Info Section -->
+          <div class="vat-info">
+            <h2>What is the UK Flat Rate VAT Scheme?</h2>
+            <p>The Flat Rate Scheme is designed to simplify VAT accounting for small businesses in the UK. Instead of recording and claiming VAT on every single purchase, you pay a fixed percentage of your gross turnover (including VAT) to HMRC, and you keep the difference between what you charge customers and what you pay to HMRC.</p>
+            <p>You cannot reclaim VAT on purchases (except for single capital assets costing &pound;2,000 or more).</p>
+
+            <h2>Eligibility criteria</h2>
+            <p>You can join the scheme if your VAT-taxable turnover (excluding VAT) is <strong>&pound;150,000 or less</strong> in the next 12 months. You must leave the scheme if your total turnover (including VAT) exceeds <strong>&pound;230,000</strong> in a 12-month period.</p>
+
+            <h2>What is a Limited Cost Trader?</h2>
+            <p>If your business spends less than 2% of its turnover (or less than &pound;250 per quarter / &pound;1,000 per year) on "relevant goods" (raw materials, physical goods, but excluding office equipment, gas/electricity, services, vehicle costs, and food/drink), you are classified as a <strong>Limited Cost Trader</strong>. In this case, you must pay a higher flat rate of <strong>16.5%</strong>, regardless of your sector's standard flat rate.</p>
+          </div>
+        </div>
+      </section>
+
+      
+      <!-- Section: Invoice Generator -->
+      <section id="invoice-section" class="content-section mt-8 hide">
+        <div class="inv-hero">
+          <div class="inv-hero-inner">
+            <div class="inv-hero-text">
+              <h1><em>Invoice</em> Generator</h1>
+              <p>Create and download beautiful, professional invoices for your business in seconds. Fully customizable and MTD-compliant.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="inv-wrapper">
+          <div class="inv-card">
+            <!-- Top Actions -->
+            <div class="inv-top-actions">
+              <button type="button" class="inv-btn-primary" id="invPrint">Print Invoice</button>
+              <button type="button" class="inv-btn-secondary" id="invPDF">Download PDF</button>
+              <button type="button" class="inv-btn-reset" id="invReset">&#x21bb; Reset</button>
+            </div>
+
+            <!-- Invoice Body Form -->
+            <form id="invoiceForm" onsubmit="return false;">
+              <!-- Header Details -->
+              <div class="inv-header-grid">
+                <!-- Company Info (Bill From) -->
+                <div class="inv-billing-col">
+                  <h3>Bill From</h3>
+                  <input type="text" class="inv-field-bold" id="invFromCompany" placeholder="Your Company Name" value="Softrate Tech Park Pvt. Ltd.">
+                  <input type="text" class="inv-field" id="invFromAddress" placeholder="Company Address" value="123 tech park, Block A">
+                  <input type="text" class="inv-field" id="invFromCity" placeholder="City, State Zip" value="London, EC1A 1BB">
+                  <input type="text" class="inv-field" id="invFromCountry" placeholder="Country" value="United Kingdom">
+                  <input type="text" class="inv-field" id="invFromPhone" placeholder="Phone" value="+44 20 7946 0958">
+                </div>
+
+                <!-- Client Info (Bill To) -->
+                <div class="inv-billing-col">
+                  <h3>Bill To</h3>
+                  <input type="text" class="inv-field-bold" id="invToClient" placeholder="Client Name / Company" value="Acme Corp Ltd.">
+                  <input type="text" class="inv-field" id="invToAddress" placeholder="Client Address" value="456 Innovation Way">
+                  <input type="text" class="inv-field" id="invToCity" placeholder="City, State Zip" value="Manchester, M1 1AG">
+                  <input type="text" class="inv-field" id="invToCountry" placeholder="Country" value="United Kingdom">
+                  <input type="text" class="inv-field" id="invToEmail" placeholder="Client Email" value="billing@acme.com">
+                </div>
+
+                <!-- Invoice Meta Details -->
+                <div class="inv-meta-col">
+                  <input type="text" class="inv-title-input" id="invTitleText" value="INVOICE">
+                  
+                  <div class="inv-meta-row">
+                    <label for="invNumber">Invoice #</label>
+                    <input type="text" id="invNumber" value="INV-0001">
+                  </div>
+                  <div class="inv-meta-row">
+                    <label for="invDate">Date</label>
+                    <input type="date" id="invDate">
+                  </div>
+                  <div class="inv-meta-row">
+                    <label for="invDueDate">Due Date</label>
+                    <input type="date" id="invDueDate">
+                  </div>
+                  <div class="inv-meta-row">
+                    <label for="invPO">PO Number</label>
+                    <input type="text" id="invPO" placeholder="e.g. PO-987">
+                  </div>
+                </div>
+              </div>
+
+              <!-- Line Items Table -->
+              <div class="inv-table-wrap">
+                <table class="inv-items-table" id="invItemsTable">
+                  <thead>
+                    <tr>
+                      <th width="45%">Item Description</th>
+                      <th width="12%">Quantity</th>
+                      <th width="15%">Rate (&pound;)</th>
+                      <th width="12%">Tax (%)</th>
+                      <th width="14%" class="text-right">Amount (&pound;)</th>
+                      <th width="2%"></th>
+                    </tr>
+                  </thead>
+                  <tbody id="invItemRows">
+                    <!-- Dynamic Rows -->
+                    <tr>
+                      <td><input type="text" class="inv-item-desc" placeholder="Software Engineering Services" value="Consulting Services"></td>
+                      <td><input type="number" class="inv-item-qty" placeholder="1" min="0" step="1" value="10"></td>
+                      <td><input type="number" class="inv-item-rate" placeholder="0.00" min="0" step="0.01" value="85.00"></td>
+                      <td><input type="number" class="inv-item-tax" placeholder="20" min="0" max="100" step="0.1" value="20"></td>
+                      <td class="inv-item-total text-right">&pound;850.00</td>
+                      <td><button type="button" class="inv-remove-row" title="Delete Row">&times;</button></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <button type="button" class="inv-add-row-btn" id="invAddRow">&#x2295; Add Line Item</button>
+
+              <!-- Footer Summary -->
+              <div class="inv-footer-grid">
+                <!-- Notes -->
+                <div class="inv-notes-col">
+                  <label for="invNotes">Notes / Payment Terms</label>
+                  <textarea id="invNotes" placeholder="Enter bank details, payment instructions or thanks notes here...">Thank you for your business! Bank transfer details: Softrate Bank, Account: 12345678, Sort Code: 12-34-56.</textarea>
+                </div>
+
+                <!-- Summary Values -->
+                <div class="inv-summary-col">
+                  <div class="inv-sum-row">
+                    <span>Sub Total:</span>
+                    <span id="invSubTotal">&pound;0.00</span>
+                  </div>
+                  <div class="inv-sum-row">
+                    <span>Tax Total:</span>
+                    <span id="invTaxTotal">&pound;0.00</span>
+                  </div>
+                  <div class="inv-sum-row">
+                    <span>Discount (Flat &pound;):</span>
+                    <input type="number" id="invDiscount" min="0" step="0.01" value="0.00" style="width: 100px; text-align: right; padding: 4px;">
+                  </div>
+                  <div class="inv-sum-row">
+                    <span>Shipping:</span>
+                    <input type="number" id="invShipping" min="0" step="0.01" value="0.00" style="width: 100px; text-align: right; padding: 4px;">
+                  </div>
+                  <div class="inv-sum-row inv-total-row">
+                    <span>Balance Due (&pound;):</span>
+                    <span id="invTotalDue">&pound;0.00</span>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      
+      <!-- Section: Quote Generator -->
+      <section id="quote-section" class="content-section mt-8 hide">
+        <div class="inv-hero">
+          <div class="inv-hero-inner">
+            <div class="inv-hero-text">
+              <h1><em>Quote</em> Generator</h1>
+              <p>Create beautiful sales estimates, quotes or proposals for your customers. Convert prospects into clients effortlessly.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="inv-wrapper">
+          <div class="inv-card">
+            <!-- Top Actions -->
+            <div class="inv-top-actions">
+              <button type="button" class="inv-btn-primary" id="qtPrint">Print Quote</button>
+              <button type="button" class="inv-btn-secondary" id="qtPDF">Download PDF</button>
+              <button type="button" class="inv-btn-reset" id="qtReset">&#x21bb; Reset</button>
+            </div>
+
+            <!-- Quote Body Form -->
+            <form id="quoteForm" onsubmit="return false;">
+              <!-- Header Details -->
+              <div class="inv-header-grid">
+                <!-- Company Info -->
+                <div class="inv-billing-col">
+                  <h3>From</h3>
+                  <input type="text" class="inv-field-bold" id="qtFromCompany" placeholder="Your Company Name" value="Softrate Tech Park Pvt. Ltd.">
+                  <input type="text" class="inv-field" id="qtFromAddress" placeholder="Company Address" value="123 tech park, Block A">
+                  <input type="text" class="inv-field" id="qtFromCity" placeholder="City, State Zip" value="London, EC1A 1BB">
+                  <input type="text" class="inv-field" id="qtFromCountry" placeholder="Country" value="United Kingdom">
+                  <input type="text" class="inv-field" id="qtFromPhone" placeholder="Phone" value="+44 20 7946 0958">
+                </div>
+
+                <!-- Client Info -->
+                <div class="inv-billing-col">
+                  <h3>To</h3>
+                  <input type="text" class="inv-field-bold" id="qtToClient" placeholder="Client Name / Company" value="Apex Global Solutions">
+                  <input type="text" class="inv-field" id="qtToAddress" placeholder="Client Address" value="789 Science Park Road">
+                  <input type="text" class="inv-field" id="qtToCity" placeholder="City, State Zip" value="Birmingham, B1 2HP">
+                  <input type="text" class="inv-field" id="qtToCountry" placeholder="Country" value="United Kingdom">
+                  <input type="text" class="inv-field" id="qtToEmail" placeholder="Client Email" value="info@apex.com">
+                </div>
+
+                <!-- Quote Meta Details -->
+                <div class="inv-meta-col">
+                  <input type="text" class="inv-title-input" id="qtTitleText" value="ESTIMATE">
+                  
+                  <div class="inv-meta-row">
+                    <label for="qtNumber">Estimate #</label>
+                    <input type="text" id="qtNumber" value="EST-0021">
+                  </div>
+                  <div class="inv-meta-row">
+                    <label for="qtDate">Date</label>
+                    <input type="date" id="qtDate">
+                  </div>
+                  <div class="inv-meta-row">
+                    <label for="qtExpiryDate">Valid Until</label>
+                    <input type="date" id="qtExpiryDate">
+                  </div>
+                  <div class="inv-meta-row">
+                    <label for="qtRef">Reference</label>
+                    <input type="text" id="qtRef" placeholder="e.g. RFQ-009">
+                  </div>
+                </div>
+              </div>
+
+              <!-- Line Items Table -->
+              <div class="inv-table-wrap">
+                <table class="inv-items-table" id="qtItemsTable">
+                  <thead>
+                    <tr>
+                      <th width="45%">Item Description</th>
+                      <th width="12%">Quantity</th>
+                      <th width="15%">Rate (&pound;)</th>
+                      <th width="12%">Tax (%)</th>
+                      <th width="14%" class="text-right">Amount (&pound;)</th>
+                      <th width="2%"></th>
+                    </tr>
+                  </thead>
+                  <tbody id="qtItemRows">
+                    <!-- Dynamic Rows -->
+                    <tr>
+                      <td><input type="text" class="inv-item-desc" placeholder="Product or service description" value="Cloud Hosting Implementation Setup"></td>
+                      <td><input type="number" class="inv-item-qty" placeholder="1" min="0" step="1" value="1"></td>
+                      <td><input type="number" class="inv-item-rate" placeholder="0.00" min="0" step="0.01" value="1200.00"></td>
+                      <td><input type="number" class="inv-item-tax" placeholder="20" min="0" max="100" step="0.1" value="20"></td>
+                      <td class="inv-item-total text-right">&pound;1200.00</td>
+                      <td><button type="button" class="inv-remove-row" title="Delete Row">&times;</button></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <button type="button" class="inv-add-row-btn" id="qtAddRow">&#x2295; Add Line Item</button>
+
+              <!-- Footer Summary -->
+              <div class="inv-footer-grid">
+                <!-- Notes -->
+                <div class="inv-notes-col">
+                  <label for="qtNotes">Notes / Terms</label>
+                  <textarea id="qtNotes" placeholder="Enter notes or terms of service here...">This estimate is valid for 30 days. Standard service level agreements apply.</textarea>
+                </div>
+
+                <!-- Summary Values -->
+                <div class="inv-summary-col">
+                  <div class="inv-sum-row">
+                    <span>Sub Total:</span>
+                    <span id="qtSubTotal">&pound;0.00</span>
+                  </div>
+                  <div class="inv-sum-row">
+                    <span>Tax Total:</span>
+                    <span id="qtTaxTotal">&pound;0.00</span>
+                  </div>
+                  <div class="inv-sum-row">
+                    <span>Discount (Flat &pound;):</span>
+                    <input type="number" id="qtDiscount" min="0" step="0.01" value="0.00" style="width: 100px; text-align: right; padding: 4px;">
+                  </div>
+                  <div class="inv-sum-row inv-total-row">
+                    <span>Total Estimate (&pound;):</span>
+                    <span id="qtTotalDue">&pound;0.00</span>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      
+      <!-- Section: Receipt Generator -->
+      <section id="receipts-section" class="content-section mt-8 hide">
+        <div class="rec-hero">
+          <div class="rec-hero-inner">
+            <div class="rec-hero-text">
+              <h1><em>Receipt</em> Generator</h1>
+              <p>Generate, print and download payment receipts for your customers in a few simple clicks.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="rec-wrapper">
+          <div class="rec-card">
+            <!-- Top Actions -->
+            <div class="rec-top-actions">
+              <button type="button" class="rec-btn-primary" id="recPrint">Print Receipt</button>
+              <button type="button" class="rec-btn-secondary" id="recPDF">Download PDF</button>
+              <button type="button" class="rec-btn-reset" id="recReset">&#x21bb; Reset</button>
+            </div>
+
+            <!-- Receipt Form -->
+            <form id="receiptForm" onsubmit="return false;">
+              <h2 class="rec-card-title">PAYMENT RECEIPT</h2>
+              
+              <div class="rec-grid">
+                <div class="rec-field">
+                  <label for="recNumber">Receipt #</label>
+                  <input type="text" id="recNumber" value="REC-10029">
+                </div>
+                <div class="rec-field">
+                  <label for="recDate">Payment Date</label>
+                  <input type="date" id="recDate">
+                </div>
+                <div class="rec-field">
+                  <label for="recMethod">Payment Method</label>
+                  <select id="recMethod">
+                    <option value="Bank Transfer" selected>Bank Transfer</option>
+                    <option value="Credit Card">Credit Card</option>
+                    <option value="Cash">Cash</option>
+                    <option value="Cheque">Cheque</option>
+                    <option value="PayPal">PayPal</option>
+                  </select>
+                </div>
+                <div class="rec-field">
+                  <label for="recRef">Transaction Ref</label>
+                  <input type="text" id="recRef" placeholder="e.g. TXN-827364" value="TXN-827364">
+                </div>
+              </div>
+
+              <div class="rec-address-block">
+                <div class="rec-billing-col">
+                  <h3>Received From</h3>
+                  <input type="text" class="rec-field-bold" id="recFromClient" placeholder="Customer Name/Company" value="Acme Corp Ltd.">
+                  <textarea class="rec-textarea" id="recFromAddress" placeholder="Customer Address">456 Innovation Way, Manchester, M1 1AG</textarea>
+                </div>
+                <div class="rec-billing-col">
+                  <h3>Received By</h3>
+                  <input type="text" class="rec-field-bold" id="recByCompany" placeholder="Your Company Name" value="Softrate Tech Park Pvt. Ltd.">
+                  <textarea class="rec-textarea" id="recByAddress" placeholder="Your Address">123 tech park, Block A, London, EC1A 1BB</textarea>
+                </div>
+              </div>
+
+              <div class="rec-details-block">
+                <div class="rec-field-full">
+                  <label for="recDesc">Description of Services / Goods Paid For</label>
+                  <textarea class="rec-textarea" id="recDesc" rows="3" placeholder="Consulting Services for Cloud migration and infrastructure configuration.">Payment for Invoice INV-0001: IT Support and Custom Development Services</textarea>
+                </div>
+                
+                <div class="rec-amount-row">
+                  <div class="rec-amount-input-wrap">
+                    <label for="recAmount">Amount Received (&pound;)</label>
+                    <div class="rec-amt-input">
+                      <span>&pound;</span>
+                      <input type="number" id="recAmount" min="0" step="0.01" value="1020.00">
+                    </div>
+                  </div>
+                  <div class="rec-receipt-total">
+                    <div>TOTAL PAID</div>
+                    <div id="recTotalVal">&pound;1,020.00</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Notes -->
+              <div class="rec-field-full" style="margin-top: 1.5rem;">
+                <label for="recNotes">Receipt Notes</label>
+                <input type="text" id="recNotes" placeholder="e.g. Thank you for your payment." value="Thank you for your prompt payment!">
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      
+      <!-- Section: Revenue Forecaster -->
+      <section id="forecaster-section" class="content-section mt-8 hide">
+        <div class="fore-hero">
+          <div class="fore-hero-inner">
+            <div class="fore-hero-text">
+              <h1><em>Revenue</em> Forecaster</h1>
+              <p>Forecast your business revenue growth, analyze CAGR and trend projections using Straight-line, CAGR, or Linear Regression methods.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="fore-wrapper">
+          <div class="fore-card">
+            <h2 class="fore-card-title">Historical Financial Data</h2>
+            <p class="fore-card-subtitle">Enter your business's revenue for the past 3 to 5 years.</p>
+            
+            <div class="fore-flex-row">
+              <div class="fore-field" style="width: 150px;">
+                <label for="foreStartYear">Starting Year</label>
+                <input type="number" id="foreStartYear" value="2021" min="1900" max="2100">
+              </div>
+              <div class="fore-field">
+                <label for="foreCurrency">Currency</label>
+                <select id="foreCurrency" style="width: 120px;">
+                  <option value="&pound;" selected>&pound; (GBP)</option>
+                  <option value="$">$ (USD)</option>
+                  <option value="AED">AED</option>
+                  <option value="₹">₹ (INR)</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Historical Revenue Inputs -->
+            <div class="fore-years-grid" id="foreHistGrid">
+              <div class="fore-year-input">
+                <span class="fore-year-lbl" id="lblYear0">2021</span>
+                <input type="number" class="fore-hist-val" placeholder="0.00" value="120000">
+              </div>
+              <div class="fore-year-input">
+                <span class="fore-year-lbl" id="lblYear1">2022</span>
+                <input type="number" class="fore-hist-val" placeholder="0.00" value="145000">
+              </div>
+              <div class="fore-year-input">
+                <span class="fore-year-lbl" id="lblYear2">2023</span>
+                <input type="number" class="fore-hist-val" placeholder="0.00" value="180000">
+              </div>
+            </div>
+            
+            <div style="display: flex; gap: 10px; margin-bottom: 1.5rem;">
+              <button type="button" class="fore-btn-action" id="foreAddYear">+ Add Historical Year</button>
+              <button type="button" class="fore-btn-action" id="foreRemYear" style="background:#ef4444; color:#fff; border-color:#ef4444;">- Remove Year</button>
+            </div>
+
+            <hr style="border:0; border-top:1px solid #e2e8f0; margin:1.5rem 0;">
+
+            <h2 class="fore-card-title">Forecast Configuration</h2>
+            <div class="fore-config-grid">
+              <div class="fore-field">
+                <label for="foreMethod">Forecasting Method</label>
+                <select id="foreMethod">
+                  <option value="straight" selected>Straight Line (Constant Growth)</option>
+                  <option value="cagr">CAGR (Compound growth based on history)</option>
+                  <option value="regression">Linear Regression (Trendline projection)</option>
+                </select>
+              </div>
+              <div class="fore-field" id="foreGrowthRateWrap">
+                <label for="foreGrowthRate">Assumed Growth Rate (%)</label>
+                <input type="number" id="foreGrowthRate" value="15" min="-100" max="1000">
+              </div>
+              <div class="fore-field">
+                <label for="foreYearsCount">Forecast Period (Years)</label>
+                <input type="number" id="foreYearsCount" value="3" min="1" max="10">
+              </div>
+            </div>
+
+            <button type="button" class="fore-btn-calc" id="foreCalculate">Calculate Forecast</button>
+            
+            <!-- Result Block -->
+            <div class="fore-results hide" id="foreResultsBlock">
+              <h3 class="fore-results-title">Forecast Projections Summary</h3>
+              
+              <!-- CAGR Stat Card -->
+              <div class="fore-stat-card">
+                <div class="fore-stat-lbl">Historical CAGR:</div>
+                <div class="fore-stat-val" id="foreCagrVal">22.5%</div>
+              </div>
+
+              <!-- Table -->
+              <div class="fore-table-wrap">
+                <table class="fore-table" id="foreResultTable">
+                  <thead>
+                    <tr>
+                      <th>Year</th>
+                      <th>Type</th>
+                      <th class="text-right">Revenue</th>
+                      <th class="text-right">Growth (%)</th>
+                    </tr>
+                  </thead>
+                  <tbody id="foreResultBody">
+                    <!-- Dynamic result rows -->
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Chart Canvas -->
+              <div class="fore-chart-container" style="margin-top: 1.5rem; position: relative; height: 260px; width: 100%;">
+                <canvas id="foreChart"></canvas>
+              </div>
+            </div>
+            
+            <button type="button" class="vat-reset-btn" id="foreReset" style="margin-top:1.5rem;">Reset Calculator</button>
+          </div>
+        </div>
+      </section>
+
       <!-- Coming Soon Section -->
       <style>
         /* Embed shipping_label.css link dynamically, or we link it in the header. We will link it in the header. */
       </style>
+      
+      <!-- Section: UK VAT Calculator -->
+      <section id="uk-vat-section" class="content-section mt-8 hide">
+        <div class="vat-hero">
+          <div class="vat-hero-inner">
+            <div class="vat-hero-text">
+              <h1><em>UK VAT</em> Calculator</h1>
+              <p>Quickly calculate the amount of Value Added Tax (VAT) you need to add or remove for your UK business transactions.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="vat-wrapper">
+          <div class="vat-card">
+            <div class="vat-form-group">
+              <label>Select Action</label>
+              <div class="vat-action-toggles">
+                <input type="radio" id="ukVatAdd" name="ukVatAction" value="add" checked>
+                <label for="ukVatAdd">Add VAT (Net to Gross)</label>
+                
+                <input type="radio" id="ukVatRemove" name="ukVatAction" value="remove">
+                <label for="ukVatRemove">Remove VAT (Gross to Net)</label>
+              </div>
+            </div>
+
+            <div class="vat-form-group">
+              <label for="ukVatAmount">Amount (<span class="vat-currency-symbol">&pound;</span>)</label>
+              <div class="vat-input-wrap">
+                <span class="vat-input-addon">&pound;</span>
+                <input type="number" id="ukVatAmount" placeholder="0.00" min="0" step="0.01">
+              </div>
+            </div>
+
+            <div class="vat-form-group">
+              <label>VAT Rate</label>
+              <div class="vat-rate-options">
+                <div class="vat-rate-option">
+                  <input type="radio" id="ukRateStd" name="ukVatRateOpt" value="20" checked>
+                  <label for="ukRateStd">Standard (20%)</label>
+                </div>
+                <div class="vat-rate-option">
+                  <input type="radio" id="ukRateRed" name="ukVatRateOpt" value="5">
+                  <label for="ukRateRed">Reduced (5%)</label>
+                </div>
+                <div class="vat-rate-option">
+                  <input type="radio" id="ukRateZero" name="ukVatRateOpt" value="0">
+                  <label for="ukRateZero">Zero (0%)</label>
+                </div>
+                <div class="vat-rate-option">
+                  <input type="radio" id="ukRateCust" name="ukVatRateOpt" value="custom">
+                  <label for="ukRateCust">Custom</label>
+                </div>
+              </div>
+              <div class="vat-custom-rate-wrap hide" id="ukVatCustomRateWrap">
+                <input type="number" id="ukVatCustomRate" placeholder="Enter custom rate" min="0" max="100" step="0.1">
+                <span class="vat-input-addon">%</span>
+              </div>
+            </div>
+
+            <div class="vat-results">
+              <div class="vat-result-row">
+                <span>Net Amount:</span>
+                <span class="vat-result-val" id="ukVatNet">&pound;0.00</span>
+              </div>
+              <div class="vat-result-row">
+                <span>VAT Amount:</span>
+                <span class="vat-result-val" id="ukVatAmt">&pound;0.00</span>
+              </div>
+              <div class="vat-result-row vat-result-total">
+                <span>Gross Amount (Total):</span>
+                <span class="vat-result-val" id="ukVatGross">&pound;0.00</span>
+              </div>
+            </div>
+
+            <button type="button" class="vat-reset-btn" id="ukVatReset">Reset Calculator</button>
+          </div>
+
+          <!-- Info Section -->
+          <div class="vat-info">
+            <h2>What is UK VAT?</h2>
+            <p>Value Added Tax (VAT) is a consumption tax placed on a product whenever value is added at each stage of the supply chain, from production to the point of sale. For businesses registered in the UK, VAT is charged on most goods and services.</p>
+
+            <h2>Current VAT Rates in the UK</h2>
+            <p>The UK has three main VAT categories:</p>
+            <ul>
+              <li><strong>Standard Rate (20%):</strong> Applies to most goods and services.</li>
+              <li><strong>Reduced Rate (5%):</strong> Applies to some goods and services, such as home energy, children's car seats, and certain renovations.</li>
+              <li><strong>Zero Rate (0%):</strong> Applies to zero-rated goods and services, such as most food items, books, children's clothes, and public transport.</li>
+            </ul>
+
+            <h2>How is VAT calculated?</h2>
+            <p>To add VAT to an amount, multiply the net amount by 1 plus the VAT rate (expressed as a decimal). For example, to add 20% VAT to &pound;100: &pound;100 &times; 1.20 = &pound;120.</p>
+            <p>To remove VAT from a gross amount, divide the gross amount by 1 plus the VAT rate (expressed as a decimal). For example, to remove 20% VAT from &pound;120: &pound;120 / 1.20 = &pound;100. The VAT amount is the difference: &pound;120 - &pound;100 = &pound;20.</p>
+          </div>
+
+          <!-- Promo Card -->
+          <div class="vat-promo">
+            <h2>Manage your UK VAT Compliance effortlessly with Softrate</h2>
+            <p>Softrate is built to help UK businesses track VAT on sales and purchases, generate VAT returns automatically, and keep your accounting Making Tax Digital (MTD) compliant.</p>
+          </div>
+        </div>
+      </section>
+
+      
+      <!-- Section: UAE VAT Calculator -->
+      <section id="uae-vat-section" class="content-section mt-8 hide">
+        <div class="vat-hero">
+          <div class="vat-hero-inner">
+            <div class="vat-hero-text">
+              <h1><em>UAE VAT</em> Calculator</h1>
+              <p>Easily calculate the amount of Value Added Tax (VAT) for your business transactions in the United Arab Emirates.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="vat-wrapper">
+          <div class="vat-card">
+            <div class="vat-form-group">
+              <label>Select Action</label>
+              <div class="vat-action-toggles">
+                <input type="radio" id="uaeVatAdd" name="uaeVatAction" value="add" checked>
+                <label for="uaeVatAdd">Add VAT (Net to Gross)</label>
+                
+                <input type="radio" id="uaeVatRemove" name="uaeVatAction" value="remove">
+                <label for="uaeVatRemove">Remove VAT (Gross to Net)</label>
+              </div>
+            </div>
+
+            <div class="vat-form-group">
+              <label for="uaeVatAmount">Amount (AED)</label>
+              <div class="vat-input-wrap">
+                <span class="vat-input-addon">AED</span>
+                <input type="number" id="uaeVatAmount" placeholder="0.00" min="0" step="0.01">
+              </div>
+            </div>
+
+            <div class="vat-form-group">
+              <label>VAT Rate</label>
+              <div class="vat-rate-options">
+                <div class="vat-rate-option">
+                  <input type="radio" id="uaeRateStd" name="uaeVatRateOpt" value="5" checked>
+                  <label for="uaeRateStd">Standard (5%)</label>
+                </div>
+                <div class="vat-rate-option">
+                  <input type="radio" id="uaeRateZero" name="uaeVatRateOpt" value="0">
+                  <label for="uaeRateZero">Zero (0%)</label>
+                </div>
+                <div class="vat-rate-option">
+                  <input type="radio" id="uaeRateCust" name="uaeVatRateOpt" value="custom">
+                  <label for="uaeRateCust">Custom</label>
+                </div>
+              </div>
+              <div class="vat-custom-rate-wrap hide" id="uaeVatCustomRateWrap">
+                <input type="number" id="uaeVatCustomRate" placeholder="Enter custom rate" min="0" max="100" step="0.1">
+                <span class="vat-input-addon">%</span>
+              </div>
+            </div>
+
+            <div class="vat-results">
+              <div class="vat-result-row">
+                <span>Net Amount:</span>
+                <span class="vat-result-val" id="uaeVatNet">AED 0.00</span>
+              </div>
+              <div class="vat-result-row">
+                <span>VAT Amount:</span>
+                <span class="vat-result-val" id="uaeVatAmt">AED 0.00</span>
+              </div>
+              <div class="vat-result-row vat-result-total">
+                <span>Gross Amount (Total):</span>
+                <span class="vat-result-val" id="uaeVatGross">AED 0.00</span>
+              </div>
+            </div>
+
+            <button type="button" class="vat-reset-btn" id="uaeVatReset">Reset Calculator</button>
+          </div>
+
+          <!-- Info Section -->
+          <div class="vat-info">
+            <h2>What is UAE VAT?</h2>
+            <p>Value Added Tax (VAT) was introduced in the United Arab Emirates on 1 January 2018. It is an indirect tax applied on most goods and services at each stage of the supply chain, collected by registered businesses on behalf of the Federal Tax Authority (FTA).</p>
+
+            <h2>Current VAT Rates in the UAE</h2>
+            <p>The UAE VAT system includes the following rates:</p>
+            <ul>
+              <li><strong>Standard Rate (5%):</strong> Applies to most goods and services, including food, commercial buildings, hotel services, and utilities.</li>
+              <li><strong>Zero Rate (0%):</strong> Applies to specific sectors such as international transport of passengers and goods, supply of certain educational and healthcare services, and first supply of residential buildings.</li>
+              <li><strong>Exempt:</strong> Certain financial services, residential buildings (other than the first supply), bare land, and local passenger transport are exempt from VAT.</li>
+            </ul>
+          </div>
+
+          <!-- Promo Card -->
+          <div class="vat-promo">
+            <h2>Stay compliant with FTA regulations using Softrate</h2>
+            <p>Generate FTA-compliant tax invoices, track input tax credits, and file your VAT returns accurately in just a few clicks with Softrate's robust accounting features.</p>
+          </div>
+        </div>
+      </section>
+
+      
+      <!-- Section: UK Flat Rate VAT Calculator -->
+      <section id="uk-flat-section" class="content-section mt-8 hide">
+        <div class="vat-hero">
+          <div class="vat-hero-inner">
+            <div class="vat-hero-text">
+              <h1><em>UK Flat Rate</em> VAT Calculator</h1>
+              <p>Calculate your VAT liability under the UK Flat Rate Scheme (FRS) and compare it against standard VAT to see your savings.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="vat-wrapper">
+          <div class="vat-card">
+            <div class="vat-form-group">
+              <label for="frsSector">Business Sector</label>
+              <div class="vat-select-wrap">
+                <select id="frsSector">
+                  <option value="14.5" selected>Computer or IT consultancy (14.5%)</option>
+                  <option value="14.5">Accountancy or book-keeping (14.5%)</option>
+                  <option value="14">Advertising (14%)</option>
+                  <option value="14.5">Architect, civil/structural engineer or surveyor (14.5%)</option>
+                  <option value="12">Boarding or care home (12%)</option>
+                  <option value="12">Business services not listed elsewhere (12%)</option>
+                  <option value="12.5">Catering services including restaurants & cafes (12.5%)</option>
+                  <option value="12">Estate agency or property management (12%)</option>
+                  <option value="9.5">General building or construction services (9.5%)</option>
+                  <option value="12">Hotel or accommodation (12%)</option>
+                  <option value="14.5">Legal services (14.5%)</option>
+                  <option value="14">Management consultancy (14%)</option>
+                  <option value="11">Photography (11%)</option>
+                  <option value="5">Post offices (5%)</option>
+                  <option value="6.5">Pubs (6.5%)</option>
+                  <option value="4">Retail food, confectionery, newspapers, children's clothes (4%)</option>
+                  <option value="8">Retail pharmaceuticals (8%)</option>
+                  <option value="7.5">Retail not listed elsewhere (7.5%)</option>
+                  <option value="10">Transport or storage, couriers and freight (10%)</option>
+                  <option value="10.5">Travel agency (10.5%)</option>
+                  <option value="4.5">Wholesaling food (4.5%)</option>
+                  <option value="8.5">Wholesaling not listed elsewhere (8.5%)</option>
+                  <option value="custom">Other sector (Custom %)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="vat-form-group hide" id="frsCustomRateWrap">
+              <label for="frsCustomRate">Custom Flat Rate (%)</label>
+              <input type="number" id="frsCustomRate" placeholder="e.g. 12" min="0" max="100" step="0.1">
+            </div>
+
+            <div class="vat-form-group">
+              <label class="vat-checkbox-label">
+                <input type="checkbox" id="frsFirstYear">
+                First year of VAT registration? (Get 1% discount on rate)
+              </label>
+            </div>
+
+            <div class="vat-form-group">
+              <label for="frsTurnover">Gross Turnover (including VAT) (&pound;)</label>
+              <div class="vat-input-wrap">
+                <span class="vat-input-addon">&pound;</span>
+                <input type="number" id="frsTurnover" placeholder="0.00" min="0" step="0.01">
+              </div>
+            </div>
+
+            <div class="vat-form-group">
+              <label for="frsGoodsCost">Cost of Relevant Goods/Materials (&pound;)</label>
+              <div class="vat-input-wrap">
+                <span class="vat-input-addon">&pound;</span>
+                <input type="number" id="frsGoodsCost" placeholder="0.00" min="0" step="0.01">
+              </div>
+              <p class="vat-input-help">Used to check if you are a "Limited Cost Trader" (rate increases to 16.5% if spending is too low).</p>
+            </div>
+
+            <!-- FRS Outputs -->
+            <div class="vat-results">
+              <div class="vat-result-row">
+                <span>Applied Flat Rate:</span>
+                <span class="vat-result-val" id="frsAppliedRate">14.5%</span>
+              </div>
+              <div class="vat-result-row" id="frsLimCostRow" style="display:none; color:#de7110;">
+                <span>Limited Cost Trader Status:</span>
+                <span class="vat-result-val">Active (Rate overridden to 16.5%)</span>
+              </div>
+              <div class="vat-result-row vat-result-total">
+                <span>Flat Rate VAT to Pay:</span>
+                <span class="vat-result-val" id="frsVatToPay">&pound;0.00</span>
+              </div>
+            </div>
+
+            <!-- FRS Comparison -->
+            <div class="vat-comparison-card">
+              <h3>Comparison vs Standard VAT (20%)</h3>
+              <div class="vat-comp-grid">
+                <div class="vat-comp-col">
+                  <div class="vat-comp-label">Standard Scheme (Est.)</div>
+                  <div class="vat-comp-val" id="frsStdEst">&pound;0.00</div>
+                  <small>Sales VAT (20%) minus standard inputs reclaim</small>
+                </div>
+                <div class="vat-comp-col">
+                  <div class="vat-comp-label">Flat Rate Scheme</div>
+                  <div class="vat-comp-val" id="frsFlatEst">&pound;0.00</div>
+                  <small> turnover &times; flat rate percentage</small>
+                </div>
+              </div>
+              <div class="vat-comp-summary" id="frsSavingsBox">
+                VAT Savings: <span id="frsSavingsAmt">&pound;0.00</span>
+              </div>
+            </div>
+
+            <button type="button" class="vat-reset-btn" id="frsReset">Reset Calculator</button>
+          </div>
+
+          <!-- Info Section -->
+          <div class="vat-info">
+            <h2>What is the UK Flat Rate VAT Scheme?</h2>
+            <p>The Flat Rate Scheme is designed to simplify VAT accounting for small businesses in the UK. Instead of recording and claiming VAT on every single purchase, you pay a fixed percentage of your gross turnover (including VAT) to HMRC, and you keep the difference between what you charge customers and what you pay to HMRC.</p>
+            <p>You cannot reclaim VAT on purchases (except for single capital assets costing &pound;2,000 or more).</p>
+
+            <h2>Eligibility criteria</h2>
+            <p>You can join the scheme if your VAT-taxable turnover (excluding VAT) is <strong>&pound;150,000 or less</strong> in the next 12 months. You must leave the scheme if your total turnover (including VAT) exceeds <strong>&pound;230,000</strong> in a 12-month period.</p>
+
+            <h2>What is a Limited Cost Trader?</h2>
+            <p>If your business spends less than 2% of its turnover (or less than &pound;250 per quarter / &pound;1,000 per year) on "relevant goods" (raw materials, physical goods, but excluding office equipment, gas/electricity, services, vehicle costs, and food/drink), you are classified as a <strong>Limited Cost Trader</strong>. In this case, you must pay a higher flat rate of <strong>16.5%</strong>, regardless of your sector's standard flat rate.</p>
+          </div>
+        </div>
+      </section>
+
+      
+      <!-- Section: Invoice Generator -->
+      <section id="invoice-section" class="content-section mt-8 hide">
+        <div class="inv-hero">
+          <div class="inv-hero-inner">
+            <div class="inv-hero-text">
+              <h1><em>Invoice</em> Generator</h1>
+              <p>Create and download beautiful, professional invoices for your business in seconds. Fully customizable and MTD-compliant.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="inv-wrapper">
+          <div class="inv-card">
+            <!-- Top Actions -->
+            <div class="inv-top-actions">
+              <button type="button" class="inv-btn-primary" id="invPrint">Print Invoice</button>
+              <button type="button" class="inv-btn-secondary" id="invPDF">Download PDF</button>
+              <button type="button" class="inv-btn-reset" id="invReset">&#x21bb; Reset</button>
+            </div>
+
+            <!-- Invoice Body Form -->
+            <form id="invoiceForm" onsubmit="return false;">
+              <!-- Header Details -->
+              <div class="inv-header-grid">
+                <!-- Company Info (Bill From) -->
+                <div class="inv-billing-col">
+                  <h3>Bill From</h3>
+                  <input type="text" class="inv-field-bold" id="invFromCompany" placeholder="Your Company Name" value="Softrate Tech Park Pvt. Ltd.">
+                  <input type="text" class="inv-field" id="invFromAddress" placeholder="Company Address" value="123 tech park, Block A">
+                  <input type="text" class="inv-field" id="invFromCity" placeholder="City, State Zip" value="London, EC1A 1BB">
+                  <input type="text" class="inv-field" id="invFromCountry" placeholder="Country" value="United Kingdom">
+                  <input type="text" class="inv-field" id="invFromPhone" placeholder="Phone" value="+44 20 7946 0958">
+                </div>
+
+                <!-- Client Info (Bill To) -->
+                <div class="inv-billing-col">
+                  <h3>Bill To</h3>
+                  <input type="text" class="inv-field-bold" id="invToClient" placeholder="Client Name / Company" value="Acme Corp Ltd.">
+                  <input type="text" class="inv-field" id="invToAddress" placeholder="Client Address" value="456 Innovation Way">
+                  <input type="text" class="inv-field" id="invToCity" placeholder="City, State Zip" value="Manchester, M1 1AG">
+                  <input type="text" class="inv-field" id="invToCountry" placeholder="Country" value="United Kingdom">
+                  <input type="text" class="inv-field" id="invToEmail" placeholder="Client Email" value="billing@acme.com">
+                </div>
+
+                <!-- Invoice Meta Details -->
+                <div class="inv-meta-col">
+                  <input type="text" class="inv-title-input" id="invTitleText" value="INVOICE">
+                  
+                  <div class="inv-meta-row">
+                    <label for="invNumber">Invoice #</label>
+                    <input type="text" id="invNumber" value="INV-0001">
+                  </div>
+                  <div class="inv-meta-row">
+                    <label for="invDate">Date</label>
+                    <input type="date" id="invDate">
+                  </div>
+                  <div class="inv-meta-row">
+                    <label for="invDueDate">Due Date</label>
+                    <input type="date" id="invDueDate">
+                  </div>
+                  <div class="inv-meta-row">
+                    <label for="invPO">PO Number</label>
+                    <input type="text" id="invPO" placeholder="e.g. PO-987">
+                  </div>
+                </div>
+              </div>
+
+              <!-- Line Items Table -->
+              <div class="inv-table-wrap">
+                <table class="inv-items-table" id="invItemsTable">
+                  <thead>
+                    <tr>
+                      <th width="45%">Item Description</th>
+                      <th width="12%">Quantity</th>
+                      <th width="15%">Rate (&pound;)</th>
+                      <th width="12%">Tax (%)</th>
+                      <th width="14%" class="text-right">Amount (&pound;)</th>
+                      <th width="2%"></th>
+                    </tr>
+                  </thead>
+                  <tbody id="invItemRows">
+                    <!-- Dynamic Rows -->
+                    <tr>
+                      <td><input type="text" class="inv-item-desc" placeholder="Software Engineering Services" value="Consulting Services"></td>
+                      <td><input type="number" class="inv-item-qty" placeholder="1" min="0" step="1" value="10"></td>
+                      <td><input type="number" class="inv-item-rate" placeholder="0.00" min="0" step="0.01" value="85.00"></td>
+                      <td><input type="number" class="inv-item-tax" placeholder="20" min="0" max="100" step="0.1" value="20"></td>
+                      <td class="inv-item-total text-right">&pound;850.00</td>
+                      <td><button type="button" class="inv-remove-row" title="Delete Row">&times;</button></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <button type="button" class="inv-add-row-btn" id="invAddRow">&#x2295; Add Line Item</button>
+
+              <!-- Footer Summary -->
+              <div class="inv-footer-grid">
+                <!-- Notes -->
+                <div class="inv-notes-col">
+                  <label for="invNotes">Notes / Payment Terms</label>
+                  <textarea id="invNotes" placeholder="Enter bank details, payment instructions or thanks notes here...">Thank you for your business! Bank transfer details: Softrate Bank, Account: 12345678, Sort Code: 12-34-56.</textarea>
+                </div>
+
+                <!-- Summary Values -->
+                <div class="inv-summary-col">
+                  <div class="inv-sum-row">
+                    <span>Sub Total:</span>
+                    <span id="invSubTotal">&pound;0.00</span>
+                  </div>
+                  <div class="inv-sum-row">
+                    <span>Tax Total:</span>
+                    <span id="invTaxTotal">&pound;0.00</span>
+                  </div>
+                  <div class="inv-sum-row">
+                    <span>Discount (Flat &pound;):</span>
+                    <input type="number" id="invDiscount" min="0" step="0.01" value="0.00" style="width: 100px; text-align: right; padding: 4px;">
+                  </div>
+                  <div class="inv-sum-row">
+                    <span>Shipping:</span>
+                    <input type="number" id="invShipping" min="0" step="0.01" value="0.00" style="width: 100px; text-align: right; padding: 4px;">
+                  </div>
+                  <div class="inv-sum-row inv-total-row">
+                    <span>Balance Due (&pound;):</span>
+                    <span id="invTotalDue">&pound;0.00</span>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      
+      <!-- Section: Quote Generator -->
+      <section id="quote-section" class="content-section mt-8 hide">
+        <div class="inv-hero">
+          <div class="inv-hero-inner">
+            <div class="inv-hero-text">
+              <h1><em>Quote</em> Generator</h1>
+              <p>Create beautiful sales estimates, quotes or proposals for your customers. Convert prospects into clients effortlessly.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="inv-wrapper">
+          <div class="inv-card">
+            <!-- Top Actions -->
+            <div class="inv-top-actions">
+              <button type="button" class="inv-btn-primary" id="qtPrint">Print Quote</button>
+              <button type="button" class="inv-btn-secondary" id="qtPDF">Download PDF</button>
+              <button type="button" class="inv-btn-reset" id="qtReset">&#x21bb; Reset</button>
+            </div>
+
+            <!-- Quote Body Form -->
+            <form id="quoteForm" onsubmit="return false;">
+              <!-- Header Details -->
+              <div class="inv-header-grid">
+                <!-- Company Info -->
+                <div class="inv-billing-col">
+                  <h3>From</h3>
+                  <input type="text" class="inv-field-bold" id="qtFromCompany" placeholder="Your Company Name" value="Softrate Tech Park Pvt. Ltd.">
+                  <input type="text" class="inv-field" id="qtFromAddress" placeholder="Company Address" value="123 tech park, Block A">
+                  <input type="text" class="inv-field" id="qtFromCity" placeholder="City, State Zip" value="London, EC1A 1BB">
+                  <input type="text" class="inv-field" id="qtFromCountry" placeholder="Country" value="United Kingdom">
+                  <input type="text" class="inv-field" id="qtFromPhone" placeholder="Phone" value="+44 20 7946 0958">
+                </div>
+
+                <!-- Client Info -->
+                <div class="inv-billing-col">
+                  <h3>To</h3>
+                  <input type="text" class="inv-field-bold" id="qtToClient" placeholder="Client Name / Company" value="Apex Global Solutions">
+                  <input type="text" class="inv-field" id="qtToAddress" placeholder="Client Address" value="789 Science Park Road">
+                  <input type="text" class="inv-field" id="qtToCity" placeholder="City, State Zip" value="Birmingham, B1 2HP">
+                  <input type="text" class="inv-field" id="qtToCountry" placeholder="Country" value="United Kingdom">
+                  <input type="text" class="inv-field" id="qtToEmail" placeholder="Client Email" value="info@apex.com">
+                </div>
+
+                <!-- Quote Meta Details -->
+                <div class="inv-meta-col">
+                  <input type="text" class="inv-title-input" id="qtTitleText" value="ESTIMATE">
+                  
+                  <div class="inv-meta-row">
+                    <label for="qtNumber">Estimate #</label>
+                    <input type="text" id="qtNumber" value="EST-0021">
+                  </div>
+                  <div class="inv-meta-row">
+                    <label for="qtDate">Date</label>
+                    <input type="date" id="qtDate">
+                  </div>
+                  <div class="inv-meta-row">
+                    <label for="qtExpiryDate">Valid Until</label>
+                    <input type="date" id="qtExpiryDate">
+                  </div>
+                  <div class="inv-meta-row">
+                    <label for="qtRef">Reference</label>
+                    <input type="text" id="qtRef" placeholder="e.g. RFQ-009">
+                  </div>
+                </div>
+              </div>
+
+              <!-- Line Items Table -->
+              <div class="inv-table-wrap">
+                <table class="inv-items-table" id="qtItemsTable">
+                  <thead>
+                    <tr>
+                      <th width="45%">Item Description</th>
+                      <th width="12%">Quantity</th>
+                      <th width="15%">Rate (&pound;)</th>
+                      <th width="12%">Tax (%)</th>
+                      <th width="14%" class="text-right">Amount (&pound;)</th>
+                      <th width="2%"></th>
+                    </tr>
+                  </thead>
+                  <tbody id="qtItemRows">
+                    <!-- Dynamic Rows -->
+                    <tr>
+                      <td><input type="text" class="inv-item-desc" placeholder="Product or service description" value="Cloud Hosting Implementation Setup"></td>
+                      <td><input type="number" class="inv-item-qty" placeholder="1" min="0" step="1" value="1"></td>
+                      <td><input type="number" class="inv-item-rate" placeholder="0.00" min="0" step="0.01" value="1200.00"></td>
+                      <td><input type="number" class="inv-item-tax" placeholder="20" min="0" max="100" step="0.1" value="20"></td>
+                      <td class="inv-item-total text-right">&pound;1200.00</td>
+                      <td><button type="button" class="inv-remove-row" title="Delete Row">&times;</button></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <button type="button" class="inv-add-row-btn" id="qtAddRow">&#x2295; Add Line Item</button>
+
+              <!-- Footer Summary -->
+              <div class="inv-footer-grid">
+                <!-- Notes -->
+                <div class="inv-notes-col">
+                  <label for="qtNotes">Notes / Terms</label>
+                  <textarea id="qtNotes" placeholder="Enter notes or terms of service here...">This estimate is valid for 30 days. Standard service level agreements apply.</textarea>
+                </div>
+
+                <!-- Summary Values -->
+                <div class="inv-summary-col">
+                  <div class="inv-sum-row">
+                    <span>Sub Total:</span>
+                    <span id="qtSubTotal">&pound;0.00</span>
+                  </div>
+                  <div class="inv-sum-row">
+                    <span>Tax Total:</span>
+                    <span id="qtTaxTotal">&pound;0.00</span>
+                  </div>
+                  <div class="inv-sum-row">
+                    <span>Discount (Flat &pound;):</span>
+                    <input type="number" id="qtDiscount" min="0" step="0.01" value="0.00" style="width: 100px; text-align: right; padding: 4px;">
+                  </div>
+                  <div class="inv-sum-row inv-total-row">
+                    <span>Total Estimate (&pound;):</span>
+                    <span id="qtTotalDue">&pound;0.00</span>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      
+      <!-- Section: Receipt Generator -->
+      <section id="receipts-section" class="content-section mt-8 hide">
+        <div class="rec-hero">
+          <div class="rec-hero-inner">
+            <div class="rec-hero-text">
+              <h1><em>Receipt</em> Generator</h1>
+              <p>Generate, print and download payment receipts for your customers in a few simple clicks.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="rec-wrapper">
+          <div class="rec-card">
+            <!-- Top Actions -->
+            <div class="rec-top-actions">
+              <button type="button" class="rec-btn-primary" id="recPrint">Print Receipt</button>
+              <button type="button" class="rec-btn-secondary" id="recPDF">Download PDF</button>
+              <button type="button" class="rec-btn-reset" id="recReset">&#x21bb; Reset</button>
+            </div>
+
+            <!-- Receipt Form -->
+            <form id="receiptForm" onsubmit="return false;">
+              <h2 class="rec-card-title">PAYMENT RECEIPT</h2>
+              
+              <div class="rec-grid">
+                <div class="rec-field">
+                  <label for="recNumber">Receipt #</label>
+                  <input type="text" id="recNumber" value="REC-10029">
+                </div>
+                <div class="rec-field">
+                  <label for="recDate">Payment Date</label>
+                  <input type="date" id="recDate">
+                </div>
+                <div class="rec-field">
+                  <label for="recMethod">Payment Method</label>
+                  <select id="recMethod">
+                    <option value="Bank Transfer" selected>Bank Transfer</option>
+                    <option value="Credit Card">Credit Card</option>
+                    <option value="Cash">Cash</option>
+                    <option value="Cheque">Cheque</option>
+                    <option value="PayPal">PayPal</option>
+                  </select>
+                </div>
+                <div class="rec-field">
+                  <label for="recRef">Transaction Ref</label>
+                  <input type="text" id="recRef" placeholder="e.g. TXN-827364" value="TXN-827364">
+                </div>
+              </div>
+
+              <div class="rec-address-block">
+                <div class="rec-billing-col">
+                  <h3>Received From</h3>
+                  <input type="text" class="rec-field-bold" id="recFromClient" placeholder="Customer Name/Company" value="Acme Corp Ltd.">
+                  <textarea class="rec-textarea" id="recFromAddress" placeholder="Customer Address">456 Innovation Way, Manchester, M1 1AG</textarea>
+                </div>
+                <div class="rec-billing-col">
+                  <h3>Received By</h3>
+                  <input type="text" class="rec-field-bold" id="recByCompany" placeholder="Your Company Name" value="Softrate Tech Park Pvt. Ltd.">
+                  <textarea class="rec-textarea" id="recByAddress" placeholder="Your Address">123 tech park, Block A, London, EC1A 1BB</textarea>
+                </div>
+              </div>
+
+              <div class="rec-details-block">
+                <div class="rec-field-full">
+                  <label for="recDesc">Description of Services / Goods Paid For</label>
+                  <textarea class="rec-textarea" id="recDesc" rows="3" placeholder="Consulting Services for Cloud migration and infrastructure configuration.">Payment for Invoice INV-0001: IT Support and Custom Development Services</textarea>
+                </div>
+                
+                <div class="rec-amount-row">
+                  <div class="rec-amount-input-wrap">
+                    <label for="recAmount">Amount Received (&pound;)</label>
+                    <div class="rec-amt-input">
+                      <span>&pound;</span>
+                      <input type="number" id="recAmount" min="0" step="0.01" value="1020.00">
+                    </div>
+                  </div>
+                  <div class="rec-receipt-total">
+                    <div>TOTAL PAID</div>
+                    <div id="recTotalVal">&pound;1,020.00</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Notes -->
+              <div class="rec-field-full" style="margin-top: 1.5rem;">
+                <label for="recNotes">Receipt Notes</label>
+                <input type="text" id="recNotes" placeholder="e.g. Thank you for your payment." value="Thank you for your prompt payment!">
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      
+      <!-- Section: Revenue Forecaster -->
+      <section id="forecaster-section" class="content-section mt-8 hide">
+        <div class="fore-hero">
+          <div class="fore-hero-inner">
+            <div class="fore-hero-text">
+              <h1><em>Revenue</em> Forecaster</h1>
+              <p>Forecast your business revenue growth, analyze CAGR and trend projections using Straight-line, CAGR, or Linear Regression methods.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="fore-wrapper">
+          <div class="fore-card">
+            <h2 class="fore-card-title">Historical Financial Data</h2>
+            <p class="fore-card-subtitle">Enter your business's revenue for the past 3 to 5 years.</p>
+            
+            <div class="fore-flex-row">
+              <div class="fore-field" style="width: 150px;">
+                <label for="foreStartYear">Starting Year</label>
+                <input type="number" id="foreStartYear" value="2021" min="1900" max="2100">
+              </div>
+              <div class="fore-field">
+                <label for="foreCurrency">Currency</label>
+                <select id="foreCurrency" style="width: 120px;">
+                  <option value="&pound;" selected>&pound; (GBP)</option>
+                  <option value="$">$ (USD)</option>
+                  <option value="AED">AED</option>
+                  <option value="₹">₹ (INR)</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Historical Revenue Inputs -->
+            <div class="fore-years-grid" id="foreHistGrid">
+              <div class="fore-year-input">
+                <span class="fore-year-lbl" id="lblYear0">2021</span>
+                <input type="number" class="fore-hist-val" placeholder="0.00" value="120000">
+              </div>
+              <div class="fore-year-input">
+                <span class="fore-year-lbl" id="lblYear1">2022</span>
+                <input type="number" class="fore-hist-val" placeholder="0.00" value="145000">
+              </div>
+              <div class="fore-year-input">
+                <span class="fore-year-lbl" id="lblYear2">2023</span>
+                <input type="number" class="fore-hist-val" placeholder="0.00" value="180000">
+              </div>
+            </div>
+            
+            <div style="display: flex; gap: 10px; margin-bottom: 1.5rem;">
+              <button type="button" class="fore-btn-action" id="foreAddYear">+ Add Historical Year</button>
+              <button type="button" class="fore-btn-action" id="foreRemYear" style="background:#ef4444; color:#fff; border-color:#ef4444;">- Remove Year</button>
+            </div>
+
+            <hr style="border:0; border-top:1px solid #e2e8f0; margin:1.5rem 0;">
+
+            <h2 class="fore-card-title">Forecast Configuration</h2>
+            <div class="fore-config-grid">
+              <div class="fore-field">
+                <label for="foreMethod">Forecasting Method</label>
+                <select id="foreMethod">
+                  <option value="straight" selected>Straight Line (Constant Growth)</option>
+                  <option value="cagr">CAGR (Compound growth based on history)</option>
+                  <option value="regression">Linear Regression (Trendline projection)</option>
+                </select>
+              </div>
+              <div class="fore-field" id="foreGrowthRateWrap">
+                <label for="foreGrowthRate">Assumed Growth Rate (%)</label>
+                <input type="number" id="foreGrowthRate" value="15" min="-100" max="1000">
+              </div>
+              <div class="fore-field">
+                <label for="foreYearsCount">Forecast Period (Years)</label>
+                <input type="number" id="foreYearsCount" value="3" min="1" max="10">
+              </div>
+            </div>
+
+            <button type="button" class="fore-btn-calc" id="foreCalculate">Calculate Forecast</button>
+            
+            <!-- Result Block -->
+            <div class="fore-results hide" id="foreResultsBlock">
+              <h3 class="fore-results-title">Forecast Projections Summary</h3>
+              
+              <!-- CAGR Stat Card -->
+              <div class="fore-stat-card">
+                <div class="fore-stat-lbl">Historical CAGR:</div>
+                <div class="fore-stat-val" id="foreCagrVal">22.5%</div>
+              </div>
+
+              <!-- Table -->
+              <div class="fore-table-wrap">
+                <table class="fore-table" id="foreResultTable">
+                  <thead>
+                    <tr>
+                      <th>Year</th>
+                      <th>Type</th>
+                      <th class="text-right">Revenue</th>
+                      <th class="text-right">Growth (%)</th>
+                    </tr>
+                  </thead>
+                  <tbody id="foreResultBody">
+                    <!-- Dynamic result rows -->
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Chart Canvas -->
+              <div class="fore-chart-container" style="margin-top: 1.5rem; position: relative; height: 260px; width: 100%;">
+                <canvas id="foreChart"></canvas>
+              </div>
+            </div>
+            
+            <button type="button" class="vat-reset-btn" id="foreReset" style="margin-top:1.5rem;">Reset Calculator</button>
+          </div>
+        </div>
+      </section>
+
       <!-- Coming Soon Section -->
       <section id="coming-soon-section" class="content-section mt-8 hide">
         <div class="card about-card" style="text-align: center; padding: 4rem 2rem;">
@@ -6750,6 +8349,160 @@
       
       
       
+      
+      <!-- Section: UK Corporation Tax Calculator -->
+      <section id="uk-corp-section" class="content-section mt-8 hide">
+
+        <!-- Hero -->
+        <div class="ct-hero">
+          <div class="ct-hero-inner">
+            <div class="ct-hero-illust ct-hero-left">
+              <svg viewBox="0 0 120 120" width="100" height="100"><rect x="20" y="30" width="40" height="55" rx="4" fill="#c5ddf6" stroke="#4a7fd4" stroke-width="1.5"/><rect x="28" y="42" width="24" height="4" rx="1" fill="#4a7fd4" opacity=".5"/><rect x="28" y="50" width="24" height="4" rx="1" fill="#4a7fd4" opacity=".3"/><rect x="28" y="58" width="16" height="4" rx="1" fill="#4a7fd4" opacity=".3"/><circle cx="80" cy="50" r="18" fill="none" stroke="#4a7fd4" stroke-width="1.5" stroke-dasharray="4 3"/><text x="80" y="54" text-anchor="middle" font-size="12" fill="#4a7fd4" font-weight="600">£</text></svg>
+            </div>
+            <div class="ct-hero-text">
+              <h1><em>Corporation</em>Tax Calculator</h1>
+              <p>Get a quick insight into the amount of Corporation Tax your business is liable for in a few simple clicks.</p>
+            </div>
+            <div class="ct-hero-illust ct-hero-right">
+              <svg viewBox="0 0 120 120" width="100" height="100"><circle cx="60" cy="60" r="30" fill="none" stroke="#4a7fd4" stroke-width="1.5"/><text x="60" y="56" text-anchor="middle" font-size="16" fill="#4a7fd4" font-weight="600">£</text><text x="60" y="70" text-anchor="middle" font-size="8" fill="#4a7fd4">%</text><line x1="85" y1="35" x2="100" y2="20" stroke="#4a7fd4" stroke-width="1.5"/><line x1="100" y1="20" x2="110" y2="25" stroke="#4a7fd4" stroke-width="1.5"/><circle cx="30" cy="100" r="6" fill="#c5ddf6"/><rect x="90" y="85" width="15" height="15" rx="3" fill="#c5ddf6"/></svg>
+            </div>
+          </div>
+        </div>
+
+        <div class="ct-wrapper">
+          <!-- Calculator Card -->
+          <div class="ct-card">
+
+            <!-- Net Profit -->
+            <h2 class="ct-section-title ct-blue">Net profit</h2>
+            <p class="ct-section-sub">Profit/Loss incorporated by the company before expense</p>
+
+            <div class="ct-expense-row">
+              <span class="ct-label">Business Turnover</span>
+              <div class="ct-input-wrap"><input type="number" id="ctTurnover" placeholder="" min="0" step="0.01" value=""></div>
+            </div>
+
+            <!-- Allowed Expenses -->
+            <div class="ct-section-header">
+              <h3 class="ct-section-title2">Allowed Expenses</h3>
+              <a href="javascript:void(0)" class="ct-view-link" id="ctViewAllowed">View all allowed expenses</a>
+            </div>
+            <p class="ct-section-sub">Expenses that helps to keep a business running</p>
+
+            <div id="ctAllowedRows">
+              <div class="ct-expense-row" data-default="1">
+                <span class="ct-label">Salary</span>
+                <div class="ct-input-wrap"><input type="number" class="ct-allowed" placeholder="" min="0" step="0.01" value=""></div>
+                <button class="ct-row-menu" title="Remove">&#8943;</button>
+              </div>
+              <div class="ct-expense-row" data-default="1">
+                <span class="ct-label">Travel</span>
+                <div class="ct-input-wrap"><input type="number" class="ct-allowed" placeholder="" min="0" step="0.01" value=""></div>
+                <button class="ct-row-menu" title="Remove">&#8943;</button>
+              </div>
+              <div class="ct-expense-row" data-default="1">
+                <span class="ct-label">Accounting Fees</span>
+                <div class="ct-input-wrap"><input type="number" class="ct-allowed" placeholder="" min="0" step="0.01" value=""></div>
+                <button class="ct-row-menu" title="Remove">&#8943;</button>
+              </div>
+            </div>
+            <button class="ct-add-btn" id="ctAddAllowed"><span class="ct-add-icon">&#x2295;</span> Add New</button>
+
+            <!-- Add Back Expenses -->
+            <div class="ct-section-header">
+              <h3 class="ct-section-title2">Add back Expenses</h3>
+              <a href="javascript:void(0)" class="ct-view-link" id="ctViewAddBack">View all add back expenses</a>
+            </div>
+            <p class="ct-section-sub">Expenses which has the primary motive of obtaining profit</p>
+
+            <div id="ctAddBackRows">
+              <div class="ct-expense-row" data-default="1">
+                <span class="ct-label">Business Entertainment</span>
+                <div class="ct-input-wrap"><input type="number" class="ct-addback" placeholder="" min="0" step="0.01" value=""></div>
+                <button class="ct-row-menu" title="Remove">&#8943;</button>
+              </div>
+              <div class="ct-expense-row" data-default="1">
+                <span class="ct-label">Depreciation</span>
+                <div class="ct-input-wrap"><input type="number" class="ct-addback" placeholder="" min="0" step="0.01" value=""></div>
+                <button class="ct-row-menu" title="Remove">&#8943;</button>
+              </div>
+              <div class="ct-expense-row" data-default="1">
+                <span class="ct-label">Repayment of Loan</span>
+                <div class="ct-input-wrap"><input type="number" class="ct-addback" placeholder="" min="0" step="0.01" value=""></div>
+                <button class="ct-row-menu" title="Remove">&#8943;</button>
+              </div>
+            </div>
+            <button class="ct-add-btn" id="ctAddAddBack"><span class="ct-add-icon">&#x2295;</span> Add New</button>
+
+            <!-- Results -->
+            <div class="ct-results">
+              <div class="ct-result-row">
+                <span><strong>Profit Before Corporation Tax</strong></span>
+                <span class="ct-result-val" id="ctProfitBefore">&pound; 0.00</span>
+              </div>
+              <div class="ct-result-row">
+                <span><strong>Corporation Tax (19%)</strong></span>
+                <span class="ct-result-val" id="ctTaxAmount">&pound; 0.00</span>
+              </div>
+            </div>
+
+          </div><!-- /.ct-card -->
+
+          <!-- Info Sections -->
+          <div class="ct-info">
+
+            <h2>What is Corporation Tax?</h2>
+            <p>Corporation Tax is a tax that is payable on all taxable profits of any company that is based in the UK, no matter where in the world the profit is generated. Corporation Tax is paid annually based on your Corporation Tax accounting period, which is usually the same as your company's financial year.</p>
+
+            <h2>How to calculate Corporation Tax with this tool</h2>
+            <p>This calculator generates your tax due amount by adding back any depreciation and client entertaining costs to the profit before tax, then subtracting any capital allowances to arrive at the profit value that is liable for Corporation Tax.</p>
+            <p>For the current tax year, tax is due at a rate of 19% on profits, so the calculator divides your liable profit by 100 then multiplies the resulting sum by 19 to arrive at your Corporation Tax due.</p>
+            <p>All you have to do is enter your net profit and your add-back expenses and other allowed expenses (such as salaries and other staff costs, cost of stock or raw materials, office costs, travel, and accommodation) to generate your Corporation Tax due.</p>
+
+            <h2>Add back expenses</h2>
+            <p>An add back expense is an expense that will not be included in the buyer's future P&amp;Ls for the company. Understanding and applying add backs and other kinds of adjustments helps normalize a business's earnings on a go-forward basis.</p>
+            <p class="ct-list-title">List of add back expense</p>
+            <ul class="ct-bullet-list">
+              <li>Business entertainment</li>
+              <li>The repayment of loans taken out personally to help run the business</li>
+              <li>The depreciation of assets</li>
+              <li>Drawings including payments for tax and National Insurance Contributions (NIC)</li>
+              <li>Fines and costs resulting from breaking the law such as car parking fines, if incurred by proprietors or directors</li>
+              <li>Charitable donations, including subscriptions, with the exceptions of small charities and political donations</li>
+            </ul>
+
+            <h2>Allowed Expenses</h2>
+            <p>Allowable business expenses are purchased products or services that help keep a business running. Examples include stationery, phone bills, and travel costs to name a few. They are deducted from income when calculating taxable profit which means you don't pay tax on these items.</p>
+            <p class="ct-list-title">List of allowed expense</p>
+            <ul class="ct-bullet-list">
+              <li>Rent</li>
+              <li>Insurance</li>
+              <li>Heating</li>
+              <li>Repairs and maintenance</li>
+              <li>Wages, salaries and related staff costs</li>
+            </ul>
+          </div>
+
+          <!-- Promo Card -->
+          <div class="ct-promo">
+            <h2>Looking for a modernized VAT accounting tool for your business?</h2>
+            <p>Look no further than Softrate. Softrate will help your business create VAT-compliant invoices, manage your finances, file tax returns directly, generate detailed reports, and much more.</p>
+          </div>
+
+          <div class="ct-features">
+            <h3>More of Softrate's features for business</h3>
+            <div class="ct-features-grid">
+              <div class="ct-feat-item"><div class="ct-feat-icon">&#128203;</div><span>Manage receivables and payables effortlessly</span></div>
+              <div class="ct-feat-item"><div class="ct-feat-icon">&#128230;</div><span>Create items and track inventory</span></div>
+              <div class="ct-feat-item"><div class="ct-feat-icon">&#128179;</div><span>Reconcile bank accounts easily</span></div>
+              <div class="ct-feat-item"><div class="ct-feat-icon">&#128196;</div><span>Create and manage multiple projects</span></div>
+              <div class="ct-feat-item"><div class="ct-feat-icon">&#128200;</div><span>Get brilliant insights with 50+ reports</span></div>
+            </div>
+          </div>
+
+        </div><!-- /.ct-wrapper -->
+      </section>
+
       <!-- Section: HMRC Furlough Claim Calculator -->
       <section id="hmrc-section" class="content-section mt-8 hide">
         <div class="hm-hero">
@@ -7998,5 +9751,13 @@
   <script src="/static/js/hmrc.js"></script>
 
   <script src="/static/css/paycheck.js"></script>
+    <script src="/static/js/uk_corp.js"></script>
+    <script src="/static/js/uk_vat.js"></script>
+    <script src="/static/js/uae_vat.js"></script>
+    <script src="/static/js/uk_flat.js"></script>
+    <script src="/static/js/invoice.js"></script>
+    <script src="/static/js/quote.js"></script>
+    <script src="/static/js/receipts.js"></script>
+    <script src="/static/js/forecaster.js"></script>
   </body>
 </html>

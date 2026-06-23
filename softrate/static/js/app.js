@@ -185,6 +185,14 @@ document.addEventListener("DOMContentLoaded", () => {
       else if (path === "/in/payroll/paycheck-calculator/" || path === "/paycheck-calculator") activeRouteStr = "paycheck";
       else if (path === "/in/payroll/income-tax-calculator/" || path === "/income-tax-calculator") activeRouteStr = "income-tax";
       else if (path === "/in/payroll/hmrc-furlough-calculator/" || path === "/hmrc-furlough-calculator") activeRouteStr = "hmrc";
+      else if (path === "/in/payroll/uk-vat-calculator/" || path === "/uk-vat-calculator") activeRouteStr = "uk-vat";
+      else if (path === "/in/payroll/uae-vat-calculator/" || path === "/uae-vat-calculator") activeRouteStr = "uae-vat";
+      else if (path === "/in/payroll/uk-flat-rate-vat-calculator/" || path === "/uk-flat-rate-vat-calculator") activeRouteStr = "uk-flat";
+      else if (path === "/in/payroll/uk-corp-tax-calculator/" || path === "/uk-corp-tax-calculator") activeRouteStr = "uk-corp";
+      else if (path === "/in/payroll/invoice-generator/" || path === "/invoice-generator") activeRouteStr = "invoice";
+      else if (path === "/in/payroll/quote-generator/" || path === "/quote-generator") activeRouteStr = "quote";
+      else if (path === "/in/payroll/receipt-generator/" || path === "/receipt-generator") activeRouteStr = "receipts";
+      else if (path === "/in/payroll/revenue-forecaster/" || path === "/revenue-forecaster") activeRouteStr = "forecaster";
       else activeRouteStr = "gst";
     }
 
@@ -211,6 +219,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const isPaycheckRoute = (activeRouteStr === "paycheck" || activeRouteStr === "paycheck-calculator");
     const isIncomeTaxRoute = (activeRouteStr === "income-tax" || activeRouteStr === "income-tax-calculator");
     const isHmrcRoute = (activeRouteStr === "hmrc" || activeRouteStr === "hmrc-furlough");
+    const isUkVatRoute = (activeRouteStr === "uk-vat");
+    const isUaeVatRoute = (activeRouteStr === "uae-vat");
+    const isUkFlatRoute = (activeRouteStr === "uk-flat");
+    const isUkCorpRoute = (activeRouteStr === "uk-corp");
+    const isInvoiceRoute = (activeRouteStr === "invoice");
+    const isQuoteRoute = (activeRouteStr === "quote");
+    const isReceiptsRoute = (activeRouteStr === "receipts");
+    const isForecasterRoute = (activeRouteStr === "forecaster");
     let activeSidebarId = isPerDiemRoute ? "perDiemSidebar" : "sidebar";
 
     if (isPerDiemRoute) {
@@ -351,6 +367,56 @@ document.addEventListener("DOMContentLoaded", () => {
           window.history.pushState({ route: "hmrc" }, "", "/in/payroll/hmrc-furlough-calculator/");
         }
       }
+    }
+    } else if (isUkVatRoute) {
+      if (updateHistory) {
+        if (window.location.pathname !== "/in/payroll/uk-vat-calculator/") {
+          window.history.pushState({ route: "uk-vat" }, "", "/in/payroll/uk-vat-calculator/");
+        }
+      }
+    } else if (isUaeVatRoute) {
+      if (updateHistory) {
+        if (window.location.pathname !== "/in/payroll/uae-vat-calculator/") {
+          window.history.pushState({ route: "uae-vat" }, "", "/in/payroll/uae-vat-calculator/");
+        }
+      }
+    } else if (isUkFlatRoute) {
+      if (updateHistory) {
+        if (window.location.pathname !== "/in/payroll/uk-flat-rate-vat-calculator/") {
+          window.history.pushState({ route: "uk-flat" }, "", "/in/payroll/uk-flat-rate-vat-calculator/");
+        }
+      }
+    } else if (isUkCorpRoute) {
+      if (updateHistory) {
+        if (window.location.pathname !== "/in/payroll/uk-corp-tax-calculator/") {
+          window.history.pushState({ route: "uk-corp" }, "", "/in/payroll/uk-corp-tax-calculator/");
+        }
+      }
+    }
+    } else if (isInvoiceRoute) {
+      if (updateHistory) {
+        if (window.location.pathname !== "/in/payroll/invoice-generator/") {
+          window.history.pushState({ route: "invoice" }, "", "/in/payroll/invoice-generator/");
+        }
+      }
+    } else if (isQuoteRoute) {
+      if (updateHistory) {
+        if (window.location.pathname !== "/in/payroll/quote-generator/") {
+          window.history.pushState({ route: "quote" }, "", "/in/payroll/quote-generator/");
+        }
+      }
+    } else if (isReceiptsRoute) {
+      if (updateHistory) {
+        if (window.location.pathname !== "/in/payroll/receipt-generator/") {
+          window.history.pushState({ route: "receipts" }, "", "/in/payroll/receipt-generator/");
+        }
+      }
+    } else if (isForecasterRoute) {
+      if (updateHistory) {
+        if (window.location.pathname !== "/in/payroll/revenue-forecaster/") {
+          window.history.pushState({ route: "forecaster" }, "", "/in/payroll/revenue-forecaster/");
+        }
+      }
     } else {
       if (updateHistory) {
         if (window.location.pathname === "/per-diem-calculator" || window.location.pathname === "/wholesale-price" || window.location.pathname === "/shipping-label-generator" || window.location.pathname === "/barcode-generator" || window.location.pathname === "/packing-slip-generator" || window.location.pathname === "/inventory-turnover" || window.location.pathname === "/hra-exemption-calculator" || window.location.pathname === "/statutory-bonus-calculator" || shouldGoToMainPage) {
@@ -445,6 +511,30 @@ document.addEventListener("DOMContentLoaded", () => {
       } else if (isHmrcRoute && (route === "hmrc" || route === "hmrc-furlough")) {
         const hmrcLink = Array.from(links).find(l => l.getAttribute("data-route") === "hmrc");
         if (hmrcLink) hmrcLink.classList.add("active");
+      } else if (isUkVatRoute && route === "uk-vat") {
+        const l = Array.from(links).find(link => link.getAttribute("data-route") === "uk-vat");
+        if (l) l.classList.add("active");
+      } else if (isUaeVatRoute && route === "uae-vat") {
+        const l = Array.from(links).find(link => link.getAttribute("data-route") === "uae-vat");
+        if (l) l.classList.add("active");
+      } else if (isUkFlatRoute && route === "uk-flat") {
+        const l = Array.from(links).find(link => link.getAttribute("data-route") === "uk-flat");
+        if (l) l.classList.add("active");
+      } else if (isUkCorpRoute && route === "uk-corp") {
+        const l = Array.from(links).find(link => link.getAttribute("data-route") === "uk-corp");
+        if (l) l.classList.add("active");
+      } else if (isInvoiceRoute && route === "invoice") {
+        const l = Array.from(links).find(link => link.getAttribute("data-route") === "invoice");
+        if (l) l.classList.add("active");
+      } else if (isQuoteRoute && route === "quote") {
+        const l = Array.from(links).find(link => link.getAttribute("data-route") === "quote");
+        if (l) l.classList.add("active");
+      } else if (isReceiptsRoute && route === "receipts") {
+        const l = Array.from(links).find(link => link.getAttribute("data-route") === "receipts");
+        if (l) l.classList.add("active");
+      } else if (isForecasterRoute && route === "forecaster") {
+        const l = Array.from(links).find(link => link.getAttribute("data-route") === "forecaster");
+        if (l) l.classList.add("active");
       } else {
         const matchingLink = Array.from(links).find(l => l.getAttribute("data-route") === route);
         if (matchingLink) matchingLink.classList.add("active");
@@ -490,6 +580,24 @@ document.addEventListener("DOMContentLoaded", () => {
       labelText = "Income Tax Calculator";
     } else if (isHmrcRoute) {
       labelText = "HMRC Furlough Claim Calculator";
+    }
+    } else if (isUkVatRoute) {
+      labelText = "UK VAT Calculator";
+    } else if (isUaeVatRoute) {
+      labelText = "UAE VAT Calculator";
+    } else if (isUkFlatRoute) {
+      labelText = "UK Flat Rate VAT Calculator";
+    } else if (isUkCorpRoute) {
+      labelText = "UK Corporation Tax Calculator";
+    }
+    } else if (isInvoiceRoute) {
+      labelText = "Invoice Generator";
+    } else if (isQuoteRoute) {
+      labelText = "Quote/Estimate Generator";
+    } else if (isReceiptsRoute) {
+      labelText = "Receipt Generator";
+    } else if (isForecasterRoute) {
+      labelText = "Revenue Forecaster";
     }
 
     const headerTitleEl = document.querySelector(".header-title");
@@ -539,6 +647,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const paycheckSection = document.getElementById("paycheck-section");
     const incomeTaxSection = document.getElementById("income-tax-section");
     const hmrcSection = document.getElementById("hmrc-section");
+    const ukVatSection = document.getElementById("uk-vat-section");
+    const uaeVatSection = document.getElementById("uae-vat-section");
+    const ukFlatSection = document.getElementById("uk-flat-section");
+    const ukCorpSection = document.getElementById("uk-corp-section");
+    const invoiceSection = document.getElementById("invoice-section");
+    const quoteSection = document.getElementById("quote-section");
+    const receiptsSection = document.getElementById("receipts-section");
+    const forecasterSection = document.getElementById("forecaster-section");
  
     if (calcSection) calcSection.classList.add("hide");
     if (ratesSection) ratesSection.classList.add("hide");
@@ -570,6 +686,14 @@ document.addEventListener("DOMContentLoaded", () => {
     if (paycheckSection) paycheckSection.classList.add("hide");
     if (incomeTaxSection) incomeTaxSection.classList.add("hide");
     if (hmrcSection) hmrcSection.classList.add("hide");
+    if (ukVatSection) ukVatSection.classList.add("hide");
+    if (uaeVatSection) uaeVatSection.classList.add("hide");
+    if (ukFlatSection) ukFlatSection.classList.add("hide");
+    if (ukCorpSection) ukCorpSection.classList.add("hide");
+    if (invoiceSection) invoiceSection.classList.add("hide");
+    if (quoteSection) quoteSection.classList.add("hide");
+    if (receiptsSection) receiptsSection.classList.add("hide");
+    if (forecasterSection) forecasterSection.classList.add("hide");
  
     if (isPerDiemRoute && (route === "per-diem" || route === "per-diem-calculator")) {
       if (perDiemSection) perDiemSection.classList.remove("hide");
@@ -661,6 +785,30 @@ document.addEventListener("DOMContentLoaded", () => {
     } else if (isHmrcRoute && (route === "hmrc" || route === "hmrc-furlough")) {
       if (hmrcSection) hmrcSection.classList.remove("hide");
       if (hmrcSection) hmrcSection.scrollIntoView({ behavior: "smooth" });
+    } else if (isUkVatRoute && route === "uk-vat") {
+      if (ukVatSection) ukVatSection.classList.remove("hide");
+      if (ukVatSection) ukVatSection.scrollIntoView({ behavior: "smooth" });
+    } else if (isUaeVatRoute && route === "uae-vat") {
+      if (uaeVatSection) uaeVatSection.classList.remove("hide");
+      if (uaeVatSection) uaeVatSection.scrollIntoView({ behavior: "smooth" });
+    } else if (isUkFlatRoute && route === "uk-flat") {
+      if (ukFlatSection) ukFlatSection.classList.remove("hide");
+      if (ukFlatSection) ukFlatSection.scrollIntoView({ behavior: "smooth" });
+    } else if (isUkCorpRoute && route === "uk-corp") {
+      if (ukCorpSection) ukCorpSection.classList.remove("hide");
+      if (ukCorpSection) ukCorpSection.scrollIntoView({ behavior: "smooth" });
+    } else if (isInvoiceRoute && route === "invoice") {
+      if (invoiceSection) invoiceSection.classList.remove("hide");
+      if (invoiceSection) invoiceSection.scrollIntoView({ behavior: "smooth" });
+    } else if (isQuoteRoute && route === "quote") {
+      if (quoteSection) quoteSection.classList.remove("hide");
+      if (quoteSection) quoteSection.scrollIntoView({ behavior: "smooth" });
+    } else if (isReceiptsRoute && route === "receipts") {
+      if (receiptsSection) receiptsSection.classList.remove("hide");
+      if (receiptsSection) receiptsSection.scrollIntoView({ behavior: "smooth" });
+    } else if (isForecasterRoute && route === "forecaster") {
+      if (forecasterSection) forecasterSection.classList.remove("hide");
+      if (forecasterSection) forecasterSection.scrollIntoView({ behavior: "smooth" });
     } else if (route === "gst") {
       if (calcSection) calcSection.classList.remove("hide");
       if (ratesSection) ratesSection.classList.remove("hide");

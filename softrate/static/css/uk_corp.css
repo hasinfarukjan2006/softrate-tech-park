@@ -1,0 +1,349 @@
+/* uk_corp.css — Zoho Corporation Tax exact match — high specificity overrides */
+
+/* Hero — light blue */
+#uk-corp-section .ct-hero {
+  background: #e8f0fe !important;
+  padding: 2.5rem 1.5rem 2rem !important;
+  overflow: hidden;
+}
+.dark #uk-corp-section .ct-hero { background: var(--bg-color) !important; }
+
+#uk-corp-section .ct-hero-inner {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: center !important;
+  max-width: 800px;
+  margin: 0 auto;
+  gap: 2rem;
+}
+
+#uk-corp-section .ct-hero-illust {
+  flex-shrink: 0;
+  opacity: .6;
+}
+
+#uk-corp-section .ct-hero-text {
+  text-align: center;
+  flex: 1;
+}
+
+#uk-corp-section .ct-hero-text h1 {
+  font-size: 2rem !important;
+  font-weight: 400 !important;
+  color: #1a3b6b !important;
+  margin: 0 0 .5rem !important;
+  border: none !important;
+}
+#uk-corp-section .ct-hero-text h1 em { font-style: italic; }
+.dark #uk-corp-section .ct-hero-text h1 { color: var(--text-color) !important; }
+
+#uk-corp-section .ct-hero-text p {
+  font-size: .88rem !important;
+  color: #555 !important;
+  max-width: 440px;
+  margin: 0 auto !important;
+  line-height: 1.5;
+}
+
+/* Wrapper */
+#uk-corp-section .ct-wrapper {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 1.5rem 3rem;
+}
+
+/* Card */
+#uk-corp-section .ct-card {
+  background: #fff !important;
+  border: 1px solid #e0e0e0 !important;
+  border-radius: 8px;
+  padding: 2rem 2.25rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,.06) !important;
+  margin-top: -1rem;
+  position: relative;
+  z-index: 1;
+}
+.dark #uk-corp-section .ct-card { background: var(--bg-surface) !important; border-color: var(--border-color) !important; }
+
+/* Section titles */
+#uk-corp-section .ct-section-title {
+  font-size: 1.25rem !important;
+  font-weight: 700 !important;
+  margin: 0 0 .25rem !important;
+  color: #1a3b6b !important;
+  border: none !important;
+  border-bottom: none !important;
+  padding: 0 !important;
+}
+#uk-corp-section .ct-section-sub {
+  font-size: .8rem !important;
+  color: #888 !important;
+  margin: 0 0 1rem !important;
+}
+
+/* Section header (title + link on same line) */
+#uk-corp-section .ct-section-header {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between !important;
+  align-items: baseline !important;
+  margin-top: 1.75rem !important;
+  gap: 1rem !important;
+}
+
+#uk-corp-section .ct-section-title2 {
+  font-size: .95rem !important;
+  font-weight: 700 !important;
+  color: #333 !important;
+  margin: 0 !important;
+  border: none !important;
+  border-bottom: none !important;
+  padding: 0 !important;
+}
+.dark #uk-corp-section .ct-section-title2 { color: var(--text-color) !important; }
+
+#uk-corp-section .ct-view-link {
+  font-size: .78rem !important;
+  color: #4a7fd4 !important;
+  text-decoration: none !important;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+#uk-corp-section .ct-view-link:hover { text-decoration: underline !important; }
+
+/* ====== KEY: Expense rows — label LEFT, small input RIGHT, menu button ====== */
+#uk-corp-section .ct-expense-row {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: .6rem 0 !important;
+  border-bottom: 1px solid #f3f3f3 !important;
+  gap: 1rem !important;
+  flex-wrap: nowrap !important;
+}
+.dark #uk-corp-section .ct-expense-row { border-bottom-color: var(--border-color) !important; }
+
+#uk-corp-section .ct-label {
+  font-size: .85rem !important;
+  color: #333 !important;
+  flex: 1 1 auto !important;
+  font-weight: 500 !important;
+  width: auto !important;
+  max-width: none !important;
+}
+.dark #uk-corp-section .ct-label { color: var(--text-color) !important; }
+
+/* Input wrapper — fixed 160px on the right */
+#uk-corp-section .ct-input-wrap {
+  flex-shrink: 0 !important;
+  flex-grow: 0 !important;
+  width: 160px !important;
+  min-width: 160px !important;
+  max-width: 160px !important;
+}
+
+/* Override global input[type="number"] { width: 100% } */
+#uk-corp-section .ct-input-wrap input,
+#uk-corp-section .ct-input-wrap input[type="number"] {
+  width: 160px !important;
+  max-width: 160px !important;
+  min-width: 160px !important;
+  padding: .4rem .55rem !important;
+  font-size: .88rem !important;
+  border: 1px solid #ccc !important;
+  border-radius: 3px !important;
+  background: #fff !important;
+  color: #333 !important;
+  box-sizing: border-box !important;
+  text-align: right !important;
+  height: auto !important;
+  line-height: normal !important;
+}
+.dark #uk-corp-section .ct-input-wrap input,
+.dark #uk-corp-section .ct-input-wrap input[type="number"] {
+  background: var(--bg-surface) !important;
+  color: var(--text-color) !important;
+  border-color: var(--border-color) !important;
+}
+#uk-corp-section .ct-input-wrap input:focus {
+  outline: none !important;
+  border-color: #4a7fd4 !important;
+  box-shadow: 0 0 0 2px rgba(74,127,212,.12) !important;
+}
+
+/* Remove/menu button */
+#uk-corp-section .ct-row-menu {
+  background: none !important;
+  border: none !important;
+  color: #bbb !important;
+  font-size: 1.2rem !important;
+  cursor: pointer;
+  padding: 2px 6px !important;
+  box-shadow: none !important;
+  width: auto !important;
+  min-width: auto !important;
+  max-width: none !important;
+  line-height: 1;
+  flex-shrink: 0;
+}
+#uk-corp-section .ct-row-menu:hover { color: #e8453c !important; }
+
+/* Add button */
+#uk-corp-section .ct-add-btn {
+  background: none !important;
+  border: none !important;
+  color: #4a7fd4 !important;
+  font-size: .82rem !important;
+  font-weight: 500 !important;
+  cursor: pointer;
+  padding: .5rem 0 !important;
+  display: inline-flex !important;
+  align-items: center;
+  gap: .3rem;
+  box-shadow: none !important;
+  width: auto !important;
+  min-width: auto !important;
+}
+#uk-corp-section .ct-add-btn:hover { text-decoration: underline; }
+#uk-corp-section .ct-add-icon { font-size: 1rem; color: #4a7fd4; }
+
+/* Results */
+#uk-corp-section .ct-results {
+  margin-top: 1.5rem;
+  border-top: 2px solid #e8e8e8;
+  padding-top: 1rem;
+}
+.dark #uk-corp-section .ct-results { border-top-color: var(--border-color); }
+
+#uk-corp-section .ct-result-row {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  padding: .65rem 0 !important;
+  border-bottom: 1px solid #f3f3f3 !important;
+  font-size: .88rem !important;
+  color: #333 !important;
+}
+.dark #uk-corp-section .ct-result-row { color: var(--text-color) !important; border-bottom-color: var(--border-color) !important; }
+
+#uk-corp-section .ct-result-val {
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+  color: #1a3b6b !important;
+  white-space: nowrap;
+}
+
+/* Info sections */
+#uk-corp-section .ct-info { margin-top: 3rem; padding: 0 .5rem; }
+#uk-corp-section .ct-info h2 {
+  font-size: 1.3rem !important;
+  font-weight: 700 !important;
+  color: #1a3b6b !important;
+  margin: 2rem 0 .75rem !important;
+  border: none !important;
+  padding: 0 !important;
+}
+.dark #uk-corp-section .ct-info h2 { color: var(--text-color) !important; }
+#uk-corp-section .ct-info p {
+  font-size: .85rem !important;
+  color: #555 !important;
+  line-height: 1.7;
+  margin: 0 0 .75rem !important;
+}
+.dark #uk-corp-section .ct-info p { color: var(--text-muted) !important; }
+#uk-corp-section .ct-list-title {
+  font-size: .85rem !important;
+  color: #4a7fd4 !important;
+  font-weight: 600;
+  text-decoration: underline;
+  margin-bottom: .5rem;
+}
+#uk-corp-section .ct-bullet-list { padding-left: 1.25rem; margin: 0 0 1rem; }
+#uk-corp-section .ct-bullet-list li {
+  font-size: .85rem !important;
+  color: #4a7fd4 !important;
+  line-height: 1.8;
+}
+
+/* Promo */
+#uk-corp-section .ct-promo {
+  background: #f5f8ff !important;
+  border-radius: 8px;
+  padding: 2rem 2.25rem;
+  margin-top: 3rem;
+  text-align: center;
+}
+.dark #uk-corp-section .ct-promo { background: var(--bg-surface) !important; }
+#uk-corp-section .ct-promo h2 {
+  font-size: 1.15rem !important;
+  font-weight: 700 !important;
+  color: #1a3b6b !important;
+  margin: 0 0 .75rem !important;
+  border: none !important;
+  padding: 0 !important;
+}
+#uk-corp-section .ct-promo p {
+  font-size: .82rem !important;
+  color: #555 !important;
+  line-height: 1.6;
+  max-width: 560px;
+  margin: 0 auto !important;
+}
+
+/* Features grid */
+#uk-corp-section .ct-features { margin-top: 2rem; text-align: center; }
+#uk-corp-section .ct-features h3 {
+  font-size: 1.1rem !important;
+  font-weight: 700 !important;
+  color: #333 !important;
+  margin: 0 0 1.5rem !important;
+  border: none !important;
+  padding: 0 !important;
+}
+.dark #uk-corp-section .ct-features h3 { color: var(--text-color) !important; }
+#uk-corp-section .ct-features-grid {
+  display: flex !important;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem 3rem;
+}
+#uk-corp-section .ct-feat-item {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center;
+  gap: .5rem;
+  max-width: 160px;
+}
+#uk-corp-section .ct-feat-icon {
+  font-size: 2rem;
+  color: #4a7fd4;
+  background: #eef3fb;
+  width: 56px !important;
+  height: 56px;
+  border-radius: 12px;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
+#uk-corp-section .ct-feat-item span {
+  font-size: .78rem !important;
+  color: #555 !important;
+  text-align: center;
+  line-height: 1.4;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  #uk-corp-section .ct-hero-illust { display: none !important; }
+  #uk-corp-section .ct-expense-row { flex-wrap: wrap !important; gap: .4rem !important; }
+  #uk-corp-section .ct-input-wrap { width: 100% !important; min-width: 100% !important; max-width: 100% !important; }
+  #uk-corp-section .ct-input-wrap input,
+  #uk-corp-section .ct-input-wrap input[type="number"] { width: 100% !important; max-width: 100% !important; min-width: 100% !important; }
+  #uk-corp-section .ct-section-header { flex-wrap: wrap !important; }
+  #uk-corp-section .ct-wrapper { padding: 0 .75rem 2rem; }
+  #uk-corp-section .ct-card { padding: 1.25rem; }
+  #uk-corp-section .ct-features-grid { gap: 1.5rem; }
+}

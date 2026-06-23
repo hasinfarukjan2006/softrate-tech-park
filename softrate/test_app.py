@@ -579,6 +579,62 @@ class GstCalculatorTestCase(unittest.TestCase):
             self.assertEqual(response.status_code, 200)
             self.assertIn(b"Paycheck Calculator", response.data)
 
+    def test_uk_corp_tax_calculator_route(self):
+        """Test if the /uk-corp-tax-calculator and /in/payroll/uk-corp-tax-calculator/ routes render successfully."""
+        for path in ["/uk-corp-tax-calculator", "/in/payroll/uk-corp-tax-calculator/"]:
+            response = self.client.get(path)
+            self.assertEqual(response.status_code, 200)
+            self.assertIn(b"UK Corporation Tax Calculator", response.data)
+
+    def test_uk_vat_calculator_route(self):
+        """Test if the /uk-vat-calculator and /in/payroll/uk-vat-calculator/ routes render successfully."""
+        for path in ["/uk-vat-calculator", "/in/payroll/uk-vat-calculator/"]:
+            response = self.client.get(path)
+            self.assertEqual(response.status_code, 200)
+            self.assertIn(b"UK VAT Calculator", response.data)
+
+    def test_uae_vat_calculator_route(self):
+        """Test if the /uae-vat-calculator and /in/payroll/uae-vat-calculator/ routes render successfully."""
+        for path in ["/uae-vat-calculator", "/in/payroll/uae-vat-calculator/"]:
+            response = self.client.get(path)
+            self.assertEqual(response.status_code, 200)
+            self.assertIn(b"UAE VAT Calculator", response.data)
+
+    def test_uk_flat_rate_vat_calculator_route(self):
+        """Test if the /uk-flat-rate-vat-calculator and /in/payroll/uk-flat-rate-vat-calculator/ routes render successfully."""
+        for path in ["/uk-flat-rate-vat-calculator", "/in/payroll/uk-flat-rate-vat-calculator/"]:
+            response = self.client.get(path)
+            self.assertEqual(response.status_code, 200)
+            self.assertIn(b"UK Flat Rate VAT Calculator", response.data)
+
+    def test_invoice_generator_route(self):
+        """Test if the /invoice-generator and /in/payroll/invoice-generator/ routes render successfully."""
+        for path in ["/invoice-generator", "/in/payroll/invoice-generator/"]:
+            response = self.client.get(path)
+            self.assertEqual(response.status_code, 200)
+            self.assertIn(b"Invoice Generator", response.data)
+
+    def test_quote_generator_route(self):
+        """Test if the /quote-generator and /in/payroll/quote-generator/ routes render successfully."""
+        for path in ["/quote-generator", "/in/payroll/quote-generator/"]:
+            response = self.client.get(path)
+            self.assertEqual(response.status_code, 200)
+            self.assertIn(b"Quote Generator", response.data)
+
+    def test_receipt_generator_route(self):
+        """Test if the /receipt-generator and /in/payroll/receipt-generator/ routes render successfully."""
+        for path in ["/receipt-generator", "/in/payroll/receipt-generator/"]:
+            response = self.client.get(path)
+            self.assertEqual(response.status_code, 200)
+            self.assertIn(b"Receipt Generator", response.data)
+
+    def test_revenue_forecaster_route(self):
+        """Test if the /revenue-forecaster and /in/payroll/revenue-forecaster/ routes render successfully."""
+        for path in ["/revenue-forecaster", "/in/payroll/revenue-forecaster/"]:
+            response = self.client.get(path)
+            self.assertEqual(response.status_code, 200)
+            self.assertIn(b"Revenue Forecaster", response.data)
+
 if __name__ == "__main__":
     unittest.main()
 

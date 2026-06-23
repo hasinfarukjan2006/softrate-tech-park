@@ -231,6 +231,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const paycheckSection = document.getElementById("paycheck-section");
     const incomeTaxSection = document.getElementById("income-tax-section");
     const hmrcSection = document.getElementById("hmrc-section");
+    const invoiceSection = document.getElementById("invoice-section");
+    const quoteSection = document.getElementById("quote-section");
+    const receiptsSection = document.getElementById("receipts-section");
+    const forecasterSection = document.getElementById("forecaster-section");
+    const ukVatSection = document.getElementById("uk-vat-section");
+    const uaeVatSection = document.getElementById("uae-vat-section");
+    const ukFlatSection = document.getElementById("uk-flat-section");
+    const ukCorpSection = document.getElementById("uk-corp-section");
     const financialReportSection = document.getElementById("financial-report-section");
     const projectEstimateSection = document.getElementById("project-estimate-section");
     const w9Section = document.getElementById("w9-section");
@@ -262,6 +270,14 @@ document.addEventListener("DOMContentLoaded", () => {
     if (paycheckSection) paycheckSection.classList.add("hide");
     if (incomeTaxSection) incomeTaxSection.classList.add("hide");
     if (hmrcSection) hmrcSection.classList.add("hide");
+    if (invoiceSection) invoiceSection.classList.add("hide");
+    if (quoteSection) quoteSection.classList.add("hide");
+    if (receiptsSection) receiptsSection.classList.add("hide");
+    if (forecasterSection) forecasterSection.classList.add("hide");
+    if (ukVatSection) ukVatSection.classList.add("hide");
+    if (uaeVatSection) uaeVatSection.classList.add("hide");
+    if (ukFlatSection) ukFlatSection.classList.add("hide");
+    if (ukCorpSection) ukCorpSection.classList.add("hide");
     if (financialReportSection) financialReportSection.classList.add("hide");
     if (projectEstimateSection) projectEstimateSection.classList.add("hide");
     if (w9Section) w9Section.classList.add("hide");
@@ -363,6 +379,27 @@ document.addEventListener("DOMContentLoaded", () => {
     } else if (route === "wholesale") {
       if (wholesaleSection) wholesaleSection.classList.remove("hide");
       if (wholesaleSection) wholesaleSection.scrollIntoView({ behavior: "smooth" });
+    } else if (route === "uk-corp") {
+      if (ukCorpSection) ukCorpSection.classList.remove("hide");
+      if (ukCorpSection) ukCorpSection.scrollIntoView({ behavior: "smooth" });
+    } else if (route === "uk-vat") {
+      if (ukVatSection) ukVatSection.classList.remove("hide");
+      if (ukVatSection) ukVatSection.scrollIntoView({ behavior: "smooth" });
+    } else if (route === "uae-vat") {
+      if (uaeVatSection) uaeVatSection.classList.remove("hide");
+      if (uaeVatSection) uaeVatSection.scrollIntoView({ behavior: "smooth" });
+    } else if (route === "uk-flat") {
+      if (ukFlatSection) ukFlatSection.classList.remove("hide");
+      if (ukFlatSection) ukFlatSection.scrollIntoView({ behavior: "smooth" });
+    } else if (route === "quote") {
+      if (quoteSection) quoteSection.classList.remove("hide");
+      if (quoteSection) quoteSection.scrollIntoView({ behavior: "smooth" });
+    } else if (route === "receipts") {
+      if (receiptsSection) receiptsSection.classList.remove("hide");
+      if (receiptsSection) receiptsSection.scrollIntoView({ behavior: "smooth" });
+    } else if (route === "forecaster") {
+      if (forecasterSection) forecasterSection.classList.remove("hide");
+      if (forecasterSection) forecasterSection.scrollIntoView({ behavior: "smooth" });
     } else {
       if (comingSoonSection) comingSoonSection.classList.remove("hide");
       if (comingSoonTitle) comingSoonTitle.textContent = `${labelText} - Coming Soon`;

@@ -1,0 +1,446 @@
+/* vat.css — Shared stylesheet for UK VAT, UAE VAT, and UK Flat Rate VAT */
+
+/* Hero Styles */
+#uk-vat-section .vat-hero,
+#uae-vat-section .vat-hero,
+#uk-flat-section .vat-hero {
+  background: #e8f0fe !important;
+  padding: 2.5rem 1.5rem 2rem !important;
+  overflow: hidden;
+  text-align: center;
+}
+.dark #uk-vat-section .vat-hero,
+.dark #uae-vat-section .vat-hero,
+.dark #uk-flat-section .vat-hero {
+  background: var(--bg-color) !important;
+}
+
+.vat-hero-inner {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.vat-hero-text h1 {
+  font-size: 2rem !important;
+  font-weight: 400 !important;
+  color: #1a3b6b !important;
+  margin: 0 0 .5rem !important;
+  border: none !important;
+}
+.vat-hero-text h1 em {
+  font-style: italic;
+  font-weight: 700;
+}
+.dark .vat-hero-text h1 {
+  color: var(--text-color) !important;
+}
+
+.vat-hero-text p {
+  font-size: .88rem !important;
+  color: #555 !important;
+  max-width: 500px;
+  margin: 0 auto !important;
+  line-height: 1.5;
+}
+.dark .vat-hero-text p {
+  color: var(--text-muted) !important;
+}
+
+/* Wrapper */
+.vat-wrapper {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 1.5rem 3rem;
+}
+
+/* Card */
+.vat-card {
+  background: #fff !important;
+  border: 1px solid #e0e0e0 !important;
+  border-radius: 8px;
+  padding: 2rem 2.25rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,.06) !important;
+  margin-top: -1rem;
+  position: relative;
+  z-index: 1;
+}
+.dark .vat-card {
+  background: var(--bg-surface) !important;
+  border-color: var(--border-color) !important;
+}
+
+/* Form Groups */
+.vat-form-group {
+  margin-bottom: 1.5rem;
+}
+.vat-form-group label {
+  display: block;
+  font-size: .85rem !important;
+  font-weight: 600 !important;
+  color: #333 !important;
+  margin-bottom: .5rem;
+}
+.dark .vat-form-group label {
+  color: var(--text-color) !important;
+}
+
+.vat-checkbox-label {
+  display: flex !important;
+  align-items: center;
+  gap: .5rem;
+  font-weight: 500 !important;
+  cursor: pointer;
+}
+
+/* Action Toggles (Buttons) */
+.vat-action-toggles {
+  display: flex;
+  background: #f1f5f9;
+  border-radius: 6px;
+  padding: 4px;
+}
+.dark .vat-action-toggles {
+  background: #1e293b;
+}
+.vat-action-toggles input[type="radio"] {
+  display: none;
+}
+.vat-action-toggles label {
+  flex: 1;
+  text-align: center;
+  padding: 8px 12px;
+  font-size: .85rem !important;
+  margin: 0 !important;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all .2s ease;
+  font-weight: 500 !important;
+}
+.vat-action-toggles input[type="radio"]:checked + label {
+  background: #fff;
+  color: #1a3b6b !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,.1);
+}
+.dark .vat-action-toggles input[type="radio"]:checked + label {
+  background: #334155;
+  color: #fff !important;
+}
+
+/* Input Fields */
+.vat-input-wrap {
+  display: flex;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #fff;
+}
+.dark .vat-input-wrap {
+  border-color: var(--border-color);
+  background: var(--bg-color);
+}
+.vat-input-addon {
+  background: #f1f5f9;
+  padding: 10px 14px;
+  font-size: .88rem;
+  color: #555;
+  font-weight: 600;
+}
+.dark .vat-input-addon {
+  background: #1e293b;
+  color: var(--text-color);
+}
+.vat-input-wrap input {
+  border: none !important;
+  outline: none !important;
+  flex: 1;
+  padding: 10px 12px !important;
+  font-size: .95rem !important;
+  background: transparent !important;
+  color: inherit !important;
+  box-shadow: none !important;
+}
+
+.vat-input-help {
+  font-size: .75rem !important;
+  color: #888;
+  margin: 4px 0 0 !important;
+}
+
+/* Select Fields */
+.vat-select-wrap select {
+  width: 100% !important;
+  padding: 10px 12px !important;
+  font-size: .9rem !important;
+  border: 1px solid #ccc !important;
+  border-radius: 6px !important;
+  background-color: #fff !important;
+  color: inherit !important;
+  outline: none !important;
+}
+.dark .vat-select-wrap select {
+  border-color: var(--border-color) !important;
+  background-color: var(--bg-color) !important;
+}
+
+/* Rate Options Grid */
+.vat-rate-options {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: .5rem;
+}
+.vat-rate-option input[type="radio"] {
+  display: none;
+}
+.vat-rate-option label {
+  display: block;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 8px 6px;
+  font-size: .8rem !important;
+  cursor: pointer;
+  background: #fff;
+  transition: all .2s;
+}
+.dark .vat-rate-option label {
+  background: var(--bg-color);
+  border-color: var(--border-color);
+}
+.vat-rate-option input[type="radio"]:checked + label {
+  border-color: #1a3b6b;
+  background: #f0f6ff;
+  color: #1a3b6b !important;
+  font-weight: bold !important;
+}
+.dark .vat-rate-option input[type="radio"]:checked + label {
+  border-color: #3b82f6;
+  background: rgba(59, 130, 246, 0.1);
+  color: #3b82f6 !important;
+}
+
+.vat-custom-rate-wrap {
+  display: flex;
+  margin-top: .75rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  overflow: hidden;
+  max-width: 180px;
+}
+.dark .vat-custom-rate-wrap {
+  border-color: var(--border-color);
+}
+.vat-custom-rate-wrap input {
+  border: none !important;
+  outline: none !important;
+  flex: 1;
+  padding: 8px 10px !important;
+  font-size: .88rem !important;
+  background: transparent !important;
+  color: inherit !important;
+}
+
+/* Results Card */
+.vat-results {
+  background: #f8fafc;
+  border-radius: 6px;
+  padding: 1.25rem;
+  margin-top: 1.5rem;
+  border: 1px solid #e2e8f0;
+}
+.dark .vat-results {
+  background: #1e293b;
+  border-color: var(--border-color);
+}
+.vat-result-row {
+  display: flex;
+  justify-content: space-between;
+  padding: .4rem 0;
+  font-size: .88rem;
+  color: #475569;
+}
+.dark .vat-result-row {
+  color: var(--text-muted);
+}
+.vat-result-val {
+  font-weight: 600;
+  color: #1a202c;
+}
+.dark .vat-result-val {
+  color: var(--text-color);
+}
+.vat-result-total {
+  border-top: 1px dashed #cbd5e1;
+  margin-top: .5rem;
+  padding-top: .75rem;
+  font-size: 1.05rem;
+}
+.vat-result-total span {
+  font-weight: 700;
+}
+.vat-result-total .vat-result-val {
+  color: #1a3b6b;
+  font-size: 1.2rem;
+}
+.dark .vat-result-total .vat-result-val {
+  color: #3b82f6;
+}
+
+/* FRS Comparison Card */
+.vat-comparison-card {
+  background: #f0f6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 6px;
+  padding: 1.25rem;
+  margin-top: 1.5rem;
+}
+.dark .vat-comparison-card {
+  background: rgba(59, 130, 246, 0.05);
+  border-color: rgba(59, 130, 246, 0.2);
+}
+.vat-comparison-card h3 {
+  font-size: .9rem !important;
+  font-weight: 700 !important;
+  color: #1d4ed8 !important;
+  margin: 0 0 1rem !important;
+  border: none !important;
+}
+.dark .vat-comparison-card h3 {
+  color: #3b82f6 !important;
+}
+.vat-comp-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  border-bottom: 1px solid #bfdbfe;
+  padding-bottom: .75rem;
+  margin-bottom: .75rem;
+}
+.dark .vat-comp-grid {
+  border-bottom-color: rgba(59, 130, 246, 0.2);
+}
+.vat-comp-col {
+  display: flex;
+  flex-direction: column;
+}
+.vat-comp-label {
+  font-size: .75rem;
+  color: #4b5563;
+}
+.dark .vat-comp-label {
+  color: var(--text-muted);
+}
+.vat-comp-val {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1e3a8a;
+  margin-top: 2px;
+}
+.dark .vat-comp-val {
+  color: #60a5fa;
+}
+.vat-comp-col small {
+  font-size: .68rem;
+  color: #6b7280;
+  margin-top: 2px;
+}
+.vat-comp-summary {
+  font-weight: 700;
+  font-size: 1rem;
+  color: #16a34a;
+  text-align: center;
+}
+.vat-comp-summary span {
+  font-size: 1.15rem;
+}
+
+/* Reset Button */
+.vat-reset-btn {
+  display: block;
+  width: 100%;
+  background: transparent;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 10px;
+  font-size: .88rem;
+  font-weight: 600;
+  color: #555;
+  margin-top: 1.25rem;
+  cursor: pointer;
+  transition: all .2s;
+}
+.vat-reset-btn:hover {
+  background: #f3f4f6;
+  border-color: #999;
+}
+.dark .vat-reset-btn {
+  border-color: var(--border-color);
+  color: var(--text-muted);
+}
+.dark .vat-reset-btn:hover {
+  background: #1e293b;
+  color: #fff;
+}
+
+/* Info Section */
+.vat-info {
+  margin-top: 2.5rem;
+}
+.vat-info h2 {
+  font-size: 1.25rem !important;
+  font-weight: 700 !important;
+  color: #1a3b6b !important;
+  margin: 1.5rem 0 .5rem !important;
+  border: none !important;
+}
+.dark .vat-info h2 {
+  color: var(--text-color) !important;
+}
+.vat-info p {
+  font-size: .88rem;
+  line-height: 1.6;
+  color: #4b5563;
+  margin: 0 0 1rem !important;
+}
+.dark .vat-info p {
+  color: var(--text-muted);
+}
+.vat-info ul {
+  padding-left: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+.vat-info li {
+  font-size: .85rem;
+  line-height: 1.6;
+  color: #4b5563;
+  margin-bottom: .25rem;
+}
+.dark .vat-info li {
+  color: var(--text-muted);
+}
+
+/* Promo Card */
+.vat-promo {
+  background: linear-gradient(135deg, #1e3a8a, #0f172a);
+  color: #fff !important;
+  padding: 2rem;
+  border-radius: 8px;
+  margin-top: 2rem;
+}
+.vat-promo h2 {
+  font-size: 1.2rem !important;
+  font-weight: 700 !important;
+  color: #fff !important;
+  margin: 0 0 .5rem !important;
+  border: none !important;
+}
+.vat-promo p {
+  font-size: .85rem;
+  line-height: 1.6;
+  color: #93c5fd;
+  margin: 0 !important;
+}
+
+/* Utilities */
+.hide {
+  display: none !important;
+}

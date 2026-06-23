@@ -741,6 +741,61 @@ def save_financial_report():
         print(f"Error saving financial report: {e}")
         return jsonify({"status": "error", "message": f"Database insertion failed: {str(e)}"}), 500
 
+
+# Uk Vat page
+@app.route("/uk-vat-calculator")
+@app.route("/in/payroll/uk-vat-calculator/")
+def uk_vat_calculator_page():
+    return render_template("index.html")
+
+
+# Uae Vat page
+@app.route("/uae-vat-calculator")
+@app.route("/in/payroll/uae-vat-calculator/")
+def uae_vat_calculator_page():
+    return render_template("index.html")
+
+
+# Uk Flat page
+@app.route("/uk-flat-rate-vat-calculator")
+@app.route("/in/payroll/uk-flat-rate-vat-calculator/")
+def uk_flat_rate_vat_calculator_page():
+    return render_template("index.html")
+
+
+# Invoice page
+@app.route("/invoice-generator")
+@app.route("/in/payroll/invoice-generator/")
+def invoice_generator_page():
+    return render_template("index.html")
+
+
+# Quote page
+@app.route("/quote-generator")
+@app.route("/in/payroll/quote-generator/")
+def quote_generator_page():
+    return render_template("index.html")
+
+
+# Receipts page
+@app.route("/receipt-generator")
+@app.route("/in/payroll/receipt-generator/")
+def receipt_generator_page():
+    return render_template("index.html")
+
+
+# Forecaster page
+@app.route("/revenue-forecaster")
+@app.route("/in/payroll/revenue-forecaster/")
+def revenue_forecaster_page():
+    return render_template("index.html")
+
+# UK Corporation Tax Calculator page
+@app.route("/uk-corp-tax-calculator")
+@app.route("/in/payroll/uk-corp-tax-calculator/")
+def uk_corp_tax_page():
+    return render_template("index.html")
+
 # HMRC Furlough Claim Calculator page
 @app.route("/hmrc-furlough-calculator")
 @app.route("/in/payroll/hmrc-furlough-calculator/")

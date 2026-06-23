@@ -27,7 +27,10 @@ users = db_conn["users"]
 gst_history = db_conn["gst_history"]
 expense_reports = db_conn["expense_reports"]
 
-DIST_DIR = os.path.join(app.root_path, "dist")
+if os.path.isdir(os.path.join(app.root_path, "dist")):
+    DIST_DIR = os.path.join(app.root_path, "dist")
+else:
+    DIST_DIR = os.path.join(app.root_path, "../dist")
 
 @app.route("/")
 def home():
@@ -603,6 +606,194 @@ def save_expense_report():
         }), 500
 
 
+# Wholesale Price Calculator page
+@app.route("/wholesale-price")
+def wholesale_price_page():
+    """Render the Wholesale Price Calculator page inside the main SPA."""
+    return render_template("index.html")
+
+# Shipping Label Generator page
+@app.route("/shipping-label-generator")
+def shipping_label_generator_page():
+    """Render the Shipping Label Generator page inside the main SPA."""
+    return render_template("index.html")
+
+# Barcode Generator page
+@app.route("/barcode-generator")
+def barcode_generator_page():
+    """Render the Barcode Generator page inside the main SPA."""
+    return render_template("index.html")
+
+# Packing Slip Generator page
+@app.route("/packing-slip-generator")
+def packing_slip_generator_page():
+    """Render the Packing Slip Generator page inside the main SPA."""
+    return render_template("index.html")
+
+# Inventory Turnover Ratio Calculator page
+@app.route("/inventory-turnover")
+def inventory_turnover_page():
+    """Render the Inventory Turnover Ratio Calculator page inside the main SPA."""
+    return render_template("index.html")
+
+# Purchase Order Generator page
+@app.route("/purchase-order-generator")
+def purchase_order_generator_page():
+    """Render the Purchase Order Generator page inside the main SPA."""
+    return render_template("index.html")
+
+# SKU Generator page
+@app.route("/sku-generator")
+def sku_generator_page():
+    """Render the SKU Generator page inside the main SPA."""
+    return render_template("index.html")
+
+# HRA Exemption Calculator page
+@app.route("/hra-exemption-calculator")
+def hra_exemption_calculator_page():
+    """Render the HRA Exemption Calculator page inside the main SPA."""
+    return render_template("index.html")
+
+# Statutory Bonus Calculator page
+@app.route("/statutory-bonus-calculator")
+def statutory_bonus_calculator_page():
+    """Render the Statutory Bonus Calculator page inside the main SPA."""
+    return render_template("index.html")
+
+# Gratuity Calculator page
+@app.route("/in/payroll/gratuity-calculator/")
+@app.route("/gratuity-calculator")
+def gratuity_calculator_page():
+    """Render the Gratuity Calculator page inside the main SPA."""
+    return render_template("index.html")
+
+# EPS Pension Calculator page
+@app.route("/in/payroll/eps-pension-calculator/")
+@app.route("/eps-pension-calculator")
+def eps_pension_calculator_page():
+    """Render the EPS Pension Calculator page inside the main SPA."""
+    return render_template("index.html")
+
+
+# NPS Calculator page
+@app.route("/in/payroll/nps-calculator/")
+@app.route("/nps-calculator")
+def nps_calculator_page():
+    """Render the NPS Calculator page inside the main SPA."""
+    return render_template("index.html")
+
+
+# Form W-9 Generator page
+@app.route("/in/payroll/form-w9-generator/")
+@app.route("/form-w9-generator")
+def form_w9_generator_page():
+    """Render the Form W-9 Generator page inside the main SPA."""
+    return render_template("index.html")
+
+# Free Project Cost Estimate Calculator page
+@app.route("/free-project-estimate-calculator")
+@app.route("/in/payroll/free-project-estimate-calculator/")
+def free_project_estimate_calculator_page():
+    """Render the Free Project Cost Estimate Calculator page inside the main SPA."""
+    return render_template("index.html")
+
+@app.route("/api/save-project-estimate", methods=["POST"])
+def save_project_estimate():
+    """POST endpoint to save project cost estimate calculations."""
+    db_conn, fallback_active = get_db()
+    data = request.get_json() or {}
+    try:
+        db_conn.project_estimate_history.insert_one(data)
+        if "_id" in data:
+            data["_id"] = str(data["_id"])
+        return jsonify({
+            "status": "success",
+            "message": "Project cost estimate saved successfully",
+            "using_fallback": fallback_active
+        })
+    except Exception as e:
+        print(f"Error saving project estimate: {e}")
+        return jsonify({"status": "error", "message": f"Database insertion failed: {str(e)}"}), 500
+
+
+# Financial Report Generator page
+@app.route("/financial-report-generator")
+@app.route("/in/payroll/financial-report-generator/")
+def financial_report_generator_page():
+    """Render the Financial Report Generator page inside the main SPA."""
+    return render_template("index.html")
+
+@app.route("/api/save-financial-report", methods=["POST"])
+def save_financial_report():
+    """POST endpoint to save financial report calculations."""
+    db_conn, fallback_active = get_db()
+    data = request.get_json() or {}
+    try:
+        db_conn.financial_report_history.insert_one(data)
+        if "_id" in data:
+            data["_id"] = str(data["_id"])
+        return jsonify({
+            "status": "success",
+            "message": "Financial report saved successfully",
+            "using_fallback": fallback_active
+        })
+    except Exception as e:
+        print(f"Error saving financial report: {e}")
+        return jsonify({"status": "error", "message": f"Database insertion failed: {str(e)}"}), 500
+
+
+
+
+
+@app.route("/api/wholesale-price", methods=["POST"])
+def api_wholesale_price():
+    """Calculate and store wholesale price data.
+    Expected JSON:
+    {
+        "cost_price_per_unit": float,
+        "overhead_expenses": float,
+        "administrative_cost": float,
+        "number_of_units": int,
+        "profit_margin": float
+    }
+    """
+    data = request.get_json() or {}
+    try:
+        cost = float(data.get("cost_price_per_unit", 0))
+        overhead = float(data.get("overhead_expenses", 0))
+        admin = float(data.get("administrative_cost", 0))
+        units = int(data.get("number_of_units", 1))
+        profit = float(data.get("profit_margin", 0))
+        if cost < 0 or overhead < 0 or admin < 0 or units <= 0 or profit < 0:
+            raise ValueError
+    except (ValueError, TypeError):
+        return jsonify({"status": "error", "message": "Invalid input values."}), 400
+
+    total_cost = (cost + overhead + admin) * units
+    wholesale_price = total_cost * (1 + profit / 100.0)
+
+    record = {
+        "cost_price_per_unit": cost,
+        "overhead_expenses": overhead,
+        "administrative_cost": admin,
+        "number_of_units": units,
+        "total_cost_price": round(total_cost, 2),
+        "profit_margin": profit,
+        "wholesale_price": round(wholesale_price, 2),
+        "created_at": datetime.now()
+    }
+    try:
+        db_conn, _ = get_db()
+        db_conn.wholesale_price_history.insert_one(record)
+        if "_id" in record:
+            record["_id"] = str(record["_id"])
+        if "created_at" in record:
+            record["created_at"] = record["created_at"].isoformat()
+    except Exception as e:
+        print(f"Error saving wholesale price: {e}")
+    return jsonify({"status": "success", "data": record})
+
 if __name__ == "__main__":
     # Start Flask Server
     app.run(host="0.0.0.0", port=5000, debug=True)
+

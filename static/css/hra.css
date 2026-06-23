@@ -1,0 +1,563 @@
+/* ============================================================
+   HRA EXEMPTION CALCULATOR — Scoped Styles
+   All selectors are scoped to #hra-section so they
+   never collide with the rest of the app.
+   ============================================================ */
+
+#hra-section {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #333;
+  line-height: 1.6;
+}
+
+#hra-section *, 
+#hra-section *::before, 
+#hra-section *::after {
+  box-sizing: border-box;
+}
+
+#hra-section h1,
+#hra-section h2,
+#hra-section h3,
+#hra-section h4 {
+  margin: 0 0 0.5rem 0;
+  line-height: 1.25;
+}
+
+#hra-section p {
+  margin: 0 0 0.75rem 0;
+}
+
+#hra-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* ============================================================
+   1. HERO SECTION  — soft pink patterned background
+   ============================================================ */
+.hra-hero {
+  background: #ffeaea;
+  background-image:
+    radial-gradient(circle at 10% 20%, rgba(220,38,38,0.04) 0%, transparent 50%),
+    radial-gradient(circle at 90% 80%, rgba(220,38,38,0.06) 0%, transparent 50%);
+  padding: 3rem 2.5rem;
+  border-radius: 16px;
+  display: flex;
+  gap: 2.5rem;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  margin-bottom: 2.5rem;
+}
+
+.hra-hero-left {
+  flex: 1 1 380px;
+  min-width: 280px;
+}
+
+.hra-hero-left h1 {
+  font-size: 2.6rem;
+  font-weight: 800;
+  line-height: 1.15;
+  margin-bottom: 1rem;
+}
+
+.hra-hero-left h1 .hra-red {
+  color: #DC2626;
+}
+
+.hra-hero-left h1 .hra-black {
+  color: #1a1a1a;
+}
+
+.hra-hero-left .hra-hero-desc {
+  font-size: 1.05rem;
+  color: #555;
+  margin-bottom: 1.25rem;
+  max-width: 440px;
+}
+
+.hra-hero-right {
+  flex: 1 1 380px;
+  min-width: 320px;
+  max-width: 460px;
+}
+
+/* ============================================================
+   2. CALCULATOR CARD
+   ============================================================ */
+.hra-calc-card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 2.5rem 1.75rem;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+  position: relative;
+  overflow: hidden;
+}
+
+.hra-form-group {
+  margin-bottom: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.hra-form-group label {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #4b5563;
+}
+
+.hra-input-wrap {
+  display: flex;
+  align-items: center;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background: #fff;
+  height: 40px;
+  overflow: hidden;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.hra-input-wrap:focus-within {
+  border-color: #DC2626;
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.15);
+}
+
+.hra-input-prefix {
+  padding: 0 0.5rem;
+  background: #f3f4f6;
+  border-right: 1px solid #d1d5db;
+  font-weight: 500;
+  color: #4b5563;
+  font-size: 0.9rem;
+  min-width: 32px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+}
+
+.hra-input-wrap input[type="number"] {
+  border: none;
+  outline: none;
+  flex: 1;
+  padding: 0 0.75rem;
+  font-size: 0.95rem;
+  background: transparent;
+  color: #111827;
+  width: 100%;
+  height: 100%;
+  -moz-appearance: textfield;
+}
+
+.hra-input-wrap input[type="number"]::-webkit-inner-spin-button,
+.hra-input-wrap input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.hra-select-wrap {
+  width: 100%;
+  position: relative;
+}
+
+.hra-select-wrap select {
+  width: 100%;
+  height: 40px;
+  padding: 0 0.75rem;
+  font-size: 0.95rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  outline: none;
+  background: #fff;
+  color: #111827;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.hra-select-wrap select:focus {
+  border-color: #DC2626;
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.15);
+}
+
+.hra-select-wrap::after {
+  content: '';
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 5px solid transparent;
+  border-top-color: #6b7280;
+  pointer-events: none;
+}
+
+/* Calculate Button */
+.hra-calc-btn {
+  width: 100%;
+  height: 44px;
+  background: #DC2626;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  margin-top: 1.5rem;
+}
+
+.hra-calc-btn:hover {
+  background: #b91c1c;
+  transform: translateY(-1px);
+}
+
+.hra-calc-btn:active {
+  transform: translateY(0);
+}
+
+/* ============================================================
+   3. RESULT SECTION
+   ============================================================ */
+.hra-result-card {
+  margin-top: 2rem;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+}
+
+.hra-result-header {
+  background: #1e1e24;
+  color: #fff;
+  padding: 1.25rem 1.5rem;
+  font-weight: 700;
+  font-size: 1.1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hra-result-body {
+  padding: 1.5rem;
+}
+
+.hra-result-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid #f3f4f6;
+  font-size: 0.95rem;
+}
+
+.hra-result-item:last-child {
+  border-bottom: none;
+}
+
+.hra-result-label {
+  color: #4b5563;
+  font-weight: 500;
+}
+
+.hra-result-value {
+  font-weight: 700;
+  color: #111827;
+}
+
+.hra-result-value.exemption {
+  color: #059669; /* Green highlight for eligible HRA */
+  font-size: 1.1rem;
+}
+
+.hra-result-value.taxable {
+  color: #dc2626; /* Red highlight for taxable HRA */
+}
+
+/* Breakdown display */
+.hra-breakdown-card {
+  background: #f9fafb;
+  border: 1px dashed #d1d5db;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-top: 1rem;
+}
+
+.hra-breakdown-title {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #374151;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.5px;
+}
+
+.hra-breakdown-text {
+  font-size: 0.85rem;
+  color: #4b5563;
+  line-height: 1.5;
+}
+
+.hra-breakdown-text ul {
+  margin-top: 0.35rem;
+  list-style: disc;
+  padding-left: 1.25rem;
+}
+
+.hra-breakdown-text li {
+  margin-bottom: 0.25rem;
+}
+
+.hra-result-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.25rem;
+  gap: 1rem;
+}
+
+.hra-secondary-btn {
+  flex: 1;
+  height: 40px;
+  background: #f3f4f6;
+  color: #4b5563;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+}
+
+.hra-secondary-btn:hover {
+  background: #e5e7eb;
+  color: #111827;
+}
+
+/* ============================================================
+   4. INFORMATIONAL PANEL (SIDE-BY-SIDE CARDS)
+   ============================================================ */
+.hra-info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.hra-info-card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+}
+
+.hra-info-card h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #111827;
+  border-bottom: 2px solid #fee2e2;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.hra-info-card p {
+  font-size: 0.95rem;
+  color: #4b5563;
+  margin: 0;
+}
+
+.hra-info-card ul {
+  list-style: disc;
+  padding-left: 1.25rem;
+  font-size: 0.95rem;
+  color: #4b5563;
+}
+
+.hra-info-card li {
+  margin-bottom: 0.5rem;
+}
+
+/* ============================================================
+   5. EXPANDED CONTENT SECTIONS (FAQ, ACCORDION)
+   ============================================================ */
+.hra-content-box {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 2.5rem 2rem;
+  margin-bottom: 2.5rem;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+}
+
+.hra-content-box h2 {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #111827;
+  margin-bottom: 1.5rem;
+}
+
+.hra-section-block {
+  margin-bottom: 2rem;
+}
+
+.hra-section-block:last-child {
+  margin-bottom: 0;
+}
+
+.hra-section-block h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.hra-section-block p {
+  font-size: 0.95rem;
+  color: #4b5563;
+  line-height: 1.7;
+}
+
+.hra-section-block ul {
+  list-style: disc;
+  padding-left: 1.5rem;
+  font-size: 0.95rem;
+  color: #4b5563;
+  line-height: 1.7;
+}
+
+.hra-section-block li {
+  margin-bottom: 0.5rem;
+}
+
+/* Table Style inside FAQ content */
+.hra-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  margin: 1.25rem 0;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+}
+
+.hra-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+.hra-table th {
+  background: #f9fafb;
+  padding: 0.75rem 1rem;
+  font-weight: 700;
+  color: #374151;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.hra-table td {
+  padding: 0.75rem 1rem;
+  color: #4b5563;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.hra-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* FAQ Accordion Styling */
+.hra-faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.hra-faq-item {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff;
+  transition: border-color 0.15s;
+}
+
+.hra-faq-item:hover {
+  border-color: #d1d5db;
+}
+
+.hra-faq-trigger {
+  width: 100%;
+  padding: 1rem 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  text-align: left;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.hra-faq-arrow {
+  flex-shrink: 0;
+  transition: transform 0.2s;
+  color: #9ca3af;
+}
+
+.hra-faq-item.active .hra-faq-arrow {
+  transform: rotate(180deg);
+}
+
+.hra-faq-content {
+  display: none;
+  padding: 0 1.25rem 1.25rem 1.25rem;
+  font-size: 0.95rem;
+  color: #4b5563;
+  line-height: 1.6;
+}
+
+.hra-faq-item.active .hra-faq-content {
+  display: block;
+}
+
+/* ============================================================
+   RESPONSIVENESS AND MEDIA QUERIES
+   ============================================================ */
+@media (max-width: 768px) {
+  .hra-hero {
+    padding: 2rem 1.5rem;
+    gap: 1.5rem;
+  }
+  .hra-hero-left h1 {
+    font-size: 2rem;
+  }
+  .hra-hero-right {
+    max-width: 100%;
+  }
+  .hra-content-box {
+    padding: 1.5rem;
+  }
+  .hra-content-box h2 {
+    font-size: 1.35rem;
+  }
+}

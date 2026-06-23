@@ -1,0 +1,809 @@
+/* ============================================================
+   WHOLESALE PRICE CALCULATOR — Scoped Styles
+   All selectors are scoped to #wholesale-section so they
+   never collide with the rest of the app.
+   ============================================================ */
+
+/* ---------- Font ---------- */
+#wholesale-section {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #333;
+  line-height: 1.6;
+}
+#wholesale-section *, #wholesale-section *::before, #wholesale-section *::after {
+  box-sizing: border-box;
+}
+#wholesale-section h1,
+#wholesale-section h2,
+#wholesale-section h3,
+#wholesale-section h4 {
+  margin: 0 0 0.5rem 0;
+  line-height: 1.25;
+}
+#wholesale-section p {
+  margin: 0 0 0.75rem 0;
+}
+#wholesale-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* ============================================================
+   1. HERO SECTION  — soft pink patterned background
+   ============================================================ */
+.ws-hero {
+  background: #ffeaea;
+  background-image:
+    radial-gradient(circle at 10% 20%, rgba(220,38,38,0.04) 0%, transparent 50%),
+    radial-gradient(circle at 90% 80%, rgba(220,38,38,0.06) 0%, transparent 50%);
+  padding: 3rem 2.5rem;
+  border-radius: 16px;
+  display: flex;
+  gap: 2.5rem;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  margin-bottom: 2.5rem;
+}
+
+/* --- left column --- */
+.ws-hero-left {
+  flex: 1 1 380px;
+  min-width: 280px;
+}
+.ws-hero-left h1 {
+  font-size: 2.6rem;
+  font-weight: 800;
+  line-height: 1.15;
+  margin-bottom: 1rem;
+}
+.ws-hero-left h1 .ws-red {
+  color: #DC2626;
+}
+.ws-hero-left h1 .ws-black {
+  color: #1a1a1a;
+}
+.ws-hero-left .ws-hero-desc {
+  font-size: 1.05rem;
+  color: #555;
+  margin-bottom: 1.25rem;
+  max-width: 440px;
+}
+
+/* --- right column — calculator card --- */
+.ws-hero-right {
+  flex: 1 1 380px;
+  min-width: 320px;
+  max-width: 460px;
+}
+
+/* ============================================================
+   CALCULATOR CARD
+   ============================================================ */
+/* ============================================================
+   CALCULATOR CARD
+   ============================================================ */
+.ws-calc-card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 3.5rem 1.75rem 0;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+  position: relative;
+  overflow: hidden;
+}
+
+/* ============================================================
+   SEARCHABLE CURRENCY DROPDOWN (POSITIONS TO TOP-RIGHT OF CARD)
+   ============================================================ */
+.ws-currency-dropdown {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.75rem;
+  z-index: 10;
+}
+.ws-currency-trigger {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #4b5563;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  transition: color 0.15s, background-color 0.15s;
+  font-family: inherit;
+}
+.ws-currency-trigger:hover {
+  color: #DC2626;
+  background-color: #f3f4f6;
+}
+.ws-currency-trigger:focus,
+.ws-currency-trigger[aria-expanded="true"] {
+  outline: none;
+  color: #DC2626;
+  background-color: #f3f4f6;
+}
+.ws-currency-flag {
+  display: none; /* Hide flags in trigger to match simple screenshot style */
+}
+.ws-currency-label {
+  text-align: left;
+}
+.ws-currency-arrow {
+  flex-shrink: 0;
+  transition: transform 0.2s;
+  color: #6b7280;
+}
+.ws-currency-trigger[aria-expanded="true"] .ws-currency-arrow {
+  transform: rotate(180deg);
+}
+
+/* panel */
+.ws-currency-panel {
+  display: none;
+  position: absolute;
+  top: calc(100% + 4px);
+  right: 0;
+  width: 260px;
+  background: #fff;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.12);
+  z-index: 100;
+  overflow: hidden;
+  animation: wsCurrFadeIn 0.15s ease-out;
+}
+.ws-currency-panel.ws-open {
+  display: block;
+}
+@keyframes wsCurrFadeIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* search bar inside panel */
+.ws-currency-search-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 0.75rem;
+  border-bottom: 1px solid #e5e7eb;
+  background: #fafafa;
+}
+.ws-currency-search-wrap svg {
+  flex-shrink: 0;
+}
+.ws-currency-search {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 0.9rem;
+  color: #333;
+  font-family: inherit;
+}
+.ws-currency-search::placeholder {
+  color: #aaa;
+}
+
+/* currency list */
+.ws-currency-list {
+  max-height: 220px;
+  overflow-y: auto;
+  padding: 0.3rem 0;
+  scrollbar-width: thin;
+  scrollbar-color: #ddd transparent;
+}
+.ws-currency-list::-webkit-scrollbar {
+  width: 5px;
+}
+.ws-currency-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+.ws-currency-list::-webkit-scrollbar-thumb {
+  background: #ddd;
+  border-radius: 4px;
+}
+.ws-currency-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.5rem 0.85rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: #333;
+  transition: background 0.12s;
+}
+.ws-currency-list li:hover {
+  background: #fef2f2;
+}
+.ws-currency-list li.ws-active {
+  background: #fef2f2;
+  color: #DC2626;
+  font-weight: 600;
+}
+.ws-currency-list li .ws-curr-symbol {
+  font-weight: 700;
+  min-width: 20px;
+  text-align: center;
+  color: #DC2626;
+  font-size: 0.95rem;
+}
+.ws-currency-list li .ws-curr-code {
+  font-weight: 600;
+  min-width: 32px;
+}
+.ws-currency-list li .ws-curr-name {
+  color: #777;
+  font-size: 0.85rem;
+}
+.ws-currency-list li.ws-no-match {
+  color: #999;
+  justify-content: center;
+  cursor: default;
+  padding: 1rem;
+}
+.ws-currency-list li.ws-no-match:hover {
+  background: transparent;
+}
+
+/* ============================================================
+   FORM ROW & INPUTS (HORIZONTAL LAYOUT)
+   ============================================================ */
+.ws-form-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.25rem;
+}
+.ws-form-row label {
+  font-weight: 500;
+  font-size: 0.92rem;
+  color: #374151;
+  margin-bottom: 0;
+  text-align: left;
+  flex: 1;
+  padding-right: 1rem;
+}
+
+.ws-input-wrap, 
+.ws-units-wrap {
+  display: flex;
+  align-items: center;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #fff;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  width: 140px;
+  height: 38px;
+  flex-shrink: 0;
+}
+.ws-input-wrap:focus-within,
+.ws-units-wrap:focus-within {
+  border-color: #DC2626;
+  box-shadow: 0 0 0 3px rgba(220,38,38,0.08);
+}
+
+.ws-input-prefix {
+  padding: 0 0.5rem;
+  background: #f3f4f6;
+  border-right: 1px solid #d1d5db;
+  font-weight: 500;
+  color: #4b5563;
+  font-size: 0.9rem;
+  min-width: 32px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+}
+.ws-input-suffix {
+  padding: 0 0.5rem;
+  background: #f3f4f6;
+  border-left: 1px solid #d1d5db;
+  font-weight: 500;
+  color: #4b5563;
+  font-size: 0.9rem;
+  min-width: 32px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+}
+
+.ws-input-wrap input[type="number"] {
+  border: none;
+  outline: none;
+  flex: 1;
+  padding: 0 0.75rem;
+  font-size: 0.95rem;
+  background: transparent;
+  color: #111827;
+  text-align: right;
+  width: 100%;
+  height: 100%;
+  -moz-appearance: textfield;
+}
+.ws-input-wrap input[type="number"]::-webkit-inner-spin-button,
+.ws-input-wrap input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* units row with +/- */
+.ws-unit-btn {
+  width: 34px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f3f4f6;
+  border: none;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #4b5563;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.15s;
+}
+.ws-unit-btn:hover {
+  background: #e5e7eb;
+}
+.ws-unit-btn:active {
+  background: #d1d5db;
+}
+.ws-units-wrap input[type="number"] {
+  border: none;
+  outline: none;
+  flex: 1;
+  text-align: center;
+  font-size: 0.95rem;
+  background: transparent;
+  color: #111827;
+  width: 100%;
+  height: 100%;
+  -moz-appearance: textfield;
+}
+.ws-units-wrap input[type="number"]::-webkit-inner-spin-button,
+.ws-units-wrap input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+
+/* ============================================================
+   RESULTS & WHOLESALE BAR
+   ============================================================ */
+.ws-result-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.85rem 0;
+  background: transparent;
+  border-radius: 0;
+  border-top: 1px dashed #e5e7eb;
+  margin-top: 1.25rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #374151;
+}
+.ws-result-row .ws-result-value {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+/* wholesale price bar at bottom of card */
+.ws-wholesale-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 1.75rem;
+  background: #1e1e24;
+  color: #fff;
+  border-radius: 0 0 16px 16px;
+  margin: 1.5rem -1.75rem 0;
+  font-weight: 700;
+  font-size: 1.15rem;
+  border-top: 1px solid #2e2e38;
+}
+.ws-wholesale-bar .ws-bar-value {
+  font-size: 1.35rem;
+}
+
+/* ============================================================
+   ACTIONS BELOW CARD (SAVE & RESET)
+   ============================================================ */
+.ws-calc-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.25rem;
+  width: 100%;
+}
+
+.ws-save-btn {
+  display: inline-block;
+  padding: 0.65rem 1.25rem;
+  background: #DC2626;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+.ws-save-btn:hover {
+  background: #b91c1c;
+  transform: translateY(-1px);
+}
+.ws-save-btn:active {
+  transform: translateY(0);
+}
+
+.ws-reset-link {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 600;
+  font-size: 0.88rem;
+  color: #4b5563;
+  cursor: pointer;
+  transition: color 0.15s;
+  user-select: none;
+}
+.ws-reset-link:hover {
+  color: #DC2626;
+}
+.ws-reset-link svg {
+  transition: transform 0.3s;
+}
+.ws-reset-link:hover svg {
+  transform: rotate(-360deg);
+}
+
+/* ============================================================
+   2. WHAT IS WHOLESALE PRICE — red section
+   ============================================================ */
+.ws-what-is {
+  background: linear-gradient(135deg, #DC2626 0%, #b91c1c 100%);
+  color: #fff;
+  padding: 3rem 2.5rem;
+  border-radius: 16px;
+  margin-bottom: 2.5rem;
+}
+.ws-what-is h2 {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 0.75rem;
+}
+.ws-what-is > p {
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.9);
+  max-width: 700px;
+  margin-bottom: 1.75rem;
+}
+.ws-what-is-subtitle {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+.ws-know-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.25rem;
+}
+.ws-know-card {
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 12px;
+  padding: 1.25rem 1.2rem;
+  color: #fff;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  transition: background 0.2s;
+}
+.ws-know-card:hover {
+  background: rgba(255,255,255,0.22);
+}
+.ws-know-card .ws-check {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  margin-top: 2px;
+}
+
+/* ============================================================
+   3. FORMULA SECTION
+   ============================================================ */
+.ws-formula-section {
+  background: #fff;
+  padding: 2.75rem 2.5rem;
+  border-radius: 16px;
+  margin-bottom: 2.5rem;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+}
+.ws-formula-section h2 {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #1a1a1a;
+  margin-bottom: 0.5rem;
+}
+.ws-formula-section > p {
+  font-size: 1.05rem;
+  color: #555;
+  max-width: 680px;
+  margin-bottom: 2rem;
+}
+.ws-formula-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.ws-formula-box {
+  background: #fafafa;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 1.5rem 1.75rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+.ws-formula-label {
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: #1a1a1a;
+  white-space: nowrap;
+}
+.ws-formula-eq {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+.ws-formula-part {
+  background: #fff;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  font-size: 0.92rem;
+  color: #333;
+  text-align: center;
+}
+.ws-formula-op {
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: #DC2626;
+}
+.ws-formula-fraction {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #fff;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  padding: 0.4rem 1rem;
+}
+.ws-formula-fraction .ws-frac-top {
+  padding-bottom: 0.3rem;
+  border-bottom: 2px solid #DC2626;
+  font-size: 0.92rem;
+  color: #333;
+}
+.ws-formula-fraction .ws-frac-bot {
+  padding-top: 0.3rem;
+  font-size: 0.92rem;
+  color: #333;
+}
+
+/* ============================================================
+   4. DIFFERENCE SECTION
+   ============================================================ */
+.ws-diff-section {
+  margin-bottom: 2.5rem;
+}
+.ws-diff-section h2 {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #1a1a1a;
+  text-align: center;
+  margin-bottom: 1.75rem;
+}
+.ws-diff-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+.ws-diff-card {
+  border-radius: 14px;
+  padding: 1.75rem 1.5rem;
+  color: #fff;
+}
+.ws-diff-card.ws-diff-dark {
+  background: linear-gradient(145deg, #1a1a2e 0%, #16213e 100%);
+}
+.ws-diff-card.ws-diff-red {
+  background: linear-gradient(145deg, #DC2626 0%, #991b1b 100%);
+}
+.ws-diff-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+.ws-diff-card-header svg {
+  flex-shrink: 0;
+}
+.ws-diff-card ul li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: rgba(255,255,255,0.9);
+}
+.ws-diff-bullet {
+  flex-shrink: 0;
+  margin-top: 5px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #fbbf24;
+}
+
+/* ============================================================
+   5. INFO HIGHLIGHT BOX
+   ============================================================ */
+.ws-info-box {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  border-radius: 14px;
+  padding: 1.5rem 1.75rem;
+  margin-bottom: 2.5rem;
+}
+.ws-info-icon {
+  flex-shrink: 0;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #F6C64E;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ws-info-box p {
+  font-size: 0.98rem;
+  color: #555;
+  margin: 0;
+}
+
+/* ============================================================
+   6. CTA SECTION
+   ============================================================ */
+.ws-cta {
+  background: linear-gradient(135deg, #fffde7 0%, #fff9c4 100%);
+  border-radius: 16px;
+  padding: 3rem 2.5rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+.ws-cta h2 {
+  font-size: 1.85rem;
+  font-weight: 800;
+  color: #1a1a1a;
+  max-width: 600px;
+  margin: 0 auto 0.75rem;
+}
+.ws-cta-features {
+  font-size: 0.95rem;
+  color: #666;
+  margin-bottom: 1.75rem;
+}
+.ws-cta-features span {
+  margin: 0 0.35rem;
+  color: #ccc;
+}
+.ws-cta-btns {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.ws-cta-btn {
+  display: inline-block;
+  padding: 0.75rem 2rem;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.2s;
+  border: none;
+}
+.ws-cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+}
+.ws-cta-primary {
+  background: #DC2626;
+  color: #fff;
+}
+.ws-cta-primary:hover {
+  background: #b91c1c;
+}
+.ws-cta-secondary {
+  background: #fff;
+  color: #DC2626;
+  border: 2px solid #DC2626;
+}
+.ws-cta-secondary:hover {
+  background: #fef2f2;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 900px) {
+  .ws-hero {
+    flex-direction: column;
+    padding: 2rem 1.25rem;
+  }
+  .ws-hero-right {
+    max-width: 100%;
+  }
+  .ws-diff-grid {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 600px) {
+  .ws-hero-left h1 {
+    font-size: 1.85rem;
+  }
+  .ws-what-is,
+  .ws-formula-section {
+    padding: 2rem 1.25rem;
+  }
+  .ws-cta {
+    padding: 2rem 1.25rem;
+  }
+  .ws-formula-box {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  .ws-info-box {
+    flex-direction: column;
+    text-align: center;
+  }
+}

@@ -1,0 +1,596 @@
+/* ============================================================
+   EPS PENSION CALCULATOR — Scoped Styles
+   All selectors are scoped to #eps-section to prevent collisions.
+   ============================================================ */
+
+#eps-section {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #333333;
+  line-height: 1.6;
+  background: #ffffff;
+  padding: 0 0 4rem 0;
+}
+
+#eps-section *,
+#eps-section *::before,
+#eps-section *::after {
+  box-sizing: border-box;
+}
+
+#eps-section h1,
+#eps-section h2,
+#eps-section h3,
+#eps-section h4 {
+  margin: 0 0 0.5rem 0;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+#eps-section p {
+  margin: 0 0 1rem 0;
+}
+
+/* ============================================================
+   1. HERO BANNER
+   ============================================================ */
+.eps-hero {
+  background-color: #fff2ee; /* Peach/light-pink Zoho style */
+  text-align: center;
+  padding: 4rem 2rem 5rem 2rem;
+  margin-bottom: 2rem;
+}
+
+.eps-hero h1 {
+  font-size: 2.6rem;
+  color: #1a1a1a;
+  margin-bottom: 1rem;
+}
+
+.eps-hero .eps-hero-desc {
+  font-size: 1.15rem;
+  color: #555555;
+  max-width: 650px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+/* ============================================================
+   2. CALCULATOR CONTAINER
+   ============================================================ */
+.eps-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  position: relative;
+  z-index: 10;
+}
+
+#eps-section .input-form-container {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 3rem 2.5rem;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+  border: 1px solid #f5eeeb;
+  margin-bottom: 2rem;
+}
+
+#eps-section .epfo-passbook {
+  border-left: 3px solid #e9e9e9;
+  padding-left: 15px;
+  margin: 15px 0;
+}
+
+#eps-section .row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -15px;
+  margin-right: -15px;
+}
+
+#eps-section .col-md-12 {
+  flex: 0 0 100%;
+  max-width: 100%;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+#eps-section .col-md-9 {
+  flex: 0 0 75%;
+  max-width: 75%;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+#eps-section .col-md-3 {
+  flex: 0 0 25%;
+  max-width: 25%;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+#eps-section .line-inputs {
+  padding: 16px 15px;
+  align-items: center;
+  border-bottom: 1px dashed #f1eee9;
+}
+
+#eps-section .line-inputs:last-child {
+  border-bottom: none;
+}
+
+#eps-section .mandatory-field {
+  color: #dc2626;
+  margin-left: 4px;
+}
+
+#eps-section .hint {
+  font-size: 0.85rem;
+  color: #666666;
+  margin-top: 4px;
+}
+
+#eps-section .hint a {
+  color: #d03a1b;
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+#eps-section .hint a:hover {
+  text-decoration: underline;
+}
+
+/* Form inputs & Append styles */
+#eps-section .input-group {
+  display: flex;
+  align-items: stretch;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  overflow: hidden;
+  height: 40px;
+  width: 100%;
+  background: #ffffff;
+}
+
+#eps-section .input-group:focus-within {
+  border-color: #d03a1b;
+  box-shadow: 0 0 0 3px rgba(208, 58, 27, 0.15);
+}
+
+#eps-section .form-control {
+  border: none;
+  outline: none;
+  flex: 1;
+  padding: 0 10px;
+  font-size: 0.95rem;
+  color: #111827;
+  text-align: right;
+  width: 100%;
+  background: transparent;
+}
+
+#eps-section .date-field {
+  text-align: left;
+  cursor: pointer;
+}
+
+#eps-section .input-append {
+  display: flex;
+  align-items: center;
+  background: #f5f5f5;
+  padding: 0 10px;
+  border-left: 1px solid #cccccc;
+  font-size: 0.85rem;
+  color: #555555;
+  font-weight: 600;
+}
+
+#eps-section .invalid-feedback {
+  display: none;
+  color: #dc2626;
+  font-size: 0.8rem;
+  margin-top: 4px;
+  font-weight: 600;
+}
+
+/* ============================================================
+   3. BUTTONS
+   ============================================================ */
+#eps-section .button-primary {
+  height: 44px;
+  background-color: #d03a1b; /* Softrate / Zoho Payroll Red */
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.15s;
+  padding: 0 35px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+#eps-section .button-primary:hover {
+  background-color: #b32e14;
+}
+
+#eps-section .button-toolbar {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 30px;
+}
+
+#eps-section .btn.startover-button {
+  height: 44px;
+  background-color: #ffffff;
+  color: #555555;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0 25px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: background-color 0.15s, color 0.15s;
+}
+
+#eps-section .btn.startover-button:hover {
+  background-color: #f5f5f5;
+  color: #333333;
+}
+
+#eps-section .btn.startover-button svg {
+  fill: #555555;
+  transition: fill 0.15s;
+}
+
+#eps-section .btn.startover-button:hover svg {
+  fill: #333333;
+}
+
+/* ============================================================
+   4. RESULTS PANEL & TABLES
+   ============================================================ */
+#eps-section .hide {
+  display: none !important;
+}
+
+#eps-section .tax-summary-section {
+  width: 100%;
+}
+
+#eps-section .eps-header {
+  font-size: 1.4rem;
+  color: #1a1a1a;
+  margin-bottom: 1rem;
+  border-left: 4px solid #d03a1b;
+  padding-left: 0.85rem;
+}
+
+#eps-section .result-subheader {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #222222;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+#eps-section .result-subheader.hint {
+  font-size: 0.9rem;
+  font-weight: normal;
+  color: #155724;
+  background-color: #d4edda;
+  border: 1px solid #c3e6cb;
+  padding: 12px 15px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 1.5rem;
+}
+
+#eps-section .result-subheader.hint svg {
+  fill: #155724;
+}
+
+#eps-section .result-subheader.disclaimer {
+  font-size: 0.82rem;
+  font-weight: normal;
+  color: #666666;
+  background-color: #fcfcfc;
+  border: 1px solid #eeeeee;
+  border-radius: 6px;
+  padding: 1.25rem;
+  margin-top: 1.5rem;
+  line-height: 1.5;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+#eps-section .result-subheader.disclaimer svg {
+  fill: #666666;
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+#eps-section .results-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+  background: #ffffff;
+}
+
+#eps-section .results-table th,
+#eps-section .results-table td {
+  padding: 12px 15px;
+  font-size: 0.95rem;
+  border-bottom: 1px solid #f2f4f8;
+}
+
+#eps-section .results-table thead th {
+  border-top: 1px solid #f2f4f8;
+  border-bottom: 1px solid #f2f4f8;
+  color: #222222;
+  font-weight: 600;
+  background: #fdfdfd;
+}
+
+#eps-section .results-table tfoot th {
+  border-top: 1px solid #f2f4f8;
+  border-bottom: 1px solid #f2f4f8;
+  color: #222222;
+  font-weight: 700;
+  background: #fdfdfd;
+}
+
+#eps-section .results-table td.old-tax-values,
+#eps-section .results-table th.old-tax-values {
+  background: #fffbf9; /* Highlight Higher Pension Scheme in peach tint */
+  border-right: 1px solid #fdeee7;
+  border-left: 1px solid #fdeee7;
+}
+
+#eps-section .epf-help {
+  font-size: 0.8rem;
+  color: #797979;
+  margin-top: 2px;
+}
+
+#eps-section .epf-disclaimer-amount {
+  border-bottom: 1px dashed #6b6b6b;
+  cursor: help;
+}
+
+#eps-section .text-right {
+  text-align: right !important;
+}
+
+#eps-section .text-uppercase {
+  text-transform: uppercase;
+}
+
+/* ============================================================
+   5. PASSBOOK SAMPLE MODAL
+   ============================================================ */
+#eps-section .modal {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.5);
+  align-items: center;
+  justify-content: center;
+}
+
+#eps-section .modal-content {
+  background-color: #fefefe;
+  margin: 10% auto;
+  padding: 24px;
+  border: 1px solid #888;
+  width: 90%;
+  max-width: 650px;
+  border-radius: 8px;
+  position: relative;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+
+#eps-section .close {
+  position: absolute;
+  top: 12px;
+  right: 18px;
+  color: #aaaaaa;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+#eps-section .close:hover,
+#eps-section .close:focus {
+  color: #000000;
+}
+
+/* ============================================================
+   6. FAQ SECTION
+   ============================================================ */
+.eps-faq-section {
+  max-width: 800px;
+  margin: 4rem auto 0 auto;
+  padding: 0 1.5rem;
+}
+
+.eps-faq-section h2 {
+  font-size: 1.85rem;
+  color: #1a1a1a;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.eps-faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.eps-faq-item {
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #ffffff;
+  transition: border-color 0.15s;
+}
+
+.eps-faq-item:hover {
+  border-color: #cccccc;
+}
+
+.eps-faq-trigger {
+  width: 100%;
+  padding: 1.15rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  text-align: left;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.eps-faq-arrow {
+  flex-shrink: 0;
+  transition: transform 0.2s;
+  color: #999999;
+}
+
+.eps-faq-item.active .eps-faq-arrow {
+  transform: rotate(180deg);
+}
+
+.eps-faq-content {
+  display: none;
+  padding: 0 1.5rem 1.25rem 1.5rem;
+  font-size: 0.95rem;
+  color: #555555;
+  line-height: 1.6;
+}
+
+.eps-faq-item.active .eps-faq-content {
+  display: block;
+}
+
+/* ============================================================
+   7. INFO / CONTENT SECTION
+   ============================================================ */
+.eps-info-section {
+  max-width: 800px;
+  margin: 4rem auto 0 auto;
+  padding: 0 1.5rem;
+}
+
+.eps-info-card {
+  background: #ffffff;
+  border: 1px solid #eeeeee;
+  border-radius: 8px;
+  padding: 2.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+}
+
+.eps-info-card h3 {
+  font-size: 1.4rem;
+  color: #1a1a1a;
+  margin-bottom: 1.25rem;
+  border-left: 4px solid #d03a1b;
+  padding-left: 0.85rem;
+}
+
+.eps-info-card p {
+  color: #555555;
+  font-size: 0.98rem;
+  margin-bottom: 1.25rem;
+}
+
+.eps-info-card ul {
+  padding-left: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.eps-info-card li {
+  color: #555555;
+  font-size: 0.98rem;
+  margin-bottom: 0.5rem;
+}
+
+/* ============================================================
+   RESPONSIVENESS / VIEWPORTS
+   ============================================================ */
+@media (min-width: 900px) {
+  .desktop-view {
+    display: block !important;
+  }
+  .mobile-view {
+    display: none !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .desktop-view {
+    display: none !important;
+  }
+  .mobile-view {
+    display: block !important;
+  }
+  
+  #eps-section .col-md-9 {
+    flex: 0 0 100%;
+    max-width: 100%;
+    margin-bottom: 8px;
+  }
+  
+  #eps-section .col-md-3 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  
+  #eps-section .line-inputs {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  #eps-section .input-form-container {
+    padding: 2rem 1.25rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .eps-hero h1 {
+    font-size: 2rem;
+  }
+  .eps-hero .eps-hero-desc {
+    font-size: 1rem;
+  }
+  
+  #eps-section .button-toolbar {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  #eps-section .button-toolbar button {
+    width: 100%;
+  }
+}

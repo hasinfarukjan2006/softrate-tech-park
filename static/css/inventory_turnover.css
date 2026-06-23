@@ -1,0 +1,446 @@
+/* ============================================================
+   INVENTORY TURNOVER RATIO CALCULATOR — Specific Redesign
+   ============================================================ */
+
+#inventory-turnover-section {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #1f2937;
+  line-height: 1.6;
+  background-color: #ffffff; /* Clean white background */
+  padding: 0;
+  border-radius: 16px;
+  margin-bottom: 2.5rem;
+}
+
+#inventory-turnover-section *,
+#inventory-turnover-section *::before,
+#inventory-turnover-section *::after {
+  box-sizing: border-box;
+}
+
+.it-page-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* --- 1. Hero Section --- */
+.it-hero {
+  text-align: center;
+  background-color: #fffdf5; /* Light cream/yellow background */
+  padding: 5rem 2rem;
+  border-radius: 12px;
+  margin-bottom: 3.5rem;
+  border: 1px solid #fef3c7;
+}
+
+.it-hero h1 {
+  font-size: 2.75rem;
+  font-weight: 800;
+  color: #111827;
+  margin-bottom: 1rem;
+  line-height: 1.25;
+}
+
+.it-highlight-maroon {
+  color: #800000; /* Dark red/maroon color */
+}
+
+.it-hero p {
+  font-size: 1.15rem;
+  color: #4b5563;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* --- 2. Explanation Section --- */
+.it-explanation-section {
+  margin-bottom: 4rem;
+}
+
+.it-explanation-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  margin-bottom: 3rem;
+}
+
+.it-explanation-col h3 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 0.75rem;
+}
+
+.it-explanation-col p {
+  font-size: 0.98rem;
+  color: #4b5563;
+  margin: 0;
+}
+
+/* Sub-row for Who needs this & visual illustration */
+.it-explanation-row-two {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 3rem;
+  align-items: center;
+  border-top: 1px solid #f3f4f6;
+  padding-top: 3rem;
+}
+
+.it-explanation-text h3 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 0.75rem;
+}
+
+.it-explanation-text p {
+  font-size: 0.98rem;
+  color: #4b5563;
+  margin: 0;
+}
+
+/* Visual illustration card */
+.it-explanation-visual {
+  display: flex;
+  justify-content: center;
+}
+
+.it-visual-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 320px;
+  padding: 1.25rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+}
+
+.it-visual-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-bottom: 1px solid #f3f4f6;
+  padding-bottom: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.it-visual-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #f97316;
+  border-radius: 50%;
+}
+
+.it-visual-title {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #374151;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.it-visual-bar-chart {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  height: 100px;
+  padding: 0 1rem;
+  border-bottom: 2px solid #e5e7eb;
+  margin-bottom: 1rem;
+}
+
+.it-chart-bar {
+  width: 28px;
+  background-color: #fed7aa;
+  border-radius: 4px 4px 0 0;
+  position: relative;
+  transition: background-color 0.2s;
+}
+
+.it-chart-bar:hover {
+  background-color: #ffedd5;
+}
+
+.it-chart-bar.active {
+  background-color: #f97316;
+}
+
+.it-chart-bar span {
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.68rem;
+  color: #6b7280;
+  font-weight: 600;
+}
+
+.it-visual-stat {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.82rem;
+}
+
+.it-stat-lbl {
+  color: #6b7280;
+}
+
+.it-stat-val {
+  font-weight: 700;
+  color: #10b981;
+}
+
+/* --- 3. Calculator Section --- */
+.it-calculator-wrapper {
+  margin-bottom: 4.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.it-calc-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-top: 6px solid #f59e0b; /* Orange/Yellow top border */
+  border-radius: 12px;
+  padding: 3rem 2.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  max-width: 650px;
+}
+
+.it-calc-card h2 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #111827;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.it-calc-card label {
+  display: block;
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: #374151;
+  margin-bottom: 0.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.it-input-wrapper input {
+  transition: all 0.2s;
+}
+
+.it-input-wrapper input:focus {
+  border-color: #f59e0b !important;
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1) !important;
+}
+
+/* Results output styling */
+.it-results-block {
+  transition: all 0.3s ease;
+}
+
+.it-results-block.hide {
+  display: none !important;
+}
+
+.it-interpretation-alert {
+  border: 1px solid transparent;
+  padding: 1.25rem;
+  border-radius: 8px;
+}
+
+.it-interpretation-alert.low {
+  background-color: #fef2f2;
+  border-color: #fca5a5;
+  color: #991b1b;
+}
+
+.it-interpretation-alert.healthy {
+  background-color: #ecfdf5;
+  border-color: #a7f3d0;
+  color: #065f46;
+}
+
+.it-interpretation-alert.high {
+  background-color: #fff7ed;
+  border-color: #fed7aa;
+  color: #9a3412;
+}
+
+/* --- 4. Points to Consider Section --- */
+.it-points-section {
+  margin-bottom: 4.5rem;
+  background-color: #fafafa;
+  padding: 3.5rem 2.5rem;
+  border-radius: 12px;
+  border: 1px solid #f3f4f6;
+}
+
+.it-points-section h2 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #111827;
+  margin-bottom: 2rem;
+}
+
+.it-points-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.it-point-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+}
+
+.it-point-num {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: #fef3c7; /* Light yellow background */
+  color: #d97706; /* Darker yellow/orange number */
+  font-weight: 800;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+}
+
+.it-point-item p {
+  font-size: 0.98rem;
+  color: #374151;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* --- 5. Strategies Section --- */
+.it-strategies-section {
+  background-color: #eff6ff; /* Light blue background */
+  padding: 4rem 3rem;
+  border-radius: 12px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  margin-bottom: 4.5rem;
+  border: 1px solid #dbeafe;
+}
+
+.it-strategies-left h2 {
+  font-size: 1.85rem;
+  font-weight: 800;
+  color: #1e3a8a; /* Dark blue */
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+
+.it-strategies-left p {
+  font-size: 1.05rem;
+  color: #1e40af;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.it-strategies-right {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.it-strategy-card {
+  background: #ffffff;
+  border-left: 4px solid #f59e0b; /* Yellow/Orange left border */
+  padding: 1.25rem 1.5rem;
+  border-radius: 0 8px 8px 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+}
+
+.it-strategy-card p {
+  font-size: 0.95rem;
+  color: #1f2937;
+  font-weight: 600;
+  margin: 0;
+  line-height: 1.45;
+}
+
+/* --- 6. Ideal Turnover Section --- */
+.it-ideal-section {
+  margin-bottom: 4.5rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.it-ideal-section h2 {
+  font-size: 1.65rem;
+  font-weight: 800;
+  color: #111827;
+  margin-bottom: 1rem;
+}
+
+.it-ideal-section p {
+  font-size: 1rem;
+  color: #4b5563;
+  line-height: 1.7;
+  margin: 0 0 1.25rem 0;
+}
+
+.it-ideal-section p:last-of-type {
+  margin-bottom: 0;
+}
+
+/* --- 7. FAQ Accordion --- */
+.it-faq-item.bc-faq-item {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: border-color 0.15s;
+}
+
+.it-faq-item.bc-faq-item.active {
+  border-color: #f59e0b;
+}
+
+.it-faq-item.bc-faq-item.active .bc-faq-trigger i {
+  transform: rotate(180deg);
+  color: #f59e0b;
+}
+
+/* ============================================================
+   RESPONSIVE DESIGN BREAKPOINTS
+   ============================================================ */
+@media (max-width: 1024px) {
+  .it-explanation-grid,
+  .it-explanation-row-two,
+  .it-strategies-section {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .it-explanation-row-two {
+    padding-top: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .it-hero {
+    padding: 3rem 1rem;
+  }
+  .it-hero h1 {
+    font-size: 2rem;
+  }
+  .it-calc-card {
+    padding: 2rem 1.5rem;
+  }
+  .it-results-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .it-strategies-section {
+    padding: 2.5rem 1.5rem;
+  }
+}

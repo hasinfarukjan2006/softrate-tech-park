@@ -20,14 +20,16 @@ class GstCalculatorTestCase(unittest.TestCase):
         """Test if the Per Diem Calculator section is in the rendered landing page."""
         response = self.client.get("/")
         self.assertEqual(response.status_code, 200)
-        self.assertIn(b"Per diem calculator 2026 for USA", response.data)
+        self.assertIn(b"Per diem calculator", response.data)
+        self.assertIn(b"2026 for USA", response.data)
         self.assertIn(b"Calculate your travel per diem rate", response.data)
 
     def test_per_diem_calculator_route(self):
         """Test if the /per-diem-calculator route renders successfully and serves the page."""
         response = self.client.get("/per-diem-calculator")
         self.assertEqual(response.status_code, 200)
-        self.assertIn(b"Per diem calculator 2026 for USA", response.data)
+        self.assertIn(b"Per diem calculator", response.data)
+        self.assertIn(b"2026 for USA", response.data)
 
     def test_calculate_exclusive(self):
         """Test Exclusive GST calculation logic and API."""
@@ -430,6 +432,155 @@ class GstCalculatorTestCase(unittest.TestCase):
         self.assertEqual(saved_report["report_title"], "Q2 Expense Claim")
         self.assertEqual(saved_report["total_amount"], 4500.0)
 
+    def test_shipping_label_generator_route(self):
+        """Test if the /shipping-label-generator route renders successfully and serves the page."""
+        response = self.client.get("/shipping-label-generator")
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b"Shipping Label Generator", response.data)
+
+    def test_barcode_generator_route(self):
+        """Test if the /barcode-generator route renders successfully and serves the page."""
+        response = self.client.get("/barcode-generator")
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b"Barcode Generator", response.data)
+
+    def test_packing_slip_generator_route(self):
+        """Test if the /packing-slip-generator route renders successfully and serves the page."""
+        response = self.client.get("/packing-slip-generator")
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b"Packing Slip Generator", response.data)
+
+    def test_inventory_turnover_route(self):
+        """Test if the /inventory-turnover route renders successfully and serves the page."""
+        response = self.client.get("/inventory-turnover")
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b"Inventory Turnover", response.data)
+        self.assertIn(b"Calculate your Inventory Turnover", response.data)
+
+    def test_reorder_point_route(self):
+        """Test if the /reorder-point route renders successfully and serves the page."""
+        response = self.client.get("/reorder-point")
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b"Reorder point", response.data)
+        self.assertIn(b"Calculate your reorder point", response.data)
+
+    def test_purchase_order_generator_route(self):
+        """Test if the /purchase-order-generator route renders successfully and serves the page."""
+        response = self.client.get("/purchase-order-generator")
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b"Purchase Order Generator", response.data)
+        self.assertIn(b"Every field is editable.", response.data)
+
+    def test_sku_generator_route(self):
+        """Test if the /sku-generator route renders successfully and serves the page."""
+        response = self.client.get("/sku-generator")
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b"SKU Generator", response.data)
+        self.assertIn(b"Generate Product SKUs Instantly", response.data)
+
+    def test_hra_exemption_calculator_route(self):
+        """Test if the /hra-exemption-calculator route renders successfully and serves the page."""
+        response = self.client.get("/hra-exemption-calculator")
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b"HRA Exemption", response.data)
+        self.assertIn(b"Calculator", response.data)
+
+    def test_statutory_bonus_calculator_route(self):
+        """Test if the /statutory-bonus-calculator route renders successfully and serves the page."""
+        response = self.client.get("/statutory-bonus-calculator")
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b"Statutory Bonus", response.data)
+        self.assertIn(b"Calculator", response.data)
+
+    def test_gratuity_calculator_route(self):
+        """Test if the /gratuity-calculator and /in/payroll/gratuity-calculator/ routes render successfully."""
+        for path in ["/gratuity-calculator", "/in/payroll/gratuity-calculator/"]:
+            response = self.client.get(path)
+            self.assertEqual(response.status_code, 200)
+            self.assertIn(b"Gratuity Calculator", response.data)
+            self.assertIn(b"Calculate your gratuity amount", response.data)
+
+    def test_eps_calculator_route(self):
+        """Test if the /eps-pension-calculator and /in/payroll/eps-pension-calculator/ routes render successfully."""
+        for path in ["/eps-pension-calculator", "/in/payroll/eps-pension-calculator/"]:
+            response = self.client.get(path)
+            self.assertEqual(response.status_code, 200)
+            self.assertIn(b"EPS Pension Calculator", response.data)
+            self.assertIn(b"Estimate your Employees", response.data)
+
+    def test_nps_calculator_route(self):
+        """Test if the /nps-calculator and /in/payroll/nps-calculator/ routes render successfully."""
+        for path in ["/nps-calculator", "/in/payroll/nps-calculator/"]:
+            response = self.client.get(path)
+            self.assertEqual(response.status_code, 200)
+            self.assertIn(b"NPS Calculator", response.data)
+            self.assertIn(b"Estimate your National Pension", response.data)
+
+    def test_free_payslip_generator_route(self):
+        """Test if the /free-payslip-generator and /in/payroll/free-payslip-generator/ routes render successfully."""
+        for path in ["/free-payslip-generator", "/in/payroll/free-payslip-generator/"]:
+            response = self.client.get(path)
+            self.assertEqual(response.status_code, 200)
+            self.assertIn(b"Create Professional Employee Payslips Instantly", response.data)
+
+    def test_form_w9_generator_route(self):
+        """Test if the /form-w9-generator and /in/payroll/form-w9-generator/ routes render successfully."""
+        for path in ["/form-w9-generator", "/in/payroll/form-w9-generator/"]:
+            response = self.client.get(path)
+            self.assertEqual(response.status_code, 200)
+            self.assertIn(b"Form W-9", response.data)
+            self.assertIn(b"W-9 Form Generator", response.data)
+
+    def test_project_estimate_calculator_route(self):
+        """Test if the /free-project-estimate-calculator, /in/payroll/free-project-estimate-calculator/, and /project-cost routes render successfully."""
+        for path in ["/free-project-estimate-calculator", "/in/payroll/free-project-estimate-calculator/", "/project-cost"]:
+            response = self.client.get(path)
+            self.assertEqual(response.status_code, 200)
+            self.assertIn(b"Free Project Cost Estimate Calculator", response.data)
+            self.assertIn(b"Project Cost Estimator", response.data)
+
+    def test_financial_report_generator_route(self):
+        """Test if the /financial-report-generator and /in/payroll/financial-report-generator/ routes render successfully."""
+        for path in ["/financial-report-generator", "/in/payroll/financial-report-generator/"]:
+            response = self.client.get(path)
+            self.assertEqual(response.status_code, 200)
+            self.assertIn(b"Free financial report", response.data)
+            self.assertIn(b"Financial Report Details", response.data)
+
+    def test_save_financial_report_api(self):
+        """Test the save financial report API endpoint."""
+        payload = {
+            "report_type": "profit-loss",
+            "company_name": "Test Company",
+            "date_from": "2026-01-01",
+            "date_to": "2026-12-31",
+            "currency": "USD",
+            "revenue": 100000,
+            "cogs": 40000,
+            "operating_expenses": 30000,
+            "other_income": 5000,
+            "taxes": 10000,
+            "assets": 500000,
+            "liabilities": 200000,
+            "equity": 300000,
+            "gross_profit": 60000,
+            "net_profit": 25000
+        }
+        response = self.client.post("/api/save-financial-report", json=payload)
+        self.assertEqual(response.status_code, 200)
+        data = response.get_json()
+        self.assertEqual(data["status"], "success")
+        self.assertEqual(data["message"], "Financial report saved successfully")
+
+    def test_paycheck_calculator_route(self):
+        """Test if the /paycheck-calculator and /in/payroll/paycheck-calculator/ routes render successfully."""
+        for path in ["/paycheck-calculator", "/in/payroll/paycheck-calculator/"]:
+            response = self.client.get(path)
+            self.assertEqual(response.status_code, 200)
+            self.assertIn(b"Paycheck Calculator", response.data)
+
 if __name__ == "__main__":
     unittest.main()
+
+
 

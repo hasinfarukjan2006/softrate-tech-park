@@ -1,0 +1,367 @@
+/* ============================================================
+   STATUTORY BONUS CALCULATOR — Scoped Styles
+   All selectors are scoped to #bonus-section to prevent collisions.
+   ============================================================ */
+
+#bonus-section {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #333333;
+  line-height: 1.6;
+  background: #ffffff;
+  padding: 0 0 4rem 0;
+}
+
+#bonus-section *,
+#bonus-section *::before,
+#bonus-section *::after {
+  box-sizing: border-box;
+}
+
+#bonus-section h1,
+#bonus-section h2,
+#bonus-section h3,
+#bonus-section h4 {
+  margin: 0 0 0.5rem 0;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+#bonus-section p {
+  margin: 0 0 1rem 0;
+}
+
+/* ============================================================
+   1. HERO BANNER
+   ============================================================ */
+.bonus-hero {
+  background-color: #fff2ee; /* Peach/light-pink Zoho style */
+  text-align: center;
+  padding: 4rem 2rem 5rem 2rem;
+  margin-bottom: -3rem; /* overlap calculator card slightly */
+}
+
+.bonus-hero h1 {
+  font-size: 2.6rem;
+  color: #1a1a1a;
+  margin-bottom: 1rem;
+}
+
+.bonus-hero .bonus-hero-desc {
+  font-size: 1.15rem;
+  color: #555555;
+  max-width: 650px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+/* ============================================================
+   2. CALCULATOR CONTAINER
+   ============================================================ */
+.bonus-container {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  position: relative;
+  z-index: 10;
+}
+
+.bonus-calc-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 3rem 2.5rem;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+  border: 1px solid #f0f0f0;
+  margin-bottom: 2rem;
+}
+
+.bonus-form-group {
+  margin-bottom: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.bonus-form-group label {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #484848;
+}
+
+.bonus-input-wrap {
+  display: flex;
+  align-items: center;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  background: #ffffff;
+  height: 44px;
+  overflow: hidden;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.bonus-input-wrap:focus-within {
+  border-color: #e25c3e;
+  box-shadow: 0 0 0 3px rgba(226, 92, 62, 0.15);
+}
+
+.bonus-input-prefix,
+.bonus-input-suffix {
+  padding: 0 0.75rem;
+  background: #f5f5f5;
+  font-weight: 600;
+  color: #555555;
+  font-size: 0.95rem;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+}
+
+.bonus-input-prefix {
+  border-right: 1px solid #cccccc;
+}
+
+.bonus-input-suffix {
+  border-left: 1px solid #cccccc;
+}
+
+.bonus-input-wrap input[type="number"] {
+  border: none;
+  outline: none;
+  flex: 1;
+  padding: 0 0.85rem;
+  font-size: 1rem;
+  background: transparent;
+  color: #111827;
+  width: 100%;
+  height: 100%;
+  -moz-appearance: textfield;
+}
+
+.bonus-input-wrap input[type="number"]::-webkit-inner-spin-button,
+.bonus-input-wrap input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.bonus-input-hint {
+  font-size: 0.8rem;
+  color: #777777;
+  margin-top: 0.25rem;
+}
+
+.bonus-error-msg {
+  font-size: 0.8rem;
+  color: #dc2626;
+  margin-top: 0.25rem;
+  display: none;
+}
+
+/* ============================================================
+   3. BUTTONS
+   ============================================================ */
+.bonus-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2rem;
+  gap: 1.25rem;
+}
+
+.bonus-btn-primary {
+  flex: 1.2;
+  height: 44px;
+  background-color: #d03a1b; /* Zoho Payroll Red */
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.bonus-btn-primary:hover {
+  background-color: #b32e14;
+}
+
+.bonus-btn-secondary {
+  flex: 0.8;
+  height: 44px;
+  background-color: #ffffff;
+  color: #555555;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.15s, color 0.15s;
+}
+
+.bonus-btn-secondary:hover {
+  background-color: #f5f5f5;
+  color: #333333;
+}
+
+/* ============================================================
+   4. RESULTS PANEL
+   ============================================================ */
+.bonus-result-card {
+  display: none;
+}
+
+.bonus-result-card h2 {
+  font-size: 1.3rem;
+  color: #1a1a1a;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.bonus-result-value-big {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #d03a1b;
+  text-align: center;
+  margin: 1rem 0 2rem 0;
+  line-height: 1;
+}
+
+.bonus-result-list {
+  border-top: 1px solid #f0f0f0;
+  margin-bottom: 2rem;
+}
+
+.bonus-result-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.95rem 0;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 0.95rem;
+}
+
+.bonus-result-label {
+  color: #555555;
+  font-weight: 600;
+}
+
+.bonus-result-val {
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+/* ============================================================
+   5. DISCLAIMER
+   ============================================================ */
+.bonus-disclaimer {
+  font-size: 0.82rem;
+  color: #777777;
+  background-color: #fcfcfc;
+  border: 1px solid #eeeeee;
+  border-radius: 6px;
+  padding: 1.25rem;
+  margin-top: 1.5rem;
+  line-height: 1.5;
+}
+
+.bonus-disclaimer strong {
+  color: #444444;
+}
+
+/* ============================================================
+   6. FAQ SECTION
+   ============================================================ */
+.bonus-faq-section {
+  max-width: 800px;
+  margin: 4rem auto 0 auto;
+  padding: 0 1.5rem;
+}
+
+.bonus-faq-section h2 {
+  font-size: 1.85rem;
+  color: #1a1a1a;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.bonus-faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.bonus-faq-item {
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #ffffff;
+  transition: border-color 0.15s;
+}
+
+.bonus-faq-item:hover {
+  border-color: #cccccc;
+}
+
+.bonus-faq-trigger {
+  width: 100%;
+  padding: 1.15rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  text-align: left;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.bonus-faq-arrow {
+  flex-shrink: 0;
+  transition: transform 0.2s;
+  color: #999999;
+}
+
+.bonus-faq-item.active .bonus-faq-arrow {
+  transform: rotate(180deg);
+}
+
+.bonus-faq-content {
+  display: none;
+  padding: 0 1.5rem 1.25rem 1.5rem;
+  font-size: 0.95rem;
+  color: #555555;
+  line-height: 1.6;
+}
+
+.bonus-faq-item.active .bonus-faq-content {
+  display: block;
+}
+
+/* ============================================================
+   RESPONSIVENESS
+   ============================================================ */
+@media (max-width: 600px) {
+  .bonus-hero h1 {
+    font-size: 2rem;
+  }
+  .bonus-hero .bonus-hero-desc {
+    font-size: 1rem;
+  }
+  .bonus-calc-card {
+    padding: 2rem 1.5rem;
+  }
+  .bonus-actions {
+    flex-direction: column;
+  }
+  .bonus-btn-primary,
+  .bonus-btn-secondary {
+    width: 100%;
+  }
+}

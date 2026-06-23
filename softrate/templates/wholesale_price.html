@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="page-container">
+  <section class="content-section" id="wholesale-price-section">
+    <div class="wholesale-top-section" style="display: flex; flex-wrap: wrap; gap: 2rem; margin-bottom: 2rem;">
+      <div class="wholesale-intro" style="flex: 1; min-width: 280px;">
+        <h2>Wholesale Price Calculator</h2>
+        <p>Calculate the wholesale price for your products based on cost, overhead, administrative expenses, unit count, and desired profit margin. Save results for future reference.</p>
+      </div>
+      <div class="wholesale-calculator-card" style="flex: 1; min-width: 300px;">
+        <div class="card" style="padding: 1.5rem;">
+          <form id="wholesaleForm" class="calc-form">
+            <div class="form-group">
+              <label for="costPrice">Cost price per unit</label>
+              <input type="number" id="costPrice" class="form-control" placeholder="e.g. 100" step="any" min="0" required>
+            </div>
+            <div class="form-group">
+              <label for="overhead">Overhead expenses</label>
+              <input type="number" id="overhead" class="form-control" placeholder="e.g. 20" step="any" min="0" required>
+            </div>
+            <div class="form-group">
+              <label for="adminCost">Administrative cost</label>
+              <input type="number" id="adminCost" class="form-control" placeholder="e.g. 10" step="any" min="0" required>
+            </div>
+            <div class="form-group" style="display: flex; align-items: center; gap: 0.5rem;">
+              <label for="units" style="flex: 1; margin: 0;">Number of units</label>
+              <button type="button" id="decreaseUnits" style="width: 30px;">-</button>
+              <input type="number" id="units" class="form-control" value="1" min="1" style="width: 60px; text-align: center;" required>
+              <button type="button" id="increaseUnits" style="width: 30px;">+</button>
+            </div>
+            <div class="form-group">
+              <label for="profitMargin">Profit margin %</label>
+              <input type="number" id="profitMargin" class="form-control" placeholder="e.g. 15" step="any" min="0" required>
+            </div>
+            <hr />
+            <div class="form-group">
+              <label>Total Cost Price</label>
+              <input type="text" id="totalCost" class="form-control" readonly>
+            </div>
+            <div class="form-group">
+              <label>Wholesale Price</label>
+              <input type="text" id="wholesalePrice" class="form-control" readonly>
+            </div>
+            <div class="form-actions" style="margin-top: 1rem; text-align: right;">
+              <button type="button" id="saveBtn" class="cta-btn">Save</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- Educational Sections -->
+    <div class="educational" style="margin-top: 2rem;">
+      <h3>What is wholesale price?</h3>
+      <p>The wholesale price is the amount a retailer pays to a supplier for a product before adding their own margin.</p>
+      <h3>What you need to know?</h3>
+      <p>Consider all direct costs, overhead, and desired profit when setting your wholesale price.</p>
+      <h3>How wholesale price is calculated?</h3>
+      <p>We add all costs, multiply by the number of units, then apply the profit margin.</p>
+      <h3>Formula</h3>
+      <p><strong>Total Cost = (Cost per unit + Overhead + Administrative) × Units</strong><br/>
+         <strong>Wholesale Price = Total Cost × (1 + ProfitMargin/100)</strong></p>
+      <h3>Wholesale price vs Retail price</h3>
+      <p>Retail price includes the retailer's margin on top of the wholesale price.</p>
+      <h3>Promote your inventory</h3>
+      <p>Use our calculator to set competitive wholesale prices and increase sales volume.</p>
+    </div>
+  </section>
+</div>
+<script src="/static/js/wholesale_price.js"></script>
+{% endblock %}

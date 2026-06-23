@@ -1,0 +1,404 @@
+/* ============================================================
+   ECONOMIC ORDER QUANTITY (EOQ) CALCULATOR — Zoho Style CSS
+   Scoped to #eoq-section to prevent style bleeding.
+   ============================================================ */
+
+#eoq-section {
+  position: relative;
+  background: #f8fafc; /* Soft pastel background */
+  padding: 1rem 0 4rem 0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* 1. Full-Width Centered Hero Section */
+.eoq-hero {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 2.5rem auto;
+  padding: 3rem 1.5rem 1rem 1.5rem;
+  position: relative;
+  z-index: 10;
+}
+
+.eoq-hero h1 {
+  font-size: 2.75rem;
+  font-weight: 800;
+  line-height: 1.2;
+  color: #0f172a; /* Black text */
+  margin-bottom: 1.25rem;
+  font-family: inherit;
+}
+
+.eoq-hero h1 .eoq-red {
+  color: #dc2626; /* EOQ highlighted in red/orange */
+}
+
+.eoq-hero-desc {
+  font-size: 1.1rem;
+  color: #475569;
+  line-height: 1.6;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+/* 2. Absolute Background Decorations (Left & Right) */
+.eoq-decor-left {
+  position: absolute;
+  left: 20px;
+  top: 150px;
+  width: 140px;
+  height: 180px;
+  opacity: 0.25;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.eoq-decor-right {
+  position: absolute;
+  right: 20px;
+  top: 150px;
+  width: 140px;
+  height: 180px;
+  opacity: 0.25;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* 3. Centered White Calculator Container */
+.eoq-calculator-container {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+  max-width: 800px;
+  margin: 0 auto 3rem auto;
+  padding: 2.25rem;
+  position: relative;
+  z-index: 10;
+}
+
+/* Header inside Calculator card */
+.eoq-calc-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+/* Top Toggle Switch */
+.eoq-toggle-container {
+  display: flex;
+  background-color: #f1f5f9;
+  padding: 0.25rem;
+  border-radius: 8px;
+}
+
+.eoq-toggle-container input[type="radio"] {
+  display: none;
+}
+
+.eoq-toggle-btn {
+  padding: 0.45rem 1.1rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #64748b;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.eoq-toggle-container input[type="radio"]:checked + .eoq-toggle-btn {
+  background-color: #facc15; /* Yellow highlight */
+  color: #0f172a;
+}
+
+/* Currency selector dropdown */
+.eoq-currency-selector select {
+  padding: 0.4rem 1.5rem 0.4rem 0.75rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #475569;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  background-color: #ffffff;
+  outline: none;
+  cursor: pointer;
+}
+
+/* 4. Formula Section Layout */
+.eoq-formula-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 2rem auto;
+  max-width: 680px;
+}
+
+/* SVG Square Root tick symbol */
+.eoq-sqrt-symbol {
+  width: 48px;
+  height: 190px; /* matches height of the fraction block */
+  display: flex;
+  align-items: center;
+  margin-right: -4px; /* merge with fraction block top bar */
+}
+
+.eoq-sqrt-symbol svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Fraction numerator/denominator layout */
+.eoq-fraction-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-top: 4px solid #cbd5e1; /* top bar of square root */
+  padding-top: 1.75rem;
+  flex-grow: 1;
+}
+
+.eoq-numerator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+  width: 100%;
+  padding-bottom: 0.85rem;
+}
+
+.eoq-fraction-line {
+  width: 85%;
+  height: 2px;
+  background-color: #cbd5e1;
+  margin: 0.25rem 0;
+}
+
+.eoq-denominator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 0.85rem;
+  width: 100%;
+}
+
+/* Text and operators inside formula */
+.eoq-formula-number {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #1e293b;
+}
+
+.eoq-formula-operator {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #64748b;
+  user-select: none;
+}
+
+/* Input Boxes inside Formula */
+.eoq-formula-input-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.eoq-formula-input-group input {
+  width: 130px;
+  padding: 0.6rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  text-align: center;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #0f172a;
+  outline: none;
+  background-color: #ffffff;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  font-family: inherit;
+}
+
+.eoq-formula-input-group input:focus {
+  border-color: #dc2626; /* Red border on focus */
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.15);
+}
+
+.eoq-formula-input-group label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-align: center;
+  pointer-events: none;
+}
+
+.eoq-error-msg {
+  display: none;
+  font-size: 0.75rem;
+  color: #ef4444;
+  margin-top: 0.25rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* 5. Centered Red Calculate Button */
+.eoq-btn-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 2.25rem 0 1.5rem 0;
+}
+
+.eoq-calculate-btn {
+  background-color: #dc2626; /* Zoho Red Button */
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.75rem 2.25rem;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.15);
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  outline: none;
+}
+
+.eoq-calculate-btn:hover {
+  background-color: #b91c1c;
+}
+
+.eoq-calculate-btn:active {
+  transform: scale(0.98);
+}
+
+/* 6. Results display centered below calculations */
+.eoq-result-display {
+  display: none;
+  text-align: center;
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.eoq-result-label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.75px;
+  margin-bottom: 0.5rem;
+}
+
+.eoq-result-value {
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: #dc2626; /* Red bold result */
+  line-height: 1.15;
+  margin-bottom: 0.5rem;
+}
+
+.eoq-result-desc {
+  font-size: 0.9rem;
+  color: #475569;
+  font-weight: 600;
+}
+
+/* 7. Reset link */
+.eoq-reset-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.eoq-reset-link {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: none;
+  border: none;
+  color: #64748b;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  outline: none;
+}
+
+.eoq-reset-link:hover {
+  color: #dc2626;
+}
+
+.eoq-reset-link i {
+  width: 15px;
+  height: 15px;
+}
+
+/* Dot matrix pattern */
+.eoq-background-pattern {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 350px;
+  background-image: radial-gradient(#e2e8f0 1.2px, transparent 1.2px);
+  background-size: 24px 24px;
+  opacity: 0.3;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.eoq-educational-section {
+  position: relative;
+  z-index: 10;
+  padding: 0 2.5rem;
+}
+
+/* Animation keyframes */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive adjustements */
+@media (max-width: 768px) {
+  .eoq-hero h1 {
+    font-size: 2rem;
+  }
+  .eoq-calculator-container {
+    padding: 1.5rem;
+    border-radius: 8px;
+  }
+  .eoq-formula-wrapper {
+    flex-direction: row;
+    overflow-x: auto;
+    justify-content: flex-start;
+    padding-bottom: 1rem;
+  }
+  .eoq-sqrt-symbol {
+    height: 170px;
+  }
+  .eoq-formula-input-group input {
+    width: 105px;
+    font-size: 0.85rem;
+    padding: 0.5rem;
+  }
+  .eoq-formula-number {
+    font-size: 1.4rem;
+  }
+  .eoq-formula-operator {
+    font-size: 1.1rem;
+  }
+  .eoq-decor-left, .eoq-decor-right {
+    display: none;
+  }
+  .eoq-educational-section {
+    padding: 0 1.25rem;
+  }
+}

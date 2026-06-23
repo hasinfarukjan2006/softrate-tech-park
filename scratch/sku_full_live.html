@@ -1,0 +1,955 @@
+<!doctype html><html lang=en><head><title>Free SKU Generator tool | Zoho Inventory</title>
+<meta property="og:title" content="Free SKU Generator tool | Zoho Inventory"><meta property="og:type" content="website"><meta property="og:url" content="https://www.zoho.com/inventory/sku-generator/"><meta name=description content="SKU generator is a tool that keeps the process of naming your items as simple and consistent. Much-needed tool for every growing organization. Sign up now."><link rel=alternate href=https://www.zoho.com/ae/inventory/sku-generator/ hreflang=en-ae><link rel=alternate href=https://www.zoho.com/au/inventory/sku-generator/ hreflang=en-au><link rel=alternate href=https://www.zoho.com/bh/inventory/sku-generator/ hreflang=en-bh><link rel=alternate href=https://www.zoho.com/ca/inventory/sku-generator/ hreflang=en-ca><link rel=alternate href=https://www.zoho.com/de-de/inventory/sku-generator/ hreflang=en-de><link rel=alternate href=https://www.zoho.com/en-sg/inventory/sku-generator/ hreflang=en-sg><link rel=alternate href=https://www.zoho.com/es-mx/inventory/sku-generator/ hreflang=en-mx><link rel=alternate href=https://www.zoho.com/inventory/sku-generator/ hreflang=x-default><link rel=alternate href=https://www.zoho.com/in/inventory/sku-generator/ hreflang=en-in><link rel=alternate href=https://www.zoho.com/ke/inventory/sku-generator/ hreflang=en-ke><link rel=alternate href=https://www.zoho.com/kw/inventory/sku-generator/ hreflang=en-kw><link rel=alternate href=https://www.zoho.com/om/inventory/sku-generator/ hreflang=en-om><link rel=alternate href=https://www.zoho.com/qa/inventory/sku-generator/ hreflang=en-qa><link rel=alternate href=https://www.zoho.com/sa/inventory/sku-generator/ hreflang=en-sa><link rel=alternate href=https://www.zoho.com/uk/inventory/sku-generator/ hreflang=en-gb><link rel=alternate href=https://www.zoho.com/us/inventory/sku-generator/ hreflang=en-us><link rel=alternate href=https://www.zoho.com/za/inventory/sku-generator/ hreflang=en-za><link rel=canonical href=https://www.zoho.com/in/inventory/sku-generator/><style type="text/css">body {
+  font-family: Zoho Puvi,-apple-system,BlinkMacSystemFont,San Francisco,Helvetica Neue,Helvetica,Ubuntu,Roboto,Noto,Segoe UI,Arial,sans-serif;
+  font-weight: 400;
+  margin: 0;
+}
+
+.signup-btn {
+  background: #ff2437;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  padding: 9px 30px;
+  border: none;
+  cursor: pointer;
+  margin-left: 10px;
+  text-decoration: none;
+}
+
+.top-banner {
+  background: #ffd600;
+  font-size: 17px;
+  font-weight: 600;
+  color: #000;
+  text-align: center;
+  padding: 16px 0 19px;
+}
+
+.top-band {
+  padding-bottom: 100px;
+  overflow: hidden;
+  background-color: #fdeecf;
+  position: relative;
+}
+
+.top-band .header-band {
+  width: 290px;
+  height: 250px;
+  position: absolute;
+  bottom: -14px;
+}
+
+.top-band .header-right-band {
+  right: -60px;
+  -webkit-transform: rotate(-450deg);
+  -ms-transform: rotate(-450deg);
+  transform: rotate(-450deg);
+}
+
+.top-band .header-left-band {
+  left: -60px;
+  -webkit-transform: rotate(-270deg);
+  -ms-transform: rotate(-270deg);
+  transform: rotate(-270deg);
+}
+
+.logo-band svg {
+  width: 180px;
+  height: 35px;
+  margin: 0 10px 0 30px;
+}
+
+.logo-band {
+  float: left;
+  margin-top: 0;
+  width: 50%;
+}
+
+.logo-band .title {
+  display: inline-block;
+  font-size: 22px;
+  color: #fff;
+  position: absolute;
+  padding-top: 4px;
+  margin-top: 4px;
+  font-weight: 100;
+  vertical-align: middle;
+}
+
+.body-dark-overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  opacity: .7;
+  z-index: 10;
+  background-color: #000;
+}
+
+.drawer {
+  position: fixed;
+  overflow: auto;
+  top: 0;
+  bottom: 0;
+  right: -300px;
+  width: 300px;
+  background-color: #fff;
+  padding-top: 15px;
+  -webkit-transition: all .2s ease-out;
+  transition: all .2s ease-out;
+  z-index: 10;
+}
+
+.open-drawer {
+  right: 0;
+}
+
+.drawer ul {
+  margin: 40px 0 0;
+  padding: 0;
+}
+
+.drawer li {
+  list-style-type: none;
+  padding: 12px 25px;
+  font-size: 16px;
+}
+
+.drawer a,
+.drawer a:focus,
+.drawer a:hover,
+.drawer a:visited {
+  text-decoration: none;
+  color: #232f3e;
+}
+
+.drawer-open {
+  cursor: pointer;
+  z-index: 9;
+  position: absolute;
+  top: 30px;
+  right: 5px;
+  margin-top: 10px;
+}
+
+.drawer-open-text {
+  padding-right: 15px;
+}
+
+.drawer-open-icon {
+  padding-right: 30px;
+  vertical-align: middle;
+}
+
+.drawer-close {
+  font-size: 16px;
+}
+
+.drawer-close,
+.instruction-popup-close {
+  cursor: pointer;
+  float: right;
+  padding-right: 30px;
+}
+
+.instruction-popup-close {
+  font-size: 15px;
+  padding-top: 15px;
+}
+
+.drawer-close-icon,
+.instruction-popup-icon {
+  font-size: 32px;
+  color: #7f7f7f;
+}
+
+.header-section {
+  color: #fff;
+  text-align: center;
+  max-width: 1024px;
+  margin: 40px auto 50px;
+}
+
+.header-text {
+  color: #000;
+  font-size: 37px;
+  font-weight: 600;
+  margin: 20px 0;
+}
+
+.header-text .highlighted-text {
+  display: inline-block;
+  color: #950537;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+}
+
+.header-desc {
+  line-height: 25px;
+  text-align: center;
+  margin: 0 auto;
+  max-width: 620px;
+  color: rgba(0,0,0,.8);
+}
+
+.clearfix:after,
+.clearfix:before {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.instruction-popup {
+  position: fixed;
+  overflow: auto;
+  left: 50%;
+  top: -500px;
+  width: 750px;
+  background-color: #fff;
+  -webkit-transition: all .4s ease-out;
+  transition: all .4s ease-out;
+  z-index: 20;
+  border-radius: 15px;
+  -webkit-transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+}
+
+.instruction-popup-open {
+  top: 50%;
+}
+
+.instruction-section {
+  margin: 60px 30px 60px 40px;
+  max-width: 950px;
+}
+
+.instruction-section .instruction-head {
+  font-size: 21px;
+}
+
+.instruction-content {
+  line-height: 39px;
+  list-style: none;
+  padding-left: 10px;
+  margin-top: 20px;
+}
+
+.instruction-content li img {
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  padding-right: 5px;
+}
+
+.benefits-section {
+  max-width: 950px;
+  margin: 80px auto 40px;
+  text-align: center;
+}
+
+.benefits-item-section {
+  margin-top: 40px;
+}
+
+.benefits-item {
+  width: 20%;
+  display: inline-block;
+  padding: 0 20px;
+  vertical-align: top;
+}
+
+.benefits-item .benefits-header {
+  font-size: 17px;
+  display: block;
+  padding-top: 10px;
+}
+
+.benefits-item .benefits-content {
+  font-size: 14px;
+  color: #222;
+  line-height: 22.2px;
+  padding-top: 10px;
+}
+
+.benefits-item img {
+  width: 80px;
+  height: 80px;
+}
+
+.exceltool-section {
+  max-width: 890px;
+  text-align: center;
+  margin: 0 auto;
+  background: -webkit-gradient(linear,right top,left top,from(#fff),color-stop(20%,#f7f8ff),color-stop(80%,#f7f8ff),to(#fff));
+  background: linear-gradient(270deg,#fff 0,#f7f8ff 20%,#f7f8ff 80%,#fff);
+  padding: 40px 10px;
+  line-height: 24px;
+  font-size: 17px;
+  font-weight: 700;
+  color: #222;
+}
+
+.exceltool-section .exceltool-button {
+  color: #f0483e;
+  border: 1px solid #f0483e;
+  background-color: rgba(0,0,0,0);
+  border-radius: 2px;
+  margin-left: 10px;
+  font-weight: 400;
+  padding: 10px 20px;
+  margin-top: 17px;
+}
+
+.exceltool-section .bulb-icon {
+  width: 30px;
+  height: 30px;
+  padding-right: 5px;
+  fill: #ffa81d;
+  vertical-align: sub;
+}
+
+.exceltool-section .exceltool-button svg {
+  width: 14px;
+  height: 14px;
+  fill: #f0483e;
+  vertical-align: text-top;
+  padding-right: 2px;
+}
+
+.main-div {
+  margin: 0 auto;
+  overflow: auto;
+  padding-left: 11px;
+  width: 890px;
+}
+
+section.erp-promotion-banner {
+  padding: 0 25px;
+}
+
+.erp-promotion-banner .erp-promotion-banner-inner {
+  max-width: 1050px;
+}
+
+.faq-section {
+  margin-top: 80px;
+  background-color: #fff;
+}
+
+.faq h4 {
+  padding: 15px 75px 15px 15px;
+  font-size: 21px;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.faq-qa .faq-qa-content {
+  display: none;
+  margin: 0;
+  padding: 0 40px 15px;
+  font-weight: 300;
+  border-left: none;
+  font-size: 14px;
+}
+
+.faq-qa .faq-qa-head.active+.faq-qa-content {
+  display: block;
+}
+
+.faq-qa .faq-qa-head {
+  position: relative;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 17px;
+  padding: 25px 75px 25px 35px;
+  border-bottom: 1px solid #eee;
+  margin: 0;
+}
+
+.faq-qa .faq-qa-head:hover {
+  font-weight: 700;
+}
+
+.faq-qa .faq-qa-head.active {
+  font-weight: 700;
+  padding-bottom: 25px;
+  border-bottom: 0;
+}
+
+.faq-qa .faq-qa-head:after {
+  content: "";
+  clear: both;
+}
+
+.faq-qa .faq-qa-head.active:after,
+.faq-qa .faq-qa-head:after {
+  background-image: url("/inventory/images/down-open-big.svg");
+  display: block;
+  width: 20px;
+  height: 20px;
+  background-size: 14px;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 29px;
+  right: 35px;
+}
+
+.faq-qa .faq-qa-head.active:after {
+  -webkit-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  transform: rotate(180deg);
+  top: 25px;
+  right: 40px;
+}
+
+.faq-qa p {
+  font-size: 15px;
+  line-height: 26px;
+  margin: 0;
+}
+
+.faq-section li,
+ul {
+  list-style-type: disc;
+  float: none;
+}
+
+.faq-section ul {
+  padding: 15px 20px;
+}
+
+.faq-section li {
+  padding-top: 10px;
+  font-size: 15px;
+}
+
+@media screen and (max-width:1200px) {
+  .main-div {
+    width: 100%;
+    padding-left: 0;
+  }
+
+  .rgt-main-div {
+    display: none;
+  }
+
+  .lft-main-div {
+    width: 100%;
+  }
+}
+
+.sheet-section {
+  padding: 0 20px;
+}
+
+.sheet-section * {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.sheet-content {
+  text-align: left;
+  max-width: 950px;
+  margin: -80px auto 60px;
+  background: #fff;
+  border: 1px solid #eaeaea;
+  -webkit-box-shadow: 0 1px 14px 2px rgba(75,122,250,.1);
+  box-shadow: 0 1px 14px 2px rgba(75,122,250,.1);
+  z-index: 5;
+  position: relative;
+  min-height: 560px;
+}
+
+.sheet-input-section {
+  display: inline-block;
+  width: 24%;
+  padding: 30px 20px 40px;
+  background: #f9fafe;
+  border-right: 1px solid #e0e2e8;
+}
+
+.sheet-input-section .form-group {
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.sheet-input-section input {
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px 12px;
+  width: 90%;
+  font-size: 15px;
+}
+
+.dropdown-menu:focus,
+.sheet-input-section input:focus {
+  outline: 0;
+  -webkit-box-shadow: 0 1px 4px 0 #c6e3fe;
+  box-shadow: 0 1px 4px 0 #c6e3fe;
+  border: 1px solid #72baff;
+}
+
+.error-msg {
+  font-size: 12px;
+  padding-top: 3px;
+  color: #ed3d3d;
+}
+
+.sheet-input-section .form-group .form-text {
+  padding-bottom: 5px;
+  font-size: 14px;
+  color: #222;
+}
+
+.sheet-input-section .form-group .required {
+  color: #ed3d3d;
+}
+
+.sheet-input-section .form-group .dropdown-menu {
+  margin-top: 7px;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  background-color: #fff;
+  width: 35px;
+  height: 25px;
+  padding: 2px 5px;
+  font-size: 12px;
+  line-height: 1.42857143;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.export-section {
+  padding-bottom: 20px;
+}
+
+.export-section .total-count {
+  float: left;
+  font-size: 13px;
+  padding-top: 5px;
+}
+
+.export-section .export-button-section {
+  float: right;
+  text-align: right;
+}
+
+.config-section {
+  border-bottom: 1px dashed #e0e2e8;
+  padding-bottom: 20px;
+}
+
+.sheet-table-section {
+  height: 440px;
+  overflow-y: scroll;
+}
+
+.seperator-section {
+  width: 47%;
+  display: inline-block;
+  font-size: 13px;
+}
+
+.sheet-content-section {
+  display: inline-block;
+  width: 75%;
+  vertical-align: top;
+  padding: 20px;
+}
+
+.sheet-content-section table {
+  border-collapse: collapse;
+}
+
+.sheet-content-section table thead tr th {
+  width: 18%;
+  border-bottom: 1px solid #e0e2e8;
+  border-collapse: collapse;
+  padding-bottom: 10px;
+  padding-right: 10px;
+}
+
+.sheet-content-section table tbody tr:first-child td {
+  padding-top: 20px;
+}
+
+.sheet-content-section table tbody tr td.empty-table {
+  color: #666;
+  text-align: center;
+  padding-top: 170px;
+}
+
+.sheet-content-section table tbody tr td {
+  padding-right: 10px;
+  padding-bottom: 25px;
+  font-size: 14px;
+  word-break: break-word;
+}
+
+.sheet-content-section table tbody tr .close-icon svg {
+  width: 10px;
+  height: 10px;
+  cursor: pointer;
+  fill: #ff3535;
+  display: block;
+  padding-left: 10px;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+}
+
+.button-section {
+  border-top: 1px dashed #e0e2e8;
+  padding-top: 20px;
+  display: inline-block;
+}
+
+.sheet-button {
+  padding: 5px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: .03em;
+  line-height: 1.44;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  background-color: rgba(0,0,0,0);
+}
+
+.sheet-button:focus {
+  outline: none;
+}
+
+.add-button {
+  width: 90%;
+}
+
+.retain-button {
+  border: 1px solid #f0483e;
+  border-radius: 3px;
+  color: #f0483e;
+}
+
+.retain-button:hover {
+  font-weight: 700;
+  -webkit-transition: all .3s ease;
+  transition: all .3s ease;
+}
+
+.generate-button {
+  border: 0;
+  background: #fa393a;
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+.generate-button:hover {
+  background-color: #d32c3e;
+  -webkit-transition: background-color .3s ease;
+  transition: background-color .3s ease;
+}
+
+.help-circled {
+  width: 30px;
+  height: 20px;
+  padding-left: 10px;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+@-webkit-keyframes pulse_animation {
+  0% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+
+  30% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+
+  40% {
+    -webkit-transform: scale(1.15);
+    transform: scale(1.15);
+  }
+
+  50% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+
+  60% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+
+  70% {
+    -webkit-transform: scale(1.15);
+    transform: scale(1.15);
+  }
+
+  80% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+
+  to {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+
+@keyframes pulse_animation {
+  0% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+
+  30% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+
+  40% {
+    -webkit-transform: scale(1.15);
+    transform: scale(1.15);
+  }
+
+  50% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+
+  60% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+
+  70% {
+    -webkit-transform: scale(1.15);
+    transform: scale(1.15);
+  }
+
+  80% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+
+  to {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+
+.pulse {
+  -webkit-animation-name: pulse_animation;
+  animation-name: pulse_animation;
+  -webkit-animation-duration: 5s;
+  animation-duration: 5s;
+  -webkit-transform-origin: 70% 70%;
+  -ms-transform-origin: 70% 70%;
+  transform-origin: 70% 70%;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+}
+
+@media screen and (max-width:768px) {
+  .instruction-popup {
+    width: 90%;
+  }
+
+  .header-text {
+    font-size: 30px;
+    line-height: 36px;
+  }
+
+  .instruction-popup-open {
+    top: 55%;
+  }
+
+  .instruction-section {
+    margin: 10px 30px;
+  }
+
+  .seperator-section {
+    display: block;
+    width: 90%;
+    margin-bottom: 10px;
+  }
+}
+
+@media screen and (max-width:575px) {
+  .sheet-input-section .form-group .form-text {
+    font-size: 10px;
+  }
+
+  .sheet-input-section input,
+  .sheet-table-section th {
+    font-size: 12px;
+  }
+
+  .sheet-input-section input {
+    padding: 10px 3px;
+  }
+
+  .sheet-content-section {
+    padding: 10px;
+  }
+
+  .benefits-item {
+    width: 75%;
+    margin: 0 auto;
+    display: block;
+  }
+
+  .sheet-input-section {
+    width: 36%;
+  }
+
+  .sheet-content-section {
+    width: 60%;
+  }
+
+  .header-section {
+    margin: 30px 10px;
+  }
+
+  .export-section {
+    padding: 20px 0;
+  }
+}
+
+@media screen and (max-width:500px) {
+  .export-section {
+    display: block;
+  }
+
+  .export-section .total-count {
+    float: none;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .export-section .export-button-section {
+    float: none;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width:425px) {
+  .instruction-section .instruction-head {
+    font-size: 18px;
+    line-height: 30px;
+  }
+
+  .instruction-content li {
+    font-size: 14px;
+  }
+
+  .sheet-input-section {
+    padding: 20px 10px;
+  }
+
+  .sheet-button {
+    font-size: 12px;
+    padding: 5px 10px;
+  }
+
+  .instruction-popup-close {
+    padding-right: 15px;
+  }
+
+  .instruction-content {
+    line-height: 28px;
+  }
+}
+@font-face {
+  font-family: 'Zoho Puvi';
+  src: url("https://static.zohocdn.com/zohofonts/zohopuvi/4.0/Zoho_Puvi_Light.eot");
+  src: url("https://static.zohocdn.com/zohofonts/zohopuvi/4.0/Zoho_Puvi_Light.eot") format('embedded-opentype'),
+  url("https://static.zohocdn.com/zohofonts/zohopuvi/4.0/Zoho_Puvi_Light.woff2") format('woff2'),
+  url("https://static.zohocdn.com/zohofonts/zohopuvi/4.0/Zoho_Puvi_Light.otf") format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Zoho Puvi';
+  src: url("https://static.zohocdn.com/zohofonts/zohopuvi/4.0/Zoho_Puvi_Regular.eot");
+  src: url("https://static.zohocdn.com/zohofonts/zohopuvi/4.0/Zoho_Puvi_Regular.eot") format('embedded-opentype'),
+  url("https://static.zohocdn.com/zohofonts/zohopuvi/4.0/Zoho_Puvi_Regular.woff2") format('woff2'),
+  url("https://static.zohocdn.com/zohofonts/zohopuvi/4.0/Zoho_Puvi_Regular.otf") format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Zoho Puvi';
+  src: url("https://static.zohocdn.com/zohofonts/zohopuvi/4.0/Zoho_Puvi_Medium.eot");
+  src: url("https://static.zohocdn.com/zohofonts/zohopuvi/4.0/Zoho_Puvi_Medium.eot") format('embedded-opentype'),
+  url("https://static.zohocdn.com/zohofonts/zohopuvi/4.0/Zoho_Puvi_Medium.woff2") format('woff2'),
+  url("https://static.zohocdn.com/zohofonts/zohopuvi/4.0/Zoho_Puvi_Medium.otf") format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Zoho Puvi';
+  src: url("https://static.zohocdn.com/zohofonts/zohopuvi/4.0/Zoho_Puvi_Semibold.eot");
+  src: url("https://static.zohocdn.com/zohofonts/zohopuvi/4.0/Zoho_Puvi_Semibold.eot") format('embedded-opentype'),
+  url("https://static.zohocdn.com/zohofonts/zohopuvi/4.0/Zoho_Puvi_Semibold.woff2") format('woff2'),
+  url("https://static.zohocdn.com/zohofonts/zohopuvi/4.0/Zoho_Puvi_Semibold.otf") format('opentype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Zoho Puvi';
+  src: url("https://static.zohocdn.com/zohofonts/zohopuvi/4.0/Zoho_Puvi_Bold.eot");
+  src: url("https://static.zohocdn.com/zohofonts/zohopuvi/4.0/Zoho_Puvi_Bold.eot") format('embedded-opentype'),
+  url("https://static.zohocdn.com/zohofonts/zohopuvi/4.0/Zoho_Puvi_Bold.woff2") format('woff2'),
+  url("https://static.zohocdn.com/zohofonts/zohopuvi/4.0/Zoho_Puvi_Bold.otf") format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Zoho Puvi';
+  src: url("https://static.zohocdn.com/zohofonts/zohopuvi/4.0/Zoho_Puvi_Extrabold.eot");
+  src: url("https://static.zohocdn.com/zohofonts/zohopuvi/4.0/Zoho_Puvi_Extrabold.eot") format('embedded-opentype'),
+  url("https://static.zohocdn.com/zohofonts/zohopuvi/4.0/Zoho_Puvi_Extrabold.woff2") format('woff2'),
+  url("https://static.zohocdn.com/zohofonts/zohopuvi/4.0/Zoho_Puvi_Extrabold.otf") format('opentype');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Zoho Puvi';
+  src: url("https://static.zohocdn.com/zohofonts/zohopuvi/4.0/Zoho_Puvi_Black.eot");
+  src: url("https://static.zohocdn.com/zohofonts/zohopuvi/4.0/Zoho_Puvi_Black.eot") format('embedded-opentype'),
+  url("https://static.zohocdn.com/zohofonts/zohopuvi/4.0/Zoho_Puvi_Black.woff2") format('woff2'),
+  url("https://static.zohocdn.com/zohofonts/zohopuvi/4.0/Zoho_Puvi_Black.otf") format('opentype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}</style><meta http-equiv=Content-Type content="text/html"><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-status-bar-style content="black"><meta name=apple-mobile-web-app-title><link rel="SHORTCUT ICON" href=https://www.zohowebstatic.com/sites/zweb/images/favicon.ico type=image/x-icon><meta property="og:image" content="http://www.zoho.com/inventory/images/inventory-icon-preview.png"><link href=/inventory/styles/common/zoho-puvi.css rel=stylesheet type=text/css><link href=https://www.zohowebstatic.com/sites/zweb/css/common/zf/common-header-footer.css rel=stylesheet type=text/css><link href=/css/prd-common-inner.css rel=stylesheet type=text/css><style type="text/css">b{font-weight:600}img{max-width:100%;-webkit-box-shadow:none!important;box-shadow:none!important}.new-label{position:relative;top:-3px;padding:2px 6px;font-size:9px;color:#fff;text-transform:uppercase;background-color:#21ce2c}.z-product-logo{background:url(/inventory/images/inventory-logo-new.svg);background-repeat:no-repeat;float:left;width:162px;font-size:0;height:44px;margin:13px 0}.zi-product-header.slide .zi-product-menu .selected,.zi-product-menu .selected{color:#00add5!important;-webkit-box-shadow:0 -2px 0 #00add5 inset;box-shadow:inset 0 -2px 0 #00add5}.address h2,.link,.link:active,.link:focus,.link:hover,.resources-part .learnmore,.sub-feature a{color:#00add5}.sub-header{border-bottom:2px solid #00add5}.common-footer{overflow:visible;line-height:30px;background-color:#f1f1f1;color:#919293;padding:40px 0 70px;text-align:center;border-top:1px solid #e2e2e2}.common-footer ul{-webkit-box-sizing:content-box!important;box-sizing:content-box!important}.ca-covid-19-banner{background:#8a4530;font-size:17px;color:#fff;text-align:center;padding:5px 0 7px}.ca-covid-19-learnmore{color:#ebd278}.zlang-container .zlang-container-inner ul li{float:none}.goal{padding:10px 0}.btn.btn-prim{width:82%;margin:0 auto}.goal>.btn.btn-trynow{width:70%}.signing .signin,.signing .signup{display:block}.other-app-title{font-weight:600}.other-app-desc{font-size:12px;white-space:nowrap;margin-top:2px}.img-responsive{max-width:100%;max-height:100%;display:inline-block}.clearfix:after,.clearfix:before{display:table;content:" ";clear:both}.header-small-dash{position:relative;padding-bottom:0!important}.header-small-dash:after{content:"";display:block;width:50px;border:1px solid #b8b8b8;position:absolute;left:50%;top:120%;margin-left:-25px}.edition-select-box{background-color:#fff;border:1px solid #ccc;border-radius:4px;width:166px}.edition-select-box a{display:block;padding:10px;position:relative}.edition-select-box .edition-dropdown{position:absolute;right:0;top:0;display:block;height:100%;width:17px}.edition-select-box .edition-dropdown b{background-image:url(/inventory/images/common-sprite-1x.png?v=5);background-size:162px 421px;background-position:-99px -400px;display:block;width:9px;height:5px;margin-top:15px}.edition-select-box .edition-dropdown b.open-caret{background-position:-87px -400px;width:9px;height:5px}.edition-select-list{border:1px solid #ccc;position:absolute;z-index:1200;width:393px;-webkit-box-shadow:0 12px 34px 0 rgba(0,0,0,.2);box-shadow:0 12px 34px 0 rgba(0,0,0,.2);display:none}.edition-col-4 button{border-bottom:1px solid #ccc;background-color:#fff}.edition-col-4{width:50%;display:inline-block}.edition-select-list button:hover{background-color:#f5f5f5}.edition-label{margin-left:34px}[class*=edition-image-]{background-image:url(/inventory/images/common-sprite-1x.png?v=5);background-size:162px 421px;position:absolute;width:26px;height:14px}.edition-image-global{background-position:-24px -364px;height:16px;width:16px;margin-left:4px}.edition-image-uk{background-position:-3px -341px}.edition-image-us{background-position:-117px -320px}.edition-image-canada{background-position:-41px -341px}.edition-image-australia{background-position:-3px -320px}.edition-image-india{background-position:-78px -341px}.edition-image-uae{background-position:-41px -321px}.edition-image-saudi{background-position:-78px -320px}.edition-image-singapore{background-position:-43px -297px}.edition-image-bahrain{background-position:-117px -339px}.edition-image-germany{background-position:-79px -299px}.edition-image-south-africa{background-position:-117px -367px}.edition-image-kw{background-position:-41px -394px}.edition-image-oman{background-position:-78px -367px}.edition-image-es-mx{background-position:-117px -298px}.edition-image-qa{background-position:-3px -394px}.edition-image-ke{background-position:-44px -367px}.contactus-form-stickydiv{position:fixed;bottom:0;right:0;width:80px;z-index:100}.bump{-webkit-animation:bump .5s ease;animation:bump .5s ease}.contactus-form-stickydiv *{-webkit-box-sizing:border-box;box-sizing:border-box}.contactus-form-stickydiv .contact-form{width:372px;padding:20px}.contactus-form-stickydiv .contact-form .form-group{margin-bottom:9px}.contactus-form-stickydiv .contact-form .clr-bdr{display:none}@-webkit-keyframes bump{0%{bottom:0}25%{bottom:.5em}50%{bottom:0}75%{bottom:.5em}to{bottom:0}}@keyframes bump{0%{bottom:0}25%{bottom:.5em}50%{bottom:0}75%{bottom:.5em}to{bottom:0}}.icon-downarrow,.icon-mail,.icon-uparrow{background:url(/inventory/images/common-icons.png) no-repeat;width:30px;height:20px;display:inline-block}.icon-uparrow{background-position:-536px -205px;float:right}.icon-mail{background-position:-492px -205px;margin:0 0 -5px}.icon-downarrow{background-position:-586px -205px;margin-top:5px;float:right}.contact-form{position:relative;border:1px solid #ddd;width:550px;padding:40px 40px 30px}.contact-form .form-control{border-radius:0;-webkit-box-shadow:none;box-shadow:none}.contact-form .form-control::-webkit-input-placeholder{font-weight:400;color:#a9a9a9}.contact-form .form-control::-moz-placeholder{font-weight:400;color:#a9a9a9}.contact-form .form-control:-ms-input-placeholder{font-weight:400;color:#a9a9a9}.contact-form .form-control::-ms-input-placeholder{font-weight:400;color:#a9a9a9}.contact-form .form-control::placeholder{font-weight:400;color:#a9a9a9}.contact-form .form-group p{margin-top:0;margin-bottom:0;font-size:12px;cursor:pointer}.contact-form .form-group div{width:90%;display:inline-block}.contact-form .form-group span{position:absolute;padding-left:20px}.available-on img{height:35px}.mand{color:#f24638;margin-left:-15px}.form-control{display:block;width:100%;padding:6px 12px;font-size:14px;line-height:1.42857143;color:#555;background-color:#fff;background-image:none;border:1px solid #ccc}.form-control:focus{border-color:#66afe9;outline:0}.has-error .form-control{border:1px solid #a94442}.show{display:block!important}.hide-widget{display:none!important}.text-danger{color:#a94442}.hidden{visibility:hidden}.visible{visibility:visible}.hide{display:none}.show{display:block}.text-center{text-align:center}.animated{-webkit-animation-name:bounce;-webkit-animation-duration:2s;-webkit-animation-iteration-count:infinite;-webkit-animation-timing-function:ease-out;-webkit-animation-fill-mode:forwards;animation-name:bounce;animation-duration:2s;animation-iteration-count:infinite;animation-timing-function:ease-out;animation-fill-mode:forwards}@-webkit-keyframes bounce{0%,50%,to{-webkit-transform:translateY(0)}25%,75%{-webkit-transform:translateY(-5px)}}@keyframes bounce{0%,50%,to{-webkit-transform:translateY(0);transform:translateY(0)}25%,75%{-webkit-transform:translateY(-5px);transform:translateY(-5px)}}.bounce{-webkit-animation-name:bounce;animation-name:bounce}.video-player{position:fixed;top:0;bottom:0;left:0;right:0;background-color:#fff;opacity:0;padding:100px;z-index:1001;-webkit-transition:opacity .3s;transition:opacity .3s}.footer-links>.other-finance-apps{position:relative;width:100%;padding:40px 15px 0;border-top:1px solid #ddd}.other-finance-apps li:first-child{float:none;position:absolute;width:20%;top:-7px;left:50%;background-color:#fff;text-align:center;margin-left:-150px}.other-finance-apps li{min-width:230px;width:20%;display:inline-block;padding:20px}.common-footer{float:left;width:100%}.video-player.open{opacity:1}.video-player .player-wrapper{max-width:800px;margin:auto}.video-player .player{position:relative;padding-bottom:56.25%;height:0}.video-player .player iframe{position:absolute;top:0;left:0;width:100%;height:100%}.close{position:absolute;right:32px;top:32px;width:32px;height:32px;opacity:.3;-webkit-transition:opacity .25s;transition:opacity .25s;cursor:pointer}.close:hover{opacity:1}.close:after,.close:before{position:absolute;left:15px;content:" ";height:33px;width:2px;background-color:#666}.close:before{-webkit-transform:rotate(45deg);-ms-transform:rotate(45deg);transform:rotate(45deg)}.close:after{-webkit-transform:rotate(-45deg);-ms-transform:rotate(-45deg);transform:rotate(-45deg)}.social-media{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:end;-webkit-justify-content:flex-end;-ms-flex-pack:end;justify-content:flex-end;padding:10px;-webkit-box-align:center;-webkit-align-items:center;-ms-flex-align:center;align-items:center;border:1px solid #ededed}.social-media p{font-size:14px;line-height:20px;text-align:right}.social-fb-btn,.social-twitter-btn{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;-webkit-box-align:center;-webkit-align-items:center;-ms-flex-align:center;align-items:center;width:36px;padding:7px;border-radius:4px;margin-left:5px;-webkit-box-sizing:border-box;box-sizing:border-box}.social-twitter-btn{background-color:#000}.social-fb-btn{background-color:#217aed}.social-fb-btn .social-media-btn-icon path,.social-twitter-btn .social-media-btn-icon{fill:#fff}.billing-logo,.books-logo,.checkout-logo,.commerce-logo,.expense-logo,.inventory-logo,.invoice-logo,.payroll-logo,.practice-logo{background-image:url(/inventory/images/common-sprite-1x.png?v=5);background-size:162px 421px;width:40px;height:45px;float:left;margin-right:10px}@media only screen and (-webkit-min-device-pixel-ratio:2),only screen and (min-device-pixel-ratio:2),only screen and (min-resolution:2dppx),only screen and (min-resolution:192dpi){.billing-logo,.books-logo,.checkout-logo,.commerce-logo,.expense-logo,.inventory-logo,.invoice-logo,.payroll-logo,.practice-logo,[class*=edition-image-]{background-image:url(/inventory/images/common-sprite-2x.png?v=4)}}.books-logo{background-position:-20px -198px}.billing-logo{background-position:-17px -141px}.expense-logo{background-position:-19px -87px}.inventory-logo{background-position:-20px -255px}.checkout-logo{background-position:-108px -87px}.payroll-logo{background-position:-107px -144px}.commerce-logo{background-position:-107px -250px}.practice-logo{background-position:-108px -34px;margin-right:7px}.invoice-logo{background-position:-107px -196px}.footer{background-color:#fff}.footer-banner-img{padding-bottom:50px}.footer-links{max-width:1150px;padding:40px 10px;display:inline-block!important;overflow:visible}.footer-links ul{position:relative;padding-left:3%;padding-right:1.2%;overflow:visible}.footer-links ul:nth-child(4n+1){clear:both;padding-left:3%}.footer-banner-content>a{display:block;max-width:650px;margin:auto}.footer-section{border-bottom:1px solid #ededed;padding:0 20px 30px;margin-bottom:40px}.contact-us{white-space:nowrap}.contact-us .send-mail-link{font-size:14px;font-weight:600;color:#00add5}.contact-us li:not(:first-child){width:30%}.signupnow-button a:hover{background:#e03d34}.get-started a{color:#fff;position:relative;z-index:2}.get-started a:after{content:"";display:block;position:absolute;top:0;left:0;bottom:0;width:0;background-color:#fff;-webkit-transition:all .2s;transition:all .2s;z-index:-1}.get-started a:hover{color:#00add5}.get-started a:hover:after{width:100%}.z-signin .btn-prim{padding:0 20px;font-size:17px}.z-signin .btn-prim:after{content:"→";position:relative;bottom:1px;left:7px;font-weight:800}.modal-edition-box-container{position:fixed;left:0;width:100%;bottom:0;top:-100%;z-index:9999;-webkit-transition:all .2s linear;transition:all .2s linear}.modal-edition-box-backdrp{position:fixed;left:0;width:100%;bottom:0;top:0;background-color:#333;opacity:.9;z-index:9999}.modal-edition-box-content{max-width:450px;background:#f9f6f8;z-index:6;padding:30px;border-radius:10px;-webkit-box-shadow:0 5px 15px rgba(0,0,0,.5);box-shadow:0 5px 15px rgba(0,0,0,.5);z-index:999999;margin:15vh auto;text-align:center;color:#454345}.modal-edition-box-content h4{font-weight:600;font-size:26px;line-height:2}.modal-edition-box-content .edition-box-desc{font-size:18px;margin:20px auto 30px;color:#6d6d6d;font-weight:400}.edition-box-prim-button,.edition-box-sec-button{display:inline-block;margin:10px}.edition-box-prim-button .btn,.edition-box-sec-button .btn{min-width:115px}.edition-box-prim-button .btn{padding:8px 15px;position:relative}.edition-box-prim-button .edition-label{margin-left:40px}.modal-edition-box-container [class*=edition-image-]{top:12px}.btn{display:inline-block;padding:8px 25px;font-size:15px;letter-spacing:.03em;line-height:1.44;cursor:pointer;border:1px solid #333}.btn-sm{padding:3px 20px}.btn-default{background-color:rgba(0,0,0,0);border-color:#00add5;color:#00add5}.btn-prim{background-color:#00add5;color:#fff;border-color:#00add5}.btn-default:focus,.btn-default:hover{background-color:#00add5;color:#fff;outline:none}.btn-outline{color:#00add5;border:2px solid #00add5}.btn-prim:focus,.btn-prim:hover{background-color:#0099bd;border-color:#0099bd;outline:none}.btn-outline:focus,.btn-outline:hover{color:#00add5}.drop-up-trigger>div{display:inline-block}.drop-up-trigger{float:right;margin-right:40px;font-weight:300;color:#fff;background-color:#444;width:200px;padding:8px 5px;cursor:pointer;border:1px solid #444;border-bottom:none;-webkit-box-shadow:#e5e5e5 0 0 6px 3px;box-shadow:0 0 6px 3px #e5e5e5;border-radius:5px 5px 0 0}.drop-up{font-size:22px;font-weight:400;margin:15px 35px 30px auto;width:60px;cursor:pointer}.move-dropup-up{margin:15px 11px 85px auto}.drop-up:after{border-radius:50%;content:"";display:block;height:0;padding-bottom:100%;width:100%;border:1px solid #ffb301}.drop-up div{color:#fff;float:left;text-align:center;width:100%}.contactus-form-stickydiv .icon-close{background-size:235px;background-position:-31px -165px;width:45px;height:35px}.option-sticky{width:240px;margin:0 35px 30px auto}.sticky-label{background-color:#333;padding:10px 15px 10px 25px;color:#fcfcfc;border-radius:5px 5px 0 0;cursor:pointer;line-height:29px}.sticky-label .icon-close{background-position-x:-22px;background-position-y:-170px}.demorequest-form-title{font-weight:500;font-size:21px;line-height:1.4;margin-top:10px}.demo-sticky{color:#333;background-image:url(/inventory/images/demo-request.svg);background-color:#fff;margin:15px 35px 85px auto;border-radius:50%;cursor:pointer;width:60px;height:60px;outline:none;border:0;position:relative}.demo-pop-over{padding:10px 20px;position:absolute;text-align:left;left:-165px;margin-right:15px;z-index:10;top:11px;-webkit-box-shadow:1px 1px 10px -1px #aaa;box-shadow:1px 1px 10px -1px #aaa;border-radius:5px;font-size:13px;background-color:#fff;width:150px}.demo-pop-over:after{left:100%;top:18px;content:"";height:0;width:0;position:absolute;border:7px solid rgba(0,0,0,0);border-left-color:#fff;margin-top:-7px}.sticky-icon{background-image:url(/inventory/images/sticky-icons-1x.png);background-repeat:no-repeat;display:inline-block;background-size:250px}.float-right{float:right}.stickyform-container span{float:left}.help{background-position:-197px -24px;width:25px;height:28px}.chat{background-position:-154px -24px;width:31px;height:27px}.demo{background-position:-113px -25px;width:25px;height:30px}.contact{background-position:-30px -27.5px;width:25px;height:23px}.contact-mail-icon{background-position:-133px -171px;width:30px;height:60px;margin:0 auto}.font-md{font-size:16px}.contact-icon{background-position:-30px -84px;width:66px;height:74px;margin:0 auto}.demorequest-icon{background-position:-158px -80px;width:67px;height:76px;margin:0 auto}.spin{-webkit-animation:spinner 1s linear infinite;animation:spinner 1s linear infinite;fill:#fff;width:15px;height:15px}.credit-banner{background-color:#ffe1d4;max-width:80%;margin:10px auto auto;padding:3% 4%}.contact-support-credit-banner{margin:60px 100px 0 40px;max-width:56%}.highlight-creditvalue{color:#f0483e;font-weight:900}.credit-banner-desc{text-align:left;max-width:75%;font-size:14px;line-height:22px;font-weight:500;display:inline-block}.creditcoins-img{max-width:16%;margin-left:10px;margin-top:35px;float:right}@-webkit-keyframes spinner{0%{-webkit-transform:rotate(0deg);transform:rotate(0deg)}to{-webkit-transform:rotate(1turn);transform:rotate(1turn)}}@keyframes spinner{0%{-webkit-transform:rotate(0deg);transform:rotate(0deg)}to{-webkit-transform:rotate(1turn);transform:rotate(1turn)}}.stickyform-container{background-color:#fcfcfc;clear:both;text-align:center;border-radius:0 0 5px 5px;-webkit-box-shadow:0 1px 3px #e5e5e5;box-shadow:0 1px 3px #e5e5e5;border:1px solid #e5e5e5;float:none;display:block}.stickyform-container li{display:block;padding:16px 16px 16px 25px;border-bottom:1px solid #f6f6f6;cursor:pointer;text-align:left}.stickyform-container li:last-child{border-bottom:none}.stickyform-container .sticky-icon+a{color:#333;background-color:#fcfcfc;display:block;padding-left:40px}.stickyform-container .submit-button,.stickyform-container .submit-button:hover{border-radius:20px;padding:7px 30px;margin-top:0;background-color:#36bba2;border-color:#36bba2}.stickyform-container .form-control{background-color:#fff;border:1px solid #ccc;margin-bottom:6px;padding:9px 12px}.stickyform-container textarea.form-control{padding-bottom:0}.stickyform-container .contact-form{border:none}.stickyform-container .captcha-container{position:relative}.stickyform-container .reload-button{display:inline-block;padding-left:0;position:absolute;top:16px;right:42px}.break-point{display:block;font-size:inherit;letter-spacing:inherit;line-height:inherit}@media only screen and (-webkit-min-device-pixel-ratio:2),only screen and (min-device-pixel-ratio:2),only screen and (min-resolution:2dppx),only screen and (min-resolution:192dpi){.sticky-icon{background-image:url(/inventory/images/sticky-icons-2x.png)}}.hidechatbutton{visibility:hidden}#zcampaignOptinForm{border:none!important}#Zc_SignupSuccess{width:100%!important}.zom-access{display:inline-block;min-width:180px;padding:15px 30px;margin-top:15px;letter-spacing:.03em;line-height:1.44;cursor:pointer;font-size:15px;text-transform:uppercase}.zom-btn-filled{background-color:#f0483e;border-color:#f0483e;color:#fff}.zsiq_theme1.zsiq_floatmain{z-index:100!important}@media screen and (max-width:1000px){.contact-us{width:100%!important}.contact-us li:not(:first-child){width:48%}}@media screen and (max-width:900px){.edition-select-list{width:195px}.edition-col-4{width:100%;display:inline-block}.edition-select-list .edition-col-4 button{border-right:none}}@media screen and (max-width:800px){.footer-links ul{float:left;min-height:10px;padding:15px 3% 0!important}.contact-us{margin-bottom:30px!important}.other-finance-apps li:first-child{margin-left:-120px}}@media screen and (max-width:770px){.contact-support-credit-banner{max-width:45%}}@media screen and (max-width:768px){.get-in-touch{padding-top:120px!important}.z-product-logo{width:144px;height:40px}}@media screen and (max-width:767px){.zgh-accounts .zgh-login{-webkit-box-sizing:border-box;box-sizing:border-box}.demo-sticky{margin-bottom:140px}.zsiq_theme1.zsiq_floatmain{margin-bottom:60px;margin-right:8px}}@media screen and (max-width:750px){.resources-part li em{display:none}.footer-three-col ul{width:27%}}@media screen and (max-width:700px){.footer-links{padding:30px 10%}.footer-three-col ul{padding:20px 0!important;width:100%;min-height:20px}.footer-three-col ul:last-child{width:100%}.available-on{width:100%!important}}@media screen and (max-width:650px){.video-player{padding:120px 15px}.resources-part li{width:90%}}@media screen and (max-width:481px){.contactus-form-stickydiv{display:none}}@media screen and (max-width:450px){.contact-support-credit-banner{margin:60px 0 0 40px;max-width:100%}}</style><style>.stat-nor{background-color:#fff;position:-webkit-sticky;position:sticky;top:0;z-index:20;border-bottom:1px solid #d6d6d6}.align-items-center,.top-band-div{-webkit-box-align:center;-webkit-align-items:center;-ms-flex-align:center;align-items:center}.top-band-div{clear:both;margin:0 auto;position:relative;width:auto;-webkit-box-pack:justify;-webkit-justify-content:space-between;-ms-flex-pack:justify;justify-content:space-between;height:53px;padding:0 20px}.d-flex,.top-band-div{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex}.free-tools-menu{background:url(/inventory/more.svg) no-repeat;border:none;cursor:pointer;display:inline-block;width:20px;height:25px;vertical-align:text-bottom}#topband-logo{margin-left:20px}.top-band-div .title-divider{border-left:1px solid #e2e2e2;height:53px;margin:0 20px}.top-band-div .title{color:#333;font-weight:600}.top-band-div .tool-name{margin:10px 0;font-size:18px;line-height:18px;font-weight:600}.top-band-div .powered-by{font-size:11px;line-height:13px;color:#333;display:block;font-weight:600;text-decoration:none}.signupnow-buttons a{display:inline-block;border-radius:5px;color:#fff;background:var(--zom-primary-cta-color);font-size:14px;font-weight:500;line-height:14px;padding:10px 16px;margin:0 0 0 10px;cursor:pointer;text-decoration:none}.signupnow-buttons a:hover{background:var(--zom-primary-cta-hover-color)}.check-zoho-inventory{color:#e0281b;font-size:14px;font-weight:500;line-height:34px;cursor:pointer;text-decoration:none}@media screen and (max-width:1010px){.check-zoho-inventory,.cta-btn{display:none}}@media screen and (max-width:767px){.top-band-div .tool-name{font-size:14px!important;line-height:20px!important;margin:5px 0;padding:0;text-align:left}.top-band-div .title-divider{margin:0 15px}}</style><script>"use strict";function toggleNavBar(){var t=document.getElementById("topband-logo"),e=document.querySelector(".free-tool-navbar");e.classList.contains("open")?(e.classList.remove("open"),t.setAttribute("style","display: block")):(e.classList.add("open"),t.setAttribute("style","display: none"))}</script></head><body><style>.free-tool-navbar{position:fixed;background-color:#2c2929;color:#fff;height:100vh;z-index:9999;width:0;opacity:0;transition:all .3s ease;overflow-y:scroll}.free-tool-navbar.open{display:block;opacity:1;width:18%;padding:14px 0 70px 20px;box-sizing:border-box}.free-tool-navbar.open+header+.nav-bar-con{width:82%;margin-left:auto}.free-tool-navbar .close-btn{background:0 0;border:0;display:none;cursor:pointer;position:absolute;right:25px;top:16px}.heading{text-align:center;margin:20px 0;padding-right:20px}.free-tool-navbar .heading h5{font-size:19px;font-weight:600;line-height:1.8}.free-tool-navbar ul{list-style:none;padding:0}.free-tool-navbar li{float:none}.nav-sub-header{margin-top:35px}.nav-product-logo{display:flex;align-items:center}.nav-product-logo .nav-product-logo-icon{width:25px;padding-right:8px;padding-bottom:10px}.free-tool-navbar .sub-tools li{padding:0 0 0 25px}.free-tool-navbar .nav-sub-header{font-size:20px;font-weight:600}.free-tool-navbar .nav-sub-header span{font-size:16px;padding-bottom:10px;line-height:1.8}.nav-sub-header span,.sub-tools li a,.free-tool-navbar .heading{font-weight:500}.sub-tools li a{display:block;padding:7px 0;font-size:13px;font-weight:400;color:#d3d3d3;cursor:pointer;text-decoration:none;line-height:1.8}.free-tool-navbar.open *{box-sizing:border-box}.sub-tools li:hover{background-color:#3c3939}.free-tool-navbar li .active{border-left:4px solid #ffd600;background-color:#413f3f;padding-left:21px}.free-tool-navbar li .active a{color:#fff}header{position:sticky;top:0;z-index:999}.free-tool-navbar.open+.nav-bar-con{max-width:82%;margin-left:auto}@media screen and (max-width:1024px){.free-tool-navbar.open{width:auto;top:54px;padding-right:10px}.free-tool-navbar .close-btn{display:block}.free-tool-navbar.open+.nav-bar-con{max-width:100%}}@media screen and (max-width:768px){.free-tool-navbar.open{top:50px}}@media screen and (max-width:500px){.free-tool-navbar.open{top:47px}}</style><div class=free-tool-navbar><button class=close-btn onclick=toggleNavBar() aria-label="Close Navigation">
+<svg width="12.486" height="12.485"><path data-name="Union 1" d="M10.45 12.137l-4.208-4.21-4.21 4.21a1.19 1.19 0 01-1.683-1.684l4.209-4.21L.349 2.032A1.19 1.19 0 012.032.348l4.21 4.211L10.453.348a1.19 1.19 0 011.684 1.684L7.926 6.244l4.207 4.209a1.19 1.19 0 11-1.683 1.684z" fill="#797979"/></svg></button><div class=heading><img src=/inventory/images/zoho-logo-darkbg.png width=100 height=43 alt="Zoho Logo"><h5>Finance Free Apps</h5></div><ul><li class=nav-sub-header><div class=nav-product-logo><svg viewBox="0 0 1024 1024" width="25" height="27" class="nav-product-logo-icon" role="presentation"><path fill="#FFF" d="M263.6 865.8c-14.5 0-27-10.4-29.5-24.8L104.6 106.3c-2.3-13.5-12-24.5-25.1-28.5l-57.9-18C5.8 54.8-3.1 38 1.9 22.2S23.6-2.4 39.4 2.5l57.9 18c34.5 10.7 60.2 39.8 66.3 75.4l129.6 734.7c2.9 16.3-8 31.9-24.3 34.8-1.8.2-3.5.4-5.3.4zM406.3 965.6c-16.6 0-30-13.4-30-30 0-14.6 10.5-27 24.8-29.6l532.3-93.8c19.9-3.4 33.2-22.2 29.9-42.1-3.4-19.9-22.2-33.2-42.1-29.9-.2 0-.3.1-.5.1L463.5 821c-52.5 9.3-102.5-25.8-111.8-78.2l-80.6-457.1c-9.2-52.5 25.8-102.5 78.2-111.8l457.1-80.6c52.5-9.2 102.5 25.8 111.8 78.2L993 594.6c2.9 16.3-8 31.9-24.3 34.8s-31.9-8-34.8-24.3L859.2 182c-3.5-19.8-22.4-33.1-42.2-29.6L359.9 233c-19.8 3.5-33.1 22.4-29.6 42.3l80.6 457.1c3.5 19.8 22.4 33.1 42.2 29.6l457.1-80.6c52.3-10.1 102.9 24 113.1 76.4 10.1 52.3-24 102.9-76.4 113.1-1.1.2-2.1.4-3.2.6l-532.3 93.9c-1.6.1-3.4.2-5.1.2z"/><path fill="#FFF" d="M527 382c-16.6 0-30-13.4-30-30 0-14.6 10.5-27 24.8-29.6l173.6-30.6c16.3-2.9 31.9 8 34.8 24.3 2.9 16.3-8 31.9-24.3 34.8l-173.6 30.6c-1.7.3-3.5.5-5.3.5zM322.6 1022.9c-66.1 0-119.6-53.6-119.6-119.7s53.6-119.6 119.7-119.6c58.1 0 107.7 41.7 117.8 98.9 11.4 65.1-32.1 127.2-97.2 138.6-6.8 1.2-13.7 1.8-20.7 1.8zm.2-179.4c-32.9-.1-59.7 26.6-59.8 59.5-.1 32.9 26.6 59.7 59.5 59.8s59.7-26.6 59.8-59.5c0-3.5-.3-7-.9-10.5-5-28.4-29.7-49.2-58.6-49.3z"/></svg><span>Inventory</span></div><ul class=sub-tools><li class=active><a href=/inventory/sku-generator/ rel="noopener noreferrer">SKU Generator</a></li><li><a href=/inventory/purchaseorder-generator/ rel="noopener noreferrer">Purchase Order Generator</a></li><li><a href=/inventory/reorder-point-calculator/ rel="noopener noreferrer">Calculate Reorder Point</a></li><li><a href=/inventory/economic-order-quantity/ rel="noopener noreferrer">Economic Order Quantity</a></li><li><a href=/inventory/break-even-point-calculator/ rel="noopener noreferrer">Break-even Point Calculator</a></li><li><a href=/inventory/inventory-turnover-ratio/ rel="noopener noreferrer">Inventory Turnover Ratio</a></li><li><a href=/inventory/packing-slip-generator/ rel="noopener noreferrer">Packing Slip Generator</a></li><li><a href=/inventory/free-barcode-generator/ rel="noopener noreferrer">Barcode Generator</a></li><li><a href=/inventory/shipping-label-generator/ rel="noopener noreferrer">Shipping Label Generator</a></li><li><a href=/inventory/free-wholesale-price-calculator/ rel="noopener noreferrer">Wholesale price calculator</a></li><li><a href=/inventory/free-lead-time-calculator/ rel="noopener noreferrer">Lead Time Calculator</a></li><li><a href=/inventory/free-average-inventory-calculator/ rel="noopener noreferrer">Average Inventory Calculator</a></li><li><a href=/inventory/free-inventory-cost-calculator/ rel="noopener noreferrer">Inventory Cost Calculator</a></li><li><a href=/inventory/finished-goods-inventory-calculator/ rel="noopener noreferrer">Finished Goods Inventory Calculator</a></li><li><a href=/inventory/free-beginning-inventory-calculator/ rel="noopener noreferrer">Beginning Inventory Calculator</a></li><li><a href=/inventory/handling-fee-calculator/ rel="noopener noreferrer">Handling Fee Calculator</a></li><li><a href=/inventory/retail-price-calculator/ rel="noopener noreferrer">Retail Price Calculator</a></li><li><a href=/inventory/sales-forecast-calculator/ rel="noopener noreferrer">Sales Forecast Calculator</a></li><li><a href=/inventory/work-in-progress-calculator/ rel="noopener noreferrer">Work in Progress Calculator</a></li></ul></li><li class=nav-sub-header><div class=nav-product-logo><svg viewBox="0 0 1024 1024" width="25" height="27" class="nav-product-logo-icon" role="presentation"><style>.st0{fill:#ffff}</style><g opacity=".9"><path class="st0" d="M490 400.8h140c16.6 0 30-13.4 30-30v-140c0-16.6-13.4-30-30-30H490c-16.6 0-30 13.4-30 30v140c0 16.6 13.4 30 30 30zm30-140.1h80v80h-80v-80z"/><path class="st0" d="M994.1 0H450c-93.8 0-170 76.3-170 170v110.6H169.3C75.9 280.6-.1 356.6-.1 450v404.6c0 93.4 76 169.4 169.4 169.4H754c72.1 0 140-28.1 191-79.1s79.1-118.8 79.1-191V30c0-16.6-13.4-30-30-30zM169.3 340.6h110.6v180.2h-220V450c0-60.3 49.1-109.4 109.4-109.4zm.6 623.4h-.6C109 964 59.9 914.9 59.9 854.6V580.8H280v273.8c0 60.3-49.1 109.4-109.4 109.4h-.7zm794.2-210c0 115.8-94.2 210.1-210.1 210.1H299.8c25-29.5 40.2-67.7 40.2-109.4V170c0-60.7 49.4-110 110-110h514.1v694z"/><path class="st0" d="M490 580.8h323.5c16.6 0 30-13.4 30-30s-13.4-30-30-30H490c-16.6 0-30 13.4-30 30s13.4 30 30 30zm0 180.1h323.5c16.6 0 30-13.4 30-30s-13.4-30-30-30H490c-16.6 0-30 13.4-30 30s13.4 30 30 30z"/></g></svg><span>Billing</span></div><ul class=sub-tools><li><a href=/invoice/free-invoice-generator.html rel="noopener noreferrer">Invoice Generator</a></li><li><a href=/invoice/free-estimate-generator/ rel="noopener noreferrer">Estimate Generator</a></li><li><a href=/invoice/free-receipt-generator.html rel="noopener noreferrer">Create Receipts</a></li><li><a href=/billing/free-revenue-forecast/ rel="noopener noreferrer">Revenue Forecaster</a></li></ul></li><li class=nav-sub-header><div class=nav-product-logo><svg viewBox="0 0 1024 1024" width="25" height="27" class="nav-product-logo-icon" role="presentation"><style>.stz0{fill:none}.st1{fill:#fff}</style><path class="stz0" d="M932.7 921H331.3c-4.4 0-8.3 3.1-9.4 7.4v.2c-4.3 16.2-11.8 31-21.7 43.5h579.2c25.7 0 49.1-13 62.6-34.9 2.8-4.6 1.4-8.7.2-10.7-1-1.6-3.8-5.5-9.5-5.5z"/><path class="stz0" d="M793.6 876V66.9c0-3.8-1.9-6.4-3.1-7.5-1.2-1.2-3.7-3.1-7.5-3.1H144.1c-5.9 0-10.6 4.8-10.6 10.6v831.6c0 40.6 33 73.6 73.6 73.6 33.4 0 62.7-22.6 71.2-54.9 6.2-24.2 27.9-41.1 52.9-41.2h462.4zM710 520.9c0 12.4-10.1 22.5-22.5 22.5H262.2c-12.4 0-22.5-10.1-22.5-22.5s10.1-22.5 22.5-22.5h425.3c12.4 0 22.5 10 22.5 22.5zM245.1 319.5c10.9-6 24.6-2.1 30.6 8.8 5.6 10.1 18.8 16.7 33.3 17.6h1.1c.8 0 1.7.1 2.5.1 4 0 8.1-.4 12.1-1.3 9.4-2.1 16.8-6.1 20.9-11.3 2.9-3.7 4.1-8.8 2.7-11.7-3.4-6.7-17.4-11.4-34.7-11.7-37.3-.6-56.7-2.9-74-21.8-14.4-15.7-15.7-30.9-16.4-39-.1-.7-.1-1.3-.2-1.9-1.9-17.1 5.4-29.7 8.2-34.4l.3-.6c11.6-21 30.2-29.7 37.2-33l.2-.1c6-2.7 12.3-4.9 18.8-6.3V163c0-12.4 10.1-22.5 22.5-22.5s22.5 10.1 22.5 22.5v9.3c9.1 1.7 20 5.2 30.9 12.2 13.8 8.9 24.7 21.3 31.6 36.1 5.3 11.2.5 24.6-10.8 29.9-11.2 5.3-24.6.5-29.9-10.8-3.4-7.1-8.6-13.2-15.3-17.4-10.2-6.6-20.7-6.8-26.9-7h-.5c-8.3-.4-16.7 1.2-24.2 4.7-4.4 2-12.3 5.8-16.8 14l-.1.2c-.2.3-.4.7-.6 1.1-1.2 2.2-2.7 4.6-2.4 7 .1.9.2 1.8.3 2.8.5 5.2.7 8.1 4.8 12.6 3.7 4 6.1 6.7 41.5 7.2 35.7.5 62.8 13.7 74.2 36.3 9.6 18.8 6.5 42.5-7.7 60.2-10.6 13.2-26.5 22.6-46 27-.7.2-1.4.3-2 .4v10.5c0 12.4-10.1 22.5-22.5 22.5s-22.5-10.1-22.5-22.5v-11.7c-21.9-5.8-40.8-19-51.2-37.7-6.3-10.7-2.4-24.4 8.5-30.4zM262.2 684c-12.4 0-22.5-10.1-22.5-22.5s10.1-22.5 22.5-22.5h256.2c12.4 0 22.5 10.1 22.5 22.5S530.7 684 518.3 684H262.2z"/><path class="st1" d="M287.5 387.8v11.7c0 12.4 10.1 22.5 22.5 22.5s22.5-10.1 22.5-22.5V389c.7-.1 1.4-.3 2-.4 19.5-4.4 35.4-13.8 46-27 14.2-17.7 17.3-41.4 7.7-60.2-11.5-22.6-38.5-35.8-74.2-36.3-35.4-.5-37.8-3.2-41.5-7.2-4.1-4.4-4.3-7.3-4.8-12.6-.1-1-.2-1.9-.3-2.8-.3-2.4 1.2-4.8 2.4-7 .2-.4.5-.8.6-1.1l.1-.2c4.5-8.2 12.5-12 16.8-14 7.6-3.4 15.9-5 24.2-4.7h.5c6.2.1 16.7.4 26.9 7 6.6 4.3 11.9 10.3 15.3 17.4 5.3 11.2 18.7 16.1 29.9 10.8 11.2-5.3 16.1-18.7 10.8-29.9-7-14.8-17.9-27.2-31.6-36.1-11-7-21.8-10.5-30.9-12.2V163c0-12.4-10.1-22.5-22.5-22.5s-22.5 10.1-22.5 22.5v9.9c-6.4 1.5-12.7 3.6-18.8 6.3l-.2.1c-7 3.3-25.6 12-37.2 33l-.3.6c-2.8 4.8-10.1 17.4-8.2 34.4.1.6.1 1.2.2 1.9.7 8.2 2.1 23.3 16.4 39 17.3 18.9 36.7 21.2 74 21.8 17.4.2 31.3 4.9 34.7 11.7 1.5 2.9.3 8-2.7 11.7-4.1 5.2-11.6 9.2-20.9 11.3-4 .9-8.1 1.3-12.1 1.3-.8-.1-1.7-.1-2.5-.1h-1.1c-14.5-.9-27.7-7.5-33.3-17.6-6-10.9-19.7-14.8-30.6-8.8-10.9 6-14.8 19.7-8.8 30.6 10.7 18.6 29.6 31.9 51.5 37.7zm253.3 273.7c0-12.4-10.1-22.5-22.5-22.5H262.2c-12.4 0-22.5 10.1-22.5 22.5s10.1 22.5 22.5 22.5h256.2c12.3 0 22.4-10.1 22.4-22.5zM239.7 520.9c0 12.4 10.1 22.5 22.5 22.5h425.3c12.4 0 22.5-10.1 22.5-22.5s-10.1-22.5-22.5-22.5H262.2c-12.5 0-22.5 10-22.5 22.5z"/><path class="st1" d="M981.4 904.6c-9.8-17.6-28.5-28.6-48.7-28.6h-94.2V66.9c0-14.9-5.8-28.8-16.3-39.3-10.5-10.5-24.5-16.3-39.4-16.3H144.2c-14.8 0-28.8 5.8-39.3 16.3C94.3 38 88.5 52 88.5 66.9v831.6c0 65.4 53.2 118.6 118.6 118.6h672.2c20.1 0 40.1-5.2 57.7-15s32.5-24.1 43.1-41.2c10.8-17.4 11.2-38.4 1.3-56.3zm-703.1 12.6c-8.5 32.3-37.8 54.9-71.2 54.9-40.6 0-73.6-33-73.6-73.6V66.9c0-5.9 4.8-10.6 10.6-10.6H783c3.8 0 6.4 2 7.5 3.1 1.2 1.2 3.1 3.7 3.1 7.5V876H331.2c-24.9.1-46.7 17.1-52.9 41.2zm663.5 20c-13.5 21.9-36.9 34.9-62.6 34.9H300.1c10-12.6 17.5-27.3 21.7-43.5v-.2c1.1-4.3 5-7.4 9.4-7.4h601.4c5.7 0 8.4 3.8 9.3 5.5 1.3 2.1 2.8 6.1-.1 10.7z"/></svg><span>Finance & Payroll</span></div><ul class=sub-tools><li><a href=/uk/books/free-tools/furlough-claim-calculator/ rel="noopener noreferrer">HMRC Furlough Claim Calculator</a></li><li><a href=/in/payroll/income-tax-calculator/ rel="noopener noreferrer">Income Tax Calculator</a></li><li><a href=/us/books/paycheck-calculator/ rel="noopener noreferrer">Paycheck Calculator</a></li><li><a href=/in/books/free-gst-calculator/ rel="noopener noreferrer">India GST Calculator</a></li><li><a href=/uk/books/free-tools/vat-calculator/ rel="noopener noreferrer">UK VAT Calculator</a></li><li><a href=/uk/books/free-tools/flat-rate-calculator/ rel="noopener noreferrer">UK Flat Rate Calculator</a></li><li><a href=/uk/books/free-tools/corporation-tax-calculator/ rel="noopener noreferrer">Corporation Tax Calculator</a></li><li><a href=/books/financial-report-templates.html rel="noopener noreferrer">Financial Report Templates</a></li><li><a href=/books/free-project-estimate-calculator/ rel="noopener noreferrer">Free Project Cost Quote Calculator</a></li><li><a href=/us/books/form-w9-generator/ rel="noopener noreferrer">Form W-9 Generator</a></li><li><a href=/in/payroll/free-payslip-generator/ rel="noopener noreferrer">Payslip Generator</a></li><li><a href=/in/payroll/nps-calculator/ rel="noopener noreferrer">NPS Calculator</a></li><li><a href=/in/payroll/free-eps-pension-calculator/ rel="noopener noreferrer">EPS Pension Calculator</a></li><li><a href=/in/payroll/gratuity-calculator/ rel="noopener noreferrer">Gratuity Calculator</a></li><li><a href=/in/payroll/statutory-bonus-calculator/ rel="noopener noreferrer">Statutory Bonus Calculator</a></li><li><a href=/in/payroll/hra-exemption-calculator/ rel="noopener noreferrer">HRA Exemption Calculator</a></li></ul></li><li class=nav-sub-header><div class=nav-product-logo><svg viewBox="0 0 1024 1024" width="25" height="27" class="nav-product-logo-icon" role="presentation"><defs><style>.cls-1{opacity:.9}.cls-2{fill:#ffff}</style></defs><g class="cls-1"><path class="cls-2" d="M845.62 1007.29c-78.84 0-155.48-28.12-221.64-81.33a16 16 0 00-21.35 1.14l-58 58a75.55 75.55 0 01-106.73 0l-56-56a16 16 0 00-22.63 0l-56.67 56.58a73.73 73.73 0 01-107-2.9A764.8 764.8 0 0189.9 111.91a179.71 179.71 0 01158.78-95.2h556.67c56.35 0 109.46 37.37 149.55 105.22 36.32 61.47 60.71 145.8 68.68 237.44a90.05 90.05 0 01-89.66 98H644.81c.69 16.84 2 33.53 3.79 49.9 0 .41.08.82.11 1.23a617.74 617.74 0 0027.93 146.29c14.47 44.8 33.83 86 57.56 122.53 23.34 35.91 50.31 66.35 80.16 90.49s62 41.44 95.5 51.37a42.58 42.58 0 01-4.49 82.73 333.48 333.48 0 01-59.75 5.38zM248.68 76.71a119.81 119.81 0 00-105.86 63.47 704.42 704.42 0 0097.43 802.53 13.72 13.72 0 0019.93.54l56.58-56.58a76.09 76.09 0 01107.48 0l56.05 56.05a15.48 15.48 0 0021.88 0l58-58a75.87 75.87 0 01101.37-5.47c48.9 39.32 104.23 62.27 161.25 67.11a364.1 364.1 0 01-46.19-31.89c-34.76-28.11-66-63.25-92.75-104.45-54.26-83.49-87.1-186.07-95-296.69a781 781 0 01-4.7-86c0-106.25 21-206.61 59.18-282.6 13.37-26.62 28.41-49.39 44.77-68zM644.8 397.33h289.12a30.05 30.05 0 0029.88-32.76c-7.2-82.89-28.71-158.22-60.55-212.12-28.86-48.84-63.63-75.74-97.9-75.74-18.54 0-37.07 7.69-55.08 22.86-19.35 16.3-37.78 41.23-53.27 72.09-30.52 60.76-48.74 139.99-52.2 225.67z"/></g><g class="cls-1"><path class="cls-2" d="M434.18 457.33H211.72a30 30 0 110-60h222.46a30 30 0 010 60z"/></g><g class="cls-1"><path class="cls-2" d="M325.5 607.38H218.05a30 30 0 010-60H325.5a30 30 0 010 60z"/></g><g class="cls-1"><path class="cls-2" d="M448.18 307.38H238.72a30 30 0 010-60h209.46a30 30 0 010 60z"/></g></svg><span>Expense</span></div><ul class=sub-tools><li><a href=/expense/expense-report-generator/ rel="noopener noreferrer">Expense Report Generator</a></li><li><a href=/us/expense/per-diem-calculator/ rel="noopener noreferrer">Per diem calculator</a></li></ul></li></ul></div><div class=nav-bar-con><div class="top-two-band stat-nor"><div class="top-band-div align-items-center"><div class="d-flex align-items-center"><button class=free-tools-menu onclick=toggleNavBar() aria-label="Explore other free tools"></button>
+<svg style="display:block" viewBox="0 0 1024 450" width="80" id="topband-logo" alt="ZOHO"><path d="M458.1 353c-7.7.0-15.5-1.6-23-4.9l-160-71.3c-28.6-12.7-41.5-46.4-28.8-75l71.3-160C330.3 13.2 364 .3 392.6 13l160 71.3c28.6 12.7 41.5 46.4 28.8 75l-71.3 160c-9.5 21.2-30.3 33.7-52 33.7zm-9.7-34.9c12.1 5.4 26.3-.1 31.7-12.1l71.3-160c5.4-12.1-.1-26.3-12.1-31.7L379.2 43c-12.1-5.4-26.3.1-31.7 12.1l-71.3 160c-5.4 12.1.1 26.3 12.1 31.7l160.1 71.3z" style="fill:#089949"/><path d="M960 353.1H784.8c-31.3.0-56.8-25.5-56.8-56.8V121.1c0-31.3 25.5-56.8 56.8-56.8H960c31.3.0 56.8 25.5 56.8 56.8v175.2c0 31.3-25.5 56.8-56.8 56.8zm-175.2-256c-13.2.0-24 10.8-24 24v175.2c0 13.2 10.8 24 24 24H960c13.2.0 24-10.8 24-24V121.1c0-13.2-10.8-24-24-24H784.8z" style="fill:#f9b21d"/><path d="M303.9 153.2 280.3 206c-.3.6-.6 1.1-.9 1.6l9.2 56.8c2.1 13.1-6.8 25.4-19.8 27.5l-173 28c-6.3 1-12.7-.5-17.9-4.2s-8.6-9.3-9.6-15.6l-28-173c-1-6.3.5-12.7 4.2-17.9s9.3-8.6 15.6-9.6l173-28c1.3-.2 2.6-.3 3.8-.3 11.5.0 21.8 8.4 23.7 20.2l9.3 57.2L294.3 94l-1.3-7.7c-5-30.9-34.2-52-65.1-47l-173 28C40 69.6 26.8 77.7 18 90c-8.9 12.3-12.4 27.3-10 42.3l28 173c2.4 15 10.5 28.1 22.8 37C68.5 349.4 80 353 91.9 353c3 0 6.1-.2 9.2-.7l173-28c30.9-5 52-34.2 47-65.1l-17.2-106z" style="fill:#e42527"/><path d="m511.4 235.8 25.4-56.9-7.2-52.9c-.9-6.3.8-12.6 4.7-17.7 3.9-5.1 9.5-8.4 15.9-9.2l173.6-23.6c1.1-.1 2.2-.2 3.3-.2 5.2.0 10.2 1.7 14.5 4.9.8.6 1.5 1.3 2.2 1.9 7.7-8.1 17.8-13.9 29.1-16.4-3.2-4.4-7-8.3-11.5-11.7-12.1-9.2-27-13.1-42-11.1L545.6 66.5c-15 2-28.4 9.8-37.5 21.9-9.2 12.1-13.1 27-11.1 42l14.4 105.4zm295.4 29.3L784 97.1c-12.8.4-23.1 11-23.1 23.9v49.3l13.5 99.2c.9 6.3-.8 12.6-4.7 17.7s-9.5 8.4-15.9 9.2L580.2 320c-6.3.9-12.6-.8-17.7-4.7s-8.4-9.5-9.2-15.9l-8-58.9-25.4 56.9.9 6.4c2 15 9.8 28.4 21.9 37.5 10 7.6 21.9 11.6 34.3 11.6 2.6.0 5.2-.2 7.8-.5L758.2 329c15-2 28.4-9.8 37.5-21.9 9.2-12.1 13.1-27 11.1-42z" style="fill:#226db4"/><path d="m317 436.2 24.8-36.6h-20.4c-1.1.0-2-.9-2-2v-4.9c0-1.1.9-2 2-2h33.5c1.1.0 2 .9 2 2v1.9c0 .4-.1.8-.3 1.1l-24.3 36.6h21.8c1.1.0 2 .9 2 2v4.9c0 1.1-.9 2-2 2h-35.4c-1.1.0-2-.9-2-2v-1.8c-.1-.5.1-.9.3-1.2zm104.4-20.6c0-15 11-25.8 26-25.8 15.5.0 26 10.6 26 25.9.0 15.5-10.7 26.2-26.2 26.2-15.6.0-25.8-10.7-25.8-26.3zm40.1.2c0-9.1-4.4-16.9-14.3-16.9-10 0-13.8 8.1-13.8 17.3.0 8.7 4.7 16.7 14.3 16.7 9.9-.1 13.8-8.6 13.8-17.1zm83-25.2h7.4c1.1.0 2 .9 2 2v18.6h21v-18.6c0-1.1.9-2 2-2h7.4c1.1.0 2 .9 2 2v46.5c0 1.1-.9 2-2 2H577c-1.1.0-2-.9-2-2v-18.8h-21v18.8c0 1.1-.9 2-2 2h-7.4c-1.1.0-2-.9-2-2v-46.5c-.1-1.1.8-2 1.9-2zm110.9 25c0-15 11-25.8 26-25.8 15.5.0 26 10.6 26 25.9.0 15.5-10.7 26.2-26.2 26.2-15.6.0-25.8-10.7-25.8-26.3zm40 .2c0-9.1-4.4-16.9-14.3-16.9-10 0-13.8 8.1-13.8 17.3.0 8.7 4.7 16.7 14.3 16.7 9.9-.1 13.8-8.6 13.8-17.1z"/></svg>
+<span class=title-divider></span><div class=title><h2 class=tool-name>SKU Generator</h2><a href="/inventory/?utm_source=sku_generator&amp;utm_medium=backlink&amp;utm_campaign=free_tools" rel="noopener noreferrer" class=powered-by>by Zoho Inventory</a></div></div><div class="d-flex align-items-center"><a class=check-zoho-inventory href="/inventory/?utm_source=sku_generator&amp;utm_medium=backlink&amp;utm_campaign=free_tools">Check out Zoho Inventory</a><div class="signupnow-buttons cta-btn"><a id=banner-signup-button href="/inventory/signup/?utm_source=sku_generator&amp;utm_medium=backlink&amp;utm_campaign=free_tools">Sign up, it's free!</a></div></div></div></div><div class=instruction-popup><span class=instruction-popup-close><span class=instruction-popup-icon>&#215;</span></span><div class=instruction-section><h2 class=instruction-head>How to use Zoho Inventory SKU generator</h2><ul class=instruction-content><li><img data-src=/inventory/sku-generator/images/tick.svg alt="Tip 1: Decide the number of charachter and separator symbol"> Decide number of characters for the SKU and Choose the separator symbol.</li><li><img data-src=/inventory/sku-generator/images/tick.svg alt="Tip 2:  Enter item name and attributes"> Enter the name of the item and the attributes such as size, color, shape. </li><li><img data-src=/inventory/sku-generator/images/tick.svg alt="Tip 3 : Click on Add on generate SKU"> Click on the <strong>Add</strong> button to generate SKU and clear the values </li><li><img data-src=/inventory/sku-generator/images/tick.svg alt="Tip 4 : Click on Add and Retain to hold the values"> Click on the <strong>Add & Retain</strong> button to generate SKU and hold the values for further editing </li><li><img data-src=/inventory/sku-generator/images/tick.svg alt="Tip 5 : Click on Export as CSV to export the list"> Click on the <strong>Export as CSV</strong> button to export the generated list </li></ul></div></div><div class=cover-body></div><div class=top-band><div class="header-band header-right-band"><svg viewBox="0 0 512 512"><path opacity=".2" fill="#FFF" d="M119.3 112.8H87.6c-8.4 0-15.3 6.8-15.3 15.3v31.7c0 8.4 6.8 15.3 15.3 15.3h31.7c8.4 0 15.3-6.8 15.3-15.3V128c0-8.4-6.8-15.2-15.3-15.2zm10.3 47c0 5.7-4.6 10.3-10.3 10.3H87.6c-5.7 0-10.3-4.6-10.3-10.3V128c0-5.7 4.6-10.3 10.3-10.3h31.7c5.7 0 10.3 4.6 10.3 10.3v31.8z"/><path opacity=".2" fill="#FFF" d="M104.4 123.7H85.6c-2.8 0-5.1 2.3-5.1 5.1v10c0 2.8 2.3 5.1 5.1 5.1h18.8c2.8 0 5.1-2.3 5.1-5.1v-10c0-2.9-2.3-5.1-5.1-5.1zm.1 15s-.1.1 0 0l-18.9.1s-.1 0-.1-.1v-10s0-.1.1-.1h18.8s.1 0 .1.1v10zM248 227.2c-2.9-2.9-6.7-4.5-10.8-4.5s-7.9 1.6-10.8 4.5l-22.5 22.5c-5.9 5.9-5.9 15.6 0 21.5l22.5 22.5c2.9 2.9 6.7 4.5 10.8 4.5s7.9-1.6 10.8-4.5l22.5-22.5c5.9-5.9 5.9-15.6 0-21.5L248 227.2zm18.9 40.5l-5.5 5.5-3.5 3.5-13.4 13.4c-2 2-4.6 3-7.2 3-2.6 0-5.2-1-7.2-3l-22.5-22.5c-4-4-4-10.5 0-14.5l22.5-22.5c2-2 4.6-3 7.2-3 2.6 0 5.2 1 7.2 3l22.5 22.5c3.9 4.1 3.9 10.6-.1 14.6z"/><path opacity=".2" fill="#FFF" d="M235.5 268.7l15.2 15.2 3.5-3.5-11.6-11.7 3.6-3.6 11.6 11.6 3.6-3.5-15.2-15.2zM59.8 322.3H28c-8.4 0-15.2 6.8-15.2 15.2v31.8c0 8.4 6.8 15.2 15.2 15.2h31.8c8.4 0 15.2-6.8 15.2-15.2v-31.8c.1-8.3-6.8-15.2-15.2-15.2zm10.3 47.1c0 5.6-4.6 10.2-10.2 10.2H28c-5.6 0-10.2-4.6-10.2-10.2v-31.8c0-5.6 4.6-10.2 10.2-10.2h31.8c5.6 0 10.2 4.6 10.2 10.2v31.8z"/><path opacity=".2" fill="#FFF" d="M17.8 351.4h16.5v5.1H17.8v5h21.5v-15.1H17.8zm120.6 117.4h2v12h-2zm0-24h2v12h-2zm0-48h2v12h-2zm0 24h2v12h-2zm0 72h2v12h-2zM184 268.3h12v2h-12zm-45.6 104.5h2v12h-2zm4.4-83.8l1.8.9c1.8-3.5 4.1-6.6 7-9.3l-1.4-1.4c-3.1 2.8-5.5 6.2-7.4 9.8zm17.3-16.9l.9 1.8c3.5-1.7 7.3-2.8 11.1-3.3l-.3-2c-4 .6-7.9 1.8-11.7 3.5zm-21.7 34.7v6h2v-6c0-2 .2-3.9.5-5.8l-2-.3c-.3 2-.5 4-.5 6.1zm0 18h2v12h-2zm0 24h2v12h-2zm196.9 96h2v12h-2zm0-24h2v12h-2zm-11.1-140.2c2.8 2.7 5.2 5.9 7 9.3l1.8-.9c-1.9-3.6-4.4-7-7.3-9.8l-1.5 1.4zm11.1 188.2h2v12h-2zm0 24h2v12h-2zm-31.8-222.2c3.9.5 7.6 1.6 11.1 3.3l.9-1.8c-3.7-1.8-7.7-3-11.8-3.5l-.2 2zm31.8 78.2h2v12h-2zm0-24h2v12h-2zm0 48h2v12h-2zm1.5-72.2l-2 .3c.3 1.9.5 3.9.5 5.8v6h2v-6c0-2-.2-4-.5-6.1zm-1.5 96.2h2v12h-2zm-55.6-128.5h12v2h-12zM95.6 222.4l1.5 1.3c2.8-3.1 4.9-6.6 6.4-10.5l-1.9-.7c-1.4 3.7-3.4 7-6 9.9zm8.2-21.2h2v-12h-2zm-17.3 28.4c-3.4 1.8-7.2 3-11 3.5l.2 2c4.1-.5 8.1-1.8 11.7-3.7l-.9-1.8zm-34.9 3.7h12v2h-12zm-48 0h12v2h-12zm24 0h12v2h-12zm78.2-130v-12h-2v12zM87.4 61.1c-3.7-1.9-7.6-3.2-11.7-3.7l-.2 2c3.9.5 7.6 1.7 11 3.5l.9-1.8zm16.1 18.1c-1.5-3.9-3.6-7.4-6.4-10.5L95.6 70c2.6 2.9 4.6 6.3 6 9.9l1.9-.7zM3.6 57.1h12v2h-12zm24 0h12v2h-12zm24 0h12v2h-12zm34.5 430.2h2v12h-2zm0-48h2v12h-2zm0 24h2v12h-2zm-43-71.2c.6 4.2 2.3 8.1 5 11.3l1.5-1.3c-2.5-3-4.1-6.5-4.6-10.3l-1.9.3zm38.5 24.2l-1.4 1.4c2.7 2.7 4.6 6.2 5.4 9.9l2-.4c-1-4.2-3-7.9-6-10.9zm-16.1-6.7c-2.2 0-4.4-.4-6.5-1l-.6 1.9c2.3.8 4.7 1.1 7.1 1.1 1.6 0 3.2.2 4.8.6l.5-1.9c-1.7-.5-3.5-.7-5.3-.7zM42.9 232.2h2v12h-2zm0-24h2v12h-2zm0 48h2v12h-2zm0-72h2v12h-2zm0 96h2v12h-2zm0 24h2v12h-2zm0-240h2v12h-2zm0 24h2v12h-2zm0 72h2v12h-2zm0-24h2v12h-2zm0-24h2v12h-2zm154.5 243h2v12h-2zm17.3-28.6l.3 2c.9-.1 1.9-.2 2.8-.2h9v-2h-9c-1.1-.1-2.1 0-3.1.2zm63.5 16.5c.2 1.2.4 2.4.4 3.6v8.1h2v-8.1c0-1.4-.1-2.7-.4-4l-2 .4zm-15.5-14.6c3.8.5 7.3 2.2 10.1 4.8l1.4-1.5c-3.1-2.9-7-4.8-11.2-5.3l-.3 2zm15.9 134.3h2v12h-2zm-80.9-119.7l2 .4c.7-3.8 2.5-7.2 5.3-9.9l-1.4-1.4c-3.1 2.9-5.1 6.7-5.9 10.9zm80.9 143.7h2v12h-2zm0 24h2v.4h-2zm0-96h2v12h-2zm0 24h2v12h-2zm-39.8-112.5h12v2h-12zm39.8 64.5h2v12h-2zm-81.2 108.4h2v12h-2zm81.2-132.4h2v12h-2zm-81.2 12.4h2v12h-2zm0 96h2v12h-2zm0-72h2v12h-2zm0 24h2v12h-2zm0 24h2v12h-2z"/></svg></div><div class="header-band header-left-band"><svg viewBox="0 0 512 512"><path fill="#fff" d="M381 128.8v31.8c0 8.5 6.9 15.3 15.3 15.3H428c8.5 0 15.3-6.9 15.3-15.3v-31.7c0-8.5-6.9-15.3-15.3-15.3h-31.7c-8.5 0-15.3 6.8-15.3 15.2zm5 0c0-5.7 4.6-10.3 10.3-10.3H428c5.7 0 10.3 4.6 10.3 10.3v31.8c0 5.7-4.6 10.3-10.3 10.3h-31.7c-5.7 0-10.3-4.6-10.3-10.3v-31.8z" opacity=".2"/><path fill="#fff" d="M406.1 129.6v10c0 2.8 2.3 5.1 5.1 5.1H430c2.8 0 5.1-2.3 5.1-5.1v-10c0-2.8-2.3-5.1-5.1-5.1h-18.8c-2.8 0-5.1 2.2-5.1 5.1zm5-.1c0-.1.1-.1.1-.1H430c.1 0 .1.1.1.1v10c0 .1-.1.1-.1.1h-18.9c.1 0 0-.1 0-.1v-10zm-166 121c-5.9 5.9-5.9 15.6 0 21.5l22.5 22.5c2.9 2.9 6.7 4.5 10.8 4.5s7.9-1.6 10.8-4.5l22.5-22.5c5.9-5.9 5.9-15.6 0-21.5L289.2 228c-2.9-2.9-6.7-4.5-10.8-4.5s-7.9 1.6-10.8 4.5l-22.5 22.5zm3.5 3.4l22.5-22.5c2-2 4.6-3 7.2-3s5.2 1 7.2 3l22.5 22.5c4 4 4 10.5 0 14.5l-22.5 22.5c-2 2-4.6 3-7.2 3s-5.2-1-7.2-3l-13.4-13.4-3.5-3.5-5.5-5.5c-4-4-4-10.5-.1-14.6z" opacity=".2"/><path fill="#fff" d="M269.4 258.8L254.2 274l3.6 3.5 11.6-11.6 3.6 3.6-11.6 11.7 3.5 3.5 15.2-15.2-10.7-10.7zM254.2 274l3.5 3.6-3.5-3.6zm0 0l3.5 3.6-3.5-3.6zm186.4 64.3v31.8c0 8.4 6.8 15.2 15.2 15.2h31.8c8.4 0 15.2-6.8 15.2-15.2v-31.8c0-8.4-6.8-15.2-15.2-15.2h-31.8c-8.4 0-15.3 6.9-15.2 15.2zm5 31.9v-31.8c0-5.6 4.6-10.2 10.2-10.2h31.8c5.6 0 10.2 4.6 10.2 10.2v31.8c0 5.6-4.6 10.2-10.2 10.2h-31.9c-5.6 0-10.2-4.6-10.2-10.2h.1z" opacity=".2"/><path fill="#fff" d="M497.8 347.2h-21.5v15.1h21.5v-5h-16.5v-5.1h16.5v-5zM375.2 469.6h2v12h-2v-12zm0-24h2v12h-2v-12zm0-48h2v12h-2v-12zm0 24h2v12h-2v-12zm0 72h2v12h-2v-12zm-55.6-224.5h12v2h-12v-2zm55.6 104.5h2v12h-2v-12zm-9.8-93.6l-1.4 1.4c2.9 2.7 5.2 5.8 7 9.3l1.8-.9c-1.9-3.6-4.3-7-7.4-9.8zm-21.6-10.6l-.3 2c3.8.5 7.6 1.6 11.1 3.3l.9-1.8c-3.8-1.7-7.7-2.9-11.7-3.5zm32.9 32.1l-2 .3c.3 1.9.5 3.8.5 5.8v6h2v-6c0-2.1-.2-4.1-.5-6.1zm-1.5 24.1h2v12h-2v-12zm0 24h2v12h-2v-12zm-196.9 96h2v12h-2v-12zm0-24h2v12h-2v-12zM189.9 280c-2.9 2.8-5.4 6.2-7.3 9.8l1.8.9c1.8-3.4 4.2-6.6 7-9.3l-1.5-1.4zm-11.6 189.6h2v12h-2v-12zm0 24h2v12h-2v-12zm33.6-224.2c-4.1.5-8.1 1.7-11.8 3.5l.9 1.8c3.5-1.7 7.2-2.8 11.1-3.3l-.2-2zm-33.6 80.2h2v12h-2v-12zm0-24h2v12h-2v-12zm0 48h2v12h-2v-12zm0-66.1v6h2v-6c0-1.9.2-3.9.5-5.8l-2-.3c-.3 2.1-.5 4.1-.5 6.1zm0 90.1h2v12h-2v-12zm45.6-128.5h12v2h-12v-2zM414 213.3l-1.9.7c1.5 3.9 3.6 7.4 6.4 10.5l1.5-1.3c-2.6-2.9-4.6-6.2-6-9.9zm-2.2-23.3h-2v12h2v-12zm16.4 42.2c3.6 1.9 7.6 3.2 11.7 3.7l.2-2c-3.8-.5-7.6-1.7-11-3.5l-.9 1.8zm23.8 1.9h12v2h-12v-2zm48 0h12v2h-12v-2zm-24 0h12v2h-12v-2zm-64.2-130v-12h-2v12h2zm17.3-40.4c3.4-1.8 7.1-3 11-3.5l-.2-2c-4.1.5-8 1.8-11.7 3.7l.9 1.8zm-15.1 17c1.4-3.6 3.4-7 6-9.9l-1.5-1.3c-2.8 3.1-4.9 6.6-6.4 10.5l1.9.7zm86-22.8h12v2h-12v-2zm-24 0h12v2h-12v-2zm-24 0h12v2h-12v-2zm-24.5 430.2h2v12h-2v-12zm0-48h2v12h-2v-12zm0 24h2v12h-2v-12zm43.1-71.5c-.5 3.8-2.1 7.3-4.6 10.3l1.5 1.3c2.7-3.2 4.4-7.1 5-11.3l-1.9-.3zM428 428l2 .4c.8-3.7 2.7-7.2 5.4-9.9l-1.4-1.4c-3 3-5 6.7-6 10.9zm22.1-17.6c-1.8 0-3.6.2-5.3.7l.5 1.9c1.6-.4 3.2-.6 4.8-.6 2.4 0 4.8-.3 7.1-1.1l-.6-1.9c-2.1.6-4.3 1-6.5 1zM470.7 233h2v12h-2v-12zm0-24h2v12h-2v-12zm0 48h2v12h-2v-12zm0-72h2v12h-2v-12zm0 96h2v12h-2v-12zm0 24h2v12h-2v-12zm0-240h2v12h-2V65zm0 24h2v12h-2V89zm0 72h2v12h-2v-12zm0-24h2v12h-2v-12zm0-24h2v12h-2v-12zM316.2 356h2v12h-2v-12zm-18.4-28.8h-9v2h9c.9 0 1.9.1 2.8.2l.3-2c-1-.2-2-.3-3.1-.2zm-62.4 16.3c-.3 1.3-.4 2.6-.4 4v8.1h2v-8.1c0-1.2.2-2.4.4-3.6l-2-.4zm17.2-16.2c-4.2.5-8.1 2.4-11.2 5.3l1.4 1.5c2.8-2.6 6.3-4.3 10.1-4.8l-.3-2zM235 463.6h2v12h-2v-12zM312 333l-1.4 1.4c2.8 2.7 4.6 6.1 5.3 9.9l2-.4c-.8-4.2-2.8-8-5.9-10.9zm-77 154.6h2v12h-2v-12zm0 24h2v.4h-2v-.4zm0-96h2v12h-2v-12zm0 24h2v12h-2v-12zm29.8-112.5h12v2h-12v-2zM235 391.6h2v12h-2v-12zM316.2 500h2v12h-2v-12zM235 367.6h2v12h-2v-12zm81.2 12.4h2v12h-2v-12zm0 96h2v12h-2v-12zm0-72h2v12h-2v-12zm0 24h2v12h-2v-12zm0 24h2v12h-2v-12z" opacity=".2"/></svg></div><div class="header-section clearfix"><h1 class=header-text>Online <span class=highlighted-text>SKU Generator</span> for Inventory Management</h1><p class=header-desc>SKU generator helps to keep item naming consistent, clear, and easy to remember, even if you have long list of items in your inventory</p></div></div><div class=sheet-section id=sheet-section></div><div class=exceltool-section><div><svg viewBox="0 0 512 512" class="bulb-icon"><path d="M244 337.6c-2.6 0-5.2-.8-7.6-2.4-6.7-4.5-8.7-14.1-4.5-21.4l17.9-30.8-15.9-10.8c-3.2-2.2-5.5-5.7-6.3-9.7-.8-4-.2-8.2 1.8-11.7l29-50.1c4.2-7.2 13-9.4 19.7-4.9 6.7 4.6 8.7 14.1 4.5 21.4l-21.4 37 15.9 10.8c3.2 2.2 5.5 5.7 6.3 9.7.8 4 .2 8.2-1.8 11.7l-25.5 43.9c-2.7 4.8-7.4 7.3-12.1 7.3"/><path d="M282 462.5h-41.5c-15.2 0-29.3-6.9-38.6-18.8l-.4-.6c-6.9-9.1-10.7-20.6-10.7-32.4v-14.1c0-18.9-8.2-36.9-22.4-49.4-29.7-26-46.8-63.7-46.8-103.5 0-36.2 13.8-70.3 38.9-96.1 25.1-25.7 58.5-40.1 94.1-40.5 35.9-.4 70 13.7 95.8 39.7 25.9 26 40.1 60.4 40.1 96.8 0 39.7-17 77.4-46.7 103.4-11 9.6-20.1 42.6-23.1 53.5-2.2 7.8-10.1 12.3-17.8 10.2-7.7-2.2-12.2-10.3-10-18.1 10.3-37.2 19.6-56.8 32-67.7 23.3-20.4 36.6-50 36.6-81.2 0-28.6-11.2-55.6-31.5-76-20.1-20.2-46.3-31.2-74.1-31.2h-1.1c-28 .3-54.2 11.6-73.9 31.8-19.7 20.2-30.5 47-30.5 75.4 0 31.3 13.4 60.9 36.8 81.3 20.6 18 32.5 44.1 32.5 71.6v14.1c0 5.3 1.7 10.5 4.8 14.5 0 .1.1.1.1.2l.1.1c3.7 4.8 9.7 7.7 15.9 7.7H282c8 0 14.4 6.6 14.4 14.7s-6.4 14.6-14.4 14.6m-13.6 48h-24.9c-9 0-16.4-6.4-16.4-14.4s7.3-14.4 16.4-14.4h24.9c9 0 16.4 6.4 16.4 14.4s-7.3 14.4-16.4 14.4M251.2 78.3c-8 0-14.4-6.3-14.4-14.1V15.6c0-7.8 6.4-14.1 14.4-14.1s14.4 6.3 14.4 14.1v48.6c0 7.8-6.4 14.1-14.4 14.1m173.7 124.9c-5.4 0-10.7-3-13.4-8.3-4-7.7-1.3-17.3 6.1-21.4l46.3-26c7.4-4.2 16.7-1.3 20.7 6.4s1.3 17.3-6.1 21.4l-46.3 26c-2.3 1.3-4.8 1.9-7.3 1.9m-337.8 9.6c-2.5 0-4.9-.6-7.3-1.9l-46.3-26c-7.4-4.2-10.2-13.8-6.1-21.4 4-7.7 13.3-10.5 20.7-6.4l46.3 26c7.4 4.2 10.2 13.8 6.1 21.4-2.8 5.3-8 8.3-13.4 8.3"/></svg>Got a long list of inventory items? Check out our free SKU generator Excel file</div><a href=/inventory/sku-generator/tool/ZohoInventory-SKU-Generator-Excel.xlsx download><button class="sheet-button exceltool-button"><svg viewBox="0 0 512 512"><path d="M445.1 350.5V445h-378v-94.5h-63V508h504V350.5zm-55.4-133.6l-44.5-44.6-57.6 57.6V4h-63v225.9L167 172.3l-44.6 44.6 133.7 133.6z"/></svg> Download</button></a></div><div class=benefits-section><h2>Benefits of auto SKU generator tool</h2><div class=benefits-item-section><div class=benefits-item><img data-src=/inventory/sku-generator/images/pattern-based.svg alt="Pattern based SKU Generation">
+<strong class=benefits-header>Pattern based</strong><div class=benefits-content>You just decide a pattern and the tool will generate the SKU for your item</div></div><div class=benefits-item><img data-src=/inventory/sku-generator/images/consistent.svg alt="Consistent SKU for products">
+<strong class=benefits-header>Consistent</strong><div class=benefits-content>The pattern remains the same for an entire item group thereby keeping it consistent</div></div><div class=benefits-item><img data-src=/inventory/sku-generator/images/inexhaustable.svg alt="Inexhaustible list of variations">
+<strong class=benefits-header>Inexhaustible</strong><div class=benefits-content>The tool can effortlessly support your growing list of items and new variations </div></div><div class=benefits-item><img data-src=/inventory/sku-generator/images/less-confusing.svg alt="Less confusing item variations">
+<strong class=benefits-header>Less confusing</strong><div class=benefits-content>The naming is simple and rule-based which avoids confusion and mix-up</div></div></div></div><section class=erp-promotion-banner><div class=erp-promotion-banner-inner><div class=erp-banner-content><div class=zerp-lhs-content><img src=/inventory/images/common/product-logos/erp-logo-lockup-white.svg alt class=zerp-logo width=124 height=57><h2 class=zerp-banner-title>Unify your entire business operations on one platform with Zoho ERP.</h2><a href="/en-in/erp/?utm_source=inventory-sku-generator" class=zerp-primary-cta>Explore Zoho ERP</a></div><img src=/inventory/images/erp-banner/erp-banner-feature.webp alt class=zerp-banner-image></div></div></section><style>.erp-promotion-banner{padding:0 5%;margin:80px 0}.erp-promotion-banner-inner{max-width:1280px;margin:auto;background:url(/inventory/images/erp-banner/erp-banner-bg.webp)no-repeat 50%;background-size:cover;border-radius:16px}.erp-banner-content{display:flex;padding:70px;gap:35px;align-items:center}.zerp-lhs-content{display:flex;flex-direction:column;max-width:495px}.zerp-banner-title{font-size:36px;line-height:48px;letter-spacing:-1px;font-weight:500;color:#fff;margin:16px 0}.zerp-primary-cta{padding:18px 25px;border:none;border-radius:6px;font-size:14px;text-align:center;color:#fff;text-decoration:none;display:inline-block;background-image:linear-gradient(90deg,#226EB4,#4199EA 50%,#226EB4);background-size:200%;transition:background-position .7s ease;max-width:180px}.zerp-primary-cta:hover{background-position:100%}.zerp-banner-image{width:50%}@media screen and (max-width:1024px){.erp-banner-content{padding:40px;gap:30px}.zerp-lhs-content,.zerp-banner-image{flex:1}}@media screen and (max-width:768px){.zerp-banner-title{font-size:32px;line-height:42px}.erp-banner-content{flex-direction:column;padding:50px;gap:40px;align-items:flex-start}.zerp-banner-image{width:100%}}@media screen and (max-width:500px){.zerp-banner-title{font-size:28px;line-height:36px}.erp-banner-content{padding:30px}.zerp-logo{width:80px}.zerp-primary-cta{max-width:100%;padding:15px}}</style><div class=faq-section><div class=body-div style="padding:40px 0"><div class="main-div faq"><div class="lft-main-div col-md-9 col-md-offset-1"><h4>Frequently Asked Questions</h4><div class=faq-container><div class=faq-qa><div class=faq-qa-head>What is SKU?</div><div class=faq-qa-content><p>SKU is an abbreviation for Stock Keeping Unit. It is a code that you decide for each item in your inventory. If your item has multiple variations then, you also need to create a unique SKU for each variation so that you can track the performance and have a better analysis of each variant.</p></div></div><div class=faq-qa><div class=faq-qa-head>What is a SKU generator?</div><div class=faq-qa-content><p>An SKU generator is a tool that generates an SKU for your inventory items based on the attributes and rules decided by you.</p></div></div><div class=faq-qa><div class=faq-qa-head>What is the best way of managing the SKU effectively?</div><div class=faq-qa-content><p>We will always suggest to start using inventory software. You can start with a free plan to test the product and check if it fits your business. Like in Zoho Inventory, we have a comprehensive <a href=/in/inventory/free-inventory-management-software/ target=_blank rel="noopener noreferrer">list of features</a> under the free plan which can help you to manage SKU effectively.</p></div></div><div class=faq-qa><div class=faq-qa-head>How do I decide the attributes of the items?</div><div class=faq-qa-content><p>The attributes depend upon the nature of your products. There can be a lot of variations like color, size, and length. Based on this, you can add the attributes and the tool will generate the SKU.</p></div></div><div class=faq-qa><div class=faq-qa-head>How is the order decided?</div><div class=faq-qa-content><p>The order of the SKU will be decided by you. You can change the sequence of the SKU and try out different variations before committing it (saving it) in the system. You can also add different separators to make it more precise.</p></div></div><div class=faq-qa><div class=faq-qa-head>What are some of the basics for deciding the SKU of an item?</div><div class=faq-qa-content><p>There are three golden rules that you need to remember while deciding the SKU for an item : Use cascading method, keep it simple, and avoid using special characters. To read more about this <a href=/inventory/blog/three-essentials-for-effective-inventory-management.html target=_blank rel="noopener noreferrer">Click here</a></p></div></div><div class=faq-qa><div class=faq-qa-head>How SKU is different from serial or batch number?</div><div class=faq-qa-content><p>SKU is a unique name that you identify for each item in your inventory. Whereas, serial number is a unique identifier for each unit and batch number is a identifier for an entire batch of items. The serial and batch number will change as you buy and sell the items but, the SKU for the item will remain the same.</p></div></div></div></div></div></div></div><style>.promotion-section{display:flex;flex-direction:column;padding:80px 0 50px 0;background-repeat:no-repeat;background-size:100%;background-color:#fdeecf;text-align:center}.zoho-inv-logo{width:250px;height:40px}.btns{font-size:16px;border-radius:5px;text-align:center;text-decoration:none;cursor:pointer;display:inline-block}.btn-mains{margin:32px 0 40px;line-height:16px;background-color:#f94049;color:#fff;padding:15px 30px;font-weight:600;transition:all .3s ease}.btn-mains:hover{background-color:#d32c3e}.promotion-heading{color:#333;font-size:30px;font-weight:600;margin:20px;line-height:36px}.promotion-features{color:#333;font-size:16px;font-weight:400;padding:0;line-height:24px}.promotion-features span{color:grey;padding:0 5px}.promotion-section a{color:#fff;text-decoration:none}.zom-prd-screenshot{position:relative;margin:0 auto 5px;z-index:5;overflow:hidden}.watch-container{position:absolute;top:32%;left:0;right:0;margin:auto;width:295px;padding:40px}.watch-container .watch{display:inline-block;background:rgba(0,0,0,.8);line-height:14px;color:#fff;padding:7px 12px 4px;border-radius:30px}.watch-container .watch-content{font-size:13px}.play-icon-wrapper{display:inline-block;width:20px;height:20px;border-radius:50%;position:relative;background:#fff}.play-icon{width:0;height:0;border-top:4px solid transparent;border-left:6px solid #333;border-bottom:4px solid transparent;position:absolute;top:6px;left:8px}.play-icon-text{margin-left:5px;margin-top:3px;display:inline-block;vertical-align:top}.desktops-view{width:45%}.video-player{position:fixed;top:0;bottom:0;left:0;right:0;background-color:#fff;opacity:0;padding:100px;z-index:1001;transition:opacity .3s}.video-player.open{opacity:1}.video-player .player-wrapper{max-width:800px;margin:auto}.video-player .player{position:relative;padding-bottom:56.25%;height:0}.video-player .player iframe{position:absolute;top:0;left:0;width:100%;height:100%}.hide{display:none}.social-media{font-size:13px;padding:10px;text-align:right;border:1px solid #ededed}.close{position:absolute;right:32px;top:32px;width:32px;height:32px;opacity:.3;transition:opacity .25s;cursor:pointer}.close:hover{opacity:1}.close:before,.close:after{position:absolute;left:15px;content:' ';height:33px;width:2px;background-color:#666}.close:before{transform:rotate(45deg)}.close:after{transform:rotate(-45deg)}@media screen and (max-width:768px){#product-video .watch-container{top:31%}.promotion-section .promotion-heading{font-size:24px}}@media screen and (max-width:425px){.watch-container{display:none}}</style><div class=promotion-section><a style=text-align:center href=/inventory><svg viewBox="0 0 1130 296" class="zoho-inv-logo" alt="Zoho Inventory"><path d="M383 140.8h22.2v114.9H383V140.8zm46.2 30.8h20.1v13.3c5.4-10.4 16.7-15.1 28.4-15.1 20.2 0 29.3 14.2 29.3 33.3v52.6h-20.4v-50.6c0-11.8-5.3-18.7-17.2-18.7s-20.1 7.9-20.1 19.9v49.4h-20.1v-84zm85.6 0h21.5l21.7 63.6 21.5-63.6h19.6l-30.3 84.1h-23.5l-30.5-84.1zm168.6 65.8c-7 14.8-22 19.8-37.5 19.8-26.5 0-43.2-17.7-43.2-43.9s17-43.6 42.3-43.6 40.4 15.9 40.4 48.3h-62.2c0 14.2 8.2 24.6 23.5 24.6s16.6-3.7 21-12.2l15.7 7zm-18-32.5c-.6-12.7-8.3-20.5-20.2-20.5s-20 8.9-21.7 20.5h41.9zm36.1-33.3h20.1v13.3c5.4-10.4 16.7-15.1 28.4-15.1 20.2 0 29.3 14.2 29.3 33.3v52.6h-20.4v-50.6c0-11.8-5.3-18.7-17.2-18.7s-20.1 7.9-20.1 19.9v49.4h-20.1v-84zM843 255.1c-4.3 1.3-8.8 2-13.8 2-16 0-25.5-8.3-25.5-25v-45.7h-11.3v-14.8h11.3v-17.3l20.1-8.7v26.1h18.5v14.8h-18.5v43.9c0 6.6 2.8 10.7 10.2 10.7s6-.6 9-1.6v15.8zm53.9-85.3c25.5 0 45.1 17.9 45.1 43.6s-20.6 43.8-46 43.8-46.1-17.7-46.1-43.4 21.7-44 47-44zm23.5 43.8c0-15.5-7.8-28.3-24.3-28.3s-23.7 13.5-23.7 28.9 7.9 27.6 24.2 27.6 23.9-13.5 23.9-28.2zm36.3-42h20.1v15.8c5.7-11.5 14.8-17 27.6-17V189c-16.2 0-27.6 5.3-27.6 23.3v43.4h-20.1v-84.1zm88.4 75.5l-33-75.5h21.5l22.1 53.7 20.6-53.7h19.5l-46.2 112.9h-19.7l15.2-37.4zM382.3 104.4l37-53.4h-33.2V40.5h50.6v5.2l-36.1 53.4h35v10.5h-53.3v-5.2zM468.4 58c15.4 0 27.2 10.8 27.2 26.3s-12.4 26.4-27.7 26.4-27.8-10.7-27.8-26.1 13.1-26.5 28.3-26.5zm14.1 26.3c0-9.3-4.7-17.1-14.6-17.1s-14.3 8.1-14.3 17.4 4.8 16.6 14.6 16.6c10.1 0 14.4-8.1 14.4-17zm21.9-48.2h12.1v31c3.3-6.3 9.9-9.1 16.9-9.1 12.1 0 18.2 8.5 18.2 20v31.7h-12.2V79.2c0-7.3-3.8-11.2-10.8-11.2s-12 4.8-12 12v29.7h-12.1V36.1zM587.7 58c15.4 0 27.2 10.8 27.2 26.3s-12.4 26.4-27.7 26.4-27.8-10.7-27.8-26.1c0-15.9 13.1-26.5 28.3-26.5zm14.2 26.3c0-9.3-4.7-17.1-14.7-17.1s-14.3 8.1-14.3 17.4 4.8 16.6 14.6 16.6c10.1 0 14.4-8.1 14.4-17z"/><path fill="#e42527" d="M102.2 248.1c-4.1 0-7.6-3-8.3-7L57.2 33.2c-.7-3.8-3.4-6.9-7.1-8.1L33.7 20c-4.5-1.4-7-6.1-5.7-10.6s6.1-7 10.6-5.7h.2l16.4 5.1c9.8 3 17 11.3 18.8 21.3L110.7 238c.8 4.6-2.3 9-6.9 9.8-.5 0-1 .1-1.5.1zm40.4 28.3c-4.7 0-8.5-3.8-8.5-8.5s3-7.6 7-8.4l150.6-26.6c5.6-.9 9.4-6.3 8.5-11.9-1-5.6-6.3-9.4-11.9-8.4h-.1l-129.4 22.8c-14.9 2.6-29-7.3-31.6-22.1L104.4 83.9c-2.6-14.8 7.3-29 22.1-31.6l129.4-22.8c14.8-2.6 29 7.3 31.6 22.1l21.1 119.7c.8 4.6-2.4 9-7 9.7-4.5.7-8.8-2.3-9.7-6.8L270.8 54.5c-1-5.6-6.3-9.4-12-8.4L129.4 68.9c-5.6 1-9.4 6.3-8.4 11.9l22.8 129.3c1 5.6 6.3 9.4 11.9 8.4L285 195.7c14.8-2.9 29.1 6.8 32 21.6 2.9 14.8-6.8 29.1-21.6 32-.3 0-.6.1-.9.2l-150.6 26.6c-.5.1-1 .1-1.5.1z"/><path fill="#f9b21d" d="M176.8 111.2c-4.7 0-8.5-3.8-8.5-8.5s3-7.7 7-8.4l49.1-8.7c4.6-.8 9 2.3 9.8 6.9s-2.3 9-6.9 9.8l-49.1 8.7c-.5 0-1 .1-1.5.1z"/><path fill="#e42527" d="M118.9 292.6c-18.8 0-33.9-15.2-33.9-34s15.2-33.9 34-33.9 34 15.2 34 34-11.8 30.5-28 33.4c-2 .4-3.9.5-5.9.5zm.1-50.8c-1 0-2 0-3 .3-9.1 1.6-15.2 10.4-13.6 19.5s10.4 15.2 19.5 13.6c9.1-1.6 15.2-10.4 13.6-19.5-1.4-8-8.4-13.9-16.5-13.9z"/></svg></a><h2 class=promotion-heading>Streamline, simplify, and systemize your inventory management</h2><div class=promotion-features>Inventory Control <span>|</span> Warehouse Management <span>|</span> Multichannel Selling <span>|</span> Order Management <span>|</span> End-to-end tracking <span>|</span> Mobile app</div><div style=align-self:center><a class="btn-mains btns" href="/inventory/signup/?utm_source=sku_generator&amp;utm_medium=backlink&amp;utm_campaign=free_tools_footer">SIGN UP - IT'S FREE</a></div><div class=zom-prd-screenshot><a id=product-video href=https://workdrive.zohopublic.in/embed/x8yln7cc2a1a4d6d649ba88c481e4123e1d3a><img src=/us/inventory/dashboard.png class=desktops-view alt="Inventory App-Dashboard"><div class=watch-container><div class=watch><div class=watch-content><div class=play-icon-wrapper><div class=play-icon></div></div><div class=play-icon-text>Watch the overview video</div></div></div></div></a></div></div><div id=video-player class="video-player hide"><i class=close></i><div class=player-wrapper><div id=player class=player></div><div class=social-media><p>Liked this video? Help us spread the word by sharing it with your friends.</p><a class=social-twitter-btn href="https://twitter.com/intent/tweet?hashtags=inventory&text=Zoho%20Inventory%20is%20remarkable!%20Its%20simplicity%20and%20powerful%20features%20makes%20inventory%20management%20very%20easy.&tw_p=tweetbutton&url=http%3A%2F%2Fbit.ly%2F1zMa6dg" target=_blank rel="noopener noreferrer" aria-label="Navigate to Zoho Inventory's X page"><svg viewBox="0 0 1200 1227" class="social-media-btn-icon" aria-hidden="true"><path d="M714.16 519.28L1160.89 0h-105.86L667.14 450.89 357.33 0H0l468.49 681.82L0 1226.37h105.87L515.5 750.22l327.18 476.15h357.33L714.15 519.28h.03zm-145 168.55l-47.47-67.89L144.01 79.69h162.6l304.8 435.99 47.47 67.89 396.2 566.72h-162.6L569.17 687.84v-.03z"/></svg></a>
+<a class=social-fb-btn href="https://www.facebook.com/sharer/sharer.php?app_id=113869198637480&sdk=joey&u=https%3A%2F%2Fwww.zoho.com%2Finventory%2F&display=popup&ref=plugin&src=share_button" target=_blank rel="noopener noreferrer" aria-label="Navigate to Zoho Inventory's Facebook page"><svg viewBox="0 0 512 512" class="social-media-btn-icon" aria-hidden="true"><path d="M374.7 3h-80.9c-48 0-101.4 20.2-101.4 89.8.2 24.2 0 47.5 0 73.6h-55.5v88.3h57.2V509h105.2V253h69.4l6.3-86.9h-77.5s.2-38.7 0-49.9c0-27.5 28.6-25.9 30.3-25.9h46.9V3z" fill="#383838"/></svg></a></div></div></div><div class=common-footer></div></div><script src=https://www.zohowebstatic.com/sites/zweb/js/common/zf/prd-common.js></script><script type=text/javascript src=/finance/js/finance.js></script><script type=text/javascript src=/inventory/js/index.js></script><script>"use strict";$("#product-video").on("click",function(e){var o=$("#video-player");o.removeClass("hide"),window.setTimeout(function(){o.addClass("open"),o.find("#player").html('<iframe id="yt-product-video" src="https://workdrive.zohopublic.in/embed/x8yln7cc2a1a4d6d649ba88c481e4123e1d3a?autoplay=1" allow="autoplay" frameborder="0" allowfullscreen></iframe>')}),e.preventDefault()}),$("#video-player").on("click",function(){var e=$(this);e.removeClass("open"),e.find("#yt-product-video").remove(),window.setTimeout(function(){e.addClass("hide")},450)});</script><script type=text/javascript src=/inventory/js/skugenerator.js></script><script type="text/javascript">"use strict";for(var imagesToLazyLoad=document.getElementsByTagName("img"),i=0;i<imagesToLazyLoad.length;i++){var dataSrc=imagesToLazyLoad[i].getAttribute("data-src"),dataSrcSet=imagesToLazyLoad[i].getAttribute("data-srcset");dataSrc&&(imagesToLazyLoad[i].src=dataSrc),dataSrcSet&&(imagesToLazyLoad[i].srcset=dataSrcSet)}</script><script type=text/javascript>$(".instruction-popup-icon").click(function(){$(".instruction-popup").removeClass("instruction-popup-open"),$(".cover-body").removeClass("body-dark-overlay")}),$(".faq-container .faq-qa-head").click(function(){$(this).hasClass("active")?$(this).removeClass("active"):($(".faq-container .faq-qa-head").removeClass("active"),$(this).addClass("active"))})</script><script type=text/javascript>var name="ZInventoryRef",pageURL="ZInventoryPageURL";createCookie(name,pageURL);function zohoGASignupEvent(){}function zohoFedClickEvent(){}function zcTrackClick(){}</script><script src=https://www.zohowebstatic.com/sites/zweb/js/ztm/zoho.js></script></body></html>

@@ -1,0 +1,99 @@
+
+  <div class="sheet-section">
+    <div class="sheet-content">
+      <div class="sheet-input-section">
+        <div class="form-group clearfix config-section">
+          <div class="seperator-section">
+            <div>Character Count</div>
+            <select class="dropdown-menu" v-model="characterCount">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+              <option>6</option>
+              <option>7</option>
+              <option>8</option>
+              <option>9</option>
+            </select>
+          </div>
+          <div class="seperator-section">
+            <div>Seperator</div>
+            <select class="dropdown-menu" v-model="seperator">
+              <option>/</option>
+              <option>:</option>
+              <option>-</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="form-text">Item Name <span class="required">*</span></div>
+          <input id="item-name" v-model.trim="itemName" v-on:change="removeItemnameError" placeholder="Ex: Shoes" autofocus >
+          <div v-if="itemNameEmpty" class="error-msg">Please enter a valid item name</div>
+        </div>
+        <div class="form-group">
+          <div class="form-text">Attribute 1 <span class="required">*</span></div>
+          <input v-model.trim="attribute1" v-on:change="removeAttribute1Error" placeholder="Ex: US-44" >
+          <div v-if="attribute1Empty" class="error-msg">Please enter attribute value</div>
+        </div>
+        <div class="form-group">
+          <div class="form-text" >Attribute 2</div>
+          <input v-model.trim="attribute2" placeholder="Ex: Leather">
+        </div>
+        <div class="form-group">
+          <div class="form-text">Attribute 3</div>
+          <div><input v-model.trim="attribute3" placeholder="Ex: Black"></div>
+        </div>
+        <div class="form-group button-section">
+          <button class="sheet-button generate-button add-button" v-on:click="generateSKU(true)">Add</button>
+          <button class="sheet-button retain-button add-button" v-on:click="generateSKU()">Add & Retain</button>
+        </div>
+      </div>
+      <div class="sheet-content-section">
+        <div class="export-section clearfix">
+          <div class="total-count">Total Count: {{totalItemCount}}</div>
+          <div class="export-button-section">
+            <button class="sheet-button generate-button" v-on:click="downloadCSV()">Export as CSV</button>
+            <img class="help-circled instruction-popup-opener pulse" v-on:click="openInstructions()" src="/inventory/sku-generator/images/help-circled.svg" alt="Help tip for SKU generator" />
+            <div v-if="exportListEmpty" class="error-msg">Generate SKU for atlease one item</div>
+          </div>
+        </div>
+        <div class="sheet-table-section">
+          <table>
+            <thead>
+              <tr>
+                <th>Item Name</th>
+                <th>Attribute 1</th>
+                <th>Attribute 2</th>
+                <th>Attribute 3</th>
+                <th style="width: 20%;">Generated SKU</th>
+                <th style="width: 6%;"></th>
+              </tr>
+            </thead>
+            <tbody v-if="itemsList.length">
+              <tr v-for="(item, index) in itemsList">
+                <td>{{item.itemName}}</td>
+                <td>{{item.attribute1}}</td>
+                <td>{{item.attribute2}}</td>
+                <td>{{item.attribute3}}</td>
+                <td>{{item.finalSKU}}</td>
+                <td class="close-icon">
+                  <a v-on:click="removeitem(index)">
+                    <span><svg width="512" height="512" viewBox="0 0 512 512"><path d="M466.745 0L256 210.745 45.255 0 0 45.254 210.745 256 0 466.745 45.255 512 256 301.255 466.745 512 512 466.745 301.255 256 512 45.254z"/></svg><span>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+            <tbody v-else>
+              <tr>
+                <td class="empty-table" colspan="6">
+                  Add the item information in the left pane and generate sku
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  

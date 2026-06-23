@@ -1,0 +1,303 @@
+/* ============================================================
+   BREAK-EVEN POINT CALCULATOR — Premium Zoho-Style CSS
+   Scoped to #break-even-section to prevent style bleeding.
+   ============================================================ */
+
+#break-even-section {
+  position: relative;
+  background: #f8fafc; /* Soft pastel background */
+  padding: 1.5rem 0 3rem 0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* 1. Hero / Header Layout (Two-Column) */
+.be-hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3.5rem;
+  padding: 3rem 2.5rem;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 2;
+  margin-bottom: 1.5rem;
+}
+
+.be-hero-left {
+  flex: 1 1 420px;
+}
+
+.be-hero-left h1 {
+  font-size: 2.8rem;
+  font-weight: 800;
+  line-height: 1.15;
+  margin-bottom: 1.25rem;
+  font-family: inherit;
+}
+
+.be-hero-left h1 .be-black {
+  color: #0f172a;
+}
+
+.be-hero-left h1 .be-red {
+  color: #dc2626; /* Zoho Red/Orange Highlight */
+}
+
+.be-hero-desc {
+  font-size: 1.05rem;
+  color: #475569;
+  line-height: 1.6;
+  max-width: 480px;
+}
+
+.be-hero-right {
+  flex: 1 1 400px;
+  max-width: 480px;
+  min-width: 320px;
+}
+
+/* 2. Floating Calculator Card */
+.be-calc-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+  overflow: hidden;
+  position: relative;
+  z-index: 10;
+  transition: box-shadow 0.3s ease;
+}
+
+/* Card Header with Segmented switch and Currency Selector */
+.be-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+/* Top Segmented Switch (Units / Revenue) */
+.be-toggle-container {
+  display: flex;
+  background-color: #f1f5f9;
+  padding: 0.25rem;
+  border-radius: 8px;
+}
+
+.be-toggle-container input[type="radio"] {
+  display: none;
+}
+
+.be-toggle-btn {
+  padding: 0.5rem 1.25rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #64748b;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.be-toggle-container input[type="radio"]:checked + .be-toggle-btn {
+  background-color: #facc15; /* Yellow highlight like reference */
+  color: #0f172a;
+}
+
+/* Currency selector */
+.be-currency-selector select {
+  padding: 0.45rem 1.5rem 0.45rem 0.75rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #475569;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  background-color: #ffffff;
+  outline: none;
+  cursor: pointer;
+}
+
+/* Form Styling */
+.be-calc-form {
+  padding: 1.75rem 1.5rem;
+}
+
+.be-form-group {
+  margin-bottom: 1.25rem;
+}
+
+.be-form-group label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #334155;
+  margin-bottom: 0.5rem;
+}
+
+.be-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.be-input-addon {
+  position: absolute;
+  left: 12px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #64748b;
+  pointer-events: none;
+}
+
+.be-input-wrap input {
+  width: 100%;
+  padding: 0.75rem 0.75rem 0.75rem 2.25rem;
+  font-size: 0.95rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  outline: none;
+  color: #0f172a;
+  background-color: #ffffff;
+  font-family: inherit;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.be-input-wrap input:focus {
+  border-color: #facc15;
+  box-shadow: 0 0 0 3px rgba(250, 204, 21, 0.15);
+}
+
+.be-error-msg {
+  display: none;
+  font-size: 0.8rem;
+  color: #ef4444;
+  margin-top: 0.35rem;
+  font-weight: 600;
+}
+
+/* 3. Dark Bottom Results Panel inside the card */
+.be-results-panel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #0f172a; /* Dark bottom panel */
+  padding: 1.5rem;
+  color: #ffffff;
+  border-top: 1px solid #1e293b;
+}
+
+.be-result-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.be-result-val {
+  font-size: 1.85rem;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.2;
+  margin-bottom: 0.25rem;
+  text-align: center;
+}
+
+.be-result-lbl {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.be-result-operator {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #64748b;
+  padding: 0 0.5rem;
+}
+
+/* 4. Reset Button below the card */
+.be-reset-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.be-reset-link {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: none;
+  border: none;
+  color: #dc2626; /* Reset link in red/orange */
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+  outline: none;
+}
+
+.be-reset-link:hover {
+  opacity: 0.8;
+}
+
+.be-reset-link i {
+  width: 16px;
+  height: 16px;
+}
+
+/* 5. Background Pattern Section */
+.be-background-pattern {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 350px;
+  background-image: radial-gradient(#e2e8f0 1.2px, transparent 1.2px);
+  background-size: 24px 24px;
+  opacity: 0.4;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.be-educational-section {
+  position: relative;
+  z-index: 2;
+  padding: 0 2.5rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .be-hero {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2.5rem;
+  }
+  .be-hero-left {
+    text-align: center;
+  }
+  .be-hero-left h1 {
+    font-size: 2.25rem;
+  }
+  .be-hero-desc {
+    max-width: 100%;
+  }
+  .be-hero-right {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .be-hero {
+    padding: 2rem 1.25rem;
+  }
+  .be-calc-card {
+    border-radius: 8px;
+  }
+  .be-educational-section {
+    padding: 0 1.25rem;
+  }
+}

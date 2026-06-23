@@ -1,0 +1,750 @@
+/* ============================================================
+   NPS CALCULATOR — Scoped Styles
+   All selectors are scoped to #nps-section to prevent global pollution.
+   ============================================================ */
+
+#nps-section {
+  font-family: 'Outfit', 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: #333333;
+  line-height: 1.6;
+  background: #ffffff;
+  padding: 0 0 4rem 0;
+}
+
+#nps-section *,
+#nps-section *::before,
+#nps-section *::after {
+  box-sizing: border-box;
+}
+
+#nps-section h1,
+#nps-section h2,
+#nps-section h3,
+#nps-section h4 {
+  margin: 0 0 0.5rem 0;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+#nps-section p {
+  margin: 0 0 1rem 0;
+}
+
+/* ============================================================
+   1. HERO BANNER
+   ============================================================ */
+.nps-hero {
+  background-color: #fff2ee; /* Peach/light-pink Zoho style */
+  text-align: center;
+  padding: 4rem 2rem 5rem 2rem;
+  margin-bottom: -3rem; /* overlap calculator card slightly */
+}
+
+.nps-hero h1 {
+  font-size: 2.6rem;
+  color: #1a1a1a;
+  margin-bottom: 1rem;
+}
+
+.nps-hero .nps-hero-desc {
+  font-size: 1.15rem;
+  color: #555555;
+  max-width: 650px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+/* ============================================================
+   2. CALCULATOR CONTAINER & CARD
+   ============================================================ */
+.nps-container {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  position: relative;
+  z-index: 10;
+}
+
+.input-form-container {
+  border: 1px solid #f5eeeb;
+  background-color: #ffffff;
+  box-shadow: 0 4px 9px 0 rgba(28, 29, 83, 0.04);
+  border-radius: 10px;
+  margin: 1em auto;
+  padding: 40px;
+}
+
+/* Input Rows Layout */
+#nps-section .line-inputs.row {
+  margin-left: 0;
+  margin-right: 0;
+  padding: 16px 0;
+  border-bottom: 1px solid #fcf6f4;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+#nps-section .line-inputs.row:last-of-type {
+  border-bottom: none;
+}
+
+#nps-section .line-inputs > div:first-child {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #484848;
+  padding-left: 0;
+  flex: 1;
+  min-width: 250px;
+}
+
+#nps-section .mandatory-field {
+  color: #e53333;
+  margin-left: 4px;
+  font-weight: bold;
+}
+
+#nps-section .input-field {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  min-width: 200px;
+}
+
+#nps-section .input-group-align {
+  display: flex;
+  width: 240px;
+}
+
+/* Input Groups */
+#nps-section .input-group {
+  display: flex;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  overflow: hidden;
+  background: #ffffff;
+  height: 40px;
+  align-items: stretch;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+#nps-section .input-group:focus-within {
+  border-color: #d03a1b;
+  box-shadow: 0 0 0 2px rgba(208, 58, 27, 0.1);
+}
+
+#nps-section .form-control {
+  border: none !important;
+  box-shadow: none !important;
+  padding: 8px 12px;
+  font-size: 0.95rem;
+  text-align: right;
+  flex: 1;
+  width: 100%;
+  outline: none;
+  height: 100%;
+  color: #333333;
+}
+
+/* Hide standard spin buttons */
+#nps-section input[type=number]::-webkit-inner-spin-button,
+#nps-section input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+#nps-section input[type=number] {
+  -moz-appearance: textfield;
+}
+
+#nps-section .input-append {
+  display: flex;
+  align-items: center;
+  background-color: #eceff2;
+  border-left: 1px solid #cccccc;
+  padding: 0 12px;
+  color: #555555;
+  font-size: 0.9rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+#nps-section .invalid-feedback {
+  display: none;
+  color: #e53333;
+  font-size: 0.8rem;
+  text-align: right;
+  margin-top: 4px;
+  width: 100%;
+  max-width: 240px;
+}
+
+/* Button Layouts */
+#nps-section .button-toolbar {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+  align-items: center;
+  gap: 15px;
+}
+
+#nps-section .button-primary {
+  background-color: #d03a1b;
+  color: #ffffff;
+  border: 1px solid #d03a1b;
+  padding: 0 35px;
+  height: 44px;
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.15s, border-color 0.15s;
+  outline: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#nps-section .button-primary:hover {
+  background-color: #b02a10;
+  border-color: #b02a10;
+}
+
+#nps-section .startover-button {
+  background: transparent;
+  color: #555555;
+  border: 1px solid #cccccc;
+  padding: 0 24px;
+  height: 44px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.15s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  outline: none;
+}
+
+#nps-section .startover-button:hover {
+  background-color: #f7f7f7;
+  color: #333333;
+  border-color: #adadad;
+}
+
+#nps-section .startover-button svg {
+  fill: #555555;
+  transition: fill 0.15s;
+}
+
+#nps-section .startover-button:hover svg {
+  fill: #333333;
+}
+
+/* ============================================================
+   3. RESULTS DISPLAY
+   ============================================================ */
+#nps-results-section {
+  transition: opacity 0.3s ease;
+}
+
+#nps-results-section.hide {
+  display: none !important;
+}
+
+#nps-section .result-subheader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #f6f8fb;
+  border: 1px solid #e5e9f0;
+  border-radius: 6px;
+  padding: 12px 16px;
+  margin-bottom: 30px;
+  font-size: 0.9rem;
+  color: #4a5568;
+}
+
+#nps-section .result-subheader svg {
+  fill: #485de0;
+  flex-shrink: 0;
+}
+
+/* Large Highlights */
+.nps-corpus-highlight {
+  text-align: center;
+  background-color: #fff9f6;
+  border: 1px solid #fdefe9;
+  border-radius: 8px;
+  padding: 24px;
+  margin-bottom: 30px;
+}
+
+.nps-corpus-highlight .corpus-label {
+  font-size: 0.95rem;
+  color: #666666;
+  text-transform: uppercase;
+  letter-spacing: 0.75px;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.nps-corpus-highlight .corpus-value {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #d03a1b;
+}
+
+/* Horizontal Investment formula section */
+.calculation-section {
+  padding: 30px 45px;
+  background: #f6f6f6;
+  border-radius: 10px 10px 0 0;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.calculation-section .flex-space-around {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+}
+
+.calculation-section .compare {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #222222;
+  margin: 0 0 4px 0;
+}
+
+.calculation-section .amount-label {
+  color: #666666;
+  font-size: 0.88rem;
+  margin: 0;
+}
+
+.calculation-section .expression {
+  font-size: 1.5rem;
+  color: #999999;
+  align-self: center;
+}
+
+.calculation-section .font-bold {
+  font-weight: 700;
+}
+
+/* Summary with Donut Chart and List */
+.calc-summary-section {
+  padding: 30px;
+  background: #f6f6f6;
+  border-radius: 0 0 10px 10px;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+}
+
+#nps-chart-container {
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#nps-chart-container svg {
+  overflow: visible;
+  user-select: none;
+}
+
+#nps-chart-container path {
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.result-overview {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.calc-summary-section .calc-summary-container {
+  padding: 20px 24px;
+  font-size: 0.95rem;
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.calc-summary-section .calc-summary-container p {
+  margin: 0;
+  color: #484848;
+  font-weight: 500;
+}
+
+.calc-summary-section .calc-summary-container.lumpsum {
+  border-left: 8px solid #485de0;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.calc-summary-section .calc-summary-container.annuity {
+  border-left: 8px solid #47af43;
+}
+
+.calc-summary-section .calc-summary-container.annuity .flex-space-around {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.calc-summary-section #res-lumpsum {
+  color: #485de0;
+  font-size: 1.4rem;
+  font-weight: 800;
+  margin: 0;
+}
+
+.calc-summary-section #res-annuity {
+  color: #47af43;
+  font-size: 1.4rem;
+  font-weight: 800;
+  margin: 0;
+}
+
+.calc-summary-section .calc-summary-container .pension {
+  margin-top: 15px;
+  padding-left: 15px;
+  border-left: 3px solid #d03a1b;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.calc-summary-section .calc-summary-container .pension p:first-child {
+  font-weight: 600;
+  color: #222222;
+}
+
+.calc-summary-section #res-pension {
+  color: #d03a1b;
+  font-size: 1.35rem;
+  font-weight: 800;
+  margin: 0;
+}
+
+/* ============================================================
+   4. DISCLAIMER
+   ============================================================ */
+.nps-disclaimer {
+  margin-top: 35px;
+  font-size: 0.85rem;
+  color: #777777;
+  line-height: 1.6;
+  text-align: center;
+  border-top: 1px solid #f2f4f8;
+  padding-top: 25px;
+}
+
+.nps-disclaimer .color-red {
+  color: #e53333;
+  margin-right: 4px;
+}
+
+/* ============================================================
+   5. INFORMATION CARDS
+   ============================================================ */
+.nps-info-section {
+  margin-top: 60px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+}
+
+.nps-info-card {
+  background-color: #ffffff;
+  border: 1px solid #f5eeeb;
+  border-radius: 8px;
+  padding: 30px;
+  box-shadow: 0 4px 12px rgba(28, 29, 83, 0.02);
+}
+
+.nps-info-card h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 16px;
+  padding-left: 10px;
+  border-left: 3px solid #d03a1b;
+  line-height: 1.2;
+}
+
+.nps-info-card p {
+  color: #555555;
+  font-size: 0.95rem;
+  margin-bottom: 16px;
+  line-height: 1.6;
+}
+
+.nps-info-card p:last-child {
+  margin-bottom: 0;
+}
+
+.nps-info-card ul {
+  padding-left: 20px;
+  margin-bottom: 0;
+}
+
+.nps-info-card li {
+  margin-bottom: 10px;
+  color: #555555;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.nps-info-card li:last-child {
+  margin-bottom: 0;
+}
+
+.nps-info-card li strong {
+  color: #333333;
+}
+
+/* Formula Box Spanning two columns */
+.nps-info-card.formula-box {
+  grid-column: span 2;
+  background-color: #fdfcfb;
+  border: 1px solid #fbeee7;
+}
+
+/* ============================================================
+   6. FAQ ACCORDIONS
+   ============================================================ */
+.nps-faq-section {
+  margin-top: 80px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.nps-faq-section h2 {
+  text-align: center;
+  font-size: 2.2rem;
+  margin-bottom: 40px;
+  color: #1a1a1a;
+}
+
+.nps-faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.nps-faq-item {
+  border: 1px solid #f5eeeb;
+  border-radius: 8px;
+  background-color: #ffffff;
+  overflow: hidden;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 4px rgba(28, 29, 83, 0.01);
+}
+
+.nps-faq-item:hover {
+  border-color: #ebdcd7;
+  box-shadow: 0 4px 8px rgba(28, 29, 83, 0.03);
+}
+
+.nps-faq-trigger {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  background: none;
+  border: none;
+  outline: none;
+  text-align: left;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #333333;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.nps-faq-trigger:hover {
+  color: #d03a1b;
+}
+
+.nps-faq-arrow {
+  width: 20px;
+  height: 20px;
+  stroke: #777777;
+  transition: transform 0.3s ease, stroke 0.3s ease;
+  flex-shrink: 0;
+}
+
+.nps-faq-item.active {
+  border-color: #ebdcd7;
+}
+
+.nps-faq-item.active .nps-faq-trigger {
+  color: #d03a1b;
+}
+
+.nps-faq-item.active .nps-faq-arrow {
+  transform: rotate(180deg);
+  stroke: #d03a1b;
+}
+
+.nps-faq-content {
+  max-height: 0;
+  overflow: hidden;
+  padding: 0 24px;
+  color: #555555;
+  line-height: 1.6;
+  font-size: 0.95rem;
+  transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s ease;
+}
+
+.nps-faq-item.active .nps-faq-content {
+  max-height: 500px;
+  padding: 0 24px 20px 24px;
+}
+
+/* ============================================================
+   7. RESPONSIVENESS AND MEDIA QUERIES
+   ============================================================ */
+@media (max-width: 950px) {
+  .nps-hero h1 {
+    font-size: 2.2rem;
+  }
+}
+
+@media (max-width: 780px) {
+  .nps-hero {
+    padding: 3rem 1.5rem 4rem 1.5rem;
+  }
+  
+  .input-form-container {
+    padding: 24px 20px;
+  }
+  
+  #nps-section .line-inputs.row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  
+  #nps-section .line-inputs > div:first-child {
+    width: 100%;
+    min-width: 0;
+  }
+  
+  #nps-section .input-field {
+    width: 100%;
+    align-items: flex-start;
+  }
+  
+  #nps-section .input-group-align {
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  #nps-section .input-group {
+    max-width: 100%;
+    width: 100%;
+  }
+  
+  #nps-section .invalid-feedback {
+    text-align: left;
+    max-width: 100%;
+  }
+  
+  /* Results section adjustments */
+  .calculation-section {
+    padding: 24px 20px;
+  }
+  
+  .calc-summary-section {
+    flex-direction: column;
+    padding: 24px 20px;
+    gap: 24px;
+  }
+  
+  #nps-chart-container {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  
+  .result-overview {
+    width: 100%;
+  }
+  
+  /* Info layout grid to single column */
+  .nps-info-section {
+    grid-template-columns: 1fr;
+  }
+  
+  .nps-info-card.formula-box {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 500px) {
+  .nps-hero h1 {
+    font-size: 1.8rem;
+  }
+  
+  .nps-hero .nps-hero-desc {
+    font-size: 1rem;
+  }
+  
+  .calculation-section .flex-space-around {
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .calculation-section .expression {
+    transform: rotate(90deg);
+    margin: 4px 0;
+  }
+  
+  .calc-summary-section .calc-summary-container.lumpsum {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .calc-summary-section .calc-summary-container.annuity .flex-space-around {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .calc-summary-section .calc-summary-container .pension {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    border-left: none;
+    padding-left: 0;
+    margin-top: 16px;
+    border-top: 1px solid #f2f4f8;
+    padding-top: 12px;
+  }
+  
+  #nps-section .button-toolbar {
+    flex-direction: column-reverse;
+    gap: 12px;
+  }
+  
+  #nps-section .button-toolbar button {
+    width: 100%;
+  }
+}

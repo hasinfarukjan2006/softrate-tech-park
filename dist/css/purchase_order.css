@@ -1,0 +1,674 @@
+
+/* Scoped Grid Styles for Purchase Order Section */
+#purchase-order-section {
+  background-color: #f8fafc;
+  padding: 2rem 0;
+}
+#purchase-order-section .row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+#purchase-order-section .col-md-8 {
+  position: relative;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+#purchase-order-section .col-md-4 {
+  position: relative;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+#purchase-order-section .col-md-9 {
+  position: relative;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+#purchase-order-section .col-md-offset-1 {
+  margin-left: 8.33333333%;
+}
+
+@media (min-width: 992px) {
+  #purchase-order-section .col-md-8 {
+    flex: 0 0 66.666667%;
+    max-width: 66.666667%;
+  }
+  #purchase-order-section .col-md-4 {
+    flex: 0 0 33.333333%;
+    max-width: 33.333333%;
+  }
+  #purchase-order-section .col-md-9 {
+    flex: 0 0 75%;
+    max-width: 75%;
+  }
+}
+
+/* Hide navigation, headers, footers when printing */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #purchase-order-section, #purchase-order-section * {
+    visibility: visible;
+  }
+  #purchase-order-section {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100% !important;
+    background: #fff !important;
+  }
+  #purchase-order-section .rgt-main-div,
+  #purchase-order-section .mbl-actions-block,
+  #purchase-order-section .top-two-band,
+  #purchase-order-section .free-tool-navbar,
+  #purchase-order-section .close-btn,
+  #purchase-order-section .mbl-po-link,
+  #purchase-order-section .faq-section,
+  #purchase-order-section .erp-promotion-banner,
+  #purchase-order-section .check-zoho-inventory,
+  #purchase-order-section .signupnow-buttons,
+  #purchase-order-section .del,
+  #purchase-order-section .add,
+  #purchase-order-section .dele-icon,
+  #purchase-order-section .closeicon,
+  #purchase-order-section .powered-by-link {
+    display: none !important;
+  }
+  #purchase-order-section .po-generator {
+    box-shadow: none !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+  }
+  #purchase-order-section .lft-main-div {
+    width: 100% !important;
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+  }
+  #purchase-order-section input,
+  #purchase-order-section textarea {
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    outline: none !important;
+  }
+}
+
+: -5px;
+}
+#purchase-order-section{
+  font-family: Zoho Puvi,-apple-system,BlinkMacSystemFont,San Francisco,Helvetica Neue,Helvetica,Ubuntu,Roboto,Noto,Segoe UI,Arial,sans-serif;
+  font-weight: 400;
+}
+#purchase-order-section b, #purchase-order-section div, #purchase-order-section h1, #purchase-order-section h2, #purchase-order-section h3, #purchase-order-section h4, #purchase-order-section h5, #purchase-order-section h6, #purchase-order-section img, #purchase-order-section input, #purchase-order-section li, #purchase-order-section p, #purchase-order-section span, #purchase-order-section textarea, #purchase-order-section ul{
+  margin: 0;
+  padding: 0;
+  font-weight: 400;
+}
+#purchase-order-section .body-dark-overlay{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  opacity: .7;
+  z-index: 1!important;
+  background-color: #000;
+}
+#purchase-order-section .b-div-blur{
+  opacity: .4;
+}
+#purchase-order-section li, #purchase-order-section ul{
+  list-style: none;
+  float: left;
+}
+#purchase-order-section input, #purchase-order-section textarea{
+  border: none;
+}
+#purchase-order-section .main-div{
+  margin: 0 auto;
+  overflow: auto;
+  padding-left: 70px;
+  padding-top: 50px;
+  max-width: 1200px;
+}
+#purchase-order-section .content{
+  width: 100%;
+  padding: 25px 0 50px;
+  margin-top: -25px;
+  background-color: #fdeecf;
+}
+#purchase-order-section .po-generator{
+  min-height: 1100px;
+  padding: 40px 33px 0 35px;
+  background: #fff;
+  -webkit-box-shadow: 0 0 17px 0 rgba(16,40,73,.09);
+  box-shadow: 0 0 17px 0 rgba(16,40,73,.09);
+}
+#purchase-order-section .btn-main{
+  background-color: #fa343e;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  font-size: 16px;
+  color: #f1fafc;
+}
+#purchase-order-section .btn-main:focus, #purchase-order-section .btn-main:hover{
+  background-color: #d23c3e;
+  color: #f1fafc;
+}
+#purchase-order-section .btn-plain{
+  width: 90%;
+  background-color: rgba(0,0,0,0);
+  border: 1px solid #3badf7!important;
+  color: #3badf7!important;
+  display: block;
+}
+#purchase-order-section .link-print{
+  color: #3eb1f8;
+  cursor: pointer;
+}
+#purchase-order-section .column td{
+  padding: 4px 8px;
+  vertical-align: top;
+}
+#purchase-order-section .hd td{
+  border-bottom: 1px solid #ddd;
+}
+#purchase-order-section .hd td, #purchase-order-section .hd td input{
+  background-color: #666;
+}
+#purchase-order-section .hd td input{
+  text-align: right;
+  border: 1px solid #666;
+  color: #fff;
+}
+#purchase-order-section .hd td input:focus{
+  background: #fdf4db;
+  border: 1px dotted #444;
+  color: #444;
+}
+#purchase-order-section .bill td{
+  padding: 2px;
+}
+#purchase-order-section .amount{
+  text-align: right;
+  width: 100px;
+}
+#purchase-order-section .sav-amo td{
+  padding: 10px;
+  border-top: 2px solid #ddd;
+}
+#purchase-order-section .tot, #purchase-order-section .tot input{
+  background: #e3e3e3;
+  border: 1px solid #e3e3e3;
+}
+#purchase-order-section .tot ts{
+  border-top: 1px solid #c7c7c7;
+  border-bottom: 1px solid #c7c7c7;
+}
+#purchase-order-section .tot input:focus{
+  border: 1px dotted #444;
+}
+#purchase-order-section input, #purchase-order-section textarea{
+  border: 1px dotted #fff;
+  margin-bottom: 2px;
+}
+#purchase-order-section .tot td{
+  padding: 10px;
+  border-top: 1px solid #c7c7c7;
+  text-align: right;
+}
+#purchase-order-section td.bdr-non{
+  border: none;
+}
+#purchase-order-section .note{
+  width: 100%;
+  min-height: 22px;
+  margin-top: 2px;
+}
+#purchase-order-section .terms{
+  margin-top: 20px;
+  text-align: left;
+}
+#purchase-order-section .bld, #purchase-order-section .terms{
+  font-weight: 700;
+  font-size: 13px;
+}
+#purchase-order-section .bld{
+  margin: 2px 0;
+}
+#purchase-order-section .adr{
+  font-size: 13px;
+  width: 98%;
+}
+#purchase-order-section .adr.error{
+  border: 1px solid #a94442;
+}
+#purchase-order-section .adr-lft{
+  width: 60%;
+  text-align: left;
+}
+#purchase-order-section .adr-rgt{
+  text-align: right;
+  width: 40%;
+}
+#purchase-order-section .c-name{
+  font-size: 28px;
+  font-weight: 300;
+  width: 100%;
+  color: #666;
+  text-align: right;
+  color: #38342c;
+  margin: 0 27px 0 auto;
+}
+#purchase-order-section .bdr-non{
+  border: none;
+}
+#purchase-order-section input:focus, #purchase-order-section textarea:focus{
+  background: #fdf4db;
+  border: 1px dotted #444;
+}
+#purchase-order-section input[READONLY]:focus{
+  background: none;
+  border: 1px dotted #fff;
+}
+#purchase-order-section .bill-to{
+  color: #000;
+  margin-bottom: 10px;
+}
+#purchase-order-section .row-item td{
+  border-bottom: 1px solid #e3e3e3;
+  padding-bottom: 10px;
+}
+#purchase-order-section .f20{
+  font-size: 19px;
+}
+#purchase-order-section .vtop{
+  vertical-align: top;
+}
+#purchase-order-section .lineItemDIV{
+  clear: both;
+  margin-top: 30px;
+  float: left;
+}
+#purchase-order-section .add, #purchase-order-section .del, #purchase-order-section .logo-tp, #purchase-order-section [class^=mobile-]{
+  background: url("../images/po-generator.png") no-repeat;
+}
+#purchase-order-section .add{
+  background-position: -50px -267px;
+  padding-left: 23px;
+  font-size: 12px;
+  padding-top: 2px;
+  color: #00f;
+}
+#purchase-order-section .add, #purchase-order-section .del{
+  width: 15px;
+  height: 15px;
+  margin-top: 2px;
+}
+#purchase-order-section .del{
+  background-position: -49px -227px;
+}
+#purchase-order-section [class^=mobile-]{
+  display: inline-block;
+  width: 130px;
+  height: 38px;
+  margin: 5px 44px;
+}
+#purchase-order-section .mobile-iphone{
+  background-position: -189px -227px;
+}
+#purchase-order-section .footer{
+  padding: 20px 0;
+  background-color: #354d62;
+}
+#purchase-order-section .copy{
+  color: #fff;
+  font-size: 11px;
+}
+#purchase-order-section .currencycodetxt{
+  width: 45px;
+  text-align: right;
+  font-size: 12px;
+  padding-right: 4px;
+}
+#purchase-order-section #subTotalLabel, #purchase-order-section #taxLabel, #purchase-order-section #totalLabel{
+  width: 150px;
+}
+#purchase-order-section .top-tab td{
+  vertical-align: top;
+  padding-top: 20px;
+}
+#purchase-order-section .body-div{
+  padding-top: 25px;
+}
+#purchase-order-section .powered-by-link{
+  text-decoration: none;
+}
+#purchase-order-section .powered-by-text{
+  margin-top: 4px;
+  font-size: 13px;
+  color: #11b4d7;
+}
+#purchase-order-section .powered-by-logo{
+  height: 23px;
+  margin-left: 9px;
+  width: 127px;
+}
+#purchase-order-section .logo-tp{
+  background-position: -6px -10px;
+  height: 36px;
+  width: 167px;
+}
+#purchase-order-section .rhs-info{
+  margin-bottom: 15px;
+  font-weight: 100;
+  font-size: 14px;
+}
+#purchase-order-section .rhs-strikethrough-info{
+  text-decoration: line-through;
+  color: #3dacf3;
+}
+#purchase-order-section .social-fb, #purchase-order-section .social-twitter{
+  background: url("../images/po-generator.png") no-repeat;
+  width: 21px;
+  height: 21px;
+  display: inline-block;
+  margin: 10px 13px 0 0;
+}
+#purchase-order-section .social-fb{
+  background-position: -62px -172px;
+}
+#purchase-order-section .social-twitter{
+  background-position: -100px -172px;
+}
+#purchase-order-section .actions-block{
+  background-color: #fff;
+  padding: 30px;
+  margin-top: 25px;
+  display: inline-block;
+  width: 90%;
+}
+#purchase-order-section .actions-block h3{
+  font-weight: 300;
+}
+#purchase-order-section .actions-block .select-action-txt{
+  margin: 15px 0 20px;
+  font-weight: 100;
+  font-size: 14px;
+}
+#purchase-order-section .mbl-app-block{
+  border: 2px solid #3b506a;
+  width: 70%;
+  padding: 20px 15px;
+}
+#purchase-order-section .mbl-app-block h4{
+  display: inline;
+  font-weight: lighter;
+  color: #bad952;
+}
+#purchase-order-section .mbl-app-block h4 span{
+  color: #c7c4d4;
+}
+#purchase-order-section .mbl-actions-block{
+  display: none;
+}
+#purchase-order-section .mbl-actions-block .btn{
+  margin-right: 10px;
+  font-size: 14px;
+}
+#purchase-order-section .highlight-content{
+  color: #3dacf3;
+}
+#purchase-order-section .contact-us{
+  margin: 26px 10px;
+}
+#purchase-order-section .contact-us a{
+  text-decoration: underline;
+}
+#purchase-order-section .cursor-disabled{
+  cursor: not-allowed;
+}
+#purchase-order-section .select-currency{
+  width: 70px;
+  height: 23px;
+  -webkit-appearance: menulist-button;
+}
+#purchase-order-section .w100{
+  width: 100%;
+}
+#purchase-order-section .signup-bg{
+  position: absolute;
+  height: 100%;
+  right: 0;
+  padding: 40px 55px;
+  border-left: 1px solid #a9cdf0;
+  background: #e3eaf0;
+  border-radius: 0 6px 6px 0;
+}
+#purchase-order-section .signup-benefits{
+  padding-left: 10px;
+  font-size: 13px;
+}
+#purchase-order-section .signup-benefits div{
+  margin-bottom: 10px;
+}
+#purchase-order-section .po-link h3{
+  font-size: 18px;
+  line-height: 30px;
+  width: 76%;
+}
+#purchase-order-section .link-list{
+  font-size: 14px;
+}
+#purchase-order-section .mobile-badge{
+  height: 60px;
+  margin: 5px auto;
+}
+#purchase-order-section .mbl-po-link{
+  display: none;
+}
+#purchase-order-section section.erp-promotion-banner{
+  padding: 0 25px;
+}
+#purchase-order-section .erp-promotion-banner .erp-promotion-banner-inner{
+  max-width: 1050px;
+}
+
+
+@media screen and (min-width:360px) and (max-width:990px) {
+  .mbl-po-link {
+    margin: 20px 31% 0;
+  }
+#purchase-order-section [class^=mobile-]{
+    width: 160px;
+  }
+
+
+@media screen and (min-width:1200px) and (max-width:1366px) {
+  .mbl-po-link {
+    margin: 20px 430px 0;
+  }
+#purchase-order-section .appstore-badge{
+    margin: 0 2px;
+  }
+
+
+@media screen and (max-width:1200px) {
+  .main-div {
+    width: 90%;
+  }
+#purchase-order-section .rgt-main-div{
+    display: none;
+  }
+#purchase-order-section .lft-main-div{
+    width: 100%;
+  }
+#purchase-order-section .faq-lft-main-div{
+    width: 90%;
+  }
+#purchase-order-section .top-band-div{
+    width: 100%;
+  }
+#purchase-order-section .mbl-actions-block{
+    display: inline-block;
+    width: 100%;
+    padding: 20px 15px;
+    margin: 0 auto;
+  }
+#purchase-order-section .signup-bg{
+    height: auto;
+  }
+#purchase-order-section .mbl-po-link{
+    display: inline-block;
+    margin: 20px 31% 0;
+  }
+#purchase-order-section .zom-app-screenshot img{
+    max-width: 90%;
+  }
+#purchase-order-section .main-div{
+    margin-left: 11px;
+  }
+#purchase-order-section .faq{
+  color: #000;
+}
+#purchase-order-section .faq-section{
+  margin-top: 25px;
+}
+#purchase-order-section .faq h1{
+  padding: 15px 75px 15px 15px;
+  font-size: 30px;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+#purchase-order-section .faq-qa a:hover{
+  color: #428bca;
+}
+#purchase-order-section .faq-qa div{
+  display: none;
+  margin: 0;
+  padding: 0 40px 15px;
+  font-weight: 300;
+  background-color: #fff;
+  border-left: none;
+}
+#purchase-order-section .faq-qa h2.active+div{
+  display: block;
+}
+#purchase-order-section .faq-qa h2{
+  position: relative;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 21px;
+  padding: 35px 75px 35px 35px;
+  border-bottom: 1px solid #eee;
+}
+#purchase-order-section .faq-qa h2:hover{
+  background-color: #fcfdff;
+}
+#purchase-order-section .faq-qa h2.active{
+  background-color: #fcfdff;
+  padding-bottom: 25px;
+  border-bottom: 0;
+}
+#purchase-order-section .faq-qa h2:after{
+  content: "";
+  clear: both;
+}
+#purchase-order-section .faq-qa h2.active:after, #purchase-order-section .faq-qa h2:after{
+  background-image: url("../images/arrow-sprite-1x.png");
+  background-repeat: no-repeat;
+  background-size: 104px 40px;
+  position: absolute;
+  top: 40px;
+  right: 35px;
+}
+#purchase-order-section .faq-qa h2:after{
+  background-position: -26px -15px;
+  width: 14px;
+  height: 9px;
+}
+#purchase-order-section .faq-qa h2.active:after{
+  background-position: -65px -17px;
+  width: 12px;
+  height: 8px;
+}
+#purchase-order-section .faq-qa p{
+  font-size: 15px;
+  line-height: 26px;
+}
+
+
+@media only screen and (-webkit-min-device-pixel-ratio:2),only screen and (min-device-pixel-ratio:2),only screen and (min-resolution:2dppx),only screen and (min-resolution:192dpi) {
+  .faq-qa h5.active:after,
+  .faq-qa h5:hover:after {
+    background-image: url("../images/arrow-sprite-2x.png");
+  }
+#purchase-order-section .faq-section li, #purchase-order-section ul{
+  list-style-type: disc;
+  float: none;
+}
+#purchase-order-section .faq-section ul{
+  padding: 15px 20px;
+}
+#purchase-order-section .faq-section li{
+  padding-top: 10px;
+  font-size: 15px;
+}
+#purchase-order-section .common-footer{
+  overflow: visible;
+  line-height: 30px;
+  background-color: #f1f1f1;
+  color: #919293;
+  padding: 40px 0;
+  text-align: center;
+  border-top: 1px solid #e2e2e2;
+  float: left;
+  width: 100%;
+  margin: 0 auto;
+}
+#purchase-order-section .common-footer ul{
+  margin: 0 auto 15px;
+  overflow: hidden;
+  padding: 0 3%;
+  max-width: 100%;
+  float: none;
+}
+#purchase-order-section .common-footer li{
+  border-left: 1px solid #ccc;
+  display: inline-block;
+  line-height: 0;
+  overflow: hidden;
+  padding: 0 12px;
+  margin-bottom: 15px;
+  text-align: center;
+  float: none;
+}
+#purchase-order-section .common-footer li:first-child{
+  border-left: none;
+}
+
+
+@media screen and (max-width:991px) {
+  .common-footer li {
+    border-left: 0;
+  }
+#purchase-order-section .common-footer li a{
+  line-height: 14px;
+  text-decoration: none;
+}
+#purchase-order-section .common-footer li a, #purchase-order-section .common-footer p{
+  color: #333;
+  font-size: 12px;
+  font-weight: 400;
+}
+#purchase-order-section .common-footer p{
+  line-height: 18px;
+  margin: 5px auto;
+  text-shadow: 1px 1px 1px hsla(0,0%,100%,.8);
+}

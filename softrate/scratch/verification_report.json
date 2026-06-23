@@ -1,0 +1,249 @@
+{
+  "total_pages": 24,
+  "passed": 20,
+  "failed": 4,
+  "details": [
+    {
+      "name": "India GST Calculator",
+      "route": "gst",
+      "url": "/in/payroll/gst-calculator/",
+      "css_file": "gst.css",
+      "js_file": "gst.js",
+      "status": "FAIL",
+      "failures": [
+        "dist_html",
+        "tmpl_html",
+        "static_css",
+        "dist_css",
+        "static_js",
+        "dist_js",
+        "css_link_dist",
+        "js_link_dist",
+        "no_coming_soon",
+        "has_calc_btn",
+        "has_results",
+        "js_has_logic"
+      ]
+    },
+    {
+      "name": "Expense Report Generator",
+      "route": "expense",
+      "url": "/expense-report-generator",
+      "css_file": "expense.css",
+      "js_file": "expense.js",
+      "status": "FAIL",
+      "failures": [
+        "static_css",
+        "dist_css",
+        "css_link_dist"
+      ]
+    },
+    {
+      "name": "Per Diem Calculator",
+      "route": "per-diem",
+      "url": "/per-diem-calculator",
+      "css_file": "per_diem.css",
+      "js_file": "per_diem.js",
+      "status": "FAIL",
+      "failures": [
+        "static_css",
+        "dist_css",
+        "css_link_dist"
+      ]
+    },
+    {
+      "name": "Wholesale Price Calculator",
+      "route": "wholesale",
+      "url": "/wholesale-calculator",
+      "css_file": "wholesale.css",
+      "js_file": "wholesale.js",
+      "status": "FAIL",
+      "failures": [
+        "static_js",
+        "dist_js",
+        "js_link_dist",
+        "js_has_logic"
+      ]
+    },
+    {
+      "name": "Shipping Label Generator",
+      "route": "shipping-label",
+      "url": "/shipping-label-generator",
+      "css_file": "shipping_label.css",
+      "js_file": "shipping_label.js",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "Barcode Generator",
+      "route": "barcode",
+      "url": "/barcode-generator",
+      "css_file": "barcode.css",
+      "js_file": "barcode.js",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "Packing Slip Generator",
+      "route": "packing-slip",
+      "url": "/packing-slip-generator",
+      "css_file": "packing_slip.css",
+      "js_file": "packing_slip.js",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "Inventory Turnover Ratio",
+      "route": "inventory-turnover",
+      "url": "/inventory-turnover-calculator",
+      "css_file": "inventory_turnover.css",
+      "js_file": "inventory_turnover.js",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "Break-even Point Calculator",
+      "route": "break-even",
+      "url": "/break-even-calculator",
+      "css_file": "break_even.css",
+      "js_file": "break_even.js",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "Economic Order Quantity",
+      "route": "eoq",
+      "url": "/eoq-calculator",
+      "css_file": "eoq.css",
+      "js_file": "eoq.js",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "Calculate Reorder Point",
+      "route": "reorder",
+      "url": "/reorder-point-calculator",
+      "css_file": "reorder.css",
+      "js_file": "reorder.js",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "SKU Generator",
+      "route": "sku",
+      "url": "/sku-generator",
+      "css_file": "sku.css",
+      "js_file": "sku.js",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "HRA Exemption Calculator",
+      "route": "hra",
+      "url": "/in/payroll/hra-calculator/",
+      "css_file": "hra.css",
+      "js_file": "hra.js",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "Statutory Bonus Calculator",
+      "route": "bonus",
+      "url": "/in/payroll/bonus-calculator/",
+      "css_file": "bonus.css",
+      "js_file": "bonus.js",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "Gratuity Calculator",
+      "route": "gratuity",
+      "url": "/in/payroll/gratuity-calculator/",
+      "css_file": "gratuity.css",
+      "js_file": "gratuity.js",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "EPS Pension Calculator",
+      "route": "eps",
+      "url": "/in/payroll/eps-calculator/",
+      "css_file": "eps.css",
+      "js_file": "eps.js",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "NPS Calculator",
+      "route": "nps",
+      "url": "/in/payroll/nps-calculator/",
+      "css_file": "nps.css",
+      "js_file": "nps.js",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "Payslip Generator",
+      "route": "payslip",
+      "url": "/in/payroll/payslip-generator/",
+      "css_file": "payslip.css",
+      "js_file": "payslip.js",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "Form W-9 Generator",
+      "route": "w9",
+      "url": "/w9-generator",
+      "css_file": "w9.css",
+      "js_file": "w9.js",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "Financial Report Templates",
+      "route": "financial-report",
+      "url": "/financial-report-templates",
+      "css_file": "financial_report.css",
+      "js_file": "financial_report.js",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "Free Project Cost Estimate",
+      "route": "project-estimate",
+      "url": "/project-cost-estimate",
+      "css_file": "project_estimate.css",
+      "js_file": "project_estimate.js",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "Paycheck Calculator (US)",
+      "route": "paycheck",
+      "url": "/paycheck-calculator",
+      "css_file": "paycheck.css",
+      "js_file": "paycheck.js",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "Income Tax Calculator",
+      "route": "income-tax",
+      "url": "/income-tax-calculator",
+      "css_file": "income_tax.css",
+      "js_file": "income_tax.js",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "HMRC Furlough Claim Calculator",
+      "route": "hmrc",
+      "url": "/hmrc-furlough-calculator",
+      "css_file": "hmrc.css",
+      "js_file": "hmrc.js",
+      "status": "PASS",
+      "failures": []
+    }
+  ]
+}

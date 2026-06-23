@@ -98,6 +98,12 @@ class FallbackCollection:
 
         return FallbackCursor(filtered_docs)
 
+    def find_one(self, query=None):
+        cursor = self.find(query)
+        if cursor.documents:
+            return cursor.documents[0]
+        return None
+
     def delete_many(self, query=None):
         data = self._load_data()
         if self.collection_name not in data:
@@ -130,6 +136,32 @@ class FallbackCollection:
             def __init__(self, count):
                 self.deleted_count = count
         return DeleteResult(deleted_count)
+
+    def update_one(self, filter_query, update_operation):
+        data = self._load_data()
+        docs = data.get(self.collection_name, [])
+        modified_count = 0
+        set_data = update_operation.get("$set", {})
+        
+        for doc in docs:
+            match = True
+            for k, v in filter_query.items():
+                if doc.get(k) != v:
+                    match = False
+                    break
+            if match:
+                for sk, sv in set_data.items():
+                    doc[sk] = sv
+                modified_count += 1
+                break
+                
+        if modified_count > 0:
+            self._save_data(data)
+            
+        class UpdateResult:
+            def __init__(self, count):
+                self.modified_count = count
+        return UpdateResult(modified_count)
 
 
 class FallbackDatabase:

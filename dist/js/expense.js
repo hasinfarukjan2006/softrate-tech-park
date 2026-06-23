@@ -91,15 +91,21 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!expenseDocTableBody || !grandTotalText) return;
 
     let total = 0;
+    let hasAmounts = false;
     const amountInputs = expenseDocTableBody.querySelectorAll(".row-amount");
     amountInputs.forEach(input => {
       const val = parseFloat(input.value);
       if (!isNaN(val) && val > 0) {
         total += val;
+        hasAmounts = true;
       }
     });
 
-    grandTotalText.textContent = `₹${total.toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+    if (hasAmounts) {
+      grandTotalText.textContent = `₹${total.toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+    } else {
+      grandTotalText.textContent = "";
+    }
     return total;
   }
 

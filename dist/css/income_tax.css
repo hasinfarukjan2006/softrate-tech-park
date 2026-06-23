@@ -1,0 +1,264 @@
+/* income_tax.css — Zoho reference exact match */
+
+/* Hero — peach background */
+#income-tax-section .it-hero {
+  text-align: center;
+  padding: 2.5rem 1.5rem 1.5rem;
+  background: #fff5f0 !important;
+}
+.dark #income-tax-section .it-hero { background: var(--bg-color) !important; }
+#income-tax-section .it-hero h1 {
+  font-size: 2.2rem;
+  font-weight: 400;
+  color: #333;
+  margin: 0 0 .75rem;
+}
+#income-tax-section .it-hero p {
+  font-size: .88rem;
+  color: #555;
+  max-width: 520px;
+  margin: 0 auto .75rem;
+  line-height: 1.55;
+}
+
+/* FY Toggle */
+#income-tax-section .it-fy-toggle {
+  display: inline-flex !important;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-top: .5rem;
+}
+#income-tax-section .it-fy-toggle .it-fy-btn {
+  background: #fff !important;
+  border: none !important;
+  border-right: 1px solid #ccc !important;
+  padding: .5rem 1.1rem !important;
+  font-size: .75rem !important;
+  font-weight: 600 !important;
+  color: #555 !important;
+  cursor: pointer;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  width: auto !important;
+  min-width: auto !important;
+  max-width: none !important;
+}
+#income-tax-section .it-fy-toggle .it-fy-btn:last-child { border-right: none !important; }
+#income-tax-section .it-fy-toggle .it-fy-btn.active {
+  background: #e8453c !important;
+  color: #fff !important;
+}
+
+/* Wrapper */
+#income-tax-section .it-wrapper {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 1.5rem 3rem;
+}
+
+/* White card */
+#income-tax-section .it-card {
+  background: #fff !important;
+  border: 1px solid #e8e8e8 !important;
+  border-radius: 6px;
+  padding: 2rem 2.25rem;
+  box-shadow: 0 1px 4px rgba(0,0,0,.06) !important;
+  margin-top: -1rem;
+  position: relative;
+  z-index: 1;
+}
+.dark #income-tax-section .it-card { background: var(--bg-surface) !important; border-color: var(--border-color) !important; }
+
+/* ====== KEY FIX: Form rows — label LEFT, input RIGHT ====== */
+#income-tax-section .it-row {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: flex-start !important;
+  justify-content: space-between !important;
+  padding: .75rem 0 !important;
+  border-bottom: 1px solid #f3f3f3 !important;
+  gap: 1.5rem !important;
+  flex-wrap: nowrap !important;
+}
+
+#income-tax-section .it-label {
+  font-size: .85rem !important;
+  color: #333 !important;
+  flex: 1 1 auto !important;
+  padding-top: .35rem;
+  line-height: 1.4;
+  width: auto !important;
+  max-width: none !important;
+}
+#income-tax-section .it-label strong { color: #333 !important; }
+#income-tax-section .it-orange { color: #e8453c !important; font-weight: 600 !important; }
+#income-tax-section .it-sub { font-size: .78rem !important; color: #888 !important; font-weight: 400 !important; }
+
+/* ====== KEY FIX: Right-side inputs — FIXED 160px ====== */
+#income-tax-section .it-input-right {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-end !important;
+  flex-shrink: 0 !important;
+  flex-grow: 0 !important;
+  width: 170px !important;
+  min-width: 170px !important;
+  max-width: 170px !important;
+}
+
+/* Override the global input[type="number"] { width: 100% } rule */
+#income-tax-section .it-input-right input[type="number"],
+#income-tax-section .it-input-right input,
+#income-tax-section .it-input-right select {
+  width: 160px !important;
+  max-width: 160px !important;
+  min-width: 160px !important;
+  padding: .4rem .55rem !important;
+  font-size: .88rem !important;
+  border: 1px solid #ccc !important;
+  border-radius: 3px !important;
+  background: #fff !important;
+  color: #333 !important;
+  box-sizing: border-box !important;
+  text-align: right !important;
+  height: auto !important;
+  line-height: normal !important;
+}
+.dark #income-tax-section .it-input-right input[type="number"],
+.dark #income-tax-section .it-input-right input,
+.dark #income-tax-section .it-input-right select {
+  background: var(--bg-surface) !important;
+  color: var(--text-color) !important;
+  border-color: var(--border-color) !important;
+}
+#income-tax-section .it-input-right input:focus,
+#income-tax-section .it-input-right select:focus {
+  outline: none !important;
+  border-color: #4a90d9 !important;
+  box-shadow: 0 0 0 2px rgba(74,144,217,.12) !important;
+}
+
+#income-tax-section .it-limit {
+  font-size: .7rem;
+  color: #888;
+  margin-top: .2rem;
+  text-align: right;
+}
+
+/* Section heading */
+#income-tax-section .it-section-head {
+  font-size: .95rem !important;
+  font-weight: 600 !important;
+  color: #e8453c !important;
+  margin: 1.5rem 0 .5rem !important;
+  padding: 0 !important;
+  border: none !important;
+  border-bottom: none !important;
+}
+#income-tax-section .it-info { color: #bbb; cursor: help; font-size: .85rem; }
+
+/* Expand link */
+#income-tax-section .it-expand-link { font-size: .82rem; color: #4a90d9 !important; text-decoration: none; cursor: pointer; }
+#income-tax-section .it-expand-link:hover { text-decoration: underline; }
+#income-tax-section .it-hint { color: #aaa; font-size: .75rem; }
+
+/* Other sources panel */
+#income-tax-section .it-other-sources {
+  padding-left: 1rem;
+  border-left: 2px solid #f0f0f0;
+  margin-bottom: .5rem;
+}
+
+/* Calculate button */
+#income-tax-section .it-calc-wrap { text-align: left; margin-top: 1.5rem; padding-top: .5rem; }
+#income-tax-section .it-calc-btn {
+  background: #e8453c !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 3px !important;
+  padding: .6rem 1.75rem !important;
+  font-size: .88rem !important;
+  font-weight: 600 !important;
+  cursor: pointer;
+  box-shadow: none !important;
+  width: auto !important;
+  min-width: auto !important;
+  max-width: none !important;
+}
+#income-tax-section .it-calc-btn:hover { background: #d13a32 !important; }
+
+/* Disclaimer */
+#income-tax-section .it-disclaimer {
+  font-size: .72rem;
+  color: #888;
+  text-align: center;
+  margin-top: 1.25rem;
+  line-height: 1.5;
+  max-width: 680px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Results */
+#income-tax-section .it-results {
+  background: #fff;
+  border: 1px solid #e8e8e8;
+  border-radius: 6px;
+  padding: 2rem;
+  margin-top: 1.5rem;
+  box-shadow: 0 1px 4px rgba(0,0,0,.06);
+  animation: itSlide .35s ease-out;
+}
+.dark #income-tax-section .it-results { background: var(--bg-surface); border-color: var(--border-color); }
+@keyframes itSlide { from{opacity:0;transform:translateY(12px);} to{opacity:1;transform:translateY(0);} }
+
+#income-tax-section .it-res-title { font-size: 1.1rem; font-weight: 600; color: #333; margin: 0 0 1rem; text-align: center; }
+
+#income-tax-section .it-compare {
+  display: grid !important;
+  grid-template-columns: 2fr 1fr 1fr !important;
+  gap: 0;
+  border: 1px solid #e8e8e8;
+  border-radius: 4px;
+  overflow: hidden;
+}
+#income-tax-section .it-compare .it-ch { background: #f9f9f9; font-size: .78rem; font-weight: 600; color: #555; padding: .6rem .75rem; border-bottom: 1px solid #e8e8e8; }
+#income-tax-section .it-compare .it-cd { font-size: .82rem; color: #555; padding: .55rem .75rem; border-bottom: 1px solid #f0f0f0; }
+#income-tax-section .it-compare .it-highlight { background: #f0fdf4 !important; font-weight: 700; color: #10b981 !important; }
+#income-tax-section .it-regime-rec { text-align: center; margin-top: 1rem; font-size: .88rem; font-weight: 600; color: #10b981; }
+#income-tax-section .it-res-actions { text-align: center; margin-top: 1rem; }
+#income-tax-section .it-res-btn { background: #fff; color: #555; border: 1px solid #ccc; border-radius: 3px; padding: .4rem 1rem; font-size: .8rem; cursor: pointer; width: auto !important; }
+#income-tax-section .it-res-btn:hover { background: #f5f5f5; }
+
+/* FAQ */
+#income-tax-section .it-faq { margin-top: 3rem; }
+#income-tax-section .it-faq h2 { text-align: center; font-size: 1.5rem; font-weight: 400; color: #333; margin-bottom: 1.5rem; }
+#income-tax-section .it-faq-item { border-bottom: 1px solid #e8e8e8; }
+#income-tax-section .it-faq-q {
+  background: none !important;
+  border: none !important;
+  width: 100% !important;
+  text-align: left;
+  padding: .85rem 0;
+  font-size: .88rem;
+  color: #333;
+  cursor: pointer;
+  font-weight: 400;
+  box-shadow: none !important;
+}
+#income-tax-section .it-faq-q:hover { color: #e8453c; }
+#income-tax-section .it-faq-a { padding: 0 0 .85rem 1.25rem; }
+#income-tax-section .it-faq-a p { font-size: .82rem; color: #666; line-height: 1.6; margin: 0; }
+
+/* Responsive */
+@media (max-width: 640px) {
+  #income-tax-section .it-row { flex-direction: column !important; gap: .4rem !important; }
+  #income-tax-section .it-input-right { width: 100% !important; min-width: 100% !important; max-width: 100% !important; align-items: stretch !important; }
+  #income-tax-section .it-input-right input[type="number"],
+  #income-tax-section .it-input-right input,
+  #income-tax-section .it-input-right select { width: 100% !important; max-width: 100% !important; min-width: 100% !important; }
+  #income-tax-section .it-compare { grid-template-columns: 1fr !important; }
+  #income-tax-section .it-wrapper { padding: 0 .75rem 2rem; }
+  #income-tax-section .it-card { padding: 1.25rem; }
+}

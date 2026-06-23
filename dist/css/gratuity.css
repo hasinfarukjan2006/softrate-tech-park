@@ -1,0 +1,410 @@
+/* ============================================================
+   GRATUITY CALCULATOR — Scoped Styles
+   All selectors are scoped to #gratuity-section to prevent collisions.
+   ============================================================ */
+
+#gratuity-section {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #333333;
+  line-height: 1.6;
+  background: #ffffff;
+  padding: 0 0 4rem 0;
+}
+
+#gratuity-section *,
+#gratuity-section *::before,
+#gratuity-section *::after {
+  box-sizing: border-box;
+}
+
+#gratuity-section h1,
+#gratuity-section h2,
+#gratuity-section h3,
+#gratuity-section h4 {
+  margin: 0 0 0.5rem 0;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+#gratuity-section p {
+  margin: 0 0 1rem 0;
+}
+
+/* ============================================================
+   1. HERO BANNER
+   ============================================================ */
+.gratuity-hero {
+  background-color: #fff2ee; /* Peach/light-pink Zoho style */
+  text-align: center;
+  padding: 4rem 2rem 5rem 2rem;
+  margin-bottom: -3rem; /* overlap calculator card slightly */
+}
+
+.gratuity-hero h1 {
+  font-size: 2.6rem;
+  color: #1a1a1a;
+  margin-bottom: 1rem;
+}
+
+.gratuity-hero .gratuity-hero-desc {
+  font-size: 1.15rem;
+  color: #555555;
+  max-width: 650px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+/* ============================================================
+   2. CALCULATOR CONTAINER
+   ============================================================ */
+.gratuity-container {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  position: relative;
+  z-index: 10;
+}
+
+.gratuity-calc-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 3rem 2.5rem;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+  border: 1px solid #f0f0f0;
+  margin-bottom: 2rem;
+}
+
+.gratuity-form-group {
+  margin-bottom: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.gratuity-form-group label {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #484848;
+}
+
+.gratuity-input-wrap {
+  display: flex;
+  align-items: center;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  background: #ffffff;
+  height: 44px;
+  overflow: hidden;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.gratuity-input-wrap:focus-within {
+  border-color: #e25c3e;
+  box-shadow: 0 0 0 3px rgba(226, 92, 62, 0.15);
+}
+
+.gratuity-input-prefix,
+.gratuity-input-suffix {
+  padding: 0 0.75rem;
+  background: #f5f5f5;
+  font-weight: 600;
+  color: #555555;
+  font-size: 0.95rem;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+}
+
+.gratuity-input-prefix {
+  border-right: 1px solid #cccccc;
+}
+
+.gratuity-input-suffix {
+  border-left: 1px solid #cccccc;
+}
+
+.gratuity-input-wrap input[type="number"] {
+  border: none;
+  outline: none;
+  flex: 1;
+  padding: 0 0.85rem;
+  font-size: 1rem;
+  background: transparent;
+  color: #111827;
+  width: 100%;
+  height: 100%;
+  -moz-appearance: textfield;
+}
+
+.gratuity-input-wrap input[type="number"]::-webkit-inner-spin-button,
+.gratuity-input-wrap input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.gratuity-input-hint {
+  font-size: 0.8rem;
+  color: #777777;
+  margin-top: 0.25rem;
+}
+
+.gratuity-error-msg {
+  font-size: 0.8rem;
+  color: #dc2626;
+  margin-top: 0.25rem;
+  display: none;
+}
+
+/* ============================================================
+   3. BUTTONS
+   ============================================================ */
+.gratuity-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2rem;
+  gap: 1.25rem;
+}
+
+.gratuity-btn-primary {
+  flex: 1.2;
+  height: 44px;
+  background-color: #d03a1b; /* Zoho Payroll Red */
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.gratuity-btn-primary:hover {
+  background-color: #b32e14;
+}
+
+.gratuity-btn-secondary {
+  flex: 0.8;
+  height: 44px;
+  background-color: #ffffff;
+  color: #555555;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.15s, color 0.15s;
+}
+
+.gratuity-btn-secondary:hover {
+  background-color: #f5f5f5;
+  color: #333333;
+}
+
+/* ============================================================
+   4. RESULTS PANEL
+   ============================================================ */
+.gratuity-result-card {
+  display: none;
+}
+
+.gratuity-result-card h2 {
+  font-size: 1.3rem;
+  color: #1a1a1a;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.gratuity-result-value-big {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #d03a1b;
+  text-align: center;
+  margin: 1rem 0 2rem 0;
+  line-height: 1;
+}
+
+.gratuity-result-list {
+  border-top: 1px solid #f0f0f0;
+  margin-bottom: 2rem;
+}
+
+.gratuity-result-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.95rem 0;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 0.95rem;
+}
+
+.gratuity-result-label {
+  color: #555555;
+  font-weight: 600;
+}
+
+.gratuity-result-val {
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+/* ============================================================
+   5. DISCLAIMER
+   ============================================================ */
+.gratuity-disclaimer {
+  font-size: 0.82rem;
+  color: #777777;
+  background-color: #fcfcfc;
+  border: 1px solid #eeeeee;
+  border-radius: 6px;
+  padding: 1.25rem;
+  margin-top: 1.5rem;
+  line-height: 1.5;
+}
+
+.gratuity-disclaimer strong {
+  color: #444444;
+}
+
+/* ============================================================
+   6. FAQ SECTION
+   ============================================================ */
+.gratuity-faq-section {
+  max-width: 800px;
+  margin: 4rem auto 0 auto;
+  padding: 0 1.5rem;
+}
+
+.gratuity-faq-section h2 {
+  font-size: 1.85rem;
+  color: #1a1a1a;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.gratuity-faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.gratuity-faq-item {
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #ffffff;
+  transition: border-color 0.15s;
+}
+
+.gratuity-faq-item:hover {
+  border-color: #cccccc;
+}
+
+.gratuity-faq-trigger {
+  width: 100%;
+  padding: 1.15rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  text-align: left;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.gratuity-faq-arrow {
+  flex-shrink: 0;
+  transition: transform 0.2s;
+  color: #999999;
+}
+
+.gratuity-faq-item.active .gratuity-faq-arrow {
+  transform: rotate(180deg);
+}
+
+.gratuity-faq-content {
+  display: none;
+  padding: 0 1.5rem 1.25rem 1.5rem;
+  font-size: 0.95rem;
+  color: #555555;
+  line-height: 1.6;
+}
+
+.gratuity-faq-item.active .gratuity-faq-content {
+  display: block;
+}
+
+/* ============================================================
+   7. INFO / CONTENT SECTION
+   ============================================================ */
+.gratuity-info-section {
+  max-width: 800px;
+  margin: 4rem auto 0 auto;
+  padding: 0 1.5rem;
+}
+
+.gratuity-info-card {
+  background: #ffffff;
+  border: 1px solid #eeeeee;
+  border-radius: 8px;
+  padding: 2.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+}
+
+.gratuity-info-card h3 {
+  font-size: 1.4rem;
+  color: #1a1a1a;
+  margin-bottom: 1.25rem;
+  border-left: 4px solid #d03a1b;
+  padding-left: 0.85rem;
+}
+
+.gratuity-info-card p {
+  color: #555555;
+  font-size: 0.98rem;
+  margin-bottom: 1.25rem;
+}
+
+.gratuity-info-card ul {
+  padding-left: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.gratuity-info-card li {
+  color: #555555;
+  font-size: 0.98rem;
+  margin-bottom: 0.5rem;
+}
+
+/* ============================================================
+   RESPONSIVENESS
+   ============================================================ */
+@media (max-width: 600px) {
+  .gratuity-hero h1 {
+    font-size: 2rem;
+  }
+  .gratuity-hero .gratuity-hero-desc {
+    font-size: 1rem;
+  }
+  .gratuity-calc-card {
+    padding: 2rem 1.5rem;
+  }
+  .gratuity-actions {
+    flex-direction: column;
+  }
+  .gratuity-btn-primary,
+  .gratuity-btn-secondary {
+    width: 100%;
+  }
+}

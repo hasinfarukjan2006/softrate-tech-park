@@ -157,7 +157,60 @@ document.addEventListener("DOMContentLoaded", () => {
   // Define routing function
   window.showRoute = function(route, updateHistory = true) {
     const shouldGoToMainPage = (route === "gst" || route === "expense" || route === "invoice");
-    const isPerDiemRoute = (route === "per-diem" || route === "per-diem-calculator" || (window.location.pathname === "/per-diem-calculator" && !shouldGoToMainPage));
+    
+    // Normalize path to route string if route is not explicitly passed
+    let activeRouteStr = route;
+    if (!activeRouteStr) {
+      const path = window.location.pathname;
+      if (path === "/per-diem-calculator") activeRouteStr = "per-diem";
+      else if (path === "/wholesale-price") activeRouteStr = "wholesale";
+      else if (path === "/shipping-label-generator") activeRouteStr = "shipping-label";
+      else if (path === "/barcode-generator") activeRouteStr = "barcode";
+      else if (path === "/packing-slip-generator") activeRouteStr = "packing-slip";
+      else if (path === "/inventory-turnover") activeRouteStr = "inventory-turnover";
+      else if (path === "/break-even-point") activeRouteStr = "break-even";
+      else if (path === "/economic-order-quantity") activeRouteStr = "eoq";
+      else if (path === "/reorder-point") activeRouteStr = "reorder";
+      else if (path === "/purchase-order-generator") activeRouteStr = "po";
+      else if (path === "/sku-generator") activeRouteStr = "sku";
+      else if (path === "/hra-exemption-calculator") activeRouteStr = "hra";
+      else if (path === "/statutory-bonus-calculator") activeRouteStr = "bonus";
+      else if (path === "/in/payroll/gratuity-calculator/" || path === "/gratuity-calculator") activeRouteStr = "gratuity";
+      else if (path === "/in/payroll/eps-pension-calculator/" || path === "/eps-pension-calculator") activeRouteStr = "eps";
+      else if (path === "/in/payroll/nps-calculator/" || path === "/nps-calculator") activeRouteStr = "nps";
+      else if (path === "/in/payroll/free-payslip-generator/" || path === "/free-payslip-generator") activeRouteStr = "payslip";
+      else if (path === "/in/payroll/form-w9-generator/" || path === "/form-w9-generator") activeRouteStr = "w9";
+      else if (path === "/in/payroll/free-project-estimate-calculator/" || path === "/free-project-estimate-calculator") activeRouteStr = "project-estimate";
+      else if (path === "/in/payroll/financial-report-generator/" || path === "/financial-report-generator") activeRouteStr = "financial-report";
+      else if (path === "/in/payroll/paycheck-calculator/" || path === "/paycheck-calculator") activeRouteStr = "paycheck";
+      else if (path === "/in/payroll/income-tax-calculator/" || path === "/income-tax-calculator") activeRouteStr = "income-tax";
+      else if (path === "/in/payroll/hmrc-furlough-calculator/" || path === "/hmrc-furlough-calculator") activeRouteStr = "hmrc";
+      else activeRouteStr = "gst";
+    }
+
+    const isPerDiemRoute = (activeRouteStr === "per-diem" || activeRouteStr === "per-diem-calculator");
+    const isWholesaleRoute = (activeRouteStr === "wholesale" || activeRouteStr === "wholesale-price");
+    const isShippingLabelRoute = (activeRouteStr === "shipping-label" || activeRouteStr === "shipping-label-generator");
+    const isBarcodeRoute = (activeRouteStr === "barcode" || activeRouteStr === "barcode-generator");
+    const isPackingSlipRoute = (activeRouteStr === "packing-slip" || activeRouteStr === "packing-slip-generator");
+    const isInventoryTurnoverRoute = (activeRouteStr === "inventory-turnover");
+    const isBreakEvenRoute = (activeRouteStr === "break-even" || activeRouteStr === "break-even-point");
+    const isEoqRoute = (activeRouteStr === "eoq" || activeRouteStr === "economic-order-quantity");
+    const isReorderRoute = (activeRouteStr === "reorder" || activeRouteStr === "reorder-point");
+    const isPurchaseOrderRoute = (activeRouteStr === "po" || activeRouteStr === "purchase-order-generator");
+    const isSkuRoute = (activeRouteStr === "sku" || activeRouteStr === "sku-generator");
+    const isHraRoute = (activeRouteStr === "hra" || activeRouteStr === "hra-exemption-calculator");
+    const isBonusRoute = (activeRouteStr === "bonus" || activeRouteStr === "statutory-bonus-calculator");
+    const isGratuityRoute = (activeRouteStr === "gratuity" || activeRouteStr === "gratuity-calculator");
+    const isEpsRoute = (activeRouteStr === "eps" || activeRouteStr === "eps-pension-calculator");
+    const isNpsRoute = (activeRouteStr === "nps" || activeRouteStr === "nps-calculator");
+    const isPayslipRoute = (activeRouteStr === "payslip" || activeRouteStr === "free-payslip-generator");
+    const isW9Route = (activeRouteStr === "w9" || activeRouteStr === "form-w9-generator");
+    const isProjectEstimateRoute = (activeRouteStr === "project-estimate" || activeRouteStr === "free-project-estimate-calculator" || activeRouteStr === "project-cost");
+    const isFinancialReportRoute = (activeRouteStr === "financial-report" || activeRouteStr === "financial-report-generator");
+    const isPaycheckRoute = (activeRouteStr === "paycheck" || activeRouteStr === "paycheck-calculator");
+    const isIncomeTaxRoute = (activeRouteStr === "income-tax" || activeRouteStr === "income-tax-calculator");
+    const isHmrcRoute = (activeRouteStr === "hmrc" || activeRouteStr === "hmrc-furlough");
     let activeSidebarId = isPerDiemRoute ? "perDiemSidebar" : "sidebar";
 
     if (isPerDiemRoute) {
@@ -166,9 +219,141 @@ document.addEventListener("DOMContentLoaded", () => {
           window.history.pushState({ route: "per-diem" }, "", "/per-diem-calculator");
         }
       }
+    } else if (isWholesaleRoute) {
+      if (updateHistory) {
+        if (window.location.pathname !== "/wholesale-price") {
+          window.history.pushState({ route: "wholesale" }, "", "/wholesale-price");
+        }
+      }
+    } else if (isShippingLabelRoute) {
+      if (updateHistory) {
+        if (window.location.pathname !== "/shipping-label-generator") {
+          window.history.pushState({ route: "shipping-label" }, "", "/shipping-label-generator");
+        }
+      }
+    } else if (isBarcodeRoute) {
+      if (updateHistory) {
+        if (window.location.pathname !== "/barcode-generator") {
+          window.history.pushState({ route: "barcode" }, "", "/barcode-generator");
+        }
+      }
+    } else if (isPackingSlipRoute) {
+      if (updateHistory) {
+        if (window.location.pathname !== "/packing-slip-generator") {
+          window.history.pushState({ route: "packing-slip" }, "", "/packing-slip-generator");
+        }
+      }
+    } else if (isInventoryTurnoverRoute) {
+      if (updateHistory) {
+        if (window.location.pathname !== "/inventory-turnover") {
+          window.history.pushState({ route: "inventory-turnover" }, "", "/inventory-turnover");
+        }
+      }
+    } else if (isBreakEvenRoute) {
+      if (updateHistory) {
+        if (window.location.pathname !== "/break-even-point") {
+          window.history.pushState({ route: "break-even" }, "", "/break-even-point");
+        }
+      }
+    } else if (isEoqRoute) {
+      if (updateHistory) {
+        if (window.location.pathname !== "/economic-order-quantity") {
+          window.history.pushState({ route: "eoq" }, "", "/economic-order-quantity");
+        }
+      }
+    } else if (isSkuRoute) {
+      if (updateHistory) {
+        if (window.location.pathname !== "/sku-generator") {
+          window.history.pushState({ route: "sku" }, "", "/sku-generator");
+        }
+      }
+    } else if (isPurchaseOrderRoute) {
+      if (updateHistory) {
+        if (window.location.pathname !== "/purchase-order-generator") {
+          window.history.pushState({ route: "po" }, "", "/purchase-order-generator");
+        }
+      }
+    } else if (isReorderRoute) {
+      if (updateHistory) {
+        if (window.location.pathname !== "/reorder-point") {
+          window.history.pushState({ route: "reorder" }, "", "/reorder-point");
+        }
+      }
+    } else if (isHraRoute) {
+      if (updateHistory) {
+        if (window.location.pathname !== "/hra-exemption-calculator") {
+          window.history.pushState({ route: "hra" }, "", "/hra-exemption-calculator");
+        }
+      }
+    } else if (isBonusRoute) {
+      if (updateHistory) {
+        if (window.location.pathname !== "/statutory-bonus-calculator") {
+          window.history.pushState({ route: "bonus" }, "", "/statutory-bonus-calculator");
+        }
+      }
+    } else if (isGratuityRoute) {
+      if (updateHistory) {
+        if (window.location.pathname !== "/in/payroll/gratuity-calculator/") {
+          window.history.pushState({ route: "gratuity" }, "", "/in/payroll/gratuity-calculator/");
+        }
+      }
+    } else if (isEpsRoute) {
+      if (updateHistory) {
+        if (window.location.pathname !== "/in/payroll/eps-pension-calculator/") {
+          window.history.pushState({ route: "eps" }, "", "/in/payroll/eps-pension-calculator/");
+        }
+      }
+    } else if (isNpsRoute) {
+      if (updateHistory) {
+        if (window.location.pathname !== "/in/payroll/nps-calculator/") {
+          window.history.pushState({ route: "nps" }, "", "/in/payroll/nps-calculator/");
+        }
+      }
+    } else if (isPayslipRoute) {
+      if (updateHistory) {
+        if (window.location.pathname !== "/in/payroll/free-payslip-generator/") {
+          window.history.pushState({ route: "payslip" }, "", "/in/payroll/free-payslip-generator/");
+        }
+      }
+    } else if (isW9Route) {
+      if (updateHistory) {
+        if (window.location.pathname !== "/in/payroll/form-w9-generator/") {
+          window.history.pushState({ route: "w9" }, "", "/in/payroll/form-w9-generator/");
+        }
+      }
+    } else if (isProjectEstimateRoute) {
+      if (updateHistory) {
+        if (window.location.pathname !== "/in/payroll/free-project-estimate-calculator/") {
+          window.history.pushState({ route: "project-estimate" }, "", "/in/payroll/free-project-estimate-calculator/");
+        }
+      }
+    } else if (isFinancialReportRoute) {
+      if (updateHistory) {
+        if (window.location.pathname !== "/in/payroll/financial-report-generator/") {
+          window.history.pushState({ route: "financial-report" }, "", "/in/payroll/financial-report-generator/");
+        }
+      }
+    } else if (isPaycheckRoute) {
+      if (updateHistory) {
+        if (window.location.pathname !== "/in/payroll/paycheck-calculator/") {
+          window.history.pushState({ route: "paycheck" }, "", "/in/payroll/paycheck-calculator/");
+        }
+      }
+    } else if (isIncomeTaxRoute) {
+      if (updateHistory) {
+        if (window.location.pathname !== "/in/payroll/income-tax-calculator/") {
+          window.history.pushState({ route: "income-tax" }, "", "/in/payroll/income-tax-calculator/");
+        }
+      }
+    } else if (isHmrcRoute) {
+      if (updateHistory) {
+        if (window.location.pathname !== "/in/payroll/hmrc-furlough-calculator/") {
+          window.history.pushState({ route: "hmrc" }, "", "/in/payroll/hmrc-furlough-calculator/");
+        }
+      }
     } else {
       if (updateHistory) {
-        if (window.location.pathname === "/per-diem-calculator" || shouldGoToMainPage) {
+        if (window.location.pathname === "/per-diem-calculator" || window.location.pathname === "/wholesale-price" || window.location.pathname === "/shipping-label-generator" || window.location.pathname === "/barcode-generator" || window.location.pathname === "/packing-slip-generator" || window.location.pathname === "/inventory-turnover" || window.location.pathname === "/hra-exemption-calculator" || window.location.pathname === "/statutory-bonus-calculator" || shouldGoToMainPage) {
           window.history.pushState({ route: route }, "", "/" + (route === "gst" ? "" : "#" + route));
         } else {
           window.location.hash = route;
@@ -197,6 +382,69 @@ document.addEventListener("DOMContentLoaded", () => {
       if (isPerDiemRoute && (route === "per-diem" || route === "per-diem-calculator")) {
         const pdLink = Array.from(links).find(l => l.getAttribute("data-route") === "per-diem" || l.getAttribute("data-route") === "per-diem-calculator");
         if (pdLink) pdLink.classList.add("active");
+      } else if (isShippingLabelRoute && (route === "shipping-label" || route === "shipping-label-generator")) {
+        const slLink = Array.from(links).find(l => l.getAttribute("data-route") === "shipping-label" || l.getAttribute("data-route") === "shipping-label-generator");
+        if (slLink) slLink.classList.add("active");
+      } else if (isBarcodeRoute && (route === "barcode" || route === "barcode-generator")) {
+        const bcLink = Array.from(links).find(l => l.getAttribute("data-route") === "barcode" || l.getAttribute("data-route") === "barcode-generator");
+        if (bcLink) bcLink.classList.add("active");
+      } else if (isPackingSlipRoute && (route === "packing-slip" || route === "packing-slip-generator")) {
+        const psLink = Array.from(links).find(l => l.getAttribute("data-route") === "packing-slip" || l.getAttribute("data-route") === "packing-slip-generator");
+        if (psLink) psLink.classList.add("active");
+      } else if (isInventoryTurnoverRoute && (route === "inventory-turnover")) {
+        const itLink = Array.from(links).find(l => l.getAttribute("data-route") === "inventory-turnover");
+        if (itLink) itLink.classList.add("active");
+      } else if (isBreakEvenRoute && (route === "break-even" || route === "break-even-point")) {
+        const beLink = Array.from(links).find(l => l.getAttribute("data-route") === "break-even" || l.getAttribute("data-route") === "break-even-point");
+        if (beLink) beLink.classList.add("active");
+      } else if (isEoqRoute && (route === "eoq" || route === "economic-order-quantity")) {
+        const eoqLink = Array.from(links).find(l => l.getAttribute("data-route") === "eoq" || l.getAttribute("data-route") === "economic-order-quantity");
+        if (eoqLink) eoqLink.classList.add("active");
+      } else if (isSkuRoute && (route === "sku" || route === "sku-generator")) {
+        const skuLink = Array.from(links).find(l => l.getAttribute("data-route") === "sku" || l.getAttribute("data-route") === "sku-generator");
+        if (skuLink) skuLink.classList.add("active");
+      } else if (isPurchaseOrderRoute && (route === "po" || route === "purchase-order-generator")) {
+        const poLink = Array.from(links).find(l => l.getAttribute("data-route") === "po" || l.getAttribute("data-route") === "purchase-order-generator");
+        if (poLink) poLink.classList.add("active");
+      } else if (isReorderRoute && (route === "reorder" || route === "reorder-point")) {
+        const reorderLink = Array.from(links).find(l => l.getAttribute("data-route") === "reorder" || l.getAttribute("data-route") === "reorder-point");
+        if (reorderLink) reorderLink.classList.add("active");
+      } else if (isHraRoute && (route === "hra" || route === "hra-exemption-calculator")) {
+        const hraLink = Array.from(links).find(l => l.getAttribute("data-route") === "hra" || l.getAttribute("data-route") === "hra-exemption-calculator");
+        if (hraLink) hraLink.classList.add("active");
+      } else if (isBonusRoute && (route === "bonus" || route === "statutory-bonus-calculator")) {
+        const bonusLink = Array.from(links).find(l => l.getAttribute("data-route") === "bonus");
+        if (bonusLink) bonusLink.classList.add("active");
+      } else if (isGratuityRoute && (route === "gratuity" || route === "gratuity-calculator")) {
+        const gratuityLink = Array.from(links).find(l => l.getAttribute("data-route") === "gratuity");
+        if (gratuityLink) gratuityLink.classList.add("active");
+      } else if (isEpsRoute && (route === "eps" || route === "eps-pension-calculator")) {
+        const epsLink = Array.from(links).find(l => l.getAttribute("data-route") === "eps");
+        if (epsLink) epsLink.classList.add("active");
+      } else if (isNpsRoute && (route === "nps" || route === "nps-calculator")) {
+        const npsLink = Array.from(links).find(l => l.getAttribute("data-route") === "nps");
+        if (npsLink) npsLink.classList.add("active");
+      } else if (isPayslipRoute && (route === "payslip" || route === "free-payslip-generator")) {
+        const payslipLink = Array.from(links).find(l => l.getAttribute("data-route") === "payslip");
+        if (payslipLink) payslipLink.classList.add("active");
+      } else if (isW9Route && (route === "w9" || route === "form-w9-generator")) {
+        const w9Link = Array.from(links).find(l => l.getAttribute("data-route") === "w9");
+        if (w9Link) w9Link.classList.add("active");
+      } else if (isProjectEstimateRoute && (route === "project-estimate" || route === "free-project-estimate-calculator" || route === "project-cost")) {
+        const peLink = Array.from(links).find(l => l.getAttribute("data-route") === "project-estimate" || l.getAttribute("data-route") === "project-cost");
+        if (peLink) peLink.classList.add("active");
+      } else if (isFinancialReportRoute && (route === "financial-report" || route === "financial-report-generator")) {
+        const frLink = Array.from(links).find(l => l.getAttribute("data-route") === "financial-report");
+        if (frLink) frLink.classList.add("active");
+      } else if (isPaycheckRoute && (route === "paycheck" || route === "paycheck-calculator")) {
+        const paycheckLink = Array.from(links).find(l => l.getAttribute("data-route") === "paycheck");
+        if (paycheckLink) paycheckLink.classList.add("active");
+      } else if (isIncomeTaxRoute && (route === "income-tax" || route === "income-tax-calculator")) {
+        const itLink = Array.from(links).find(l => l.getAttribute("data-route") === "income-tax");
+        if (itLink) itLink.classList.add("active");
+      } else if (isHmrcRoute && (route === "hmrc" || route === "hmrc-furlough")) {
+        const hmrcLink = Array.from(links).find(l => l.getAttribute("data-route") === "hmrc");
+        if (hmrcLink) hmrcLink.classList.add("active");
       } else {
         const matchingLink = Array.from(links).find(l => l.getAttribute("data-route") === route);
         if (matchingLink) matchingLink.classList.add("active");
@@ -212,9 +460,50 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
+    if (isBreakEvenRoute) {
+      labelText = "Break-Even Point Calculator";
+    } else if (isEoqRoute) {
+      labelText = "Economic Order Quantity Calculator";
+    } else if (isSkuRoute) {
+      labelText = "SKU Generator";
+    } else if (isPurchaseOrderRoute) {
+      labelText = "Purchase Order Generator";
+    } else if (isReorderRoute) {
+      labelText = "Reorder Point Calculator";
+    } else if (isHraRoute) {
+      labelText = "HRA Exemption Calculator";
+    } else if (isBonusRoute) {
+      labelText = "Statutory Bonus Calculator";
+    } else if (isEpsRoute) {
+      labelText = "EPS Pension Calculator";
+    } else if (isPayslipRoute) {
+      labelText = "Free Payslip Generator";
+    } else if (isW9Route) {
+      labelText = "Form W-9 Generator";
+    } else if (isProjectEstimateRoute) {
+      labelText = "Free Project Cost Estimate Calculator";
+    } else if (isFinancialReportRoute) {
+      labelText = "Financial Report Generator";
+    } else if (isPaycheckRoute) {
+      labelText = "Paycheck Calculator";
+    } else if (isIncomeTaxRoute) {
+      labelText = "Income Tax Calculator";
+    } else if (isHmrcRoute) {
+      labelText = "HMRC Furlough Claim Calculator";
+    }
+
     const headerTitleEl = document.querySelector(".header-title");
     if (headerTitleEl) {
       headerTitleEl.textContent = labelText;
+    }
+
+    const headerSubtitleEl = document.querySelector(".header-subtitle");
+    if (headerSubtitleEl) {
+      if (isBreakEvenRoute || isEoqRoute || isReorderRoute) {
+        headerSubtitleEl.textContent = "by Softrate";
+      } else {
+        headerSubtitleEl.textContent = "By Softrate";
+      }
     }
     document.title = `${labelText} | Softrate Tech Park Pvt. Ltd.`;
 
@@ -228,7 +517,29 @@ document.addEventListener("DOMContentLoaded", () => {
     const comingSoonTitle = document.getElementById("comingSoonTitle");
     const expenseSection = document.getElementById("expense-section");
     const perDiemSection = document.getElementById("per-diem-section");
-
+    const wholesaleSection = document.getElementById("wholesale-section");
+    const shippingLabelSection = document.getElementById("shipping-label-section");
+    const barcodeSection = document.getElementById("barcode-section");
+    const packingSlipSection = document.getElementById("packing-slip-section");
+    const inventoryTurnoverSection = document.getElementById("inventory-turnover-section");
+    const breakEvenSection = document.getElementById("break-even-section");
+    const eoqSection = document.getElementById("eoq-section");
+    const reorderSection = document.getElementById("reorder-section");
+    const purchaseOrderSection = document.getElementById("purchase-order-section");
+    const skuSection = document.getElementById("sku-section");
+    const hraSection = document.getElementById("hra-section");
+    const bonusSection = document.getElementById("bonus-section");
+    const gratuitySection = document.getElementById("gratuity-section");
+    const epsSection = document.getElementById("eps-section");
+    const npsSection = document.getElementById("nps-section");
+    const payslipSection = document.getElementById("payslip-section");
+    const w9Section = document.getElementById("w9-section");
+    const projectEstimateSection = document.getElementById("project-estimate-section");
+    const financialReportSection = document.getElementById("financial-report-section");
+    const paycheckSection = document.getElementById("paycheck-section");
+    const incomeTaxSection = document.getElementById("income-tax-section");
+    const hmrcSection = document.getElementById("hmrc-section");
+ 
     if (calcSection) calcSection.classList.add("hide");
     if (ratesSection) ratesSection.classList.add("hide");
     if (faqSection) faqSection.classList.add("hide");
@@ -237,11 +548,119 @@ document.addEventListener("DOMContentLoaded", () => {
     if (comingSoonSection) comingSoonSection.classList.add("hide");
     if (expenseSection) expenseSection.classList.add("hide");
     if (perDiemSection) perDiemSection.classList.add("hide");
-
+    if (wholesaleSection) wholesaleSection.classList.add("hide");
+    if (shippingLabelSection) shippingLabelSection.classList.add("hide");
+    if (barcodeSection) barcodeSection.classList.add("hide");
+    if (packingSlipSection) packingSlipSection.classList.add("hide");
+    if (inventoryTurnoverSection) inventoryTurnoverSection.classList.add("hide");
+    if (breakEvenSection) breakEvenSection.classList.add("hide");
+    if (eoqSection) eoqSection.classList.add("hide");
+    if (reorderSection) reorderSection.classList.add("hide");
+    if (purchaseOrderSection) purchaseOrderSection.classList.add("hide");
+    if (skuSection) skuSection.classList.add("hide");
+    if (hraSection) hraSection.classList.add("hide");
+    if (bonusSection) bonusSection.classList.add("hide");
+    if (gratuitySection) gratuitySection.classList.add("hide");
+    if (epsSection) epsSection.classList.add("hide");
+    if (npsSection) npsSection.classList.add("hide");
+    if (payslipSection) payslipSection.classList.add("hide");
+    if (w9Section) w9Section.classList.add("hide");
+    if (projectEstimateSection) projectEstimateSection.classList.add("hide");
+    if (financialReportSection) financialReportSection.classList.add("hide");
+    if (paycheckSection) paycheckSection.classList.add("hide");
+    if (incomeTaxSection) incomeTaxSection.classList.add("hide");
+    if (hmrcSection) hmrcSection.classList.add("hide");
+ 
     if (isPerDiemRoute && (route === "per-diem" || route === "per-diem-calculator")) {
       if (perDiemSection) perDiemSection.classList.remove("hide");
       if (perDiemSection) perDiemSection.scrollIntoView({ behavior: "smooth" });
       document.dispatchEvent(new CustomEvent("perDiemRouteLoaded"));
+    } else if (isWholesaleRoute && (route === "wholesale" || route === "wholesale-price")) {
+      if (wholesaleSection) wholesaleSection.classList.remove("hide");
+      if (wholesaleSection) wholesaleSection.scrollIntoView({ behavior: "smooth" });
+      document.dispatchEvent(new CustomEvent("wholesaleRouteLoaded"));
+    } else if (isShippingLabelRoute && (route === "shipping-label" || route === "shipping-label-generator")) {
+      if (shippingLabelSection) shippingLabelSection.classList.remove("hide");
+      if (shippingLabelSection) shippingLabelSection.scrollIntoView({ behavior: "smooth" });
+      document.dispatchEvent(new CustomEvent("shippingLabelRouteLoaded"));
+    } else if (isBarcodeRoute && (route === "barcode" || route === "barcode-generator")) {
+      if (barcodeSection) barcodeSection.classList.remove("hide");
+      if (barcodeSection) barcodeSection.scrollIntoView({ behavior: "smooth" });
+      document.dispatchEvent(new CustomEvent("barcodeRouteLoaded"));
+    } else if (isPackingSlipRoute && (route === "packing-slip" || route === "packing-slip-generator")) {
+      if (packingSlipSection) packingSlipSection.classList.remove("hide");
+      if (packingSlipSection) packingSlipSection.scrollIntoView({ behavior: "smooth" });
+      document.dispatchEvent(new CustomEvent("packingSlipRouteLoaded"));
+    } else if (isInventoryTurnoverRoute && (route === "inventory-turnover")) {
+      if (inventoryTurnoverSection) inventoryTurnoverSection.classList.remove("hide");
+      if (inventoryTurnoverSection) inventoryTurnoverSection.scrollIntoView({ behavior: "smooth" });
+      document.dispatchEvent(new CustomEvent("inventoryTurnoverRouteLoaded"));
+    } else if (isBreakEvenRoute && (route === "break-even" || route === "break-even-point")) {
+      if (breakEvenSection) breakEvenSection.classList.remove("hide");
+      if (breakEvenSection) breakEvenSection.scrollIntoView({ behavior: "smooth" });
+      document.dispatchEvent(new CustomEvent("breakEvenRouteLoaded"));
+    } else if (isEoqRoute && (route === "eoq" || route === "economic-order-quantity")) {
+      if (eoqSection) eoqSection.classList.remove("hide");
+      if (eoqSection) eoqSection.scrollIntoView({ behavior: "smooth" });
+      document.dispatchEvent(new CustomEvent("eoqRouteLoaded"));
+    } else if (isSkuRoute && (route === "sku" || route === "sku-generator")) {
+      if (skuSection) skuSection.classList.remove("hide");
+      if (skuSection) skuSection.scrollIntoView({ behavior: "smooth" });
+      document.dispatchEvent(new CustomEvent("skuRouteLoaded"));
+    } else if (isPurchaseOrderRoute && (route === "po" || route === "purchase-order-generator")) {
+      if (purchaseOrderSection) purchaseOrderSection.classList.remove("hide");
+      if (purchaseOrderSection) purchaseOrderSection.scrollIntoView({ behavior: "smooth" });
+      document.dispatchEvent(new CustomEvent("purchaseOrderRouteLoaded"));
+    } else if (isReorderRoute && (route === "reorder" || route === "reorder-point")) {
+      if (reorderSection) reorderSection.classList.remove("hide");
+      if (reorderSection) reorderSection.scrollIntoView({ behavior: "smooth" });
+      document.dispatchEvent(new CustomEvent("reorderRouteLoaded"));
+    } else if (isHraRoute && (route === "hra" || route === "hra-exemption-calculator")) {
+      if (hraSection) hraSection.classList.remove("hide");
+      if (hraSection) hraSection.scrollIntoView({ behavior: "smooth" });
+      document.dispatchEvent(new CustomEvent("hraRouteLoaded"));
+    } else if (isBonusRoute && (route === "bonus" || route === "statutory-bonus-calculator")) {
+      if (bonusSection) bonusSection.classList.remove("hide");
+      if (bonusSection) bonusSection.scrollIntoView({ behavior: "smooth" });
+      document.dispatchEvent(new CustomEvent("bonusRouteLoaded"));
+    } else if (isGratuityRoute && (route === "gratuity" || route === "gratuity-calculator")) {
+      if (gratuitySection) gratuitySection.classList.remove("hide");
+      if (gratuitySection) gratuitySection.scrollIntoView({ behavior: "smooth" });
+      document.dispatchEvent(new CustomEvent("gratuityRouteLoaded"));
+    } else if (isEpsRoute && (route === "eps" || route === "eps-pension-calculator")) {
+      if (epsSection) epsSection.classList.remove("hide");
+      if (epsSection) epsSection.scrollIntoView({ behavior: "smooth" });
+      document.dispatchEvent(new CustomEvent("epsRouteLoaded"));
+    } else if (isNpsRoute && (route === "nps" || route === "nps-calculator")) {
+      if (npsSection) npsSection.classList.remove("hide");
+      if (npsSection) npsSection.scrollIntoView({ behavior: "smooth" });
+      document.dispatchEvent(new CustomEvent("npsRouteLoaded"));
+    } else if (isPayslipRoute && (route === "payslip" || route === "free-payslip-generator")) {
+      if (payslipSection) payslipSection.classList.remove("hide");
+      if (payslipSection) payslipSection.scrollIntoView({ behavior: "smooth" });
+      document.dispatchEvent(new CustomEvent("payslipRouteLoaded"));
+    } else if (isW9Route && (route === "w9" || route === "form-w9-generator")) {
+      if (w9Section) w9Section.classList.remove("hide");
+      if (w9Section) w9Section.scrollIntoView({ behavior: "smooth" });
+      document.dispatchEvent(new CustomEvent("w9RouteLoaded"));
+    } else if (isProjectEstimateRoute && (route === "project-estimate" || route === "free-project-estimate-calculator" || route === "project-cost")) {
+      if (projectEstimateSection) projectEstimateSection.classList.remove("hide");
+      if (projectEstimateSection) projectEstimateSection.scrollIntoView({ behavior: "smooth" });
+      document.dispatchEvent(new CustomEvent("projectEstimateRouteLoaded"));
+    } else if (isFinancialReportRoute && (route === "financial-report" || route === "financial-report-generator")) {
+      if (financialReportSection) financialReportSection.classList.remove("hide");
+      if (financialReportSection) financialReportSection.scrollIntoView({ behavior: "smooth" });
+      document.dispatchEvent(new CustomEvent("financialReportRouteLoaded"));
+    } else if (isPaycheckRoute && (route === "paycheck" || route === "paycheck-calculator")) {
+      if (paycheckSection) paycheckSection.classList.remove("hide");
+      if (paycheckSection) paycheckSection.scrollIntoView({ behavior: "smooth" });
+      document.dispatchEvent(new CustomEvent("paycheckRouteLoaded"));
+    } else if (isIncomeTaxRoute && (route === "income-tax" || route === "income-tax-calculator")) {
+      if (incomeTaxSection) incomeTaxSection.classList.remove("hide");
+      if (incomeTaxSection) incomeTaxSection.scrollIntoView({ behavior: "smooth" });
+    } else if (isHmrcRoute && (route === "hmrc" || route === "hmrc-furlough")) {
+      if (hmrcSection) hmrcSection.classList.remove("hide");
+      if (hmrcSection) hmrcSection.scrollIntoView({ behavior: "smooth" });
     } else if (route === "gst") {
       if (calcSection) calcSection.classList.remove("hide");
       if (ratesSection) ratesSection.classList.remove("hide");
@@ -258,8 +677,8 @@ document.addEventListener("DOMContentLoaded", () => {
       if (comingSoonTitle) comingSoonTitle.textContent = `${labelText} - Coming Soon`;
       if (comingSoonSection) comingSoonSection.scrollIntoView({ behavior: "smooth" });
     }
-
-    if (!isPerDiemRoute) {
+ 
+    if (!isPerDiemRoute && !isWholesaleRoute && !isShippingLabelRoute && !isBarcodeRoute && !isPackingSlipRoute && !isInventoryTurnoverRoute && !isBreakEvenRoute && !isEoqRoute && !isReorderRoute && !isHraRoute && !isBonusRoute && !isGratuityRoute && !isEpsRoute && !isNpsRoute && !isPayslipRoute && !isW9Route && !isProjectEstimateRoute && !isFinancialReportRoute && !isPaycheckRoute && !isIncomeTaxRoute && !isHmrcRoute) {
       localStorage.setItem("activeRoute", route);
     }
   };
@@ -602,7 +1021,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     gstForm.reset();
     gstAmountInput.value = "";
-    gstRateSelect.value = "18";
+    gstRateSelect.value = "";
     document.getElementById("modeExclusive").checked = true;
     document.getElementById("transIntra").checked = true;
     
@@ -966,6 +1385,38 @@ Report generated by Softrate Tech Park Pvt. Ltd.`;
   window.addEventListener("popstate", () => {
     if (window.location.pathname === "/per-diem-calculator") {
       showRoute("per-diem", false);
+    } else if (window.location.pathname === "/wholesale-price") {
+      showRoute("wholesale", false);
+    } else if (window.location.pathname === "/shipping-label-generator") {
+      showRoute("shipping-label", false);
+    } else if (window.location.pathname === "/barcode-generator") {
+      showRoute("barcode", false);
+    } else if (window.location.pathname === "/packing-slip-generator") {
+      showRoute("packing-slip", false);
+    } else if (window.location.pathname === "/inventory-turnover") {
+      showRoute("inventory-turnover", false);
+    } else if (window.location.pathname === "/purchase-order-generator") {
+      showRoute("po", false);
+    } else if (window.location.pathname === "/sku-generator") {
+      showRoute("sku", false);
+    } else if (window.location.pathname === "/hra-exemption-calculator") {
+      showRoute("hra", false);
+    } else if (window.location.pathname === "/statutory-bonus-calculator") {
+      showRoute("bonus", false);
+    } else if (window.location.pathname === "/in/payroll/gratuity-calculator/" || window.location.pathname === "/gratuity-calculator") {
+      showRoute("gratuity", false);
+    } else if (window.location.pathname === "/in/payroll/eps-pension-calculator/" || window.location.pathname === "/eps-pension-calculator") {
+      showRoute("eps", false);
+    } else if (window.location.pathname === "/in/payroll/nps-calculator/" || window.location.pathname === "/nps-calculator") {
+      showRoute("nps", false);
+    } else if (window.location.pathname === "/in/payroll/free-payslip-generator/" || window.location.pathname === "/free-payslip-generator") {
+      showRoute("payslip", false);
+    } else if (window.location.pathname === "/in/payroll/form-w9-generator/" || window.location.pathname === "/form-w9-generator") {
+      showRoute("w9", false);
+    } else if (window.location.pathname === "/in/payroll/free-project-estimate-calculator/" || window.location.pathname === "/free-project-estimate-calculator" || window.location.pathname === "/project-cost") {
+      showRoute("project-estimate", false);
+    } else if (window.location.pathname === "/in/payroll/financial-report-generator/" || window.location.pathname === "/financial-report-generator") {
+      showRoute("financial-report", false);
     } else {
       const savedRoute = window.location.hash.substring(1) || "gst";
       showRoute(savedRoute, false);
@@ -974,11 +1425,59 @@ Report generated by Softrate Tech Park Pvt. Ltd.`;
 
   // Restore page state on load
   const isPerDiemPath = (window.location.pathname === "/per-diem-calculator");
+  const isWholesalePath = (window.location.pathname === "/wholesale-price");
+  const isShippingLabelPath = (window.location.pathname === "/shipping-label-generator");
+  const isBarcodePath = (window.location.pathname === "/barcode-generator");
+  const isPackingSlipPath = (window.location.pathname === "/packing-slip-generator");
+  const isInventoryTurnoverPath = (window.location.pathname === "/inventory-turnover");
+  const isPurchaseOrderPath = (window.location.pathname === "/purchase-order-generator");
+  const isSkuPath = (window.location.pathname === "/sku-generator");
+  const isHraPath = (window.location.pathname === "/hra-exemption-calculator");
+  const isBonusPath = (window.location.pathname === "/statutory-bonus-calculator");
+  const isGratuityPath = (window.location.pathname === "/in/payroll/gratuity-calculator/" || window.location.pathname === "/gratuity-calculator");
+  const isEpsPath = (window.location.pathname === "/in/payroll/eps-pension-calculator/" || window.location.pathname === "/eps-pension-calculator");
+  const isNpsPath = (window.location.pathname === "/in/payroll/nps-calculator/" || window.location.pathname === "/nps-calculator");
+  const isPayslipPath = (window.location.pathname === "/in/payroll/free-payslip-generator/" || window.location.pathname === "/free-payslip-generator");
+  const isW9Path = (window.location.pathname === "/in/payroll/form-w9-generator/" || window.location.pathname === "/form-w9-generator");
+  const isProjectEstimatePath = (window.location.pathname === "/in/payroll/free-project-estimate-calculator/" || window.location.pathname === "/free-project-estimate-calculator" || window.location.pathname === "/project-cost");
+  const isFinancialReportPath = (window.location.pathname === "/in/payroll/financial-report-generator/" || window.location.pathname === "/financial-report-generator");
   if (isPerDiemPath) {
     showRoute("per-diem", false);
+  } else if (isWholesalePath) {
+    showRoute("wholesale", false);
+  } else if (isShippingLabelPath) {
+    showRoute("shipping-label", false);
+  } else if (isBarcodePath) {
+    showRoute("barcode", false);
+  } else if (isPackingSlipPath) {
+    showRoute("packing-slip", false);
+  } else if (isInventoryTurnoverPath) {
+    showRoute("inventory-turnover", false);
+  } else if (isPurchaseOrderPath) {
+    showRoute("po", false);
+  } else if (isSkuPath) {
+    showRoute("sku", false);
+  } else if (isHraPath) {
+    showRoute("hra", false);
+  } else if (isBonusPath) {
+    showRoute("bonus", false);
+  } else if (isGratuityPath) {
+    showRoute("gratuity", false);
+  } else if (isEpsPath) {
+    showRoute("eps", false);
+  } else if (isNpsPath) {
+    showRoute("nps", false);
+  } else if (isPayslipPath) {
+    showRoute("payslip", false);
+  } else if (isW9Path) {
+    showRoute("w9", false);
+  } else if (isProjectEstimatePath) {
+    showRoute("project-estimate", false);
+  } else if (isFinancialReportPath) {
+    showRoute("financial-report", false);
   } else {
     const savedRoute = window.location.hash.substring(1) || localStorage.getItem("activeRoute") || "gst";
-    const initialRoute = savedRoute === "per-diem" ? "gst" : savedRoute;
+    const initialRoute = (savedRoute === "per-diem" || savedRoute === "wholesale" || savedRoute === "shipping-label" || savedRoute === "barcode" || savedRoute === "packing-slip" || savedRoute === "inventory-turnover" || savedRoute === "po" || savedRoute === "sku" || savedRoute === "hra" || savedRoute === "bonus" || savedRoute === "gratuity" || savedRoute === "eps" || savedRoute === "nps" || savedRoute === "payslip" || savedRoute === "w9" || savedRoute === "project-estimate" || savedRoute === "financial-report") ? "gst" : savedRoute;
     showRoute(initialRoute, false);
   }
 });

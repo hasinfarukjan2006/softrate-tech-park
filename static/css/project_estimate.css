@@ -1,0 +1,1066 @@
+/* Free Project Cost Estimate Calculator Stylesheet */
+
+/* Hero Banner & Background */
+.pe-hero-banner {
+  text-align: center;
+  padding: 50px 20px;
+  background-color: #e8f0fe;
+  margin-bottom: 0;
+  border-bottom: 1px solid #dcdcdc;
+}
+.pe-hero-banner h1 {
+  font-size: 34px !important;
+  color: #0f4c81;
+  font-weight: 800 !important;
+  margin-bottom: 12px;
+  text-align: center;
+}
+.pe-hero-subtitle-text {
+  font-size: 16px !important;
+  color: #555555;
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.6 !important;
+  text-align: center;
+}
+
+/* Main Container wrapping all calculator features */
+.pe-main-container {
+  background-color: #f4f7fa;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  min-height: 500px;
+}
+
+/* Calculator Card */
+.pe-calculator-card {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e1e6eb;
+  width: 100%;
+  max-width: 1000px;
+  padding: 40px;
+  box-sizing: border-box;
+}
+.pe-card-title {
+  font-size: 24px !important;
+  color: #0f4c81;
+  font-weight: 700 !important;
+  margin-bottom: 30px;
+  border-bottom: 2px solid #f0f3f7;
+  padding-bottom: 15px;
+}
+
+/* Form inputs & grid */
+.pe-form-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-bottom: 30px;
+}
+.pe-form-group {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.pe-form-group label {
+  font-size: 12px;
+  font-weight: 700;
+  color: #555555;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.pe-form-control {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #333333;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.pe-form-control:focus {
+  border-color: #0f4c81;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(15, 76, 129, 0.15);
+}
+
+/* Table Responsive wrapper */
+.pe-table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  margin-bottom: 25px;
+  border: 1px solid #e1e6eb;
+  border-radius: 6px;
+}
+.pe-task-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  min-width: 800px;
+  background-color: #ffffff;
+}
+.pe-task-table th {
+  background-color: #f8fafc;
+  color: #475569;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 14px 16px;
+  border-bottom: 1px solid #e2e8f0;
+  text-transform: uppercase;
+}
+.pe-task-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid #f1f5f9;
+  vertical-align: top;
+}
+
+/* Columns widths */
+.pe-col-task-name { width: 35%; }
+.pe-col-billing-method { width: 20%; }
+.pe-col-cost-price { width: 15%; text-align: right !important; }
+.pe-col-estimate-duration { width: 15%; text-align: right !important; }
+.pe-col-estimation-cost { width: 12%; text-align: right !important; }
+.pe-col-actions { width: 3%; text-align: center; }
+
+/* Table Inputs */
+.pe-table-input {
+  width: 100%;
+  padding: 8px 0;
+  border: none !important;
+  background: transparent !important;
+  font-size: 14px;
+  color: #334155;
+  box-sizing: border-box;
+  border-radius: 0 !important;
+  transition: background-color 0.2s;
+}
+.pe-table-input:hover {
+  background-color: #f8fafc !important;
+}
+.pe-table-input:focus {
+  outline: none !important;
+  border-bottom: 2px solid #0f4c81 !important;
+}
+.pe-row-cost-price,
+.pe-row-duration {
+  text-align: right !important;
+}
+.pe-table-desc-input {
+  width: 100%;
+  border: none !important;
+  background: transparent !important;
+  font-size: 11px;
+  color: #94a3b8;
+  padding: 0 !important;
+  margin-top: 4px;
+}
+.pe-table-desc-input:focus {
+  outline: none !important;
+  border-bottom: 1px dashed #0f4c81 !important;
+}
+
+/* Select element styled */
+.pe-table-select {
+  width: 100%;
+  padding: 8px 0;
+  border: none !important;
+  background: transparent !important;
+  font-size: 14px;
+  color: #334155;
+  cursor: pointer;
+  box-sizing: border-box;
+  border-radius: 0 !important;
+  transition: background-color 0.2s;
+}
+.pe-table-select:hover {
+  background-color: #f8fafc !important;
+}
+.pe-table-select:focus {
+  outline: none !important;
+}
+
+/* Cost and duration wraps */
+.pe-duration-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+.pe-duration-unit {
+  font-size: 12px;
+  font-weight: 600;
+  color: #64748b;
+  white-space: nowrap;
+}
+.pe-row-cost-val {
+  font-size: 14px;
+  font-weight: 700;
+  color: #334155;
+  text-align: right;
+  display: block;
+  padding-top: 8px;
+}
+
+/* Delete Row btn */
+.pe-delete-row-btn {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s;
+}
+.pe-delete-row-btn:hover {
+  color: #ef4444;
+}
+
+/* Table Bottom Controls */
+.pe-table-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+.pe-add-task-btn {
+  background: none;
+  border: none;
+  color: #0f4c81;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 0;
+  transition: color 0.2s;
+}
+.pe-add-task-btn:hover {
+  color: #0056ac;
+  text-decoration: underline;
+}
+
+/* Grand Total block */
+.pe-total-cost-block {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+}
+.pe-total-label {
+  font-size: 14px;
+  font-weight: 700;
+  color: #475569;
+}
+.pe-currency-select {
+  border: none !important;
+  background: transparent !important;
+  font-size: 14px;
+  font-weight: 700;
+  color: #334155;
+  cursor: pointer;
+  padding: 0 4px !important;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+.pe-total-value {
+  font-size: 20px;
+  font-weight: 800;
+  color: #0f4c81;
+}
+
+/* Textareas block */
+.pe-textareas-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+.pe-form-group-textarea {
+  display: flex;
+  flex-direction: column;
+}
+.pe-form-group-textarea label {
+  font-size: 13px;
+  font-weight: 700;
+  color: #475569;
+  margin-bottom: 8px;
+}
+.pe-textarea {
+  width: 100%;
+  height: 100px;
+  padding: 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #333333;
+  resize: vertical;
+  box-sizing: border-box;
+}
+.pe-textarea:focus {
+  border-color: #0f4c81;
+  outline: none;
+}
+
+/* Card actions button */
+.pe-card-actions {
+  display: flex;
+  justify-content: flex-start;
+  border-top: 1.5px solid #f1f5f9;
+  padding-top: 25px;
+}
+.pe-btn-download {
+  background-color: #0f4c81;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  transition: background-color 0.2s, transform 0.1s;
+  box-shadow: 0 2px 5px rgba(15, 76, 129, 0.2);
+}
+.pe-btn-download:hover {
+  background-color: #003666;
+}
+.pe-btn-download:active {
+  transform: scale(0.98);
+}
+
+/* Validation Errors */
+.pe-error-msg {
+  color: #ef4444;
+  font-size: 11px;
+  font-weight: 600;
+  margin-top: 4px;
+  display: block;
+}
+
+/* ==========================================================================
+   WALKTHROUGH INTERACTIVE SECTION
+   ========================================================================== */
+.pe-walkthrough-section {
+  width: 100%;
+  max-width: 1050px;
+  background-color: #fdfdfd;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  border: 1px solid #e1e6eb;
+  padding: 40px;
+  box-sizing: border-box;
+}
+
+.pe-walkthrough-container {
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  gap: 30px;
+  align-items: start;
+}
+
+/* Walkthrough Sidebar Info */
+.pe-walkthrough-header-block {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+.pe-walkthrough-icon {
+  background-color: #e8f0fe;
+  padding: 10px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.pe-walkthrough-header-block h3 {
+  font-size: 18px !important;
+  color: #0f4c81;
+  font-weight: 700 !important;
+  margin-bottom: 6px;
+}
+.pe-walkthrough-header-block p {
+  font-size: 13px !important;
+  color: #64748b;
+  line-height: 1.5 !important;
+}
+
+/* Steps List */
+.pe-walkthrough-steps {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.pe-step-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s;
+  border: 1px solid transparent;
+}
+.pe-step-item:hover {
+  background-color: #f1f5f9;
+}
+.pe-step-item.active {
+  background-color: #eff6ff;
+  border-color: #bfdbfe;
+}
+.pe-step-number {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background-color: #e2e8f0;
+  color: #475569;
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+.pe-step-item.active .pe-step-number {
+  background-color: #0f4c81;
+  color: #ffffff;
+}
+.pe-step-text {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #334155;
+  transition: color 0.2s;
+}
+.pe-step-item.active .pe-step-text {
+  color: #0f4c81;
+}
+
+/* Replica Mockup Card */
+.pe-walkthrough-mockup {
+  position: relative;
+  background-color: #f8fafc;
+  border: 1px dashed #cbd5e1;
+  border-radius: 8px;
+  padding: 20px;
+  min-height: 480px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.pe-mockup-card {
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 24px;
+  width: 100%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+  position: relative;
+  box-sizing: border-box;
+}
+.pe-mockup-title {
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  color: #0f4c81;
+  margin-bottom: 16px;
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 8px;
+}
+
+/* Indicators and field wraps */
+.pe-mockup-form-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.pe-mockup-field-wrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.pe-mockup-field-wrap label {
+  font-size: 9px;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.pe-mockup-input {
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  padding: 6px 8px;
+  font-size: 11px;
+  color: #334155;
+  background-color: #f8fafc;
+}
+
+/* Replica Table */
+.pe-mockup-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 11px;
+}
+.pe-mockup-table th {
+  background-color: #f8fafc;
+  color: #64748b;
+  font-weight: 700;
+  padding: 8px;
+  border-bottom: 1px solid #e2e8f0;
+}
+.pe-mockup-table td {
+  padding: 8px;
+  border-bottom: 1px solid #f1f5f9;
+  position: relative;
+}
+.pe-mockup-tr-relative {
+  position: relative;
+}
+.pe-mockup-input-cell {
+  font-weight: 600;
+  color: #334155;
+}
+.pe-mockup-sub-cell {
+  font-size: 9px;
+  color: #64748b;
+  margin-top: 2px;
+}
+.pe-mockup-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+}
+.pe-mockup-add-btn {
+  color: #0f4c81;
+  font-weight: 700;
+}
+.pe-mockup-total-cost {
+  position: relative;
+  background-color: #f8fafc;
+  padding: 6px 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.pe-mockup-total-label {
+  font-weight: 700;
+  color: #475569;
+}
+.pe-mockup-total-val {
+  font-weight: 800;
+  color: #0f4c81;
+}
+
+/* Indicators Circles */
+.pe-circle-indicator {
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px dashed #006fda;
+  background-color: #ffffff;
+  color: #006fda;
+  font-size: 9px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.2s;
+}
+.pe-circle-indicator:hover, .pe-circle-indicator.active {
+  background-color: #006fda;
+  color: #ffffff;
+  border-style: solid;
+  transform: scale(1.15);
+  box-shadow: 0 2px 6px rgba(0, 111, 218, 0.3);
+}
+
+/* Tooltip overlay popups */
+.pe-tooltip-box {
+  position: absolute;
+  background-color: #1e293b;
+  color: #ffffff;
+  padding: 12px 16px;
+  border-radius: 6px;
+  font-size: 12px;
+  line-height: 1.4;
+  width: 220px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+  z-index: 100;
+  box-sizing: border-box;
+  transition: opacity 0.2s;
+  animation: tooltipFadeIn 0.2s ease-out;
+}
+.pe-tooltip-close {
+  position: absolute;
+  top: 4px;
+  right: 6px;
+  background: none;
+  border: none;
+  color: #94a3b8;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: 700;
+}
+.pe-tooltip-close:hover {
+  color: #ef4444;
+}
+.pe-tooltip-text {
+  padding-right: 8px;
+  font-weight: 500;
+}
+
+/* Tooltip Arrow */
+.pe-tooltip-box::after {
+  content: "";
+  position: absolute;
+  border-width: 6px;
+  border-style: solid;
+}
+
+/* Tooltip positions classes */
+.pe-tooltip-pos-right::after {
+  top: 50%;
+  right: 100%;
+  margin-top: -6px;
+  border-color: transparent #1e293b transparent transparent;
+}
+.pe-tooltip-pos-left::after {
+  top: 50%;
+  left: 100%;
+  margin-top: -6px;
+  border-color: transparent transparent transparent #1e293b;
+}
+.pe-tooltip-pos-top::after {
+  top: 100%;
+  left: 50%;
+  margin-left: -6px;
+  border-color: #1e293b transparent transparent transparent;
+}
+.pe-tooltip-pos-bottom::after {
+  bottom: 100%;
+  left: 50%;
+  margin-left: -6px;
+  border-color: transparent transparent #1e293b transparent;
+}
+
+@keyframes tooltipFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   FAQ ACCORDION LAYOUT
+   ========================================================================== */
+.pe-faq-section {
+  width: 100%;
+  max-width: 900px;
+  margin-top: 30px;
+}
+.pe-faq-section h2 {
+  font-size: 26px !important;
+  font-weight: 800 !important;
+  text-align: center;
+  margin-bottom: 30px;
+  color: #0f4c81;
+}
+.pe-faq-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.pe-faq-item {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.pe-faq-item.active {
+  border-color: #0f4c81;
+  box-shadow: 0 4px 10px rgba(15, 76, 129, 0.05);
+}
+.pe-faq-trigger {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  background: transparent;
+  border: none;
+  font-size: 15px;
+  font-weight: 700;
+  color: #334155;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  transition: color 0.2s;
+}
+.pe-faq-trigger:hover {
+  color: #0f4c81;
+}
+.pe-faq-trigger i {
+  color: #94a3b8;
+  transition: transform 0.2s, color 0.2s;
+  flex-shrink: 0;
+}
+.pe-faq-item.active .pe-faq-trigger i {
+  transform: rotate(180deg);
+  color: #0f4c81;
+}
+.pe-faq-content {
+  display: none;
+  padding: 0 20px 18px 20px;
+  font-size: 14px;
+  color: #555555;
+  line-height: 1.6;
+}
+.pe-faq-content p {
+  margin: 0;
+}
+
+/* ==========================================================================
+   DARK MODE SUPPORT
+   ========================================================================== */
+body.dark .pe-hero-banner {
+  background-color: #1e293b;
+  border-bottom-color: #334155;
+}
+body.dark .pe-hero-banner h1 {
+  color: #38bdf8;
+}
+body.dark .pe-hero-subtitle-text {
+  color: #94a3b8;
+}
+body.dark .pe-main-container {
+  background-color: #0f172a;
+}
+body.dark .pe-calculator-card {
+  background-color: #1e293b;
+  border-color: #334155;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+body.dark .pe-card-title {
+  color: #38bdf8;
+  border-bottom-color: #334155;
+}
+body.dark .pe-form-group label {
+  color: #94a3b8;
+}
+body.dark .pe-form-control {
+  background-color: #0f172a;
+  border-color: #334155;
+  color: #f8fafc;
+}
+body.dark .pe-form-control:focus {
+  border-color: #38bdf8;
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15);
+}
+body.dark .pe-task-table {
+  background-color: #1e293b;
+}
+body.dark .pe-task-table th {
+  background-color: #1a2238;
+  color: #94a3b8;
+  border-bottom-color: #334155;
+}
+body.dark .pe-task-table td {
+  border-bottom-color: #334155;
+}
+body.dark .pe-table-input, body.dark .pe-table-select {
+  background-color: #0f172a;
+  border-color: #334155;
+  color: #f8fafc;
+}
+body.dark .pe-table-input:focus, body.dark .pe-table-select:focus {
+  border-color: #38bdf8;
+}
+body.dark .pe-table-desc-input {
+  border-bottom-color: #334155;
+  color: #64748b;
+}
+body.dark .pe-table-desc-input:focus {
+  border-bottom-color: #38bdf8;
+}
+body.dark .pe-duration-unit {
+  color: #94a3b8;
+}
+body.dark .pe-row-cost-val {
+  color: #f8fafc;
+}
+body.dark .pe-total-cost-block {
+  background-color: #1a2238;
+  border-color: #334155;
+}
+body.dark .pe-total-label {
+  color: #94a3b8;
+}
+body.dark .pe-currency-select {
+  background-color: #0f172a;
+  border-color: #334155;
+  color: #f8fafc;
+}
+body.dark .pe-total-value {
+  color: #38bdf8;
+}
+body.dark .pe-add-task-btn {
+  color: #38bdf8;
+}
+body.dark .pe-add-task-btn:hover {
+  color: #7dd3fc;
+}
+body.dark .pe-form-group-textarea label {
+  color: #94a3b8;
+}
+body.dark .pe-textarea {
+  background-color: #0f172a;
+  border-color: #334155;
+  color: #f8fafc;
+}
+body.dark .pe-textarea:focus {
+  border-color: #38bdf8;
+}
+body.dark .pe-btn-download {
+  background-color: #0f4c81;
+}
+body.dark .pe-btn-download:hover {
+  background-color: #0f5898;
+}
+
+body.dark .pe-walkthrough-section {
+  background-color: #1e293b;
+  border-color: #334155;
+}
+body.dark .pe-walkthrough-header-block h3 {
+  color: #38bdf8;
+}
+body.dark .pe-walkthrough-header-block p {
+  color: #94a3b8;
+}
+body.dark .pe-walkthrough-icon {
+  background-color: #1e293b;
+  border: 1px solid #334155;
+}
+body.dark .pe-step-item:hover {
+  background-color: #1a2238;
+}
+body.dark .pe-step-item.active {
+  background-color: #1e3a8a;
+  border-color: #2563eb;
+}
+body.dark .pe-step-text {
+  color: #94a3b8;
+}
+body.dark .pe-step-item.active .pe-step-text {
+  color: #38bdf8;
+}
+body.dark .pe-walkthrough-mockup {
+  background-color: #0f172a;
+  border-color: #334155;
+}
+body.dark .pe-mockup-card {
+  background-color: #1e293b;
+  border-color: #334155;
+}
+body.dark .pe-mockup-title {
+  color: #38bdf8;
+  border-bottom-color: #334155;
+}
+body.dark .pe-mockup-field-wrap label {
+  color: #94a3b8;
+}
+body.dark .pe-mockup-input {
+  background-color: #0f172a;
+  border-color: #334155;
+  color: #f8fafc;
+}
+body.dark .pe-mockup-table th {
+  background-color: #1a2238;
+  color: #94a3b8;
+  border-bottom-color: #334155;
+}
+body.dark .pe-mockup-table td {
+  border-bottom-color: #334155;
+}
+body.dark .pe-mockup-input-cell {
+  color: #f8fafc;
+}
+body.dark .pe-mockup-sub-cell {
+  color: #94a3b8;
+}
+body.dark .pe-mockup-add-btn {
+  color: #38bdf8;
+}
+body.dark .pe-mockup-total-cost {
+  background-color: #1a2238;
+  border-color: #334155;
+}
+body.dark .pe-mockup-total-label {
+  color: #94a3b8;
+}
+body.dark .pe-mockup-total-val {
+  color: #38bdf8;
+}
+body.dark .pe-circle-indicator {
+  background-color: #1e293b;
+  border-color: #38bdf8;
+  color: #38bdf8;
+}
+body.dark .pe-circle-indicator:hover, body.dark .pe-circle-indicator.active {
+  background-color: #38bdf8;
+  color: #0f172a;
+}
+body.dark .pe-faq-section h2 {
+  color: #38bdf8;
+}
+body.dark .pe-faq-item {
+  background-color: #1e293b;
+  border-color: #334155;
+}
+body.dark .pe-faq-item.active {
+  border-color: #38bdf8;
+}
+body.dark .pe-faq-trigger {
+  color: #cbd5e1;
+}
+body.dark .pe-faq-trigger:hover {
+  color: #38bdf8;
+}
+body.dark .pe-faq-item.active .pe-faq-trigger {
+  color: #38bdf8;
+}
+body.dark .pe-faq-item.active .pe-faq-trigger i {
+  color: #38bdf8;
+}
+body.dark .pe-faq-content {
+  color: #94a3b8;
+}
+
+/* ==========================================================================
+   RESPONSIVENESS (MOBILE SCREENS)
+   ========================================================================== */
+@media (max-width: 992px) {
+  .pe-form-row {
+    grid-template-columns: 1fr 1fr;
+  }
+  .pe-walkthrough-container {
+    grid-template-columns: 1fr;
+  }
+  .pe-textareas-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .pe-form-row {
+    grid-template-columns: 1fr;
+  }
+  .pe-calculator-card {
+    padding: 20px;
+  }
+  .pe-walkthrough-section {
+    padding: 20px;
+  }
+  .pe-mockup-form-row {
+    grid-template-columns: 1fr 1fr;
+  }
+  .pe-total-cost-block {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+/* ==========================================================================
+   PRINT/PDF EXPORT RULES
+   ========================================================================== */
+@media print {
+  /* Hide all app wrapper elements except the printable calculator card */
+  body * {
+    visibility: hidden;
+  }
+  
+  #peCalculatorCardForPrint,
+  #peCalculatorCardForPrint * {
+    visibility: visible !important;
+  }
+  
+  #peCalculatorCardForPrint {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    max-width: 100%;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background-color: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  .pe-form-control, .pe-table-input, .pe-table-select, .pe-textarea {
+    border: none !important;
+    background: transparent !important;
+    padding: 2px !important;
+    color: #000000 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  
+  .pe-delete-row-btn, .pe-add-task-btn, .pe-card-actions {
+    display: none !important;
+  }
+  
+  .pe-total-cost-block {
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+  }
+
+  .pe-currency-select {
+    border: none !important;
+    background: transparent !important;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+
+  @page {
+    margin: 1.5cm;
+  }
+}

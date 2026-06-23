@@ -1,0 +1,399 @@
+/* ============================================================
+   REORDER POINT (ROP) CALCULATOR — Zoho Style CSS
+   Scoped to #reorder-section to prevent style bleeding.
+   ============================================================ */
+
+#reorder-section {
+  position: relative;
+  background: #f8fafc; /* Soft pastel background */
+  padding: 1rem 0 4rem 0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* 1. Full-Width Centered Hero Section */
+.rop-hero {
+  text-align: center;
+  max-width: 850px;
+  margin: 0 auto 2.5rem auto;
+  padding: 3rem 1.5rem 1rem 1.5rem;
+  position: relative;
+  z-index: 10;
+}
+
+.rop-hero h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  line-height: 1.25;
+  color: #0f172a; /* Black text */
+  margin-bottom: 1.25rem;
+  font-family: inherit;
+}
+
+.rop-hero h1 .rop-highlight {
+  color: #dc2626; /* Highlighted red */
+}
+
+.rop-hero-desc {
+  font-size: 1.1rem;
+  color: #475569;
+  line-height: 1.6;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+/* 2. Centered White Calculator Container */
+.rop-calculator-container {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+  max-width: 800px;
+  margin: 0 auto 3rem auto;
+  padding: 2.25rem;
+  position: relative;
+  z-index: 10;
+}
+
+.rop-calc-header h3 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 1.75rem;
+  text-align: center;
+}
+
+/* 3. Input Grid Layout */
+.rop-input-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  align-items: flex-start;
+}
+
+.rop-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.rop-field h4 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #334155;
+  margin: 0;
+}
+
+.rop-field p {
+  font-size: 0.75rem;
+  color: #64748b;
+  margin: 0 0 0.25rem 0;
+  font-weight: 600;
+}
+
+.rop-field input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #0f172a;
+  outline: none;
+  background-color: #ffffff;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  font-family: inherit;
+}
+
+.rop-field input:focus {
+  border-color: #dc2626; /* Zoho Red highlight */
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.15);
+}
+
+.rop-field input.wrong-input {
+  border-color: #ef4444 !important;
+  background-color: #fef2f2;
+}
+
+.rop-error-msg {
+  display: none;
+  font-size: 0.75rem;
+  color: #ef4444;
+  margin-top: 0.25rem;
+  font-weight: 600;
+}
+
+/* 4. Calculate Button row */
+.rop-btn-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 1.5rem 0;
+}
+
+.rop-calculate-btn {
+  background-color: #dc2626; /* Zoho Red Button */
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.75rem 2.5rem;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.15);
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  outline: none;
+}
+
+.rop-calculate-btn:hover {
+  background-color: #b91c1c;
+}
+
+.rop-calculate-btn:active {
+  transform: scale(0.98);
+}
+
+/* 5. Results Section (hidden by default) */
+.rop-result-container {
+  display: none;
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 1.75rem;
+  margin-top: 2rem;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.rop-result-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px dashed #e2e8f0;
+  padding-bottom: 1rem;
+}
+
+.rop-result-row:last-of-type {
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+.rop-arrow {
+  width: 10px;
+  height: 10px;
+  border-top: 3px solid #dc2626;
+  border-right: 3px solid #dc2626;
+  transform: rotate(45deg);
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.rop-result-val-block p:first-child {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0 0 0.25rem 0;
+}
+
+.rop-result-val-block p:last-child {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #dc2626;
+  margin: 0;
+  line-height: 1.15;
+}
+
+/* Calculation Details Box */
+.rop-calculation-details {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  padding: 1rem;
+  margin-top: 1.5rem;
+}
+
+.rop-calculation-details p:first-child {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #475569;
+  text-transform: uppercase;
+  margin: 0 0 0.5rem 0;
+}
+
+.rop-calculation-details p:last-child {
+  font-family: var(--font-mono, monospace), Courier, sans-serif;
+  font-size: 0.9rem;
+  color: #0f172a;
+  margin: 0;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+/* Recalculate wrapper */
+.rop-recalc-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.rop-recalc-link {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: none;
+  border: none;
+  color: #64748b;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  outline: none;
+}
+
+.rop-recalc-link:hover {
+  color: #dc2626;
+}
+
+.rop-recalc-link i {
+  width: 15px;
+  height: 15px;
+}
+
+/* 6. Educational Copy Layout */
+.rop-educational-section {
+  position: relative;
+  z-index: 10;
+  padding: 0 2.5rem;
+}
+
+.rop-info-grid {
+  display: grid;
+  grid-template-columns: 2fr 1.25fr;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.rop-info-card {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.rop-info-card h3 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.rop-info-card p {
+  color: #475569;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+.rop-side-promo {
+  background-color: #1e293b; /* Dark slate promo card like Zoho */
+  color: #ffffff;
+  border-radius: 8px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.rop-side-promo h3 {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin-top: 0;
+  margin-bottom: 1.25rem;
+  border-bottom: 1px solid #334155;
+  padding-bottom: 0.75rem;
+}
+
+.rop-promo-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.rop-promo-item {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.rop-promo-num {
+  background-color: #334155;
+  color: #ffffff;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+.rop-promo-txt {
+  font-size: 0.9rem;
+  color: #cbd5e1;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Dot-matrix background pattern */
+.rop-background-pattern {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 350px;
+  background-image: radial-gradient(#e2e8f0 1.2px, transparent 1.2px);
+  background-size: 24px 24px;
+  opacity: 0.3;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .rop-info-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .rop-hero h1 {
+    font-size: 2rem;
+  }
+  .rop-calculator-container {
+    padding: 1.5rem;
+    border-radius: 8px;
+  }
+  .rop-input-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  .rop-educational-section {
+    padding: 0 1.25rem;
+  }
+  .rop-info-card {
+    padding: 1.5rem;
+  }
+}

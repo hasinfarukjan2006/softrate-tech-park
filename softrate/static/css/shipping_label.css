@@ -1,0 +1,579 @@
+/* ============================================================
+   SHIPPING LABEL GENERATOR — Scoped Styles
+   ============================================================ */
+
+#shipping-label-section {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #1f2937;
+  line-height: 1.5;
+  background-color: #fffdf5; /* Light cream/yellow background */
+  padding: 2.5rem 1.5rem;
+  border-radius: 16px;
+  margin-bottom: 2.5rem;
+}
+
+#shipping-label-section *,
+#shipping-label-section *::before,
+#shipping-label-section *::after {
+  box-sizing: border-box;
+}
+
+.sl-page-container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* --- Top Button Controls --- */
+.sl-top-controls {
+  display: flex;
+  justify-content: flex-start;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.sl-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.5rem;
+  font-size: 0.92rem;
+  font-weight: 700;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  border: none;
+  text-decoration: none;
+}
+
+.sl-btn-primary {
+  background-color: #f97316; /* Orange theme */
+  color: #fff;
+  box-shadow: 0 2px 4px rgba(249, 115, 22, 0.2);
+}
+
+.sl-btn-primary:hover {
+  background-color: #ea580c;
+  transform: translateY(-1px);
+}
+
+.sl-btn-secondary {
+  background-color: #fff;
+  color: #f97316;
+  border: 1px solid #f97316;
+}
+
+.sl-btn-secondary:hover {
+  background-color: #fffbeb;
+  transform: translateY(-1px);
+}
+
+/* --- Main Workspace (Two Columns) --- */
+.sl-workspace {
+  display: flex;
+  gap: 2.5rem;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  margin-bottom: 3rem;
+}
+
+.sl-workspace-left {
+  flex: 1 1 420px;
+  display: flex;
+  justify-content: center;
+}
+
+.sl-workspace-right {
+  flex: 1 1 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* --- SHIPPING LABEL PREVIEW CARD --- */
+.sl-label-card {
+  background: #ffffff;
+  border: 3px solid #000000; /* Bold black border */
+  border-radius: 12px;
+  width: 100%;
+  max-width: 440px;
+  min-height: 640px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  color: #000000;
+  font-family: Arial, Helvetica, sans-serif;
+  overflow: hidden;
+}
+
+/* Zones & Dividers */
+.sl-zone {
+  width: 100%;
+  border-bottom: 2px solid #000000;
+  padding: 0.75rem 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.sl-zone:last-child {
+  border-bottom: none;
+}
+
+/* Zone A: Header */
+.sl-zone-a {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+}
+
+.sl-brand-logo-area {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sl-brand-initial {
+  background: #000000;
+  color: #ffffff;
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  font-size: 1.3rem;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+}
+
+.sl-brand-text-sm {
+  font-weight: 800;
+  font-size: 1.15rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  outline: none;
+}
+
+.sl-service-area {
+  text-align: right;
+}
+
+/* Zone D: Split Column */
+.sl-zone-d {
+  flex-direction: row;
+  padding: 0;
+}
+
+.sl-half-col {
+  flex: 1;
+  padding: 0.65rem 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Zone E: Grid Details */
+.sl-zone-e {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 0;
+}
+
+.sl-grid-cell {
+  padding: 0.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Borders inside layouts */
+.border-right {
+  border-right: 2px solid #000000;
+}
+
+.border-bottom {
+  border-bottom: 2px solid #000000;
+}
+
+/* Fields & Labels */
+.sl-field-title {
+  font-size: 0.68rem;
+  font-weight: 800;
+  color: #000000;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.2rem;
+  text-transform: uppercase;
+}
+
+.sl-editable-line {
+  font-size: 0.88rem;
+  line-height: 1.3;
+  min-height: 1.1rem;
+  outline: none;
+  border-bottom: 1px dashed transparent;
+  word-break: break-word;
+}
+
+.sl-editable-line:hover,
+.sl-editable-line:focus {
+  border-bottom: 1px dashed #666;
+  background-color: #fafafa;
+}
+
+.sl-address-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.sl-to-address .sl-editable-line {
+  font-size: 0.95rem;
+}
+
+.font-bold {
+  font-weight: 800;
+}
+
+/* Form Dropdowns inside label */
+.sl-select-field {
+  border: none;
+  background: transparent;
+  font-size: 0.88rem;
+  font-weight: 700;
+  font-family: inherit;
+  color: #000000;
+  cursor: pointer;
+  outline: none;
+  padding: 0;
+  width: 100%;
+}
+
+/* Zone F: Tracking and Barcode */
+.sl-zone-f {
+  align-items: center;
+  padding: 1rem;
+}
+
+.sl-tracking-id {
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  outline: none;
+  margin-bottom: 0.5rem;
+  width: 100%;
+}
+
+.sl-barcode-container {
+  width: 100%;
+  height: 60px;
+  padding: 0.25rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sl-barcode-svg {
+  width: 90%;
+  height: 100%;
+}
+
+/* Zone G: Footer */
+.sl-zone-g {
+  padding: 0.75rem 1rem;
+  justify-content: space-between;
+}
+
+.sl-powered-tag {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #4b5563;
+  margin-top: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* --- Instruction / Help Cards --- */
+.sl-help-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+  position: relative;
+}
+
+.sl-help-card-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #fff7ed;
+  color: #f97316;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.85rem;
+}
+
+.sl-help-card h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+  color: #1a1a1a;
+}
+
+.sl-help-card p {
+  font-size: 0.88rem;
+  color: #555;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.sl-help-card ul {
+  margin: 0;
+  padding-left: 1.2rem;
+  font-size: 0.88rem;
+  color: #555;
+}
+
+.sl-help-card ul li {
+  margin-bottom: 0.4rem;
+}
+
+.sl-help-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #f97316;
+  text-decoration: none;
+  margin-top: 0.75rem;
+}
+
+.sl-help-link:hover {
+  color: #ea580c;
+}
+
+/* --- What is a shipping label section --- */
+.sl-explain-section {
+  background-color: #ffffff;
+  padding: 3rem 2.5rem;
+  border-radius: 16px;
+  display: flex;
+  gap: 2.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 3rem;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+}
+
+.sl-explain-left {
+  flex: 1 1 420px;
+}
+
+.sl-explain-left h2 {
+  font-size: 1.85rem;
+  font-weight: 800;
+  margin: 0 0 1rem 0;
+  color: #111;
+}
+
+.sl-explain-left p {
+  color: #555;
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.sl-bullet-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sl-bullet-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.65rem;
+  font-size: 0.95rem;
+  color: #333;
+  font-weight: 500;
+}
+
+.sl-bullet-list li i {
+  color: #f97316;
+  width: 16px;
+  height: 16px;
+}
+
+.sl-explain-right {
+  flex: 1 1 240px;
+  display: flex;
+  justify-content: center;
+}
+
+.sl-box-illustration {
+  width: 180px;
+  height: 180px;
+}
+
+/* --- Benefits Section --- */
+.sl-benefits-section {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+
+.sl-benefits-section h2 {
+  font-size: 1.85rem;
+  font-weight: 800;
+  margin-bottom: 2rem;
+  color: #111;
+}
+
+.sl-benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+.sl-benefit-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 2rem 1.5rem;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+  border: 1px solid #e5e7eb;
+}
+
+.sl-benefit-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #fff7ed;
+  color: #f97316;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.25rem;
+}
+
+.sl-benefit-card h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+  color: #111;
+}
+
+.sl-benefit-card p {
+  font-size: 0.88rem;
+  color: #555;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* --- FAQ Section --- */
+.sl-faq-section {
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+.sl-faq-section h2 {
+  font-size: 1.85rem;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #111;
+}
+
+.sl-faq-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.sl-faq-item {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: border-color 0.15s;
+}
+
+.sl-faq-item.active {
+  border-color: #f97316;
+}
+
+.sl-faq-trigger {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.1rem 1.5rem;
+  background: transparent;
+  border: none;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #1f2937;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  transition: color 0.15s;
+}
+
+.sl-faq-trigger:hover {
+  color: #f97316;
+}
+
+.sl-faq-trigger i {
+  color: #9ca3af;
+  transition: transform 0.2s, color 0.2s;
+  flex-shrink: 0;
+}
+
+.sl-faq-item.active .sl-faq-trigger i {
+  transform: rotate(180deg);
+  color: #f97316;
+}
+
+.sl-faq-content {
+  display: none;
+  padding: 0 1.5rem 1.25rem 1.5rem;
+  font-size: 0.9rem;
+  color: #4b5563;
+  line-height: 1.6;
+}
+
+.sl-faq-content p {
+  margin: 0;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+  #shipping-label-section {
+    padding: 1.5rem 1rem;
+  }
+  .sl-explain-section {
+    padding: 2rem 1.5rem;
+  }
+  .sl-workspace {
+    gap: 1.5rem;
+  }
+}
+
+/* --- PDF PRINT MEDIA QUERY --- */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #shippingLabelCard,
+  #shippingLabelCard * {
+    visibility: visible;
+  }
+  #shippingLabelCard {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(1.3);
+    border: 3px solid #000 !important;
+    box-shadow: none !important;
+  }
+}

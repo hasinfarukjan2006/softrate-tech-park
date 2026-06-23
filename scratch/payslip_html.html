@@ -1,0 +1,578 @@
+      <!-- Section: Free Payslip Generator -->
+      <section id="payslip-section" class="content-section hide">
+        
+        <!-- ===== HERO SECTION ===== -->
+        <div class="payslip-hero">
+          <h1>Create Professional Employee Payslips Instantly</h1>
+          <p class="payslip-hero-desc">With Softrate, create top-notch payslips for your employees right away! Easy to use and customizable, this free tool will make payroll smoother for you.</p>
+        </div>
+
+        <!-- ===== MAIN PAYSLIP GENERATOR FORM ===== -->
+        <div class="input-form-container payslip-generator" id="payslip-form-container">
+          
+          <!-- Top Row: Logo Uploader & Payslip Month -->
+          <div class="company-details-row">
+            <div class="company-logo-uploader">
+              <div class="company-logo-placeholder-zoho" id="logo-upload-box" onclick="document.getElementById('logo_file_input').click()">
+                <div class="upload-icon-zoho">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 16V8M12 8L9 11M12 8L15 11" stroke="#508eff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M3 15C3 17.8284 3 19.2426 3.87868 20.1213C4.75736 21 6.17157 21 9 21H15C17.8284 21 19.2426 21 20.1213 20.1213C21 19.2426 21 17.8284 21 15" stroke="#508eff" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                <div class="upload-label-text">Upload</div>
+              </div>
+              <input type="file" id="logo_file_input" accept="image/*" style="display: none;" onchange="PayslipController.handleLogoUpload(this)">
+              <div class="upload-note-zoho">
+                <strong>Upload Logo</strong>
+                <div>240 x 240 pixels / JPG or PNG. Maximum size of 1MB.</div>
+              </div>
+            </div>
+            
+            <div class="form-group-payslip text-right pay-period-group">
+              <label for="pay_period">Payslip For the Month</label>
+              <input type="text" id="pay_period" class="form-control text-right pay-period-input" placeholder="June 2026" value="June 2026" required>
+              <small class="text-danger hide" id="pay_period_err">Enter the Pay Period</small>
+            </div>
+          </div>
+
+          <!-- Company Details (Borderless Stack) -->
+          <div class="company-info-stack">
+            <div class="form-group-payslip-borderless">
+              <input type="text" id="company_name_input" class="form-control" placeholder="Company Name*" value="Softrate Tech Park Pvt. Ltd.">
+              <small class="text-danger hide" id="company_name_input_err">Enter the Company's name</small>
+            </div>
+            <div class="form-group-payslip-borderless">
+              <input type="text" id="company_address_input" class="form-control" placeholder="Company Address" value="Block A, Tech City, Sector 5">
+            </div>
+            <div class="form-group-payslip-borderless">
+              <input type="text" id="company_city_input" class="form-control" placeholder="City, Pincode" value="Kolkata, West Bengal - 700091">
+            </div>
+            <div class="form-group-payslip-borderless">
+              <input type="text" id="company_country_input" class="form-control" placeholder="Country" value="India">
+            </div>
+          </div>
+
+          <!-- Employee Information Section -->
+          <div class="payslip-form-section-title">Employee Pay Summary *</div>
+          
+          <div class="employee-details-grid-zoho">
+            <!-- Row 1 -->
+            <div class="emp-grid-label">Employee Name <span class="colon">:</span></div>
+            <div class="emp-grid-input">
+              <input type="text" id="employee_name" class="form-control" placeholder="Enter employee name" required>
+              <small class="text-danger hide" id="employee_name_err">Enter the Employee's Name</small>
+            </div>
+            
+            <div class="emp-grid-label">Employee ID <span class="colon">:</span></div>
+            <div class="emp-grid-input">
+              <input type="text" id="employee_id" class="form-control" placeholder="Enter employee ID" required>
+              <small class="text-danger hide" id="employee_id_err">Enter the Employee's ID</small>
+            </div>
+
+            <!-- Row 2 -->
+            <div class="emp-grid-label">Department <span class="colon">:</span></div>
+            <div class="emp-grid-input">
+              <input type="text" id="employee_dept" class="form-control" placeholder="Enter department" required>
+              <small class="text-danger hide" id="employee_dept_err">Enter department</small>
+            </div>
+            
+            <div class="emp-grid-label">Designation <span class="colon">:</span></div>
+            <div class="emp-grid-input">
+              <input type="text" id="employee_designation" class="form-control" placeholder="Enter designation" required>
+              <small class="text-danger hide" id="employee_designation_err">Enter designation</small>
+            </div>
+
+            <!-- Row 3 -->
+            <div class="emp-grid-label">Pay Period <span class="colon">:</span></div>
+            <div class="emp-grid-input">
+              <input type="text" id="employee_pay_period" class="form-control date-field" placeholder="June 2026" value="June 2026">
+              <small class="text-danger hide" id="employee_pay_period_err">Enter the Pay Period</small>
+            </div>
+            
+            <div class="emp-grid-label">Paid Days <span class="colon">:</span></div>
+            <div class="emp-grid-input">
+              <input type="number" id="employee_paid_days" class="form-control" placeholder="Eg: 22" min="0" max="31">
+              <small class="text-danger hide" id="employee_paid_days_err">Enter a valid number of days</small>
+            </div>
+
+            <!-- Row 4 -->
+            <div class="emp-grid-label">Loss of Pay Days <span class="colon">:</span></div>
+            <div class="emp-grid-input">
+              <input type="number" id="employee_lop_days" class="form-control" placeholder="Eg: 0" value="0" min="0" max="31">
+              <small class="text-danger hide" id="employee_lop_days_err">Enter a valid number of days</small>
+            </div>
+            
+            <div class="emp-grid-label">Pay Date <span class="colon">:</span></div>
+            <div class="emp-grid-input">
+              <input type="text" id="employee_pay_date" class="form-control date-field" placeholder="Eg: Jun 01 2026" value="Jun 01 2026">
+              <small class="text-danger hide" id="employee_pay_date_err">Enter the Payment Date</small>
+            </div>
+          </div>
+
+          <!-- Add custom field link -->
+          <div class="add-more-link-row">
+            <span class="add-link-btn" onclick="alert('Additional custom fields features are handled dynamically in payroll dashboards.')">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 5V19M5 12H19" stroke="#508eff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Add another field
+            </span>
+          </div>
+
+          <!-- Income Details Table Grid -->
+          <div class="payslip-form-section-title">Income Details *</div>
+          
+          <div class="income-details-table-wrapper">
+            <table class="zoho-salary-table">
+              <thead>
+                <tr>
+                  <th width="35%">Earnings</th>
+                  <th width="15%" class="text-right">Amount</th>
+                  <th width="35%">Deductions</th>
+                  <th width="15%" class="text-right">Amount</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Row 1 -->
+                <tr>
+                  <td>Basic</td>
+                  <td class="amount-cell-input">
+                    <input type="number" id="basic_salary" class="form-control text-right amount-input" placeholder="0" min="0" required>
+                    <small class="text-danger hide" id="basic_salary_err">Enter Basic Salary</small>
+                  </td>
+                  <td>Income Tax</td>
+                  <td class="amount-cell-input">
+                    <input type="number" id="tds_deduction" class="form-control text-right amount-input" placeholder="0" min="0">
+                  </td>
+                </tr>
+                <!-- Row 2 -->
+                <tr>
+                  <td>House Rent Allowance</td>
+                  <td class="amount-cell-input">
+                    <input type="number" id="hra_allowance" class="form-control text-right amount-input" placeholder="0" min="0">
+                  </td>
+                  <td>Provident Fund</td>
+                  <td class="amount-cell-input">
+                    <input type="number" id="pf_deduction" class="form-control text-right amount-input" placeholder="0" min="0">
+                  </td>
+                </tr>
+                <!-- Row 3 -->
+                <tr>
+                  <td>Conveyance Allowance</td>
+                  <td class="amount-cell-input">
+                    <input type="number" id="conveyance_allowance" class="form-control text-right amount-input" placeholder="0" min="0">
+                  </td>
+                  <td>Professional Tax</td>
+                  <td class="amount-cell-input">
+                    <input type="number" id="prof_tax_deduction" class="form-control text-right amount-input" placeholder="0" min="0">
+                  </td>
+                </tr>
+                <!-- Row 4 -->
+                <tr>
+                  <td>Medical Allowance</td>
+                  <td class="amount-cell-input">
+                    <input type="number" id="medical_allowance" class="form-control text-right amount-input" placeholder="0" min="0">
+                  </td>
+                  <td>Other Deductions</td>
+                  <td class="amount-cell-input">
+                    <input type="number" id="other_deduction" class="form-control text-right amount-input" placeholder="0" min="0">
+                  </td>
+                </tr>
+                <!-- Row 5 -->
+                <tr>
+                  <td>Other Allowances</td>
+                  <td class="amount-cell-input">
+                    <input type="number" id="other_allowance" class="form-control text-right amount-input" placeholder="0" min="0">
+                  </td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <!-- Link Row -->
+                <tr class="add-components-row">
+                  <td colspan="2">
+                    <span class="add-link-btn" onclick="alert('Additional salary components can be configured in your Softrate Payroll dashboard.')">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 5V19M5 12H19" stroke="#508eff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                      Add Earnings
+                    </span>
+                  </td>
+                  <td colspan="2">
+                    <span class="add-link-btn" onclick="alert('Additional deduction categories can be configured in your Softrate Payroll dashboard.')">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 5V19M5 12H19" stroke="#508eff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                      Add Deductions
+                    </span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            
+            <!-- Table Footer -->
+            <div class="zoho-table-footer">
+              <div class="footer-left">
+                <span>Gross Earnings</span>
+                <span class="bold-amount">₹<span id="form_gross_salary">0</span></span>
+              </div>
+              <div class="footer-right">
+                <span>Total Deductions</span>
+                <span class="bold-amount">₹<span id="form_total_deductions">0</span></span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Total Calculation Strip -->
+          <div class="net-pay-strip-zoho">
+            <div class="net-pay-strip-label">
+              <strong>Total Net Payable</strong>
+              <div class="sub-label">Gross Earnings - Total Deductions</div>
+            </div>
+            <div class="net-pay-strip-value">
+              ₹<span id="form_net_salary">0</span>
+            </div>
+          </div>
+          <div class="net-pay-words-zoho" id="form_net_in_words">
+            Amount in words : Zero Rupees Only
+          </div>
+
+          <!-- Buttons centered -->
+          <div class="form-buttons-row-centered">
+            <button type="button" class="payslip-btn-zoho btn-submit" onclick="PayslipController.generatePayslip()">Generate Payslip</button>
+            <button type="button" class="payslip-btn-zoho btn-reset" onclick="PayslipController.resetForm()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle; margin-right: 4px;">
+                <path d="M4.05 11a8 8 0 11.5 4m-.5-4V5m0 6h6" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Reset
+            </button>
+          </div>
+
+        </div>
+
+        <!-- ===== PAYSLIP PREVIEW SECTION ===== -->
+        <div class="payslip-preview-card-container hide" id="payslip-preview-container">
+          
+          <div class="preview-actions-bar">
+            <h2>Payslip Preview</h2>
+            <div class="preview-actions-buttons">
+              <button class="payslip-btn-zoho btn-reset" style="padding: 0.5rem 1.25rem;" onclick="PayslipController.editPayslip()">Go Back</button>
+              <button class="payslip-btn-zoho btn-reset" style="padding: 0.5rem 1.25rem;" onclick="PayslipController.printPayslip()">Print Payslip</button>
+              <button class="payslip-btn-zoho btn-submit" style="padding: 0.5rem 1.25rem;" onclick="PayslipController.downloadPDF()">Download PDF</button>
+              <button class="payslip-btn-zoho btn-reset" style="padding: 0.5rem 1.25rem; border-color: #f0483e; color: #f0483e;" onclick="PayslipController.resetForm(); PayslipController.editPayslip()">Generate New Payslip</button>
+            </div>
+          </div>
+
+          <!-- The Printable Paper Slip -->
+          <div class="payslip-preview-paper" id="payslip-preview-paper">
+            
+            <!-- Company Info & Title -->
+            <div class="preview-paper-header" style="display: flex; justify-content: space-between; align-items: flex-start;">
+              <div style="display: flex; gap: 1.5rem; align-items: center;">
+                <div id="preview_logo_container" style="display: none; width: 60px; height: 60px;">
+                  <img id="preview_logo_img" src="" alt="Company Logo" style="width: 100%; height: 100%; object-fit: contain; border-radius: 4px;">
+                </div>
+                <div class="preview-company-info">
+                  <span class="preview-company-name">Softrate</span>
+                  <span class="preview-company-sub" id="preview_comp_name">Softrate Tech Park Pvt. Ltd.</span>
+                  <span class="preview-company-sub" id="preview_comp_address">Block A, Tech City, Sector 5</span>
+                  <span class="preview-company-sub" id="preview_comp_city">Kolkata, West Bengal - 700091</span>
+                  <span class="preview-company-sub" id="preview_comp_country">India</span>
+                </div>
+              </div>
+              <div class="preview-title-block">
+                <h3>Payslip</h3>
+                <span class="pay-period-text" id="preview_title_period">For June 2026</span>
+              </div>
+            </div>
+
+            <!-- Employee Info Grid -->
+            <div class="preview-emp-details-grid">
+              <div class="preview-detail-item">
+                <span class="preview-detail-label">Employee Name:</span>
+                <span class="preview-detail-value" id="preview_emp_name">-</span>
+              </div>
+              <div class="preview-detail-item">
+                <span class="preview-detail-label">Employee ID:</span>
+                <span class="preview-detail-value" id="preview_emp_id">-</span>
+              </div>
+              <div class="preview-detail-item">
+                <span class="preview-detail-label">Department:</span>
+                <span class="preview-detail-value" id="preview_emp_dept">-</span>
+              </div>
+              <div class="preview-detail-item">
+                <span class="preview-detail-label">Designation:</span>
+                <span class="preview-detail-value" id="preview_emp_designation">-</span>
+              </div>
+              <div class="preview-detail-item">
+                <span class="preview-detail-label">Pay Period:</span>
+                <span class="preview-detail-value" id="preview_pay_period">-</span>
+              </div>
+              <div class="preview-detail-item">
+                <span class="preview-detail-label">Paid Days:</span>
+                <span class="preview-detail-value" id="preview_paid_days">-</span>
+              </div>
+              <div class="preview-detail-item">
+                <span class="preview-detail-label">LOP Days:</span>
+                <span class="preview-detail-value" id="preview_lop_days">-</span>
+              </div>
+              <div class="preview-detail-item">
+                <span class="preview-detail-label">Pay Date:</span>
+                <span class="preview-detail-value" id="preview_pay_date">-</span>
+              </div>
+            </div>
+
+            <!-- Financial Split Tables -->
+            <div class="preview-tables-container">
+              
+              <!-- Earnings Table -->
+              <div class="preview-table-wrapper">
+                <div class="preview-table-title">Earnings</div>
+                <table class="preview-finance-table">
+                  <tbody>
+                    <tr>
+                      <td>Basic</td>
+                      <td class="amount-cell">₹<span id="preview_basic_salary">0.00</span></td>
+                    </tr>
+                    <tr>
+                      <td>House Rent Allowance</td>
+                      <td class="amount-cell">₹<span id="preview_hra">0.00</span></td>
+                    </tr>
+                    <tr>
+                      <td>Conveyance Allowance</td>
+                      <td class="amount-cell">₹<span id="preview_conveyance">0.00</span></td>
+                    </tr>
+                    <tr>
+                      <td>Medical Allowance</td>
+                      <td class="amount-cell">₹<span id="preview_medical">0.00</span></td>
+                    </tr>
+                    <tr>
+                      <td>Other Allowances</td>
+                      <td class="amount-cell">₹<span id="preview_other_allowances">0.00</span></td>
+                    </tr>
+                    <tr class="total-row">
+                      <td>Gross Salary</td>
+                      <td class="amount-cell">₹<span id="preview_gross_salary">0.00</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Deductions Table -->
+              <div class="preview-table-wrapper">
+                <div class="preview-table-title">Deductions</div>
+                <table class="preview-finance-table">
+                  <tbody>
+                    <tr>
+                      <td>Provident Fund</td>
+                      <td class="amount-cell">₹<span id="preview_pf">0.00</span></td>
+                    </tr>
+                    <tr>
+                      <td>Professional Tax</td>
+                      <td class="amount-cell">₹<span id="preview_prof_tax">0.00</span></td>
+                    </tr>
+                    <tr>
+                      <td>Income Tax</td>
+                      <td class="amount-cell">₹<span id="preview_tds">0.00</span></td>
+                    </tr>
+                    <tr>
+                      <td>Other Deductions</td>
+                      <td class="amount-cell">₹<span id="preview_other_deductions">0.00</span></td>
+                    </tr>
+                    <tr class="total-row">
+                      <td>Total Deductions</td>
+                      <td class="amount-cell">₹<span id="preview_total_deductions">0.00</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+            </div>
+
+            <!-- Net Pay summary strip -->
+            <div class="preview-net-pay-strip">
+              <div class="preview-net-pay-left">
+                <span class="preview-net-pay-title">Net Salary Paid</span>
+                <span class="preview-net-pay-words" id="preview_net_words">Zero Rupees Only</span>
+              </div>
+              <div class="preview-net-pay-right" id="preview_net_pay_large">
+                ₹0.00
+              </div>
+            </div>
+
+            <!-- Signatures -->
+            <div class="preview-signatures-block">
+              <div class="signature-line">
+                <div>Employee Signature</div>
+              </div>
+              <div class="signature-line">
+                <div>Director / HR Signature</div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- ===== INFORMATION / EDUCATIONAL SECTION ===== -->
+        <div class="info-section-grid">
+          
+          <div class="info-card">
+            <h3>What is a Payslip?</h3>
+            <p>A salary slip or payslip is an official document containing a detailed list of the various components of your salary along with the specific details of employment. It is issued every month by an employer either in the form of a printed hard copy or an electronic digital copy.</p>
+            <p>A salary slip is only available to salaried employees, and your employer is responsible for providing you a copy of your payslip every month as proof of payroll run.</p>
+          </div>
+
+          <div class="info-card">
+            <h3>Why Payslips are Important</h3>
+            <ul>
+              <li><strong>Income Tax Planning:</strong> A salary typically comprises various components such as Basic and HRA which have different tax treatments. Knowing the value of separate components forms the basis for maximizing your tax savings under the applicable financial year.</li>
+              <li><strong>Proof of Employment:</strong> This document serves as legal proof of employment. While applying for visas or executive programs at universities, you may have to submit copies of your payslips as proof of your last drawn salary and designation.</li>
+              <li><strong>Availing Loans & Credit Cards:</strong> Your payslip contains details of your monthly income, which is a key factor that determines your ability to meet debt obligations. Banks require salary slips when applying for credit cards, loans, mortgages, and other borrowings.</li>
+              <li><strong>Seeking Further Employment:</strong> Knowledge about the components of your salary slip helps you assess other job offers. Moreover, it forms the basis of salary negotiations when applying for a new job.</li>
+            </ul>
+          </div>
+
+          <div class="info-card">
+            <h3>How to Read a Payslip</h3>
+            <p>Reading a payslip is easy once you understand its layout. You should verify your company details and employee parameters at the top. The financial section splits into two distinct categories: <strong>Earnings</strong> (what you receive) and <strong>Deductions</strong> (what is subtracted for tax or savings). Subtracting the total deductions from your gross earnings results in your Net Pay, which is the final cash amount transferred to your bank account.</p>
+          </div>
+
+          <div class="info-card">
+            <h3>Benefits of Digital Payslips</h3>
+            <p>Moving from paper payslips to digital copies brings multiple business benefits. Digital files can be stored securely, reducing the risk of administrative loss. It simplifies record-keeping, allows quick document search, and reduces printing costs while helping your organization stay environmentally friendly and reduce its carbon footprint.</p>
+          </div>
+
+        </div>
+
+        <!-- ===== COMPONENTS TOGGLE SECTION ===== -->
+        <div class="components-toggles-container">
+          <div class="components-toggles-header">
+            <h3>What are the components of a Payslip?</h3>
+            <p>The two major components of a Payslip are Earnings and Deductions. Toggle between them below to read details.</p>
+          </div>
+
+          <div class="components-tabs-bar">
+            <button class="tab-btn-payslip active" onclick="PayslipController.switchComponentTab('earnings')">Earnings</button>
+            <button class="tab-btn-payslip" onclick="PayslipController.switchComponentTab('deductions')">Deductions</button>
+          </div>
+
+          <div class="components-info-box">
+            
+            <!-- Earnings Tab -->
+            <div class="component-details-list" id="tab-earnings-list">
+              <div class="component-item">
+                <span class="component-item-name">Basic Salary</span>
+                <span class="component-item-desc">This is the primary component of your employee's salary and acts as the foundation upon which other calculations are made (such as PF contribution).</span>
+              </div>
+              <div class="component-item">
+                <span class="component-item-name">House Rent Allowance (HRA)</span>
+                <span class="component-item-desc">An allowance paid to help employees cover their house rent. Depending on the city tier, it ranges between 40% and 50% of the basic salary, and can be claimed for tax exemptions.</span>
+              </div>
+              <div class="component-item">
+                <span class="component-item-name">Conveyance Allowance</span>
+                <span class="component-item-desc">Travel allowance provided to offset commuting costs between home and office.</span>
+              </div>
+              <div class="component-item">
+                <span class="component-item-name">Medical Allowance</span>
+                <span class="component-item-desc">An allowance provided to cover regular medical expenses incurred by the employee.</span>
+              </div>
+              <div class="component-item">
+                <span class="component-item-name">Other Allowances</span>
+                <span class="component-item-desc">Includes performance bonuses, special allowances, and any other additional allowances paid by the employer.</span>
+              </div>
+            </div>
+
+            <!-- Deductions Tab -->
+            <div class="component-details-list hide" id="tab-deductions-list">
+              <div class="component-item">
+                <span class="component-item-name">Provident Fund (PF)</span>
+                <span class="component-item-desc">A retirement saving scheme. Salaried employees typically have 12% of their basic salary deducted and contributed to their EPF account, which is matched by the employer.</span>
+              </div>
+              <div class="component-item">
+                <span class="component-item-name">Professional Tax</span>
+                <span class="component-item-desc">A state-level tax levied on profession and employment. It is calculated based on state tax slabs and deducted monthly.</span>
+              </div>
+              <div class="component-item">
+                <span class="component-item-name">Tax Deducted at Source (TDS / Income Tax)</span>
+                <span class="component-item-desc">The income tax deducted by the employer from the employee's salary on behalf of the Income Tax department, calculated based on the employee's taxable income slab.</span>
+              </div>
+              <div class="component-item">
+                <span class="component-item-name">Other Deductions</span>
+                <span class="component-item-desc">Any miscellaneous deductions, such as advances, employee welfare fund, or voluntary savings.</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ===== FAQ SECTION ===== -->
+        <div class="faq-accordion-container">
+          <h3 class="faq-header text-center" style="text-align: center; font-size: 2rem; font-weight: 800; margin-bottom: 2rem;">Frequently Asked Questions</h3>
+          
+          <div class="faq-item" onclick="PayslipController.toggleFaq(this)">
+            <button class="faq-question-btn">
+              <span>What is a payslip?</span>
+              <span class="faq-toggle-icon">+</span>
+            </button>
+            <div class="faq-answer-panel">
+              <div class="faq-answer-content">
+                A payslip (or salary slip) is a official document issued by an employer to an employee that details their earnings, deductions, and net pay for a specific pay period. It serves as official proof of income and employment.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item" onclick="PayslipController.toggleFaq(this)">
+            <button class="faq-question-btn">
+              <span>Is a payslip legally required?</span>
+              <span class="faq-toggle-icon">+</span>
+            </button>
+            <div class="faq-answer-panel">
+              <div class="faq-answer-content">
+                Yes, in most jurisdictions, including India, employers are legally required to provide employees with a detailed record of their pay and deductions (a payslip) either in physical or digital format at the end of each pay cycle.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item" onclick="PayslipController.toggleFaq(this)">
+            <button class="faq-question-btn">
+              <span>Can I download payslips as PDF?</span>
+              <span class="faq-toggle-icon">+</span>
+            </button>
+            <div class="faq-answer-panel">
+              <div class="faq-answer-content">
+                Yes! Our Softrate Payslip Generator allows you to instantly generate and download the payslip as a high-fidelity PDF, or print it directly from your web browser.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item" onclick="PayslipController.toggleFaq(this)">
+            <button class="faq-question-btn">
+              <span>What deductions appear on a payslip?</span>
+              <span class="faq-toggle-icon">+</span>
+            </button>
+            <div class="faq-answer-panel">
+              <div class="faq-answer-content">
+                Common deductions include statutory contributions like Employee Provident Fund (PF), Professional Tax, and Income Tax (TDS), as well as voluntary savings or recovery of company advances.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item" onclick="PayslipController.toggleFaq(this)">
+            <button class="faq-question-btn">
+              <span>How is net salary calculated?</span>
+              <span class="faq-toggle-icon">+</span>
+            </button>
+            <div class="faq-answer-panel">
+              <div class="faq-answer-content">
+                Net Salary is calculated using the following formula:
+                <br><strong>Net Salary = Gross Salary &minus; Total Deductions</strong>
+                <br>Where Gross Salary is the sum of all earnings (Basic Salary + HRA + Conveyance + Medical + Other Allowances) and Total Deductions is the sum of all deductions (PF + Professional Tax + Income Tax/TDS + Other Deductions).
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </section>

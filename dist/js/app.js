@@ -228,6 +228,28 @@ document.addEventListener("DOMContentLoaded", () => {
     const comingSoonTitle = document.getElementById("comingSoonTitle");
     const expenseSection = document.getElementById("expense-section");
     const perDiemSection = document.getElementById("per-diem-section");
+    const paycheckSection = document.getElementById("paycheck-section");
+    const incomeTaxSection = document.getElementById("income-tax-section");
+    const hmrcSection = document.getElementById("hmrc-section");
+    const financialReportSection = document.getElementById("financial-report-section");
+    const projectEstimateSection = document.getElementById("project-estimate-section");
+    const w9Section = document.getElementById("w9-section");
+    const payslipSection = document.getElementById("payslip-section");
+    const npsSection = document.getElementById("nps-section");
+    const epsSection = document.getElementById("eps-section");
+    const gratuitySection = document.getElementById("gratuity-section");
+    const bonusSection = document.getElementById("bonus-section");
+    const hraSection = document.getElementById("hra-section");
+    const skuSection = document.getElementById("sku-section");
+    const purchaseOrderSection = document.getElementById("purchase-order-section");
+    const reorderSection = document.getElementById("reorder-section");
+    const eoqSection = document.getElementById("eoq-section");
+    const breakEvenSection = document.getElementById("break-even-section");
+    const inventoryTurnoverSection = document.getElementById("inventory-turnover-section");
+    const packingSlipSection = document.getElementById("packing-slip-section");
+    const barcodeSection = document.getElementById("barcode-section");
+    const shippingLabelSection = document.getElementById("shipping-label-section");
+    const wholesaleSection = document.getElementById("wholesale-section");
 
     if (calcSection) calcSection.classList.add("hide");
     if (ratesSection) ratesSection.classList.add("hide");
@@ -237,6 +259,28 @@ document.addEventListener("DOMContentLoaded", () => {
     if (comingSoonSection) comingSoonSection.classList.add("hide");
     if (expenseSection) expenseSection.classList.add("hide");
     if (perDiemSection) perDiemSection.classList.add("hide");
+    if (paycheckSection) paycheckSection.classList.add("hide");
+    if (incomeTaxSection) incomeTaxSection.classList.add("hide");
+    if (hmrcSection) hmrcSection.classList.add("hide");
+    if (financialReportSection) financialReportSection.classList.add("hide");
+    if (projectEstimateSection) projectEstimateSection.classList.add("hide");
+    if (w9Section) w9Section.classList.add("hide");
+    if (payslipSection) payslipSection.classList.add("hide");
+    if (npsSection) npsSection.classList.add("hide");
+    if (epsSection) epsSection.classList.add("hide");
+    if (gratuitySection) gratuitySection.classList.add("hide");
+    if (bonusSection) bonusSection.classList.add("hide");
+    if (hraSection) hraSection.classList.add("hide");
+    if (skuSection) skuSection.classList.add("hide");
+    if (purchaseOrderSection) purchaseOrderSection.classList.add("hide");
+    if (reorderSection) reorderSection.classList.add("hide");
+    if (eoqSection) eoqSection.classList.add("hide");
+    if (breakEvenSection) breakEvenSection.classList.add("hide");
+    if (inventoryTurnoverSection) inventoryTurnoverSection.classList.add("hide");
+    if (packingSlipSection) packingSlipSection.classList.add("hide");
+    if (barcodeSection) barcodeSection.classList.add("hide");
+    if (shippingLabelSection) shippingLabelSection.classList.add("hide");
+    if (wholesaleSection) wholesaleSection.classList.add("hide");
 
     if (isPerDiemRoute && (route === "per-diem" || route === "per-diem-calculator")) {
       if (perDiemSection) perDiemSection.classList.remove("hide");
@@ -253,6 +297,72 @@ document.addEventListener("DOMContentLoaded", () => {
       if (expenseSection) expenseSection.classList.remove("hide");
       if (expenseSection) expenseSection.scrollIntoView({ behavior: "smooth" });
       document.dispatchEvent(new CustomEvent("expenseRouteLoaded"));
+    } else if (route === "paycheck" || route === "paycheck-calculator") {
+      if (paycheckSection) paycheckSection.classList.remove("hide");
+      if (paycheckSection) paycheckSection.scrollIntoView({ behavior: "smooth" });
+    } else if (route === "income-tax" || route === "income-tax-calculator") {
+      if (incomeTaxSection) incomeTaxSection.classList.remove("hide");
+      if (incomeTaxSection) incomeTaxSection.scrollIntoView({ behavior: "smooth" });
+    } else if (route === "hmrc" || route === "hmrc-furlough") {
+      if (hmrcSection) hmrcSection.classList.remove("hide");
+      if (hmrcSection) hmrcSection.scrollIntoView({ behavior: "smooth" });
+    } else if (route === "financial-report") {
+      if (financialReportSection) financialReportSection.classList.remove("hide");
+      if (financialReportSection) financialReportSection.scrollIntoView({ behavior: "smooth" });
+    } else if (route === "project-estimate" || route === "project-cost") {
+      if (projectEstimateSection) projectEstimateSection.classList.remove("hide");
+      if (projectEstimateSection) projectEstimateSection.scrollIntoView({ behavior: "smooth" });
+    } else if (route === "w9") {
+      if (w9Section) w9Section.classList.remove("hide");
+      if (w9Section) w9Section.scrollIntoView({ behavior: "smooth" });
+    } else if (route === "payslip") {
+      if (payslipSection) payslipSection.classList.remove("hide");
+      if (payslipSection) payslipSection.scrollIntoView({ behavior: "smooth" });
+    } else if (route === "nps") {
+      if (npsSection) npsSection.classList.remove("hide");
+      if (npsSection) npsSection.scrollIntoView({ behavior: "smooth" });
+    } else if (route === "eps") {
+      if (epsSection) epsSection.classList.remove("hide");
+      if (epsSection) epsSection.scrollIntoView({ behavior: "smooth" });
+    } else if (route === "gratuity") {
+      if (gratuitySection) gratuitySection.classList.remove("hide");
+      if (gratuitySection) gratuitySection.scrollIntoView({ behavior: "smooth" });
+    } else if (route === "bonus") {
+      if (bonusSection) bonusSection.classList.remove("hide");
+      if (bonusSection) bonusSection.scrollIntoView({ behavior: "smooth" });
+    } else if (route === "hra") {
+      if (hraSection) hraSection.classList.remove("hide");
+      if (hraSection) hraSection.scrollIntoView({ behavior: "smooth" });
+    } else if (route === "sku") {
+      if (skuSection) skuSection.classList.remove("hide");
+      if (skuSection) skuSection.scrollIntoView({ behavior: "smooth" });
+    } else if (route === "po" || route === "purchase-order") {
+      if (purchaseOrderSection) purchaseOrderSection.classList.remove("hide");
+      if (purchaseOrderSection) purchaseOrderSection.scrollIntoView({ behavior: "smooth" });
+    } else if (route === "reorder") {
+      if (reorderSection) reorderSection.classList.remove("hide");
+      if (reorderSection) reorderSection.scrollIntoView({ behavior: "smooth" });
+    } else if (route === "eoq") {
+      if (eoqSection) eoqSection.classList.remove("hide");
+      if (eoqSection) eoqSection.scrollIntoView({ behavior: "smooth" });
+    } else if (route === "break-even") {
+      if (breakEvenSection) breakEvenSection.classList.remove("hide");
+      if (breakEvenSection) breakEvenSection.scrollIntoView({ behavior: "smooth" });
+    } else if (route === "inventory-turnover") {
+      if (inventoryTurnoverSection) inventoryTurnoverSection.classList.remove("hide");
+      if (inventoryTurnoverSection) inventoryTurnoverSection.scrollIntoView({ behavior: "smooth" });
+    } else if (route === "packing-slip") {
+      if (packingSlipSection) packingSlipSection.classList.remove("hide");
+      if (packingSlipSection) packingSlipSection.scrollIntoView({ behavior: "smooth" });
+    } else if (route === "barcode") {
+      if (barcodeSection) barcodeSection.classList.remove("hide");
+      if (barcodeSection) barcodeSection.scrollIntoView({ behavior: "smooth" });
+    } else if (route === "shipping-label") {
+      if (shippingLabelSection) shippingLabelSection.classList.remove("hide");
+      if (shippingLabelSection) shippingLabelSection.scrollIntoView({ behavior: "smooth" });
+    } else if (route === "wholesale") {
+      if (wholesaleSection) wholesaleSection.classList.remove("hide");
+      if (wholesaleSection) wholesaleSection.scrollIntoView({ behavior: "smooth" });
     } else {
       if (comingSoonSection) comingSoonSection.classList.remove("hide");
       if (comingSoonTitle) comingSoonTitle.textContent = `${labelText} - Coming Soon`;

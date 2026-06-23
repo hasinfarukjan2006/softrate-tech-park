@@ -1,0 +1,534 @@
+      <!-- Section: Form W-9 Generator -->
+      <section id="w9-section" class="content-section hide">
+        
+        <!-- ===== HERO SECTION ===== -->
+        <div class="w9-hero">
+          <h1>Form W-9</h1>
+          <p class="w9-hero-desc">Generate and download your Form W-9 instantly by providing your name, address, and Taxpayer Identification Number (TIN).</p>
+        </div>
+
+        <!-- ===== TWO-COLUMN MAIN WORKSPACE ===== -->
+        <div class="w9-container" id="w9-form-container">
+          
+          <!-- LEFT SIDE: Form Generator Card -->
+          <div class="w9-form-card">
+            <h2 class="w9-form-title">W-9 Form Generator</h2>
+            <form id="w9Form" novalidate onsubmit="event.preventDefault();">
+              
+              <!-- Legal Name -->
+              <div class="form-group-w9">
+                <label for="w9_legal_name">
+                  Legal Name* <span class="label-helper-text">(As per the tax return)</span>
+                </label>
+                <input type="text" id="w9_legal_name" class="form-control-w9" placeholder="Enter the full name" required>
+                <small class="error-msg-w9 hide" id="w9_legal_name_err">Please enter your legal name as shown on your tax return.</small>
+              </div>
+
+              <!-- Business Name -->
+              <div class="form-group-w9">
+                <label for="w9_business_name">
+                  Business Name <span class="label-helper-text">(If it's different from the Legal Name)</span>
+                </label>
+                <input type="text" id="w9_business_name" class="form-control-w9" placeholder="Enter the business name">
+              </div>
+
+              <!-- Tax Identification Number (TIN) -->
+              <div class="form-group-w9">
+                <label>Tax Identification Number (TIN)*</label>
+                <div class="tin-input-row">
+                  <select id="w9_tin_type" class="form-control-w9 dropdown-style-w9">
+                    <option value="SSN">Social Security Number (SSN)</option>
+                    <option value="EIN">Employer Identification Number (EIN)</option>
+                  </select>
+                  <input type="text" id="w9_tin_val" class="form-control-w9" placeholder="Enter the SSN" required>
+                </div>
+                <small class="error-msg-w9 hide" id="w9_tin_val_err">Please enter a valid Taxpayer Identification Number.</small>
+              </div>
+
+              <!-- Business Type -->
+              <div class="form-group-w9">
+                <label for="w9_business_type">Business Type</label>
+                <select id="w9_business_type" class="form-control-w9 dropdown-style-w9">
+                  <option value="Individual / Sole Proprietor">Individual / Sole Proprietor or Single-member LLC</option>
+                  <option value="C Corporation">C Corporation</option>
+                  <option value="S Corporation">S Corporation</option>
+                  <option value="Partnership">Partnership</option>
+                  <option value="Trust / Estate">Trust / Estate</option>
+                  <option value="Limited Liability Company (LLC)">Limited Liability Company (LLC)</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+
+              <!-- Address Block Header -->
+              <div class="w9-section-header">Address</div>
+
+              <!-- Country & State -->
+              <div class="form-row-w9">
+                <div class="form-group-w9">
+                  <label for="w9_country">Country</label>
+                  <input type="text" id="w9_country" class="form-control-w9 disabled-field-w9" value="United States" readonly>
+                </div>
+                <div class="form-group-w9">
+                  <label for="w9_state">State</label>
+                  <select id="w9_state" class="form-control-w9 dropdown-style-w9" required>
+                    <option value="" disabled selected>Select State</option>
+                    <option value="AL">Alabama</option>
+                    <option value="AK">Alaska</option>
+                    <option value="AZ">Arizona</option>
+                    <option value="AR">Arkansas</option>
+                    <option value="CA">California</option>
+                    <option value="CO">Colorado</option>
+                    <option value="CT">Connecticut</option>
+                    <option value="DE">Delaware</option>
+                    <option value="FL">Florida</option>
+                    <option value="GA">Georgia</option>
+                    <option value="HI">Hawaii</option>
+                    <option value="ID">Idaho</option>
+                    <option value="IL">Illinois</option>
+                    <option value="IN">Indiana</option>
+                    <option value="IA">Iowa</option>
+                    <option value="KS">Kansas</option>
+                    <option value="KY">Kentucky</option>
+                    <option value="LA">Louisiana</option>
+                    <option value="ME">Maine</option>
+                    <option value="MD">Maryland</option>
+                    <option value="MA">Massachusetts</option>
+                    <option value="MI">Michigan</option>
+                    <option value="MN">Minnesota</option>
+                    <option value="MS">Mississippi</option>
+                    <option value="MO">Missouri</option>
+                    <option value="MT">Montana</option>
+                    <option value="NE">Nebraska</option>
+                    <option value="NV">Nevada</option>
+                    <option value="NH">New Hampshire</option>
+                    <option value="NJ">New Jersey</option>
+                    <option value="NM">New Mexico</option>
+                    <option value="NY">New York</option>
+                    <option value="NC">North Carolina</option>
+                    <option value="ND">North Dakota</option>
+                    <option value="OH">Ohio</option>
+                    <option value="OK">Oklahoma</option>
+                    <option value="OR">Oregon</option>
+                    <option value="PA">Pennsylvania</option>
+                    <option value="RI">Rhode Island</option>
+                    <option value="SC">South Carolina</option>
+                    <option value="SD">South Dakota</option>
+                    <option value="TN">Tennessee</option>
+                    <option value="TX">Texas</option>
+                    <option value="UT">Utah</option>
+                    <option value="VT">Vermont</option>
+                    <option value="VA">Virginia</option>
+                    <option value="WA">Washington</option>
+                    <option value="WV">West Virginia</option>
+                    <option value="WI">Wisconsin</option>
+                    <option value="WY">Wyoming</option>
+                  </select>
+                  <small class="error-msg-w9 hide" id="w9_state_err">Please select a U.S. state.</small>
+                </div>
+              </div>
+
+              <!-- Street Address -->
+              <div class="form-group-w9">
+                <label for="w9_street">Street Address*</label>
+                <input type="text" id="w9_street" class="form-control-w9" placeholder="Street and Apt. or Suite No" required>
+                <small class="error-msg-w9 hide" id="w9_street_err">Please enter your street address.</small>
+              </div>
+
+              <!-- City & ZIP Code -->
+              <div class="form-row-w9">
+                <div class="form-group-w9">
+                  <label for="w9_city">City*</label>
+                  <input type="text" id="w9_city" class="form-control-w9" placeholder="City" required>
+                  <small class="error-msg-w9 hide" id="w9_city_err">Please enter your city.</small>
+                </div>
+                <div class="form-group-w9">
+                  <label for="w9_zip">ZIP / Postal Code*</label>
+                  <input type="text" id="w9_zip" class="form-control-w9" placeholder="ZIP / Postal Code" required>
+                  <small class="error-msg-w9 hide" id="w9_zip_err">Please enter a valid 5 or 9-digit ZIP code.</small>
+                </div>
+              </div>
+
+              <!-- Tax Exempt Toggle -->
+              <div class="form-group-w9 toggle-container-w9">
+                <label class="toggle-switch-label">
+                  <span class="toggle-switch-w9">
+                    <input type="checkbox" id="w9_exempt_toggle" onchange="W9Controller.toggleExemptions()">
+                    <span class="slider-w9"></span>
+                  </span>
+                  <span class="toggle-text-w9">I'm exempt from backup withholding and/or FATCA reporting</span>
+                </label>
+              </div>
+
+              <!-- Exempt Codes Block (shown dynamically) -->
+              <div class="exempt-section-w9 hide" id="w9_exempt_codes_block">
+                <div class="form-row-w9">
+                  <div class="form-group-w9">
+                    <label for="w9_exempt_payee_code">Exempt Payee Code (if any)</label>
+                    <select id="w9_exempt_payee_code" class="form-control-w9 dropdown-style-w9">
+                      <option value="">None</option>
+                      <option value="1">1 (An organization exempt from tax under section 501(a))</option>
+                      <option value="2">2 (The United States or any of its agencies)</option>
+                      <option value="3">3 (A state, District of Columbia, U.S. commonwealth, or possession)</option>
+                      <option value="4">4 (A foreign government or political subdivision thereof)</option>
+                      <option value="5">5 (A corporation)</option>
+                      <option value="6">6 (A dealer in securities or commodities)</option>
+                      <option value="7">7 (A futures commission merchant)</option>
+                      <option value="8">8 (A real estate investment trust)</option>
+                      <option value="9">9 (An entity registered under the Investment Company Act of 1940)</option>
+                      <option value="10">10 (A common trust fund operated by a bank under section 584(a))</option>
+                      <option value="11">11 (A financial institution exempt from tax)</option>
+                      <option value="12">12 (A middleman or nominee)</option>
+                      <option value="13">13 (A trust exempt from tax under section 664 or described in section 4947)</option>
+                    </select>
+                  </div>
+                  <div class="form-group-w9">
+                    <label for="w9_fatca_code">Exemption from FATCA Reporting Code (if any)</label>
+                    <select id="w9_fatca_code" class="form-control-w9 dropdown-style-w9">
+                      <option value="">None</option>
+                      <option value="A">A (An organization exempt from tax under section 501(a))</option>
+                      <option value="B">B (The United States or any of its agencies)</option>
+                      <option value="C">C (A state, District of Columbia, U.S. commonwealth, or possession)</option>
+                      <option value="D">D (A corporation the stock of which is regularly traded)</option>
+                      <option value="E">E (A corporation that is a member of the same expanded affiliated group)</option>
+                      <option value="F">F (A dealer in securities or commodities)</option>
+                      <option value="G">G (A Real Estate Investment Trust)</option>
+                      <option value="H">H (A regulated investment company)</option>
+                      <option value="I">I (A common trust fund)</option>
+                      <option value="J">J (A bank as defined in section 581)</option>
+                      <option value="K">K (A broker)</option>
+                      <option value="L">L (A trust exempt from tax under section 664)</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Certifications Header -->
+              <div class="w9-section-header">Certification</div>
+              
+              <!-- Checkbox declarations -->
+              <div class="certification-block-w9">
+                <label class="cert-checkbox-label">
+                  <input type="checkbox" id="w9_cert1" required>
+                  <span>I certify that the Tax Identification Number (TIN) shown on this form is correct.</span>
+                </label>
+                <label class="cert-checkbox-label">
+                  <input type="checkbox" id="w9_cert2" required>
+                  <span>I certify that I'm not subject to backup withholding.</span>
+                </label>
+                <label class="cert-checkbox-label">
+                  <input type="checkbox" id="w9_cert3" required>
+                  <span>I certify that I'm a U.S. citizen or other U.S. person.</span>
+                </label>
+                <small class="error-msg-w9 hide" id="w9_certifications_err" style="margin-left: 28px; display: block; margin-top: 5px;">You must acknowledge all three certifications to generate the form.</small>
+              </div>
+
+              <!-- Continue Button -->
+              <div class="form-actions-w9">
+                <button type="button" class="w9-btn w9-btn-submit" onclick="W9Controller.generateW9()">Continue</button>
+              </div>
+
+            </form>
+          </div>
+
+          <!-- RIGHT SIDE: Information / Sidebar Panel -->
+          <div class="w9-info-card">
+            <h2>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="vertical-align: middle; margin-right: 6px;"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+              KNOW MORE ABOUT W-9 FORM
+            </h2>
+
+            <div class="info-item-w9">
+              <h3>What is W-9?</h3>
+              <p>Form W-9 is an IRS form used to verify a contractor's identity and gather their Tax Identification Number (TIN).</p>
+            </div>
+
+            <div class="info-item-w9">
+              <h3>Who needs a W-9 Form?</h3>
+              <p>If you're hiring freelancers or contractors, or making interest payments, you'll need a Form W-9 from the payee. This information is commonly used for Form 1099 reporting.</p>
+            </div>
+
+            <div class="info-item-w9">
+              <h3>How do I fill out a W-9 form?</h3>
+              <p>Fill out the legal name, business name (if applicable), TIN, business type, address, certification options, and confirm the declarations before generating the form.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ===== FORM PREVIEW & EXPORTS SECTION ===== -->
+        <div class="w9-preview-container hide" id="w9-preview-container">
+          
+          <div class="w9-actions-bar">
+            <h2>Form W-9 Preview</h2>
+            <div class="w9-actions-buttons">
+              <button class="w9-btn w9-btn-reset" onclick="W9Controller.editForm()">Go Back</button>
+              <button class="w9-btn w9-btn-reset" onclick="W9Controller.printForm()">Print Form</button>
+              <button class="w9-btn w9-btn-submit" onclick="W9Controller.downloadPDF()">Download PDF</button>
+              <button class="w9-btn w9-btn-reset" style="border-color: #006fda; color: #006fda;" onclick="W9Controller.resetForm(); W9Controller.editForm()">Regenerate Form</button>
+            </div>
+          </div>
+
+          <!-- IRS Form W-9 Paper Document -->
+          <div class="w9-paper-sheet" id="w9-paper-sheet">
+            
+            <!-- PDF Header -->
+            <div class="w9-pdf-top-row">
+              <div class="w9-pdf-rev-block">
+                <strong>Form W-9</strong><br>
+                (Rev. October 2018)<br>
+                Department of the Treasury<br>
+                Internal Revenue Service
+              </div>
+              <div class="w9-pdf-title-block">
+                <h2>Request for Taxpayer Identification Number and Certification</h2>
+                <p>Go to <i>www.irs.gov/FormW9</i> for instructions and the latest information.</p>
+              </div>
+              <div class="w9-pdf-give-block">
+                <strong>Give Form to the requester. Do not send to the IRS.</strong>
+              </div>
+            </div>
+
+            <!-- Page 1 Grid of Lines 1-7 -->
+            <div class="w9-pdf-grid">
+              
+              <!-- Line 1: Name -->
+              <div class="w9-pdf-row border-bottom">
+                <div class="w9-pdf-label-num">1</div>
+                <div class="w9-pdf-label-body">
+                  <span>Name (as shown on your income tax return). Name is required on this line; do not leave this line blank.</span>
+                  <div class="w9-pdf-value" id="pdf_legal_name">-</div>
+                </div>
+              </div>
+
+              <!-- Line 2: Business Name -->
+              <div class="w9-pdf-row border-bottom">
+                <div class="w9-pdf-label-num">2</div>
+                <div class="w9-pdf-label-body">
+                  <span>Business name/disregarded entity name, if different from above</span>
+                  <div class="w9-pdf-value" id="pdf_business_name">-</div>
+                </div>
+              </div>
+
+              <!-- Line 3: Tax Classification Slabs -->
+              <div class="w9-pdf-row border-bottom">
+                <div class="w9-pdf-label-num">3</div>
+                <div class="w9-pdf-label-body">
+                  <span>Check appropriate box for federal tax classification of the person whose name is entered on line 1. Check only one of the following seven boxes.</span>
+                  
+                  <div class="w9-pdf-checkbox-grid">
+                    <label class="w9-pdf-checkbox-item">
+                      <span class="w9-square-box" id="pdf_box_individual"></span>
+                      <span>Individual/sole proprietor or single-member LLC</span>
+                    </label>
+                    <label class="w9-pdf-checkbox-item">
+                      <span class="w9-square-box" id="pdf_box_ccorp"></span>
+                      <span>C Corporation</span>
+                    </label>
+                    <label class="w9-pdf-checkbox-item">
+                      <span class="w9-square-box" id="pdf_box_scorp"></span>
+                      <span>S Corporation</span>
+                    </label>
+                    <label class="w9-pdf-checkbox-item">
+                      <span class="w9-square-box" id="pdf_box_partnership"></span>
+                      <span>Partnership</span>
+                    </label>
+                    <label class="w9-pdf-checkbox-item">
+                      <span class="w9-square-box" id="pdf_box_trust"></span>
+                      <span>Trust/estate</span>
+                    </label>
+                    <label class="w9-pdf-checkbox-item" style="grid-column: span 2;">
+                      <span class="w9-square-box" id="pdf_box_llc"></span>
+                      <span>Limited liability company. Enter the tax classification (C=C corp, S=S corp, P=Partnership) ➔</span>
+                      <strong id="pdf_llc_code" style="border-bottom:1px solid #000; padding:0 10px;">&nbsp;</strong>
+                    </label>
+                    <label class="w9-pdf-checkbox-item">
+                      <span class="w9-square-box" id="pdf_box_other"></span>
+                      <span>Other (see instructions) ➔</span>
+                    </label>
+                  </div>
+
+                </div>
+              </div>
+
+              <!-- Line 4: Exemptions -->
+              <div class="w9-pdf-row border-bottom">
+                <div class="w9-pdf-label-num">4</div>
+                <div class="w9-pdf-label-body d-flex-row">
+                  <div style="flex: 1; border-right: 1px solid #000; padding-right: 15px;">
+                    <span>Exemptions (codes apply only to certain entities, not individuals; see instructions on page 3):</span>
+                  </div>
+                  <div style="width: 250px; padding-left: 15px;">
+                    <div>Exempt payee code (if any): <strong id="pdf_exempt_payee">-</strong></div>
+                    <div style="margin-top: 5px;">Exemption from FATCA reporting code (if any): <strong id="pdf_exempt_fatca">-</strong></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Line 5: Address -->
+              <div class="w9-pdf-row border-bottom">
+                <div class="w9-pdf-label-num">5</div>
+                <div class="w9-pdf-label-body">
+                  <span>Address (number, street, and apt. or suite no.)</span>
+                  <div class="w9-pdf-value" id="pdf_street">-</div>
+                </div>
+              </div>
+
+              <!-- Line 6: City, State, ZIP -->
+              <div class="w9-pdf-row border-bottom">
+                <div class="w9-pdf-label-num">6</div>
+                <div class="w9-pdf-label-body">
+                  <span>City, state, and ZIP code</span>
+                  <div class="w9-pdf-value" id="pdf_city_state_zip">-</div>
+                </div>
+              </div>
+
+              <!-- Line 7: Account Numbers (Optional) -->
+              <div class="w9-pdf-row">
+                <div class="w9-pdf-label-num">7</div>
+                <div class="w9-pdf-label-body">
+                  <span>List account number(s) here (optional)</span>
+                  <div class="w9-pdf-value">-</div>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- PART I Heading -->
+            <div class="w9-pdf-part-header">
+              <div class="part-title">Part I</div>
+              <div class="part-desc">Taxpayer Identification Number (TIN)</div>
+            </div>
+
+            <!-- Part I body -->
+            <div class="w9-pdf-part-body">
+              <div class="tin-explanation">
+                Enter your TIN in the appropriate box. The TIN provided must match the name given on line 1 to avoid backup withholding. For individuals, this is generally your social security number (SSN). However, for a resident alien, sole proprietor, or disregarded entity, see the instructions on page 3. For other entities, it is your employer identification number (EIN).
+              </div>
+              <div class="tin-digits-container">
+                <div class="tin-box-title">Social Security Number (SSN)</div>
+                <div class="tin-digit-row" id="pdf_ssn_boxes">
+                  <span class="tin-box">-</span>
+                  <span class="tin-box">-</span>
+                  <span class="tin-box">-</span>
+                  <span class="tin-divider">-</span>
+                  <span class="tin-box">-</span>
+                  <span class="tin-box">-</span>
+                  <span class="tin-divider">-</span>
+                  <span class="tin-box">-</span>
+                  <span class="tin-box">-</span>
+                  <span class="tin-box">-</span>
+                  <span class="tin-box">-</span>
+                </div>
+
+                <div class="tin-box-title" style="margin-top: 15px;">Employer Identification Number (EIN)</div>
+                <div class="tin-digit-row" id="pdf_ein_boxes">
+                  <span class="tin-box">-</span>
+                  <span class="tin-box">-</span>
+                  <span class="tin-divider">-</span>
+                  <span class="tin-box">-</span>
+                  <span class="tin-box">-</span>
+                  <span class="tin-box">-</span>
+                  <span class="tin-box">-</span>
+                  <span class="tin-box">-</span>
+                  <span class="tin-box">-</span>
+                  <span class="tin-box">-</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- PART II Heading -->
+            <div class="w9-pdf-part-header">
+              <div class="part-title">Part II</div>
+              <div class="part-desc">Certification</div>
+            </div>
+
+            <!-- Part II certification statements -->
+            <div class="w9-pdf-certification-content">
+              Under penalties of perjury, I certify that:
+              <ol>
+                <li>The number shown on this form is my correct taxpayer identification number (or I am waiting for a number to be issued to me); and</li>
+                <li>I am not subject to backup withholding because: (a) I am exempt from backup withholding, or (b) I have not been notified by the Internal Revenue Service (IRS) that I am subject to backup withholding as a result of a failure to report all interest or dividends, or (c) the IRS has notified me that I am no longer subject to backup withholding; and</li>
+                <li>I am a U.S. citizen or other U.S. person (defined below); and</li>
+                <li>The FATCA code(s) entered on this form (if any) indicating that I am exempt from FATCA reporting is correct.</li>
+              </ol>
+              <p><strong>Certification instructions.</strong> You must cross out item 2 above if you have been notified by the IRS that you are currently subject to backup withholding because you have failed to report all interest and dividends on your tax return. For real estate transactions, item 2 does not apply. For mortgage interest paid, acquisition or abandonment of secured property, cancellation of debt, contributions to an individual retirement arrangement (IRA), and generally, payments other than interest and dividends, you are not required to sign the certification, but you must provide your correct TIN. See the instructions on page 4.</p>
+            </div>
+
+            <!-- Signature Line and Date -->
+            <div class="w9-pdf-signature-row">
+              <div class="signature-column">
+                <div class="sig-placeholder-line">
+                  <span class="sig-tag">Sign Here</span>
+                  <span class="sig-manual-val" id="pdf_sig_display"></span>
+                </div>
+                <div class="sig-desc">Signature of U.S. person</div>
+              </div>
+              <div class="date-column">
+                <div class="date-placeholder-line" id="pdf_date_display">06/22/2026</div>
+                <div class="date-desc">Date</div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- ===== FAQ SECTION ===== -->
+        <div class="w9-faq-section" style="margin-top: 50px; margin-bottom: 30px;">
+          <h2 style="font-size: 1.85rem !important; font-weight: 800 !important; text-align: center; margin-bottom: 2rem; color: var(--text-main);">Frequently Asked Questions</h2>
+          <div class="w9-faq-accordion">
+            <!-- Q1 -->
+            <div class="w9-faq-item">
+              <button type="button" class="w9-faq-trigger">
+                <span>Can I use Softrate to manage my business's income and expenses?</span>
+                <i data-lucide="chevron-down"></i>
+              </button>
+              <div class="w9-faq-content">
+                <p>Yes! Softrate provides comprehensive tools to track your income and expenses, manage accounts, generate financial statements, and keep your business finances organized.</p>
+              </div>
+            </div>
+            <!-- Q2 -->
+            <div class="w9-faq-item">
+              <button type="button" class="w9-faq-trigger">
+                <span>Can I track the time spent on a job and bill my client using Softrate?</span>
+                <i data-lucide="chevron-down"></i>
+              </button>
+              <div class="w9-faq-content">
+                <p>Yes! Softrate lets you log billable hours for projects, track time spent on specific tasks, and seamlessly convert logged time into invoices for your clients.</p>
+              </div>
+            </div>
+            <!-- Q3 -->
+            <div class="w9-faq-item">
+              <button type="button" class="w9-faq-trigger">
+                <span>Can I track 1099 payments using Softrate?</span>
+                <i data-lucide="chevron-down"></i>
+              </button>
+              <div class="w9-faq-content">
+                <p>Yes, Softrate makes it easy to track payments made to independent contractors, collect W-9 details, and generate the necessary 1099 forms for tax filing.</p>
+              </div>
+            </div>
+            <!-- Q4 -->
+            <div class="w9-faq-item">
+              <button type="button" class="w9-faq-trigger">
+                <span>Can Softrate help me determine the profitability of a project?</span>
+                <i data-lucide="chevron-down"></i>
+              </button>
+              <div class="w9-faq-content">
+                <p>Yes! Softrate provides project-level reporting and analytics, allowing you to track project expenses, billable hours, and revenue to calculate net profitability.</p>
+              </div>
+            </div>
+            <!-- Q5 -->
+            <div class="w9-faq-item">
+              <button type="button" class="w9-faq-trigger">
+                <span>Is there a free plan available with Softrate?</span>
+                <i data-lucide="chevron-down"></i>
+              </button>
+              <div class="w9-faq-content">
+                <p>Yes, Softrate offers a free trial plan with basic features, and you can upgrade to premium tiers for advanced automation, payroll calculations, and multi-user access.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>

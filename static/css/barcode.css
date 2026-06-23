@@ -1,0 +1,535 @@
+/* ============================================================
+   BARCODE GENERATOR — Scoped Styles
+   ============================================================ */
+
+#barcode-section {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #1f2937;
+  line-height: 1.5;
+  background-color: #fffdf5; /* Light cream/yellow background */
+  padding: 2.5rem 1.5rem;
+  border-radius: 16px;
+  margin-bottom: 2.5rem;
+}
+
+#barcode-section *,
+#barcode-section *::before,
+#barcode-section *::after {
+  box-sizing: border-box;
+}
+
+.bc-page-container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* --- Hero Header --- */
+.bc-hero {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  padding: 1rem 0;
+}
+
+.bc-hero h1 {
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: #111827;
+  margin-bottom: 0.5rem;
+}
+
+.bc-accent-color {
+  color: #f97316; /* Softrate orange color */
+}
+
+.bc-hero p {
+  font-size: 1.05rem;
+  color: #4b5563;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* --- Main Layout --- */
+.bc-workspace {
+  display: flex;
+  gap: 2.5rem;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  margin-bottom: 3.5rem;
+}
+
+.bc-workspace-left {
+  flex: 1 1 420px;
+  min-width: 320px;
+}
+
+.bc-workspace-right {
+  flex: 1 1 400px;
+  min-width: 320px;
+}
+
+/* Cards */
+.bc-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 2rem 1.75rem;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+}
+
+.bc-card h2 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin: 0 0 1.5rem 0;
+  color: #111827;
+  border-bottom: 2px solid #f3f4f6;
+  padding-bottom: 0.75rem;
+}
+
+/* Forms */
+.bc-form-group {
+  margin-bottom: 1.25rem;
+}
+
+.bc-form-group label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: #374151;
+  margin-bottom: 0.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.bc-form-group input[type="text"],
+.bc-form-group input[type="number"],
+.bc-form-group select,
+.bc-form-group textarea {
+  width: 100%;
+  padding: 0.65rem 0.85rem;
+  font-size: 0.95rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  outline: none;
+  background-color: #fff;
+  color: #1f2937;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  font-family: inherit;
+}
+
+.bc-form-group input:focus,
+.bc-form-group select:focus,
+.bc-form-group textarea:focus {
+  border-color: #f97316;
+  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.08);
+}
+
+.bc-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+.bc-input-help {
+  display: block;
+  font-size: 0.78rem;
+  color: #6b7280;
+  margin-top: 0.35rem;
+}
+
+/* Actions */
+.bc-form-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.bc-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.25rem;
+  font-size: 0.92rem;
+  font-weight: 700;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  border: none;
+  font-family: inherit;
+}
+
+.bc-btn-primary {
+  background-color: #f97316;
+  color: #fff;
+}
+
+.bc-btn-primary:hover {
+  background-color: #ea580c;
+  transform: translateY(-1px);
+}
+
+.bc-btn-outline {
+  background-color: #fff;
+  color: #4b5563;
+  border: 1px solid #d1d5db;
+}
+
+.bc-btn-outline:hover {
+  background-color: #f9fafb;
+  border-color: #c7d2fe;
+}
+
+.bc-btn-success {
+  background-color: #10b981;
+  color: #fff;
+}
+
+.bc-btn-success:hover {
+  background-color: #059669;
+  transform: translateY(-1px);
+}
+
+/* Error banner */
+.bc-error-msg {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background-color: #fef2f2;
+  border: 1px solid #fca5a5;
+  border-radius: 6px;
+  color: #b91c1c;
+  font-size: 0.88rem;
+  font-weight: 600;
+  margin-bottom: 1.25rem;
+}
+
+.bc-error-msg.hide {
+  display: none;
+}
+
+/* Barcode Label Outputs styling */
+.bc-labels-outer-container {
+  background: #f9fafb;
+  border: 1px dashed #d1d5db;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  max-height: 420px;
+  overflow-y: auto;
+}
+
+.bc-labels-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.bc-label-item {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 320px;
+  padding: 1.25rem;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+  font-family: Arial, Helvetica, sans-serif;
+  color: #000;
+}
+
+.bc-label-company {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #4b5563;
+  margin-bottom: 0.25rem;
+}
+
+.bc-label-prod-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 0.5rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bc-svg-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.25rem 0;
+  margin: 0.25rem 0;
+}
+
+.bc-barcode-svg {
+  max-width: 100%;
+  height: auto;
+}
+
+.bc-label-sku {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #374151;
+  margin-top: 0.35rem;
+}
+
+.bc-label-price {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #000;
+  margin-top: 0.25rem;
+}
+
+/* Actions in Preview */
+.bc-preview-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+/* Explain Section */
+.bc-explain-section {
+  background-color: #ffffff;
+  padding: 2.5rem 2rem;
+  border-radius: 16px;
+  margin-bottom: 3rem;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+}
+
+.bc-explain-content h2 {
+  font-size: 1.85rem;
+  font-weight: 800;
+  margin: 0 0 0.75rem 0;
+  color: #111;
+}
+
+.bc-explain-content p {
+  color: #555;
+  font-size: 1rem;
+  margin: 0;
+}
+
+/* Benefits Section */
+.bc-benefits-section {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+
+.bc-benefits-section h2 {
+  font-size: 1.85rem;
+  font-weight: 800;
+  margin-bottom: 2rem;
+  color: #111;
+}
+
+.bc-benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.bc-benefit-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 2rem 1.5rem;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+  border: 1px solid #e5e7eb;
+}
+
+.bc-benefit-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #fff7ed;
+  color: #f97316;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.25rem;
+}
+
+.bc-benefit-card h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+  color: #111;
+}
+
+.bc-benefit-card p {
+  font-size: 0.88rem;
+  color: #555;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Types Section */
+.bc-types-section {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+
+.bc-types-section h2 {
+  font-size: 1.85rem;
+  font-weight: 800;
+  margin-bottom: 2.25rem;
+  color: #111;
+}
+
+.bc-types-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.25rem;
+}
+
+.bc-type-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: left;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+}
+
+.bc-type-card h4 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #f97316;
+  margin: 0 0 0.5rem 0;
+}
+
+.bc-type-card p {
+  font-size: 0.85rem;
+  color: #555;
+  margin: 0;
+  line-height: 1.55;
+}
+
+/* FAQ Section */
+.bc-faq-section {
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+.bc-faq-section h2 {
+  font-size: 1.85rem;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #111;
+}
+
+.bc-faq-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.bc-faq-item {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: border-color 0.15s;
+}
+
+.bc-faq-item.active {
+  border-color: #f97316;
+}
+
+.bc-faq-trigger {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.1rem 1.5rem;
+  background: transparent;
+  border: none;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #1f2937;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  transition: color 0.15s;
+}
+
+.bc-faq-trigger:hover {
+  color: #f97316;
+}
+
+.bc-faq-trigger i {
+  color: #9ca3af;
+  transition: transform 0.2s, color 0.2s;
+  flex-shrink: 0;
+}
+
+.bc-faq-item.active .bc-faq-trigger i {
+  transform: rotate(180deg);
+  color: #f97316;
+}
+
+.bc-faq-content {
+  display: none;
+  padding: 0 1.5rem 1.25rem 1.5rem;
+  font-size: 0.9rem;
+  color: #4b5563;
+  line-height: 1.6;
+}
+
+.bc-faq-content p {
+  margin: 0;
+}
+
+/* --- Responsive adjustments --- */
+@media (max-width: 768px) {
+  #barcode-section {
+    padding: 1.5rem 1rem;
+  }
+  .bc-workspace {
+    gap: 1.5rem;
+  }
+  .bc-preview-actions {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --- Print Styles --- */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .bc-labels-outer-container,
+  #bcLabelsWrapper,
+  #bcLabelsWrapper * {
+    visibility: visible;
+  }
+  .bc-labels-outer-container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: white !important;
+    border: none !important;
+    padding: 0 !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+  #bcLabelsWrapper {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    flex-direction: row !important;
+    gap: 20px !important;
+    justify-content: flex-start !important;
+  }
+  .bc-label-item {
+    border: 1px solid #000 !important;
+    page-break-inside: avoid !important;
+    width: 320px !important;
+  }
+}

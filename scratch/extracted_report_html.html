@@ -1,0 +1,421 @@
+      <section id="financial-report-section" class="content-section mt-8 hide">
+        <!-- Hero Landing Page -->
+        <div class="fr-hero-landing">
+          <div class="fr-hero-content">
+            <h1>Free financial report <span>templates</span></h1>
+            <p>A financial report, also called a financial statement, is a formal record that depicts the financial position of a business at any given point in time. There are three vital financial reports that every business must generate to gauge its financial performance over the fiscal year.</p>
+          </div>
+
+          <!-- Templates Grid -->
+          <div class="fr-templates-grid">
+            <!-- Card 1: Balance Sheet -->
+            <div class="fr-template-card">
+              <div class="fr-template-icon-wrapper">
+                <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="8" y="4" width="48" height="56" rx="4" fill="#E0F2FE" stroke="#006cdb" stroke-width="3"/>
+                  <line x1="18" y1="16" x2="46" y2="16" stroke="#006cdb" stroke-width="3" stroke-linecap="round"/>
+                  <line x1="18" y1="26" x2="36" y2="26" stroke="#006cdb" stroke-width="3" stroke-linecap="round"/>
+                  <circle cx="32" cy="44" r="10" fill="#BAE6FD" stroke="#006cdb" stroke-width="2"/>
+                  <line x1="32" y1="38" x2="32" y2="50" stroke="#006cdb" stroke-width="2"/>
+                  <line x1="26" y1="44" x2="38" y2="44" stroke="#006cdb" stroke-width="2"/>
+                </svg>
+              </div>
+              <h3>The balance sheet</h3>
+              <p>The balance sheet is a key financial statement that provides details about a company's assets, liabilities and shareholder's equity at any point in time. By comparing two or more balance sheets from different points in time, a company can know how much it has grown, making the balance sheet an excellent indicator of business growth.</p>
+              <button type="button" class="fr-card-action-btn" id="frBtnSelectBalanceSheet">GENERATE AND DOWNLOAD &gt;</button>
+            </div>
+
+            <!-- Card 2: Income Statement -->
+            <div class="fr-template-card">
+              <div class="fr-template-icon-wrapper">
+                <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="8" y="4" width="48" height="56" rx="4" fill="#E0F7FA" stroke="#00ACC1" stroke-width="3"/>
+                  <line x1="18" y1="16" x2="46" y2="16" stroke="#00ACC1" stroke-width="3" stroke-linecap="round"/>
+                  <line x1="18" y1="26" x2="46" y2="26" stroke="#00ACC1" stroke-width="3" stroke-linecap="round"/>
+                  <line x1="18" y1="36" x2="36" y2="36" stroke="#00ACC1" stroke-width="3" stroke-linecap="round"/>
+                  <circle cx="44" cy="46" r="6" fill="#80DEEA" stroke="#00ACC1" stroke-width="2"/>
+                </svg>
+              </div>
+              <h3>The income statement</h3>
+              <p>The income statement is also called the profit and loss statement, statement of operation, statement of financial result or income, or earnings statement. It is a picture of a company's income and expenditure. The income statement indicates whether a company has made a profit or loss for a given period.</p>
+              <button type="button" class="fr-card-action-btn" id="frBtnSelectProfitLoss">GENERATE AND DOWNLOAD &gt;</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Main Form Card (The actual generator form) -->
+        <div class="fr-main-container hide">
+          <div class="fr-back-container">
+            <button type="button" id="frBackToTemplatesBtn" class="fr-back-btn">&larr; Back to Templates</button>
+          </div>
+          <div id="frGeneratorFormCard" class="fr-calculator-card">
+            <h2 class="fr-card-title">Financial Report Details</h2>
+            <form id="frGeneratorForm" onsubmit="event.preventDefault();">
+              <div class="fr-form-grid">
+                <!-- Row 1: General Info -->
+                <div class="fr-form-group">
+                  <label for="fr_report_type">Report Type</label>
+                  <select id="fr_report_type" class="fr-form-control">
+                    <option value="profit-loss" selected>Profit & Loss</option>
+                    <option value="balance-sheet">Balance Sheet</option>
+                  </select>
+                </div>
+                <div class="fr-form-group">
+                  <label for="fr_company_name">Company Name</label>
+                  <input type="text" id="fr_company_name" class="fr-form-control" value="Softrate Technologies" required>
+                </div>
+                <div class="fr-form-group">
+                  <label for="fr_date_from">Period From</label>
+                  <input type="date" id="fr_date_from" class="fr-form-control" required>
+                </div>
+                <div class="fr-form-group">
+                  <label for="fr_date_to">Period To</label>
+                  <input type="date" id="fr_date_to" class="fr-form-control" required>
+                </div>
+                <div class="fr-form-group">
+                  <label for="fr_currency">Currency</label>
+                  <select id="fr_currency" class="fr-form-control">
+                    <option value="INR">INR (₹)</option>
+                    <option value="USD">USD ($)</option>
+                    <option value="EUR">EUR (€)</option>
+                    <option value="GBP">GBP (£)</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Income Statement Section -->
+              <div class="fr-section-divider">
+                <span>Profit & Loss Inputs</span>
+              </div>
+              <div class="fr-form-grid">
+                <div class="fr-form-group">
+                  <label for="fr_revenue">Total Revenue</label>
+                  <input type="number" id="fr_revenue" class="fr-form-control" value="1500000" min="0" step="any">
+                </div>
+                <div class="fr-form-group">
+                  <label for="fr_cogs">Cost of Goods Sold (COGS)</label>
+                  <input type="number" id="fr_cogs" class="fr-form-control" value="600000" min="0" step="any">
+                </div>
+                <div class="fr-form-group">
+                  <label for="fr_operating_expenses">Operating Expenses</label>
+                  <input type="number" id="fr_operating_expenses" class="fr-form-control" value="400000" min="0" step="any">
+                </div>
+                <div class="fr-form-group">
+                  <label for="fr_other_income">Other Income</label>
+                  <input type="number" id="fr_other_income" class="fr-form-control" value="50000" min="0" step="any">
+                </div>
+                <div class="fr-form-group">
+                  <label for="fr_taxes">Taxes</label>
+                  <input type="number" id="fr_taxes" class="fr-form-control" value="100000" min="0" step="any">
+                </div>
+              </div>
+
+              <!-- Balance Sheet Section -->
+              <div class="fr-section-divider">
+                <span>Balance Sheet Inputs</span>
+              </div>
+              <div class="fr-form-grid">
+                <div class="fr-form-group">
+                  <label for="fr_assets">Total Assets</label>
+                  <input type="number" id="fr_assets" class="fr-form-control" value="2500000" min="0" step="any">
+                </div>
+                <div class="fr-form-group">
+                  <label for="fr_liabilities">Total Liabilities</label>
+                  <input type="number" id="fr_liabilities" class="fr-form-control" value="1000000" min="0" step="any">
+                </div>
+                <div class="fr-form-group">
+                  <label for="fr_equity">Equity (Capital)</label>
+                  <input type="number" id="fr_equity" class="fr-form-control" value="1500000" min="0" step="any" placeholder="Assets - Liabilities">
+                </div>
+              </div>
+
+              <div class="fr-button-container">
+                <button type="button" id="frGenerateReportBtn" class="fr-primary-btn">Generate Report</button>
+                <button type="button" id="frResetBtn" class="fr-secondary-btn">Reset Fields</button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Report Statement Preview Card -->
+          <div id="frReportPreviewCard" class="fr-report-preview-card hide">
+            <!-- Sheet Container (Target for PDF export/print) -->
+            <div id="frReportSheet" class="fr-report-sheet">
+              <div class="fr-sheet-header">
+                <div class="fr-sheet-logo-container">
+                  <span class="fr-logo-softrate">Softrate</span> <span class="fr-logo-books">Books</span>
+                </div>
+                <h2 id="frSheetCompanyName" class="fr-sheet-org-name">Softrate Technologies</h2>
+                <h3 id="frSheetReportTitle" class="fr-sheet-report-title">Profit & Loss Statement</h3>
+                <p id="frSheetPeriod" class="fr-sheet-period">For the period 01/01/2026 to 12/31/2026</p>
+              </div>
+
+              <!-- Profit & Loss Table Content -->
+              <div id="frProfitLossTableWrapper" class="fr-table-wrapper">
+                <table class="fr-statement-table">
+                  <thead>
+                    <tr>
+                      <th>Account Description</th>
+                      <th class="text-right">Amount</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="fr-row-category"><td colspan="2">Operating Revenue</td></tr>
+                    <tr class="fr-row-indent">
+                      <td>Total Revenue</td>
+                      <td class="text-right" id="lbl_revenue">$0.00</td>
+                    </tr>
+                    <tr class="fr-row-indent">
+                      <td>Cost of Goods Sold (COGS)</td>
+                      <td class="text-right" id="lbl_cogs">($0.00)</td>
+                    </tr>
+                    <tr class="fr-row-total">
+                      <td>Gross Profit</td>
+                      <td class="text-right fr-double-underline" id="lbl_gross_profit">$0.00</td>
+                    </tr>
+
+                    <tr class="fr-row-category"><td colspan="2">Operating Expenses</td></tr>
+                    <tr class="fr-row-indent">
+                      <td>Operating Expenses</td>
+                      <td class="text-right" id="lbl_operating_expenses">($0.00)</td>
+                    </tr>
+                    <tr class="fr-row-indent">
+                      <td>Taxes Paid</td>
+                      <td class="text-right" id="lbl_taxes">($0.00)</td>
+                    </tr>
+
+                    <tr class="fr-row-category"><td colspan="2">Other Income</td></tr>
+                    <tr class="fr-row-indent">
+                      <td>Other Business Income</td>
+                      <td class="text-right" id="lbl_other_income">$0.00</td>
+                    </tr>
+
+                    <tr class="fr-row-net-profit">
+                      <td>Net Profit / Earnings</td>
+                      <td class="text-right fr-double-underline" id="lbl_net_profit">$0.00</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Balance Sheet Table Content -->
+              <div id="frBalanceSheetTableWrapper" class="fr-table-wrapper hide">
+                <table class="fr-statement-table">
+                  <thead>
+                    <tr>
+                      <th>Account Description</th>
+                      <th class="text-right">Amount</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="fr-row-category"><td colspan="2">Assets</td></tr>
+                    <tr class="fr-row-indent">
+                      <td>Total Fixed & Current Assets</td>
+                      <td class="text-right" id="lbl_assets">$0.00</td>
+                    </tr>
+                    <tr class="fr-row-total">
+                      <td>Total Assets</td>
+                      <td class="text-right fr-double-underline" id="lbl_total_assets">$0.00</td>
+                    </tr>
+
+                    <tr class="fr-row-category"><td colspan="2">Liabilities</td></tr>
+                    <tr class="fr-row-indent">
+                      <td>Total Current & Long-term Liabilities</td>
+                      <td class="text-right" id="lbl_liabilities">($0.00)</td>
+                    </tr>
+                    <tr class="fr-row-total">
+                      <td>Total Liabilities</td>
+                      <td class="text-right fr-double-underline" id="lbl_total_liabilities">$0.00</td>
+                    </tr>
+
+                    <tr class="fr-row-category"><td colspan="2">Equity</td></tr>
+                    <tr class="fr-row-indent">
+                      <td>Owner Capital / Retained Earnings</td>
+                      <td class="text-right" id="lbl_equity">$0.00</td>
+                    </tr>
+                    <tr class="fr-row-net-profit">
+                      <td>Total Liabilities and Equity</td>
+                      <td class="text-right fr-double-underline" id="lbl_liabilities_equity">$0.00</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Export controls (outside sheet wrapper to avoid being printed/PDFed) -->
+            <div class="fr-export-container">
+              <button type="button" id="frExportPdfBtn" class="fr-export-btn">
+                <i data-lucide="file-text"></i> Download PDF
+              </button>
+              <button type="button" id="frExportCsvBtn" class="fr-export-btn">
+                <i data-lucide="file-spreadsheet"></i> Export CSV
+              </button>
+              <button type="button" id="frPrintBtn" class="fr-export-btn">
+                <i data-lucide="printer"></i> Print Report
+              </button>
+              <button type="button" id="frSaveDbBtn" class="fr-export-btn">
+                <i data-lucide="database"></i> Save Calculations
+              </button>
+            </div>
+
+            <!-- Charts Section -->
+            <div class="fr-charts-section">
+              <h3 class="fr-charts-section-title">Visual Reports & Accounting Ratios</h3>
+              <div class="fr-charts-grid">
+                <div class="fr-chart-card">
+                  <h4>Revenue vs Expenses</h4>
+                  <div class="fr-chart-wrapper">
+                    <canvas id="frChartRevenueExpense"></canvas>
+                  </div>
+                </div>
+                <div class="fr-chart-card">
+                  <h4>Profitability Analysis</h4>
+                  <div class="fr-chart-wrapper">
+                    <canvas id="frChartProfitability"></canvas>
+                  </div>
+                </div>
+                <div class="fr-chart-card">
+                  <h4>Assets, Liabilities & Equity</h4>
+                  <div class="fr-chart-wrapper">
+                    <canvas id="frChartAssetsLiabilities"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Promotional beyond-statements banner -->
+          <div class="fr-promo-beyond">
+            <h2>Looking for something beyond generating financial statements?</h2>
+            <p>Softrate Books is online accounting software that manages your finances, automates business workflows, and helps you work collectively across departments.</p>
+            <a href="#" class="fr-promo-signup-btn">SIGN UP FOR FREE</a>
+          </div>
+
+          <!-- Capabilities for business -->
+          <div class="fr-capabilities-section">
+            <div class="fr-capabilities-header-wrapper">
+              <div class="fr-capabilities-logo">
+                <span class="fr-logo-softrate">Softrate</span> <span class="fr-logo-books">Books</span>
+              </div>
+              <span class="fr-capabilities-title">capabilities for business</span>
+            </div>
+            
+            <div class="fr-capabilities-grid">
+              <div class="fr-capability-item">
+                <div class="fr-capability-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="17 11 21 7 17 3"></polyline>
+                    <line x1="3" y1="7" x2="21" y2="7"></line>
+                    <polyline points="7 13 3 17 7 21"></polyline>
+                    <line x1="21" y1="17" x2="3" y2="17"></line>
+                  </svg>
+                </div>
+                <span>Manage receivables and payables</span>
+              </div>
+              
+              <div class="fr-capability-item">
+                <div class="fr-capability-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"></path>
+                  </svg>
+                </div>
+                <span>Reconcile bank accounts easily</span>
+              </div>
+              
+              <div class="fr-capability-item">
+                <div class="fr-capability-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <line x1="19" y1="8" x2="19" y2="14"></line>
+                    <line x1="22" y1="11" x2="16" y2="11"></line>
+                  </svg>
+                </div>
+                <span>Add customers and vendors</span>
+              </div>
+              
+              <div class="fr-capability-item">
+                <div class="fr-capability-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2" ry="2"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                  </svg>
+                </div>
+                <span>Create and manage multiple projects</span>
+              </div>
+              
+              <div class="fr-capability-item">
+                <div class="fr-capability-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                    <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                    <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                  </svg>
+                </div>
+                <span>Create items and track inventory</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Switch to smart accounting footer -->
+          <div class="fr-smart-accounting-banner">
+            <h2>Switch to smart accounting!</h2>
+            <a href="#" class="fr-smart-trial-btn">Start my free 14-day trial</a>
+          </div>
+
+          <!-- FAQ Accordion -->
+          <div class="fr-faq-container">
+            <h2 class="fr-faq-title">Frequently Asked Questions</h2>
+            <ul class="fr-faq-list">
+              <li class="fr-faq-item">
+                <div class="fr-faq-trigger">
+                  <span>What is a financial report?</span>
+                  <div class="fr-faq-arrow"></div>
+                </div>
+                <div class="fr-faq-content">
+                  <p>A financial report is a formal record of the financial activities and position of a business, person, or other entity. It provides a structured summary of financial performance over a specific period, typically including statements like the Balance Sheet, Profit & Loss (Income Statement), and Cash Flow statement.</p>
+                </div>
+              </li>
+              <li class="fr-faq-item">
+                <div class="fr-faq-trigger">
+                  <span>What are the key components of a financial report?</span>
+                  <div class="fr-faq-arrow"></div>
+                </div>
+                <div class="fr-faq-content">
+                  <p>The primary components include the Balance Sheet (showing assets, liabilities, and equity), the Income Statement (showing revenue, cost of goods sold, expenses, and net profit), and the Cash Flow Statement (tracking cash inflows and outflows from operating, investing, and financing activities).</p>
+                </div>
+              </li>
+              <li class="fr-faq-item">
+                <div class="fr-faq-trigger">
+                  <span>What is the difference between a Balance Sheet and a Profit & Loss Statement?</span>
+                  <div class="fr-faq-arrow"></div>
+                </div>
+                <div class="fr-faq-content">
+                  <p>A Balance Sheet represents a snapshot of a company's financial position at a single point in time (what it owns and owes), while a Profit & Loss (P&L) statement measures the company's financial performance (revenues, costs, and expenses) over a specific duration of time.</p>
+                </div>
+              </li>
+              <li class="fr-faq-item">
+                <div class="fr-faq-trigger">
+                  <span>Why are financial reports important for my business?</span>
+                  <div class="fr-faq-arrow"></div>
+                </div>
+                <div class="fr-faq-content">
+                  <p>Financial reports help business owners, investors, and lenders evaluate profitability, manage cash flow, secure funding, analyze operational trends, and ensure tax compliance.</p>
+                </div>
+              </li>
+              <li class="fr-faq-item">
+                <div class="fr-faq-trigger">
+                  <span>How does Softrate Books assist in financial reporting?</span>
+                  <div class="fr-faq-arrow"></div>
+                </div>
+                <div class="fr-faq-content">
+                  <p>Softrate Books automates the generation of financial statements by syncing with your live banking, invoice, and expense records, providing real-time accuracy and eliminating manual calculations.</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: Gratuity Calculator -->

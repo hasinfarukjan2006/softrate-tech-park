@@ -1,0 +1,655 @@
+/* ============================================================
+   PACKING SLIP GENERATOR — Scoped Styles
+   ============================================================ */
+
+#packing-slip-section {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #1f2937;
+  line-height: 1.5;
+  background-color: #fffdf5; /* Light cream/yellow background */
+  padding: 2.5rem 1.5rem;
+  border-radius: 16px;
+  margin-bottom: 2.5rem;
+}
+
+#packing-slip-section *,
+#packing-slip-section *::before,
+#packing-slip-section *::after {
+  box-sizing: border-box;
+}
+
+.ps-page-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* --- Hero Header --- */
+.ps-hero {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  padding: 1rem 0;
+}
+
+.ps-hero h1 {
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: #111827;
+  margin-bottom: 0.5rem;
+}
+
+.ps-accent-color {
+  color: #f97316; /* Softrate orange color */
+}
+
+.ps-hero p {
+  font-size: 1.05rem;
+  color: #4b5563;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* --- Main Layout --- */
+.ps-workspace {
+  display: flex;
+  gap: 2.5rem;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  margin-bottom: 3.5rem;
+}
+
+.ps-workspace-left {
+  flex: 2 1 650px;
+  min-width: 320px;
+}
+
+.ps-workspace-right {
+  flex: 1 1 350px;
+  min-width: 300px;
+  position: sticky;
+  top: 20px;
+}
+
+/* Cards */
+.ps-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 2rem 1.75rem;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+}
+
+.ps-card h2 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin: 0 0 1.5rem 0;
+  color: #111827;
+  border-bottom: 2px solid #f3f4f6;
+  padding-bottom: 0.75rem;
+}
+
+/* Direct Document Preview Sheet */
+.ps-sheet-outer {
+  background-color: #f3f4f6;
+  padding: 2rem;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: center;
+  overflow-x: auto;
+}
+
+.ps-document-sheet {
+  background: #ffffff;
+  width: 100%;
+  max-width: 800px;
+  min-height: 1050px; /* A4 aspect ratio helper */
+  padding: 3rem;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  color: #000000;
+  font-family: Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
+  position: relative;
+}
+
+/* Header branding */
+.ps-doc-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 3px solid #1e293b;
+  padding-bottom: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.ps-doc-logo-area {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.ps-doc-logo-initial {
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  background-color: #f97316; /* Softrate Orange */
+  color: #ffffff;
+  font-weight: 900;
+  font-size: 1.65rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ps-doc-logo-text {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #111827;
+  letter-spacing: -0.5px;
+}
+
+.ps-doc-title-area {
+  text-align: right;
+}
+
+.ps-doc-title-area h1 {
+  font-size: 2rem;
+  font-weight: 900;
+  color: #111827;
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+.ps-doc-subtitle {
+  font-size: 0.85rem;
+  color: #f97316;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-top: 0.25rem;
+}
+
+/* Content Editable Styles */
+[contenteditable="true"] {
+  padding: 4px 6px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  min-width: 20px;
+  display: inline-block;
+}
+
+[contenteditable="true"]:hover {
+  outline: 1px dashed #f97316;
+  background-color: #fffbeb;
+  cursor: text;
+}
+
+[contenteditable="true"]:focus {
+  outline: 2px solid #f97316;
+  background-color: #fffbeb;
+  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.15);
+}
+
+/* Info grid */
+.ps-doc-info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.ps-doc-info-block {
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.ps-doc-info-title {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #f97316;
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 0.35rem;
+  margin-bottom: 0.65rem;
+  letter-spacing: 0.5px;
+}
+
+.ps-doc-info-value {
+  color: #1e293b;
+  margin-bottom: 0.25rem;
+}
+
+.ps-doc-info-value.font-bold {
+  font-weight: 700;
+  font-size: 0.92rem;
+  color: #111827;
+}
+
+/* Metadata Table grid */
+.ps-doc-meta-table {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  margin-bottom: 2rem;
+}
+
+.ps-doc-meta-cell {
+  padding: 0.65rem 0.85rem;
+  border-right: 1px solid #cbd5e1;
+  font-size: 0.82rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.ps-doc-meta-cell:nth-child(3n) {
+  border-right: none;
+}
+
+.ps-doc-meta-cell:nth-child(n+4) {
+  border-top: 1px solid #cbd5e1;
+}
+
+.ps-meta-lbl {
+  font-weight: 700;
+  color: #475569;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  margin-bottom: 0.25rem;
+}
+
+.ps-meta-val {
+  font-weight: 700;
+  color: #0f172a;
+}
+
+/* Items Preview list table */
+.ps-doc-items-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+
+.ps-doc-items-table th {
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  color: #1e293b;
+  font-weight: 700;
+  padding: 0.65rem 0.85rem;
+  text-align: left;
+}
+
+.ps-doc-items-table td {
+  border: 1px solid #cbd5e1;
+  padding: 0.5rem 0.65rem;
+  color: #0f172a;
+  vertical-align: middle;
+}
+
+.ps-doc-items-table tr:nth-child(even) {
+  background: #f8fafc;
+}
+
+.ps-doc-items-table th.text-right,
+.ps-doc-items-table td.text-right {
+  text-align: right;
+}
+
+.ps-btn-add-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: #fff;
+  border: 1px dashed #d1d5db;
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #f97316;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.ps-btn-add-item:hover {
+  background: #fff7ed;
+  border-color: #f97316;
+}
+
+.ps-btn-delete-row {
+  background: #fef2f2;
+  color: #b91c1c;
+  border: 1px solid #fca5a5;
+  border-radius: 4px;
+  padding: 0.4rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+}
+
+.ps-btn-delete-row:hover:not(:disabled) {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.ps-btn-delete-row:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Totals box */
+.ps-doc-totals-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.4rem;
+  margin-bottom: 2.5rem;
+  border-top: 2px solid #1e293b;
+  padding-top: 1rem;
+}
+
+.ps-doc-totals-row {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1.5rem;
+  font-size: 0.88rem;
+  width: 280px;
+}
+
+.ps-doc-totals-row span {
+  color: #475569;
+}
+
+.ps-doc-totals-row strong {
+  font-weight: 700;
+  color: #0f172a;
+}
+
+/* Document footer block */
+.ps-doc-footer-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.ps-doc-notes-block {
+  font-size: 0.8rem;
+}
+
+.ps-notes-text {
+  color: #475569;
+  line-height: 1.45;
+  margin-top: 0.5rem;
+  width: 100%;
+}
+
+.ps-doc-signature-block {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.ps-sig-line {
+  border-top: 1.5px solid #000000;
+  margin: 0 auto 0.5rem auto;
+  width: 180px;
+}
+
+.ps-sig-lbl {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #475569;
+}
+
+.ps-sig-company {
+  font-size: 0.72rem;
+  color: #64748b;
+  margin-top: 0.15rem;
+}
+
+/* Powered Tag */
+.ps-powered-by {
+  font-size: 0.72rem;
+  text-align: center;
+  color: #94a3b8;
+  border-top: 1px dashed #e2e8f0;
+  padding-top: 1rem;
+  margin-top: 3.5rem;
+}
+
+/* Actions Panel */
+.ps-panel-actions .bc-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: 1px solid transparent;
+}
+
+.ps-panel-actions .bc-btn-success {
+  background-color: #10b981;
+  color: #ffffff;
+}
+
+.ps-panel-actions .bc-btn-success:hover {
+  background-color: #059669;
+}
+
+.ps-panel-actions .bc-btn-primary {
+  background-color: #f97316;
+  color: #ffffff;
+}
+
+.ps-panel-actions .bc-btn-primary:hover {
+  background-color: #ea580c;
+}
+
+.ps-panel-actions .bc-btn-outline {
+  background-color: transparent;
+  border-color: #d1d5db;
+  color: #4b5563;
+}
+
+.ps-panel-actions .bc-btn-outline:hover {
+  background-color: #f3f4f6;
+  border-color: #9ca3af;
+}
+
+/* ============================================================
+   FAQ ACCORDION STYLES
+   ============================================================ */
+.bc-faq-section {
+  max-width: 850px;
+  margin: 4rem auto 0 auto;
+}
+
+.bc-faq-section h2 {
+  font-size: 1.85rem;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #111;
+}
+
+.bc-faq-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.ps-faq-item.bc-faq-item {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: border-color 0.15s;
+}
+
+.ps-faq-item.bc-faq-item.active {
+  border-color: #f97316;
+}
+
+.bc-faq-trigger {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.1rem 1.5rem;
+  background: transparent;
+  border: none;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #1f2937;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  transition: color 0.15s;
+}
+
+.bc-faq-trigger:hover {
+  color: #f97316;
+}
+
+.bc-faq-trigger i {
+  color: #9ca3af;
+  transition: transform 0.2s, color 0.2s;
+  flex-shrink: 0;
+}
+
+.ps-faq-item.bc-faq-item.active .bc-faq-trigger i {
+  transform: rotate(180deg);
+  color: #f97316;
+}
+
+.bc-faq-content {
+  display: none;
+  padding: 0 1.5rem 1.25rem 1.5rem;
+  font-size: 0.9rem;
+  color: #4b5563;
+  line-height: 1.6;
+}
+
+.bc-faq-content p {
+  margin: 0;
+}
+
+/* ============================================================
+   RESPONSIVE DESIGN BREAKPOINTS
+   ============================================================ */
+@media (max-width: 1024px) {
+  .ps-workspace {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .ps-workspace-left,
+  .ps-workspace-right {
+    flex: 1 1 auto;
+    width: 100%;
+  }
+  .ps-workspace-right {
+    position: static;
+  }
+}
+
+@media (max-width: 768px) {
+  #packing-slip-section {
+    padding: 1.5rem 1rem;
+  }
+  .ps-document-sheet {
+    padding: 1.5rem;
+  }
+  .ps-doc-info-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .ps-doc-meta-table {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .ps-doc-meta-cell:nth-child(3n) {
+    border-right: 1px solid #cbd5e1;
+  }
+  .ps-doc-meta-cell:nth-child(2n) {
+    border-right: none;
+  }
+  .ps-doc-footer-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .ps-doc-signature-block {
+    align-items: flex-start;
+    text-align: left;
+  }
+  .ps-sig-line {
+    margin: 1.5rem 0 0.5rem 0;
+  }
+}
+
+/* ============================================================
+   PDF RENDER & PRINT STYLES
+   ============================================================ */
+/* Hide print-suppressed elements during PDF capture */
+.ps-rendering-pdf .ps-no-print {
+  display: none !important;
+}
+
+.ps-rendering-pdf [contenteditable="true"] {
+  outline: none !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+
+.ps-rendering-pdf {
+  box-shadow: none !important;
+}
+
+@media print {
+  /* Hide all core SPA layouts, sidebars, headers, forms */
+  body * {
+    visibility: hidden;
+  }
+
+  /* Target packing slip document wrapper & content specifically */
+  .ps-sheet-outer,
+  #packingSlipDocument,
+  #packingSlipDocument * {
+    visibility: visible;
+  }
+
+  .ps-sheet-outer {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100% !important;
+    height: 100% !important;
+    background: #ffffff !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: visible !important;
+  }
+
+  #packingSlipDocument {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-shadow: none !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: #ffffff !important;
+  }
+
+  /* Hide print-suppressed elements during standard browser print */
+  .ps-no-print {
+    display: none !important;
+  }
+
+  [contenteditable="true"] {
+    outline: none !important;
+    background-color: transparent !important;
+  }
+}

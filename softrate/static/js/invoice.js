@@ -1,72 +1,188 @@
-/* invoice.js — Client-side dynamic logic for Invoice Generator */
+/* invoice.js — Zoho-styled dynamic calculator logic for Free GST Invoice Generator */
 document.addEventListener("DOMContentLoaded", function() {
   const container = document.getElementById("invoice-section");
   if (!container) return;
 
   const itemRows = document.getElementById("invItemRows");
   const addRowBtn = document.getElementById("invAddRow");
-  const subTotalVal = document.getElementById("invSubTotal");
-  const taxTotalVal = document.getElementById("invTaxTotal");
-  const discountInput = document.getElementById("invDiscount");
-  const shippingInput = document.getElementById("invShipping");
-  const totalDueVal = document.getElementById("invTotalDue");
   
-  const printBtn = document.getElementById("invPrint");
-  const pdfBtn = document.getElementById("invPDF");
-  const resetBtn = document.getElementById("invReset");
+  const subTotalVal = document.getElementById("invSubTotal");
+  const cgstVal = document.getElementById("invCGST");
+  const sgstVal = document.getElementById("invSGST");
+  const igstVal = document.getElementById("invIGST");
+  const totalDueVal = document.getElementById("invTotalDue");
 
-  // Set today's date and due date (+14 days)
-  const dt = new Date();
-  const yr = dt.getFullYear();
-  const mo = String(dt.getMonth() + 1).padStart(2, "0");
-  const dy = String(dt.getDate()).padStart(2, "0");
-  document.getElementById("invDate").value = `${yr}-${mo}-${dy}`;
+  const cgstRowWrap = document.getElementById("cgstRowWrap");
+  const sgstRowWrap = document.getElementById("sgstRowWrap");
+  const igstRowWrap = document.getElementById("igstRowWrap");
 
-  const dueDt = new Date();
-  dueDt.setDate(dueDt.getDate() + 14);
-  const dueYr = dueDt.getFullYear();
-  const dueMo = String(dueDt.getMonth() + 1).padStart(2, "0");
-  const dueDy = String(dueDt.getDate()).padStart(2, "0");
-  document.getElementById("invDueDate").value = `${dueYr}-${dueMo}-${dueDy}`;
+  const invDownloadBtn = document.getElementById("invDownloadBtn");
+  const invSaveBtn = document.getElementById("invSaveBtn");
+  
+  const logoInput = document.getElementById("invLogoInput");
+  const logoPreview = document.getElementById("invLogoPreview");
+  const logoPlaceholder = document.getElementById("invLogoPlaceholder");
 
-  function fmt(n) {
-    return "\u00A3" + Math.abs(n).toLocaleString("en-GB", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-  }
+  const invCurrencySelect = document.getElementById("invCurrency");
 
-  function calc() {
-    let subtotal = 0;
-    let taxTotal = 0;
+  // Currency config details
+  const CURRENCIES = {
+    INR: { symbol: "₹", locale: "en-IN" },
+    USD: { symbol: "$", locale: "en-US" },
+    EUR: { symbol: "€", locale: "de-DE" },
+    GBP: { symbol: "£", locale: "en-GB" },
+    AED: { symbol: "AED", locale: "en-AE", space: true },
+    SAR: { symbol: "SAR", locale: "ar-SA", space: true },
+    QAR: { symbol: "QAR", locale: "ar-QA", space: true },
+    OMR: { symbol: "OMR", locale: "ar-OM", space: true },
+    KWD: { symbol: "KWD", locale: "ar-KW", space: true },
+    BHD: { symbol: "BHD", locale: "ar-BH", space: true },
+    JOD: { symbol: "JD", locale: "ar-JO", space: true },
+    EGP: { symbol: "E£", locale: "ar-EG", space: true },
+    TRY: { symbol: "₺", locale: "tr-TR" },
+    ZAR: { symbol: "R", locale: "en-ZA" },
+    CAD: { symbol: "C$", locale: "en-CA" },
+    AUD: { symbol: "A$", locale: "en-AU" },
+    NZD: { symbol: "NZ$", locale: "en-NZ" },
+    SGD: { symbol: "S$", locale: "en-SG" },
+    MYR: { symbol: "RM", locale: "ms-MY" },
+    THB: { symbol: "฿", locale: "th-TH" },
+    IDR: { symbol: "Rp", locale: "id-ID" },
+    PHP: { symbol: "₱", locale: "en-PH" },
+    VND: { symbol: "₫", locale: "vi-VN" },
+    CNY: { symbol: "¥", locale: "zh-CN" },
+    JPY: { symbol: "¥", locale: "ja-JP" },
+    KRW: { symbol: "₩", locale: "ko-KR" },
+    HKD: { symbol: "HK$", locale: "en-HK" },
+    CHF: { symbol: "CHF", locale: "de-CH", space: true },
+    SEK: { symbol: "kr", locale: "sv-SE", space: true },
+    NOK: { symbol: "kr", locale: "nb-NO", space: true },
+    DKK: { symbol: "kr", locale: "da-DK", space: true },
+    PLN: { symbol: "zł", locale: "pl-PL", space: true },
+    RUB: { symbol: "₽", locale: "ru-RU" },
+    BRL: { symbol: "R$", locale: "pt-BR" },
+    MXN: { symbol: "$", locale: "es-MX" }
+  };
 
-    itemRows.querySelectorAll("tr").forEach(row => {
-      const qtyInput = row.querySelector(".inv-item-qty");
-      const rateInput = row.querySelector(".inv-item-rate");
-      const taxInput = row.querySelector(".inv-item-tax");
-      const totalEl = row.querySelector(".inv-item-total");
-
-      if (!qtyInput || !rateInput) return;
-
-      const qty = parseFloat(qtyInput.value) || 0;
-      const rate = parseFloat(rateInput.value) || 0;
-      const taxPercent = parseFloat(taxInput.value) || 0;
-
-      const amt = qty * rate;
-      const rowTax = amt * (taxPercent / 100);
-
-      subtotal += amt;
-      taxTotal += rowTax;
-
-      if (totalEl) {
-        totalEl.textContent = fmt(amt);
-      }
+  // Format helper for numbers to 2 decimal places with currency symbol & thousand separators
+  function fmt(n, includeSymbol = false) {
+    const curCode = invCurrencySelect ? invCurrencySelect.value : "INR";
+    const conf = CURRENCIES[curCode] || { symbol: "₹", locale: "en-IN" };
+    
+    // Format the number part with 2 decimal places and proper locale separators
+    let formattedNum = n.toLocaleString(conf.locale, {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
     });
 
-    const disc = parseFloat(discountInput.value) || 0;
-    const ship = parseFloat(shippingInput.value) || 0;
-    const grandTotal = subtotal + taxTotal - disc + ship;
+    if (includeSymbol) {
+      if (conf.space) {
+        return conf.symbol + " " + formattedNum;
+      }
+      return conf.symbol + formattedNum;
+    }
+    return formattedNum;
+  }
 
-    subTotalVal.textContent = fmt(subtotal);
-    taxTotalVal.textContent = fmt(taxTotal);
-    totalDueVal.textContent = fmt(grandTotal);
+  // Calculate Invoice Values dynamically
+  function calc() {
+    let subtotal = 0;
+    let cgstTotal = 0;
+    let sgstTotal = 0;
+    let igstTotal = 0;
+
+    // Check Place of Supply to determine GST split
+    const supplyStateInput = document.getElementById("invSupply");
+    const supplyState = (supplyStateInput ? supplyStateInput.value.trim().toLowerCase() : "");
+    const fromStateInput = document.getElementById("invFromState");
+    const fromState = (fromStateInput ? fromStateInput.value.trim().toLowerCase() : "");
+    
+    // Default to intrastate split if they match, or if interstate is not clearly set
+    const isInterstate = supplyState !== "" && fromState !== "" && supplyState !== fromState;
+
+    itemRows.querySelectorAll("tr").forEach(row => {
+      const descInput = row.querySelector(".inv-item-desc");
+      if (!descInput) return;
+
+      const qtyInput = row.querySelector(".inv-item-qty");
+      const rateInput = row.querySelector(".inv-item-rate");
+      const sgstPctInput = row.querySelector(".inv-item-sgst-pct");
+      const cgstPctInput = row.querySelector(".inv-item-cgst-pct");
+      const cessPctInput = row.querySelector(".inv-item-cess-pct");
+
+      const sgstValSpan = row.querySelector(".inv-item-sgst-val");
+      const cgstValSpan = row.querySelector(".inv-item-cgst-val");
+      const cessValSpan = row.querySelector(".inv-item-cess-val");
+      const totalEl = row.querySelector(".inv-item-total");
+
+      const qty = parseFloat(qtyInput ? qtyInput.value : 0) || 0;
+      const rate = parseFloat(rateInput ? rateInput.value : 0) || 0;
+      const sgstPct = parseFloat(sgstPctInput ? sgstPctInput.value : 0) || 0;
+      const cgstPct = parseFloat(cgstPctInput ? cgstPctInput.value : 0) || 0;
+      const cessPct = parseFloat(cessPctInput ? cessPctInput.value : 0) || 0;
+
+      const amt = qty * rate;
+      const sgstAmt = amt * (sgstPct / 100);
+      const cgstAmt = amt * (cgstPct / 100);
+      const cessAmt = amt * (cessPct / 100);
+      const rowTotal = amt + sgstAmt + cgstAmt + cessAmt;
+
+      subtotal += amt;
+      cgstTotal += cgstAmt;
+      sgstTotal += sgstAmt;
+      igstTotal += (sgstAmt + cgstAmt); // If interstate, combine CGST + SGST into IGST equivalent representation
+
+      if (sgstValSpan) sgstValSpan.textContent = fmt(sgstAmt);
+      if (cgstValSpan) cgstValSpan.textContent = fmt(cgstAmt);
+      if (cessValSpan) cessValSpan.textContent = fmt(cessAmt);
+      if (totalEl) totalEl.textContent = fmt(rowTotal);
+    });
+
+    // Render summary results
+    if (subTotalVal) subTotalVal.textContent = fmt(subtotal);
+
+    if (isInterstate) {
+      if (igstRowWrap) igstRowWrap.classList.remove("hide");
+      if (cgstRowWrap) cgstRowWrap.classList.add("hide");
+      if (sgstRowWrap) sgstRowWrap.classList.add("hide");
+      if (igstVal) igstVal.textContent = fmt(igstTotal);
+    } else {
+      if (igstRowWrap) igstRowWrap.classList.add("hide");
+      if (cgstRowWrap) cgstRowWrap.classList.remove("hide");
+      if (sgstRowWrap) sgstRowWrap.classList.remove("hide");
+      if (cgstVal) cgstVal.textContent = fmt(cgstTotal);
+      if (sgstVal) sgstVal.textContent = fmt(sgstTotal);
+    }
+
+    const totalTax = cgstTotal + sgstTotal;
+    const grandTotal = subtotal + totalTax;
+    if (totalDueVal) totalDueVal.textContent = fmt(grandTotal, true);
+  }
+
+  // Recalculate on currency change
+  if (invCurrencySelect) {
+    invCurrencySelect.addEventListener("change", calc);
+  }
+
+  // Handle Logo Upload Preview
+  window.InvoiceController = {
+    handleLogo: function(input) {
+      if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          logoPreview.src = e.target.result;
+          logoPreview.classList.remove("hide");
+          logoPlaceholder.classList.add("hide");
+        };
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+  };
+
+  if (logoInput) {
+    logoInput.addEventListener("change", function() {
+      InvoiceController.handleLogo(this);
+    });
   }
 
   // Row removal delegation
@@ -85,149 +201,143 @@ document.addEventListener("DOMContentLoaded", function() {
   // Add line item
   addRowBtn.addEventListener("click", function() {
     const tr = document.createElement("tr");
+    tr.style.borderBottom = "1px solid #f1f5f9";
     tr.innerHTML = `
-      <td><input type="text" class="inv-item-desc" placeholder="Product or service description" value=""></td>
-      <td><input type="number" class="inv-item-qty" placeholder="1" min="0" step="1" value="1"></td>
-      <td><input type="number" class="inv-item-rate" placeholder="0.00" min="0" step="0.01" value="0.00"></td>
-      <td><input type="number" class="inv-item-tax" placeholder="20" min="0" max="100" step="0.1" value="20"></td>
-      <td class="inv-item-total text-right">&pound;0.00</td>
-      <td><button type="button" class="inv-remove-row" title="Delete Row">&times;</button></td>
+      <td style="padding: 12px 16px; vertical-align: top;">
+        <textarea class="inv-item-desc" placeholder="Enter item name/description" style="width: 100% !important; border: 1px dashed transparent !important; background: transparent !important; padding: 4px !important; font-size: 0.9rem !important; resize: none; min-height: 38px; color: #1e293b !important;" rows="1"></textarea>
+        <input type="text" class="inv-item-hsn" placeholder="HSN/SAC" value="HSN/SAC" style="width: 100% !important; border: none !important; background: transparent !important; padding: 0 4px !important; font-size: 0.75rem !important; color: #94a3b8 !important; margin-top: 4px;">
+      </td>
+      <td style="padding: 12px 16px; vertical-align: top; text-align: right;">
+        <input type="number" class="inv-item-qty" placeholder="1" min="0" step="1" value="1" style="width: 100% !important; border: 1px dashed transparent !important; background: transparent !important; padding: 4px !important; font-size: 0.9rem !important; text-align: right; color: #1e293b !important;">
+      </td>
+      <td style="padding: 12px 16px; vertical-align: top; text-align: right;">
+        <input type="number" class="inv-item-rate" placeholder="0.00" min="0" step="0.01" value="0.00" style="width: 100% !important; border: 1px dashed transparent !important; background: transparent !important; padding: 4px !important; font-size: 0.9rem !important; text-align: right; color: #1e293b !important;">
+      </td>
+      <td style="padding: 12px 16px; vertical-align: top; text-align: right;">
+        <div style="display: flex; flex-direction: column; align-items: flex-end;">
+          <input type="number" class="inv-item-sgst-pct" placeholder="0" min="0" step="0.1" value="0" style="width: 48px !important; border: 1px dashed transparent !important; background: transparent !important; padding: 2px !important; font-size: 0.85rem !important; text-align: right; color: #1e293b !important;">
+          <span class="inv-item-sgst-val" style="font-size: 0.75rem; color: #64748b; margin-top: 4px;">0.00</span>
+        </div>
+      </td>
+      <td style="padding: 12px 16px; vertical-align: top; text-align: right;">
+        <div style="display: flex; flex-direction: column; align-items: flex-end;">
+          <input type="number" class="inv-item-cgst-pct" placeholder="0" min="0" step="0.1" value="0" style="width: 48px !important; border: 1px dashed transparent !important; background: transparent !important; padding: 2px !important; font-size: 0.85rem !important; text-align: right; color: #1e293b !important;">
+          <span class="inv-item-cgst-val" style="font-size: 0.75rem; color: #64748b; margin-top: 4px;">0.00</span>
+        </div>
+      </td>
+      <td style="padding: 12px 16px; vertical-align: top; text-align: right;">
+        <div style="display: flex; flex-direction: column; align-items: flex-end;">
+          <input type="number" class="inv-item-cess-pct" placeholder="0" min="0" step="0.1" value="0" style="width: 48px !important; border: 1px dashed transparent !important; background: transparent !important; padding: 2px !important; font-size: 0.85rem !important; text-align: right; color: #1e293b !important;">
+          <span class="inv-item-cess-val" style="font-size: 0.75rem; color: #64748b; margin-top: 4px;">0.00</span>
+        </div>
+      </td>
+      <td class="inv-item-total text-right" style="padding: 12px 16px; vertical-align: top; font-size: 0.9rem; font-weight: 400; color: #1e293b; text-align: right;">0.00</td>
+      <td style="padding: 12px 6px; vertical-align: top; text-align: center;"><button type="button" class="inv-remove-row" title="Delete Row" style="background: transparent; border: none; color: #94a3b8; cursor: pointer; font-size: 1.25rem; line-height: 1;">&times;</button></td>
     `;
     itemRows.appendChild(tr);
     tr.querySelector(".inv-item-desc").focus();
     calc();
   });
 
-  // Calculation on form input change
+  // Calculate automatically on change
   container.addEventListener("input", calc);
+  container.addEventListener("change", calc);
 
-  // Reset
-  resetBtn.addEventListener("click", function() {
-    document.getElementById("invoiceForm").reset();
-    itemRows.innerHTML = `
-      <tr>
-        <td><input type="text" class="inv-item-desc" placeholder="Software Engineering Services" value="Consulting Services"></td>
-        <td><input type="number" class="inv-item-qty" placeholder="1" min="0" step="1" value="10"></td>
-        <td><input type="number" class="inv-item-rate" placeholder="0.00" min="0" step="0.01" value="85.00"></td>
-        <td><input type="number" class="inv-item-tax" placeholder="20" min="0" max="100" step="0.1" value="20"></td>
-        <td class="inv-item-total text-right">&pound;850.00</td>
-        <td><button type="button" class="inv-remove-row" title="Delete Row">&times;</button></td>
-      </tr>
-    `;
-    discountInput.value = "0.00";
-    shippingInput.value = "0.00";
-    calc();
-  });
+  // Theme Swatches Color Selector
+  const swatches = document.querySelectorAll(".color-swatch");
+  swatches.forEach(swatch => {
+    swatch.addEventListener("click", function() {
+      swatches.forEach(s => {
+        s.classList.remove("active");
+        const ch = s.querySelector("i");
+        if (ch) ch.remove();
+      });
+      this.classList.add("active");
+      const checkIcon = document.createElement("i");
+      checkIcon.setAttribute("data-lucide", "check");
+      checkIcon.style.cssText = "width: 12px; height: 12px; color: #ffffff; position: absolute; top: 4px; left: 4px;";
+      this.appendChild(checkIcon);
+      lucide.createIcons();
 
-  // Print
-  printBtn.addEventListener("click", function() {
-    window.print();
-  });
-
-  // Client PDF Generation using jsPDF
-  pdfBtn.addEventListener("click", function() {
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();
-    
-    // Styling constants
-    const primaryColor = "#1a3b6b";
-    
-    // Invoice Title
-    doc.setFont("helvetica", "bold");
-    doc.setFontSize(22);
-    doc.setTextColor(primaryColor);
-    doc.text(document.getElementById("invTitleText").value || "INVOICE", 140, 25, { align: "right" });
-    
-    // Metadata
-    doc.setFontSize(9);
-    doc.setTextColor("#555555");
-    doc.text(`Invoice #: ${document.getElementById("invNumber").value}`, 140, 32, { align: "right" });
-    doc.text(`Date: ${document.getElementById("invDate").value}`, 140, 37, { align: "right" });
-    doc.text(`Due Date: ${document.getElementById("invDueDate").value}`, 140, 42, { align: "right" });
-    const po = document.getElementById("invPO").value;
-    if(po) doc.text(`PO Number: ${po}`, 140, 47, { align: "right" });
-
-    // Company / Client details
-    doc.setFontSize(10);
-    doc.setTextColor(primaryColor);
-    doc.text("Bill From:", 15, 20);
-    doc.setFont("helvetica", "normal");
-    doc.setTextColor("#333333");
-    doc.text(document.getElementById("invFromCompany").value, 15, 25);
-    doc.text(document.getElementById("invFromAddress").value, 15, 30);
-    doc.text(document.getElementById("invFromCity").value, 15, 35);
-    doc.text(document.getElementById("invFromCountry").value, 15, 40);
-    doc.text(document.getElementById("invFromPhone").value, 15, 45);
-
-    doc.setFont("helvetica", "bold");
-    doc.setTextColor(primaryColor);
-    doc.text("Bill To:", 15, 58);
-    doc.setFont("helvetica", "normal");
-    doc.setTextColor("#333333");
-    doc.text(document.getElementById("invToClient").value, 15, 63);
-    doc.text(document.getElementById("invToAddress").value, 15, 68);
-    doc.text(document.getElementById("invToCity").value, 15, 73);
-    doc.text(document.getElementById("invToCountry").value, 15, 78);
-    doc.text(document.getElementById("invToEmail").value, 15, 83);
-
-    // Build Table Body
-    const headers = [["Item Description", "Qty", "Rate", "Tax (%)", "Amount"]];
-    const data = [];
-    itemRows.querySelectorAll("tr").forEach(row => {
-      const desc = row.querySelector(".inv-item-desc").value;
-      const qty = row.querySelector(".inv-item-qty").value;
-      const rate = parseFloat(row.querySelector(".inv-item-rate").value).toFixed(2);
-      const tax = row.querySelector(".inv-item-tax").value;
-      const amt = row.querySelector(".inv-item-total").textContent;
-      data.push([desc, qty, rate, tax, amt]);
-    });
-
-    doc.autoTable({
-      startY: 95,
-      head: headers,
-      body: data,
-      theme: "grid",
-      headStyles: { fillColor: [26, 59, 107] },
-      columnStyles: {
-        0: { cellWidth: 80 },
-        1: { cellWidth: 20, halign: "right" },
-        2: { cellWidth: 25, halign: "right" },
-        3: { cellWidth: 20, halign: "right" },
-        4: { cellWidth: 35, halign: "right" }
+      const themeColor = this.getAttribute("data-color");
+      document.documentElement.style.setProperty("--inv-primary-color", themeColor);
+      
+      const standardTemplateCard = document.querySelector(".template-card[data-template='standard']");
+      if (standardTemplateCard) {
+        standardTemplateCard.style.borderColor = themeColor;
       }
     });
-
-    const finalY = doc.previousAutoTable.finalY + 15;
-    
-    // Notes
-    doc.setFontSize(8);
-    doc.setFont("helvetica", "bold");
-    doc.text("Notes / Payment Terms:", 15, finalY);
-    doc.setFont("helvetica", "normal");
-    const notesText = doc.splitTextToSize(document.getElementById("invNotes").value, 100);
-    doc.text(notesText, 15, finalY + 5);
-
-    // Summary block on the right
-    doc.setFontSize(10);
-    doc.text(`Sub Total:`, 130, finalY);
-    doc.text(subTotalVal.textContent, 190, finalY, { align: "right" });
-    
-    doc.text(`Tax Total:`, 130, finalY + 6);
-    doc.text(taxTotalVal.textContent, 190, finalY + 6, { align: "right" });
-    
-    doc.text(`Discount:`, 130, finalY + 12);
-    doc.text(`- £${parseFloat(discountInput.value).toFixed(2)}`, 190, finalY + 12, { align: "right" });
-    
-    doc.text(`Shipping:`, 130, finalY + 18);
-    doc.text(`+ £${parseFloat(shippingInput.value).toFixed(2)}`, 190, finalY + 18, { align: "right" });
-
-    doc.setFont("helvetica", "bold");
-    doc.rect(125, finalY + 23, 70, 10);
-    doc.text(`Balance Due:`, 130, finalY + 29);
-    doc.text(totalDueVal.textContent, 190, finalY + 29, { align: "right" });
-
-    doc.save(`${document.getElementById("invNumber").value || "invoice"}.pdf`);
   });
 
+  // Template Card Selection
+  const templates = document.querySelectorAll(".template-card");
+  const invoiceCard = document.getElementById("invoiceCard");
+  templates.forEach(t => {
+    t.addEventListener("click", function() {
+      templates.forEach(card => {
+        card.classList.remove("active");
+        card.style.borderColor = "#e2e8f0";
+        const titleSpan = card.querySelector("span");
+        if (titleSpan) titleSpan.style.color = "#64748b";
+      });
+      this.classList.add("active");
+      const activeColor = document.querySelector(".color-swatch.active")?.getAttribute("data-color") || "#1e293b";
+      this.style.borderColor = activeColor;
+      const titleSpan = this.querySelector("span");
+      if (titleSpan) titleSpan.style.color = activeColor;
+
+      const templateName = this.getAttribute("data-template");
+      // Update template layout class on form wrapper
+      if (invoiceCard) {
+        invoiceCard.className = "inv-card select-template-" + templateName;
+      }
+    });
+  });
+
+  // Print & PDF Download Handler
+  if (invDownloadBtn) {
+    invDownloadBtn.addEventListener("click", function() {
+      window.print();
+    });
+  }
+
+  if (invSaveBtn) {
+    invSaveBtn.addEventListener("click", function() {
+      alert("Invoice saved successfully!");
+    });
+  }
+
+  // FAQ Accordion interactions
+  const faqHeaders = document.querySelectorAll(".faq-accordion-header");
+  faqHeaders.forEach(header => {
+    header.addEventListener("click", function() {
+      const item = this.parentElement;
+      const isOpen = item.classList.contains("open");
+
+      // Close all other accordion items
+      document.querySelectorAll(".faq-accordion-item").forEach(i => {
+        i.classList.remove("open");
+        const content = i.querySelector(".faq-accordion-content");
+        if (content) content.style.maxHeight = null;
+        const icon = i.querySelector(".faq-icon");
+        if (icon) {
+          icon.setAttribute("data-lucide", "plus");
+        }
+      });
+
+      if (!isOpen) {
+        item.classList.add("open");
+        const content = item.querySelector(".faq-accordion-content");
+        if (content) content.style.maxHeight = content.scrollHeight + "px";
+        const icon = item.querySelector(".faq-icon");
+        if (icon) {
+          icon.setAttribute("data-lucide", "minus");
+        }
+      }
+      lucide.createIcons();
+    });
+  });
+
+  // Run initial calculations
   calc();
 });

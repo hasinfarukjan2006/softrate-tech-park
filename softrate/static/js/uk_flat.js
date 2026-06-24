@@ -1,116 +1,173 @@
-/* uk_flat.js — UK Flat Rate VAT Calculator logic */
+/* uk_flat.js — Step Wizard FRS Calculator */
 document.addEventListener("DOMContentLoaded", function() {
   const container = document.getElementById("uk-flat-section");
   if (!container) return;
 
-  const sectorSelect = document.getElementById("frsSector");
-  const customRateWrap = document.getElementById("frsCustomRateWrap");
-  const customRateInput = document.getElementById("frsCustomRate");
-  const firstYearCheckbox = document.getElementById("frsFirstYear");
-  const turnoverInput = document.getElementById("frsTurnover");
-  const goodsCostInput = document.getElementById("frsGoodsCost");
+  const selectSector = document.getElementById("frsSelectSector");
+  const btnGoStep2 = document.getElementById("frsBtnGoStep2");
+  const chips = container.querySelectorAll(".frs-chip");
 
-  const appliedRateVal = document.getElementById("frsAppliedRate");
-  const limCostRow = document.getElementById("frsLimCostRow");
-  const vatToPayVal = document.getElementById("frsVatToPay");
-  const stdEstVal = document.getElementById("frsStdEst");
-  const flatEstVal = document.getElementById("frsFlatEst");
+  const step1 = document.getElementById("frsStep1");
+  const step2 = document.getElementById("frsStep2");
+  const step3 = document.getElementById("frsStep3");
+
+  const ind1 = document.getElementById("stepIndicator1");
+  const ind2 = document.getElementById("stepIndicator2");
+  const ind3 = document.getElementById("stepIndicator3");
+
+  const btnGoStep3 = document.getElementById("frsBtnGoStep3");
+  const btnRestart = document.getElementById("frsBtnRestart");
+
+  // Inputs
+  const inputTurnover = document.getElementById("frsTurnover");
+  const inputVatCollected = document.getElementById("frsVatCollected");
+  const inputCapExp = document.getElementById("frsCapExp");
+
+  // Outputs
+  const findStd = document.getElementById("frsFindStd");
+  const findFlat = document.getElementById("frsFindFlat");
+  const findSavings = document.getElementById("frsFindSavings");
+  const findRec = document.getElementById("frsFindRec");
   const savingsBox = document.getElementById("frsSavingsBox");
-  const savingsAmt = document.getElementById("frsSavingsAmt");
-  const resetBtn = document.getElementById("frsReset");
+
+  let selectedRate = 0;
+  let currentStep = 1;
 
   function fmt(n) {
-    return "\u00A3" + Math.abs(n).toLocaleString("en-GB", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-  }
-
-  function getBaseFlatRate() {
-    const val = sectorSelect.value;
-    if (val === "custom") {
-      return parseFloat(customRateInput.value) || 0;
+    if (n < 0) {
+      return "-£" + Math.abs(n).toLocaleString("en-GB", { minimumFractionDigits: 0, maximumFractionDigits: 0 });
     }
-    return parseFloat(val) || 0;
+    return "£" + n.toLocaleString("en-GB", { minimumFractionDigits: 0, maximumFractionDigits: 0 });
   }
 
-  function calc() {
-    const turnover = parseFloat(turnoverInput.value) || 0;
-    const goodsCost = parseFloat(goodsCostInput.value) || 0;
-    let baseRate = getBaseFlatRate();
+  function goToStep(step) {
+    if (step === 1) {
+      step1.classList.remove("hide");
+      step2.classList.add("hide");
+      step3.classList.add("hide");
+      
+      ind1.className = "frs-step active";
+      ind2.className = "frs-step";
+      ind3.className = "frs-step";
+      currentStep = 1;
+    } else if (step === 2) {
+      if (!selectedRate) return;
+      step1.classList.add("hide");
+      step2.classList.remove("hide");
+      step3.classList.add("hide");
+      
+      ind1.className = "frs-step completed";
+      ind2.className = "frs-step active";
+      ind3.className = "frs-step";
+      currentStep = 2;
+    } else if (step === 3) {
+      if (currentStep < 2) return;
+      step1.classList.add("hide");
+      step2.classList.add("hide");
+      step3.classList.remove("hide");
+      
+      ind1.className = "frs-step completed";
+      ind2.className = "frs-step completed";
+      ind3.className = "frs-step completed";
+      currentStep = 3;
+    }
+  }
 
-    // 1. Check for Limited Cost Trader status
-    // Rule: Relevant goods must be at least 2% of turnover, AND at least £250 per quarter (£1000 per year)
-    // We assume the entered turnover/costs are for a full year (if they represent a quarter, the £250 threshold applies. Let's use 2% and min £1000 per year / £250 per quarter. To be helpful, we'll check if goodsCost is less than 2% of turnover OR less than £1000 per year / £250 per quarter. Let's do the standard check:
-    const thresholdPercentage = 0.02 * turnover;
-    const thresholdValue = 250.0; // standard quarter threshold, or £1000 year. Let's write a simple smart check:
-    const isLimitedCost = turnover > 0 && (goodsCost < thresholdPercentage || goodsCost < 250);
+  // Click on indicators to navigate
+  ind1.addEventListener("click", function() {
+    goToStep(1);
+  });
+  ind2.addEventListener("click", function() {
+    if (selectedRate > 0) {
+      goToStep(2);
+    }
+  });
 
-    let finalRate = baseRate;
-    if (isLimitedCost) {
-      finalRate = 16.5;
-      limCostRow.style.display = "flex";
+  // Step 1 logic: select handler
+  selectSector.addEventListener("change", function() {
+    selectedRate = parseFloat(this.value) || 0;
+    btnGoStep2.disabled = false;
+    
+    // Deactivate all chips
+    chips.forEach(c => c.classList.remove("active"));
+    
+    // Highlight matching chip if any
+    const matchingChip = Array.from(chips).find(c => parseFloat(c.getAttribute("data-value")) === selectedRate);
+    if (matchingChip) matchingChip.classList.add("active");
+  });
+
+  // Chip click handler
+  chips.forEach(chip => {
+    chip.addEventListener("click", function() {
+      const rate = parseFloat(this.getAttribute("data-value"));
+      
+      chips.forEach(c => c.classList.remove("active"));
+      this.classList.add("active");
+      
+      // Update select value
+      selectSector.value = rate;
+      selectedRate = rate;
+      btnGoStep2.disabled = false;
+    });
+  });
+
+  // Go to step 2
+  btnGoStep2.addEventListener("click", function() {
+    goToStep(2);
+  });
+
+  // Calculate & Go to step 3 (Findings)
+  btnGoStep3.addEventListener("click", function() {
+    const turnover = parseFloat(inputTurnover.value) || 0;
+    const vatPaidReclaimed = parseFloat(inputVatCollected.value) || 0;
+    const vatReclaimedCap = parseFloat(inputCapExp.value) || 0;
+
+    // Standard VAT = (Turnover * 20 / 120) - VAT paid or reclaimed
+    const standardVat = (turnover * 20 / 120) - vatPaidReclaimed;
+
+    // Flat Rate VAT = (Turnover * selectedRate / 100) - VAT reclaimed on Capital Assets
+    const flatRateVat = (turnover * selectedRate / 100) - vatReclaimedCap;
+
+    // Savings = Standard VAT - Flat Rate VAT
+    const savings = standardVat - flatRateVat;
+
+    // Render results
+    findStd.textContent = fmt(standardVat);
+    findFlat.textContent = fmt(flatRateVat);
+    findSavings.textContent = fmt(savings);
+
+    // Percentage Saved calculation
+    let pctSaved = 0;
+    if (standardVat > 0) {
+      pctSaved = Math.round((savings / standardVat) * 100);
+    }
+
+    if (savings > 0) {
+      findRec.textContent = `Using the Flat Rate Scheme you can reduce your taxes paid by ${pctSaved}%`;
+      savingsBox.className = "frs-findings-badge-box";
     } else {
-      limCostRow.style.display = "none";
-      // Apply 1st year registration discount (1% off the rate)
-      if (firstYearCheckbox.checked && finalRate > 0) {
-        finalRate = Math.max(0, finalRate - 1);
+      let lossPct = 0;
+      if (standardVat > 0) {
+        lossPct = Math.round((Math.abs(savings) / standardVat) * 100);
       }
+      findRec.textContent = `Using the Current Scheme you can reduce your taxes paid by ${lossPct}%`;
+      savingsBox.className = "frs-findings-badge-box red-box";
     }
 
-    appliedRateVal.textContent = finalRate.toFixed(1) + "%";
-
-    // 2. FRS VAT Calculation
-    // Under FRS, the VAT is turnover (including VAT) multiplied by the FRS rate
-    const vatToPay = turnover * (finalRate / 100);
-    vatToPayVal.textContent = fmt(vatToPay);
-
-    // 3. Comparison with Standard VAT
-    // Standard VAT estimates: Assume 20% standard rate on turnover (gross, so we extract Net first)
-    // Standard Sales VAT = Gross - (Gross / 1.20)
-    // Assume average input tax reclaim is 2% of turnover, or 20% of goodsCost
-    const stdGrossSales = turnover;
-    const stdNetSales = stdGrossSales / 1.20;
-    const stdOutputTax = stdGrossSales - stdNetSales;
-    
-    // Standard input tax credit: Assume 20% of relevant goods cost
-    const stdInputTax = goodsCost * 0.20;
-    const stdVatEst = Math.max(0, stdOutputTax - stdInputTax);
-    
-    stdEstVal.textContent = fmt(stdVatEst);
-    flatEstVal.textContent = fmt(vatToPay);
-
-    const savings = stdVatEst - vatToPay;
-    if (savings >= 0) {
-      savingsBox.style.color = "#16a34a";
-      savingsBox.innerHTML = 'VAT Savings: <span id="frsSavingsAmt">' + fmt(savings) + '</span>';
-    } else {
-      savingsBox.style.color = "#de7110";
-      savingsBox.innerHTML = 'Scheme Cost: <span id="frsSavingsAmt">' + fmt(Math.abs(savings)) + '</span>';
-    }
-  }
-
-  sectorSelect.addEventListener("change", function() {
-    if (this.value === "custom") {
-      customRateWrap.classList.remove("hide");
-      customRateInput.focus();
-    } else {
-      customRateWrap.classList.add("hide");
-    }
-    calc();
+    goToStep(3);
   });
 
-  customRateInput.addEventListener("input", calc);
-  firstYearCheckbox.addEventListener("change", calc);
-  turnoverInput.addEventListener("input", calc);
-  goodsCostInput.addEventListener("input", calc);
-
-  resetBtn.addEventListener("click", function() {
-    sectorSelect.value = "14.5";
-    customRateWrap.classList.add("hide");
-    customRateInput.value = "";
-    firstYearCheckbox.checked = false;
-    turnoverInput.value = "";
-    goodsCostInput.value = "";
-    calc();
+  // Restart wizard
+  btnRestart.addEventListener("click", function() {
+    // Reset inputs
+    inputTurnover.value = "";
+    inputVatCollected.value = "";
+    inputCapExp.value = "";
+    selectSector.value = "";
+    btnGoStep2.disabled = true;
+    selectedRate = 0;
+    
+    chips.forEach(c => c.classList.remove("active"));
+    goToStep(1);
   });
-
-  calc();
 });

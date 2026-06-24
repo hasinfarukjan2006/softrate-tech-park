@@ -3400,134 +3400,817 @@
       </section>
 
       
-      <!-- Section: Invoice Generator -->
-      <section id="invoice-section" class="content-section mt-8 hide">
-        <div class="inv-hero">
-          <div class="inv-hero-inner">
-            <div class="inv-hero-text">
-              <h1><em>Invoice</em> Generator</h1>
-              <p>Create and download beautiful, professional invoices for your business in seconds. Fully customizable and MTD-compliant.</p>
+        <!-- Section: Invoice Generator -->
+        <section id="invoice-section" class="content-section mt-8 hide">
+          <!-- Premium Zoho-style Hero Header -->
+          <div class="inv-hero" style="background: linear-gradient(135deg, #f9fbfd 0%, #f1f6fa 100%) !important; padding: 5rem 1.5rem 4rem !important; position: relative;">
+            <!-- Left Circular Abstract Accent -->
+            <div style="position: absolute; left: 0; bottom: 0; width: 220px; height: 220px; background: radial-gradient(circle, rgba(15, 76, 129, 0.03) 0%, rgba(15, 76, 129, 0) 70%); border-radius: 50%; pointer-events: none;"></div>
+            <div style="position: absolute; left: 10px; bottom: 10px; width: 180px; height: 180px; border: 1px dashed rgba(15, 76, 129, 0.08); border-radius: 50%; pointer-events: none;"></div>
+            <div style="position: absolute; left: 20px; bottom: 20px; width: 140px; height: 140px; border: 1px dashed rgba(15, 76, 129, 0.05); border-radius: 50%; pointer-events: none;"></div>
+            
+            <div class="inv-hero-inner" style="max-width: 900px; margin: 0 auto; text-align: center;">
+              <div class="inv-hero-text">
+                <h1 style="font-size: 3.25rem !important; font-weight: 300 !important; color: #1e3a8a !important; margin-bottom: 1.25rem !important; font-family: 'Outfit', sans-serif !important; letter-spacing: -1px;">
+                  Create invoices that <span style="color: #2b6ee8; font-weight: 600;">make you look good</span>
+                </h1>
+                <p style="font-size: 1.05rem !important; color: #64748b !important; max-width: 680px; margin: 0 auto !important; line-height: 1.75 !important;">
+                  Create professional yet personalized invoices online using Softrate Invoice's free invoice generator tool. Just add all the information to the invoice and download or print it to send it to your customers.
+                </p>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="inv-wrapper">
-          <div class="inv-card">
-            <!-- Top Actions -->
-            <div class="inv-top-actions">
-              <button type="button" class="inv-btn-primary" id="invPrint">Print Invoice</button>
-              <button type="button" class="inv-btn-secondary" id="invPDF">Download PDF</button>
-              <button type="button" class="inv-btn-reset" id="invReset">&#x21bb; Reset</button>
+          <div class="inv-two-col-layout" style="max-width: 1280px; margin: 3rem auto; gap: 2.25rem; display: flex; align-items: flex-start; padding: 0 1.5rem;">
+            <!-- Left Column: Invoice Preview/Form -->
+            <div class="inv-left-preview" style="flex: 1; min-width: 0;">
+              <div class="inv-card select-template-standard" id="invoiceCard" style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 3rem; box-shadow: 0 10px 30px rgba(0,0,0,0.03); margin-top: 0;">
+                <!-- Invoice Body Form -->
+                <form id="invoiceForm" onsubmit="return false;">
+                  <!-- Logo Upload and Header -->
+                  <div class="inv-logo-header-row" style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 3rem; gap: 2rem;">
+                    <div class="inv-logo-upload-container" id="invLogoContainer" onclick="document.getElementById('invLogoInput').click()" style="width: 180px; height: 110px; border: 1px dashed #cbd5e1; border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; overflow: hidden; background: #f8fafc; transition: all 0.2s ease;">
+                      <div class="inv-logo-placeholder" id="invLogoPlaceholder" style="display: flex; flex-direction: column; align-items: center; gap: 8px; color: #3b82f6;">
+                        <i data-lucide="upload-cloud" style="width: 28px; height: 28px; stroke-width: 1.5;"></i>
+                        <span style="font-weight: 500; font-size: 0.8rem; color: #2563eb;">Upload Logo</span>
+                        <span style="font-size: 0.65rem; color: #64748b; font-weight: 400; text-align: center; padding: 0 8px; line-height: 1.3;">240 x 240 pixels @ 72 DPI<br>Maximum size of 1MB.</span>
+                      </div>
+                      <img id="invLogoPreview" src="" alt="Business Logo" class="hide" style="max-height: 100%; max-width: 100%; object-fit: contain;">
+                      <input type="file" id="invLogoInput" accept="image/*" class="hide">
+                    </div>
+                    <div class="inv-title-container" style="flex: 1; text-align: right; display: flex; justify-content: flex-end;">
+                      <input type="text" class="inv-title-input" id="invTitleText" value="TAX INVOICE" style="font-size: 2.85rem !important; font-weight: 400 !important; color: #222222 !important; border: 1px dashed transparent !important; text-align: right !important; width: 100% !important; max-width: 380px; margin-bottom: 0 !important; padding: 4px 8px !important; background: transparent !important; font-family: 'Outfit', sans-serif !important;">
+                    </div>
+                  </div>
+
+                  <!-- Header Details -->
+                  <div class="inv-header-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-bottom: 3.5rem;">
+                    <!-- Company Info (Bill From) -->
+                    <div class="inv-billing-col" style="display: flex; flex-direction: column; gap: 8px;">
+                      <input type="text" class="inv-field-bold" id="invFromCompany" placeholder="Your Company" value="" style="font-weight: 500 !important; font-size: 1.05rem !important; border: 1px dashed transparent !important; padding: 4px 0 !important; width: 100% !important; background: transparent !important; color: #1e293b !important;">
+                      <input type="text" class="inv-field" id="invFromName" placeholder="Your Name" value="" style="width: 100% !important; border: 1px dashed transparent !important; padding: 4px 0 !important; font-size: 0.9rem !important; background: transparent !important; color: #475569 !important;">
+                      <input type="text" class="inv-field" id="invFromGSTIN" placeholder="Company's GSTIN" value="" style="width: 100% !important; border: 1px dashed transparent !important; padding: 4px 0 !important; font-size: 0.9rem !important; background: transparent !important; color: #475569 !important;">
+                      <input type="text" class="inv-field" id="invFromAddress" placeholder="Company's Address" value="" style="width: 100% !important; border: 1px dashed transparent !important; padding: 4px 0 !important; font-size: 0.9rem !important; background: transparent !important; color: #475569 !important;">
+                      <input type="text" class="inv-field" id="invFromCity" placeholder="City" value="" style="width: 100% !important; border: 1px dashed transparent !important; padding: 4px 0 !important; font-size: 0.9rem !important; background: transparent !important; color: #475569 !important;">
+                      <input type="text" class="inv-field" id="invFromState" placeholder="State" value="" style="width: 100% !important; border: 1px dashed transparent !important; padding: 4px 0 !important; font-size: 0.9rem !important; background: transparent !important; color: #475569 !important;">
+                      <input type="text" class="inv-field" id="invFromCountry" placeholder="India" value="India" style="width: 100% !important; border: 1px dashed transparent !important; padding: 4px 0 !important; font-size: 0.9rem !important; background: transparent !important; color: #475569 !important;">
+                    </div>
+
+                    <!-- Client and Meta Details Row wrapper -->
+                    <div style="display: flex; flex-direction: column; gap: 2rem;">
+                      <!-- Invoice Meta Details -->
+                      <div class="inv-meta-col" style="display: flex; flex-direction: column; gap: 10px; align-items: flex-end;">
+                        <div class="inv-meta-row" style="display: flex; align-items: center; justify-content: flex-end; width: 100%; gap: 12px;">
+                          <label for="invNumber" style="font-size: 0.9rem; color: #64748b; font-weight: 400; text-align: right; width: 120px;">Invoice#</label>
+                          <input type="text" id="invNumber" value="INV-12" style="width: 150px !important; padding: 4px 8px !important; font-size: 0.9rem !important; border: 1px dashed #cbd5e1 !important; border-radius: 4px !important; background: #ffffff !important; color: #1e293b !important; text-align: right;">
+                        </div>
+                        <div class="inv-meta-row" style="display: flex; align-items: center; justify-content: flex-end; width: 100%; gap: 12px;">
+                          <label for="invDate" style="font-size: 0.9rem; color: #64748b; font-weight: 400; text-align: right; width: 120px;">Invoice Date</label>
+                          <div style="position: relative; display: flex; align-items: center; width: 150px;">
+                            <input type="date" id="invDate" style="width: 100% !important; padding: 4px 8px !important; font-size: 0.9rem !important; border: 1px dashed #cbd5e1 !important; border-radius: 4px !important; background: #ffffff !important; color: #1e293b !important; text-align: right;">
+                          </div>
+                        </div>
+                        <div class="inv-meta-row" style="display: flex; align-items: center; justify-content: flex-end; width: 100%; gap: 12px;">
+                          <label for="invDueDate" style="font-size: 0.9rem; color: #64748b; font-weight: 400; text-align: right; width: 120px;">Due Date</label>
+                          <div style="position: relative; display: flex; align-items: center; width: 150px;">
+                            <input type="date" id="invDueDate" style="width: 100% !important; padding: 4px 8px !important; font-size: 0.9rem !important; border: 1px dashed #cbd5e1 !important; border-radius: 4px !important; background: #ffffff !important; color: #1e293b !important; text-align: right;">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Bill To & Place of Supply block -->
+                  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-bottom: 3rem; border-top: 1px solid #f1f5f9; padding-top: 2rem;">
+                    <!-- Client Info (Bill To) -->
+                    <div class="inv-billing-col" style="display: flex; flex-direction: column; gap: 8px;">
+                      <h3 style="font-size: 0.85rem !important; font-weight: 700 !important; color: #000000 !important; text-transform: none !important; margin-bottom: 8px !important; border: none !important;">Bill To:</h3>
+                      <input type="text" class="inv-field-bold" id="invToClient" placeholder="Your Client's Company" value="" style="font-weight: 500 !important; font-size: 0.95rem !important; border: 1px dashed transparent !important; padding: 4px 0 !important; width: 100% !important; background: transparent !important; color: #1e293b !important;">
+                      <input type="text" class="inv-field" id="invToGSTIN" placeholder="Client's GSTIN" value="" style="width: 100% !important; border: 1px dashed transparent !important; padding: 4px 0 !important; font-size: 0.9rem !important; background: transparent !important; color: #475569 !important;">
+                      <input type="text" class="inv-field" id="invToAddress" placeholder="Client's Address" value="" style="width: 100% !important; border: 1px dashed transparent !important; padding: 4px 0 !important; font-size: 0.9rem !important; background: transparent !important; color: #475569 !important;">
+                      <input type="text" class="inv-field" id="invToCity" placeholder="City" value="" style="width: 100% !important; border: 1px dashed transparent !important; padding: 4px 0 !important; font-size: 0.9rem !important; background: transparent !important; color: #475569 !important;">
+                      <input type="text" class="inv-field" id="invToState" placeholder="State" value="" style="width: 100% !important; border: 1px dashed transparent !important; padding: 4px 0 !important; font-size: 0.9rem !important; background: transparent !important; color: #475569 !important;">
+                      <input type="text" class="inv-field" id="invToCountry" placeholder="India" value="India" style="width: 100% !important; border: 1px dashed transparent !important; padding: 4px 0 !important; font-size: 0.9rem !important; background: transparent !important; color: #475569 !important;">
+                    </div>
+
+                    <!-- Place Of Supply Details -->
+                    <div style="display: flex; flex-direction: column; justify-content: flex-end; gap: 8px;">
+                      <div class="inv-meta-row" style="display: flex; align-items: center; justify-content: flex-start; gap: 12px; width: 100%;">
+                        <label for="invSupply" style="font-size: 0.9rem; color: #1e293b; font-weight: 500; text-align: left; width: 130px;">Place Of Supply:</label>
+                        <input type="text" id="invSupply" placeholder="State" value="" style="width: 150px !important; padding: 4px 8px !important; font-size: 0.9rem !important; border: 1px dashed #cbd5e1 !important; border-radius: 4px !important; background: #ffffff !important; color: #1e293b !important;">
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Line Items Table -->
+                  <div class="inv-table-wrap" style="margin-bottom: 1.5rem; overflow-x: visible;">
+                    <table class="inv-items-table" id="invItemsTable" style="width: 100%; border-collapse: collapse;">
+                      <thead>
+                        <tr style="background: #222222; color: #ffffff;">
+                          <th width="45%" style="font-size: 0.85rem; font-weight: 500; text-transform: none; color: #ffffff; padding: 12px 16px; border: none; text-align: left;">Item Description</th>
+                          <th width="10%" style="font-size: 0.85rem; font-weight: 500; text-transform: none; color: #ffffff; padding: 12px 16px; border: none; text-align: right;">Qty</th>
+                          <th width="12%" style="font-size: 0.85rem; font-weight: 500; text-transform: none; color: #ffffff; padding: 12px 16px; border: none; text-align: right;">Rate</th>
+                          <th width="10%" style="font-size: 0.85rem; font-weight: 500; text-transform: none; color: #ffffff; padding: 12px 16px; border: none; text-align: right;">SGST</th>
+                          <th width="10%" style="font-size: 0.85rem; font-weight: 500; text-transform: none; color: #ffffff; padding: 12px 16px; border: none; text-align: right;">CGST</th>
+                          <th width="10%" style="font-size: 0.85rem; font-weight: 500; text-transform: none; color: #ffffff; padding: 12px 16px; border: none; text-align: right;">Cess</th>
+                          <th width="13%" style="font-size: 0.85rem; font-weight: 500; text-transform: none; color: #ffffff; padding: 12px 16px; border: none; text-align: right;">Amount</th>
+                          <th width="3%" style="padding: 12px 6px; border: none;"></th>
+                        </tr>
+                      </thead>
+                      <tbody id="invItemRows">
+                        <!-- Dynamic Rows -->
+                        <tr style="border-bottom: 1px solid #f1f5f9;">
+                          <td style="padding: 12px 16px; vertical-align: top;">
+                            <textarea class="inv-item-desc" placeholder="Enter item name/description" style="width: 100% !important; border: 1px dashed transparent !important; background: transparent !important; padding: 4px !important; font-size: 0.9rem !important; resize: none; min-height: 38px; color: #1e293b !important;" rows="1">Brochure Design</textarea>
+                            <input type="text" class="inv-item-hsn" placeholder="HSN/SAC" value="HSN/SAC" style="width: 100% !important; border: none !important; background: transparent !important; padding: 0 4px !important; font-size: 0.75rem !important; color: #94a3b8 !important; margin-top: 4px;">
+                          </td>
+                          <td style="padding: 12px 16px; vertical-align: top; text-align: right;">
+                            <input type="number" class="inv-item-qty" placeholder="1" min="0" step="1" value="2" style="width: 100% !important; border: 1px dashed transparent !important; background: transparent !important; padding: 4px !important; font-size: 0.9rem !important; text-align: right; color: #1e293b !important;">
+                          </td>
+                          <td style="padding: 12px 16px; vertical-align: top; text-align: right;">
+                            <input type="number" class="inv-item-rate" placeholder="0.00" min="0" step="0.01" value="100.00" style="width: 100% !important; border: 1px dashed transparent !important; background: transparent !important; padding: 4px !important; font-size: 0.9rem !important; text-align: right; color: #1e293b !important;">
+                          </td>
+                          <td style="padding: 12px 16px; vertical-align: top; text-align: right;">
+                            <div style="display: flex; flex-direction: column; align-items: flex-end;">
+                              <input type="number" class="inv-item-sgst-pct" placeholder="0" min="0" step="0.1" value="6" style="width: 48px !important; border: 1px dashed transparent !important; background: transparent !important; padding: 2px !important; font-size: 0.85rem !important; text-align: right; color: #1e293b !important;">
+                              <span class="inv-item-sgst-val" style="font-size: 0.75rem; color: #64748b; margin-top: 4px;">12.00</span>
+                            </div>
+                          </td>
+                          <td style="padding: 12px 16px; vertical-align: top; text-align: right;">
+                            <div style="display: flex; flex-direction: column; align-items: flex-end;">
+                              <input type="number" class="inv-item-cgst-pct" placeholder="0" min="0" step="0.1" value="6" style="width: 48px !important; border: 1px dashed transparent !important; background: transparent !important; padding: 2px !important; font-size: 0.85rem !important; text-align: right; color: #1e293b !important;">
+                              <span class="inv-item-cgst-val" style="font-size: 0.75rem; color: #64748b; margin-top: 4px;">12.00</span>
+                            </div>
+                          </td>
+                          <td style="padding: 12px 16px; vertical-align: top; text-align: right;">
+                            <div style="display: flex; flex-direction: column; align-items: flex-end;">
+                              <input type="number" class="inv-item-cess-pct" placeholder="0" min="0" step="0.1" value="0" style="width: 48px !important; border: 1px dashed transparent !important; background: transparent !important; padding: 2px !important; font-size: 0.85rem !important; text-align: right; color: #1e293b !important;">
+                              <span class="inv-item-cess-val" style="font-size: 0.75rem; color: #64748b; margin-top: 4px;">0.00</span>
+                            </div>
+                          </td>
+                          <td class="inv-item-total text-right" style="padding: 12px 16px; vertical-align: top; font-size: 0.9rem; font-weight: 400; color: #1e293b; text-align: right;">200.00</td>
+                          <td style="padding: 12px 6px; vertical-align: top; text-align: center;"><button type="button" class="inv-remove-row" title="Delete Row" style="background: transparent; border: none; color: #94a3b8; cursor: pointer; font-size: 1.25rem; line-height: 1;">&times;</button></td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #f1f5f9;">
+                          <td style="padding: 12px 16px; vertical-align: top;">
+                            <textarea class="inv-item-desc" placeholder="Enter item name/description" style="width: 100% !important; border: 1px dashed transparent !important; background: transparent !important; padding: 4px !important; font-size: 0.9rem !important; resize: none; min-height: 38px; color: #94a3b8 !important;" rows="1">Enter item name/description</textarea>
+                            <input type="text" class="inv-item-hsn" placeholder="HSN/SAC" value="HSN/SAC" style="width: 100% !important; border: none !important; background: transparent !important; padding: 0 4px !important; font-size: 0.75rem !important; color: #94a3b8 !important; margin-top: 4px;">
+                          </td>
+                          <td style="padding: 12px 16px; vertical-align: top; text-align: right;">
+                            <input type="number" class="inv-item-qty" placeholder="1" min="0" step="1" value="1" style="width: 100% !important; border: 1px dashed transparent !important; background: transparent !important; padding: 4px !important; font-size: 0.9rem !important; text-align: right; color: #1e293b !important;">
+                          </td>
+                          <td style="padding: 12px 16px; vertical-align: top; text-align: right;">
+                            <input type="number" class="inv-item-rate" placeholder="0.00" min="0" step="0.01" value="0.00" style="width: 100% !important; border: 1px dashed transparent !important; background: transparent !important; padding: 4px !important; font-size: 0.9rem !important; text-align: right; color: #1e293b !important;">
+                          </td>
+                          <td style="padding: 12px 16px; vertical-align: top; text-align: right;">
+                            <div style="display: flex; flex-direction: column; align-items: flex-end;">
+                              <input type="number" class="inv-item-sgst-pct" placeholder="0" min="0" step="0.1" value="0" style="width: 48px !important; border: 1px dashed transparent !important; background: transparent !important; padding: 2px !important; font-size: 0.85rem !important; text-align: right; color: #1e293b !important;">
+                              <span class="inv-item-sgst-val" style="font-size: 0.75rem; color: #64748b; margin-top: 4px;">0.00</span>
+                            </div>
+                          </td>
+                          <td style="padding: 12px 16px; vertical-align: top; text-align: right;">
+                            <div style="display: flex; flex-direction: column; align-items: flex-end;">
+                              <input type="number" class="inv-item-cgst-pct" placeholder="0" min="0" step="0.1" value="0" style="width: 48px !important; border: 1px dashed transparent !important; background: transparent !important; padding: 2px !important; font-size: 0.85rem !important; text-align: right; color: #1e293b !important;">
+                              <span class="inv-item-cgst-val" style="font-size: 0.75rem; color: #64748b; margin-top: 4px;">0.00</span>
+                            </div>
+                          </td>
+                          <td style="padding: 12px 16px; vertical-align: top; text-align: right;">
+                            <div style="display: flex; flex-direction: column; align-items: flex-end;">
+                              <input type="number" class="inv-item-cess-pct" placeholder="0" min="0" step="0.1" value="0" style="width: 48px !important; border: 1px dashed transparent !important; background: transparent !important; padding: 2px !important; font-size: 0.85rem !important; text-align: right; color: #1e293b !important;">
+                              <span class="inv-item-cess-val" style="font-size: 0.75rem; color: #64748b; margin-top: 4px;">0.00</span>
+                            </div>
+                          </td>
+                          <td class="inv-item-total text-right" style="padding: 12px 16px; vertical-align: top; font-size: 0.9rem; font-weight: 400; color: #1e293b; text-align: right;">0.00</td>
+                          <td style="padding: 12px 6px; vertical-align: top; text-align: center;"><button type="button" class="inv-remove-row" title="Delete Row" style="background: transparent; border: none; color: #94a3b8; cursor: pointer; font-size: 1.25rem; line-height: 1;">&times;</button></td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #f1f5f9;">
+                          <td style="padding: 12px 16px; vertical-align: top;">
+                            <textarea class="inv-item-desc" placeholder="Enter item name/description" style="width: 100% !important; border: 1px dashed transparent !important; background: transparent !important; padding: 4px !important; font-size: 0.9rem !important; resize: none; min-height: 38px; color: #94a3b8 !important;" rows="1">Enter item name/description</textarea>
+                            <input type="text" class="inv-item-hsn" placeholder="HSN/SAC" value="HSN/SAC" style="width: 100% !important; border: none !important; background: transparent !important; padding: 0 4px !important; font-size: 0.75rem !important; color: #94a3b8 !important; margin-top: 4px;">
+                          </td>
+                          <td style="padding: 12px 16px; vertical-align: top; text-align: right;">
+                            <input type="number" class="inv-item-qty" placeholder="1" min="0" step="1" value="1" style="width: 100% !important; border: 1px dashed transparent !important; background: transparent !important; padding: 4px !important; font-size: 0.9rem !important; text-align: right; color: #1e293b !important;">
+                          </td>
+                          <td style="padding: 12px 16px; vertical-align: top; text-align: right;">
+                            <input type="number" class="inv-item-rate" placeholder="0.00" min="0" step="0.01" value="0.00" style="width: 100% !important; border: 1px dashed transparent !important; background: transparent !important; padding: 4px !important; font-size: 0.9rem !important; text-align: right; color: #1e293b !important;">
+                          </td>
+                          <td style="padding: 12px 16px; vertical-align: top; text-align: right;">
+                            <div style="display: flex; flex-direction: column; align-items: flex-end;">
+                              <input type="number" class="inv-item-sgst-pct" placeholder="0" min="0" step="0.1" value="0" style="width: 48px !important; border: 1px dashed transparent !important; background: transparent !important; padding: 2px !important; font-size: 0.85rem !important; text-align: right; color: #1e293b !important;">
+                              <span class="inv-item-sgst-val" style="font-size: 0.75rem; color: #64748b; margin-top: 4px;">0.00</span>
+                            </div>
+                          </td>
+                          <td style="padding: 12px 16px; vertical-align: top; text-align: right;">
+                            <div style="display: flex; flex-direction: column; align-items: flex-end;">
+                              <input type="number" class="inv-item-cgst-pct" placeholder="0" min="0" step="0.1" value="0" style="width: 48px !important; border: 1px dashed transparent !important; background: transparent !important; padding: 2px !important; font-size: 0.85rem !important; text-align: right; color: #1e293b !important;">
+                              <span class="inv-item-cgst-val" style="font-size: 0.75rem; color: #64748b; margin-top: 4px;">0.00</span>
+                            </div>
+                          </td>
+                          <td style="padding: 12px 16px; vertical-align: top; text-align: right;">
+                            <div style="display: flex; flex-direction: column; align-items: flex-end;">
+                              <input type="number" class="inv-item-cess-pct" placeholder="0" min="0" step="0.1" value="0" style="width: 48px !important; border: 1px dashed transparent !important; background: transparent !important; padding: 2px !important; font-size: 0.85rem !important; text-align: right; color: #1e293b !important;">
+                              <span class="inv-item-cess-val" style="font-size: 0.75rem; color: #64748b; margin-top: 4px;">0.00</span>
+                            </div>
+                          </td>
+                          <td class="inv-item-total text-right" style="padding: 12px 16px; vertical-align: top; font-size: 0.9rem; font-weight: 400; color: #1e293b; text-align: right;">0.00</td>
+                          <td style="padding: 12px 6px; vertical-align: top; text-align: center;"><button type="button" class="inv-remove-row" title="Delete Row" style="background: transparent; border: none; color: #94a3b8; cursor: pointer; font-size: 1.25rem; line-height: 1;">&times;</button></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <button type="button" class="inv-add-row-btn" id="invAddRow" style="background: transparent; border: none; color: #2563eb; font-weight: 500; font-size: 0.9rem; padding: 6px 0; cursor: pointer; display: flex; align-items: center; gap: 6px; margin-bottom: 2rem;">
+                    <i data-lucide="plus-circle" style="width: 18px; height: 18px;"></i> Add Line Item
+                  </button>
+
+                  <!-- Footer Summary -->
+                  <div class="inv-footer-grid" style="display: grid; grid-template-columns: 1.3fr 1fr; gap: 3rem; margin-top: 2rem; border-top: none; padding-top: 0;">
+                    <!-- Notes -->
+                    <div class="inv-notes-col" style="display: flex; flex-direction: column; gap: 1.5rem;">
+                      <div style="display: flex; flex-direction: column; gap: 6px;">
+                        <label for="invNotes" style="font-size: 0.85rem; font-weight: 600; color: #1e293b; margin-bottom: 0;">Notes</label>
+                        <textarea id="invNotes" placeholder="It was great doing business with you." style="width: 100% !important; height: 50px !important; border: 1px dashed transparent !important; padding: 4px 0 !important; font-size: 0.9rem !important; resize: none; background: transparent !important; color: #475569 !important; font-family: inherit !important;">It was great doing business with you.</textarea>
+                      </div>
+                      <div style="display: flex; flex-direction: column; gap: 6px;">
+                        <label for="invTerms" style="font-size: 0.85rem; font-weight: 600; color: #1e293b; margin-bottom: 0;">Terms & Conditions</label>
+                        <textarea id="invTerms" placeholder="Please make the payment by the due date." style="width: 100% !important; height: 50px !important; border: 1px dashed transparent !important; padding: 4px 0 !important; font-size: 0.9rem !important; resize: none; background: transparent !important; color: #475569 !important; font-family: inherit !important;">Please make the payment by the due date.</textarea>
+                      </div>
+                      
+                      <!-- Add Payment Gateway link -->
+                      <a href="#" style="color: #2563eb; font-size: 0.9rem; display: flex; align-items: center; gap: 6px; font-weight: 500; text-decoration: none;">
+                        <span style="font-size: 1.2rem; line-height: 1;">+</span> Add Payment Gateway
+                      </a>
+                    </div>
+
+                    <!-- Summary Values -->
+                    <div class="inv-summary-col" style="display: flex; flex-direction: column; gap: 12px; align-items: flex-end; width: 100%;">
+                      <div class="inv-sum-row" style="display: flex; justify-content: space-between; width: 100%; font-size: 0.9rem; color: #475569;">
+                        <span>Sub Total</span>
+                        <span id="invSubTotal" style="font-weight: 500; color: #1e293b;">200.00</span>
+                      </div>
+                      <div class="inv-sum-row" id="sgstRowWrap" style="display: flex; justify-content: space-between; width: 100%; font-size: 0.9rem; color: #475569;">
+                        <span>SGST (6%)</span>
+                        <span id="invSGST" style="font-weight: 500; color: #1e293b;">12.00</span>
+                      </div>
+                      <div class="inv-sum-row" id="cgstRowWrap" style="display: flex; justify-content: space-between; width: 100%; font-size: 0.9rem; color: #475569;">
+                        <span>CGST (6%)</span>
+                        <span id="invCGST" style="font-weight: 500; color: #1e293b;">12.00</span>
+                      </div>
+                      <div class="inv-sum-row hide" id="igstRowWrap" style="display: flex; justify-content: space-between; width: 100%; font-size: 0.9rem; color: #475569;">
+                        <span>IGST</span>
+                        <span id="invIGST" style="font-weight: 500; color: #1e293b;">0.00</span>
+                      </div>
+                      <div class="inv-sum-row inv-total-row" style="display: flex; justify-content: space-between; width: 100%; border-top: 1px solid #e2e8f0; padding-top: 12px; font-size: 1rem; align-items: center;">
+                        <span style="font-weight: 500; color: #1e293b;">TOTAL</span>
+                        <div style="display: flex; align-items: center; background: #fef9c3; border: 1px solid #fef08a; padding: 4px 12px; border-radius: 4px; gap: 4px;">
+                          <select id="invCurrency" style="background: transparent; border: none; font-size: 0.85rem; font-weight: 500; color: #854d0e; cursor: pointer; outline: none; padding-right: 2px; font-family: inherit;">
+                            <option value="INR" selected>INR (₹)</option>
+                            <option value="USD">USD ($)</option>
+                            <option value="EUR">EUR (€)</option>
+                            <option value="GBP">GBP (£)</option>
+                            <option value="AED">AED (د.إ)</option>
+                            <option value="SAR">SAR (﷼)</option>
+                            <option value="QAR">QAR (﷼)</option>
+                            <option value="OMR">OMR (ر.ع.)</option>
+                            <option value="KWD">KWD (د.ك)</option>
+                            <option value="BHD">BHD (د.ب)</option>
+                            <option value="JOD">JOD (JD)</option>
+                            <option value="EGP">EGP (E£)</option>
+                            <option value="TRY">TRY (₺)</option>
+                            <option value="ZAR">ZAR (R)</option>
+                            <option value="CAD">CAD (C$)</option>
+                            <option value="AUD">AUD (A$)</option>
+                            <option value="NZD">NZD (NZ$)</option>
+                            <option value="SGD">SGD (S$)</option>
+                            <option value="MYR">MYR (RM)</option>
+                            <option value="THB">THB (฿)</option>
+                            <option value="IDR">IDR (Rp)</option>
+                            <option value="PHP">PHP (₱)</option>
+                            <option value="VND">VND (₫)</option>
+                            <option value="CNY">CNY (¥)</option>
+                            <option value="JPY">JPY (¥)</option>
+                            <option value="KRW">KRW (₩)</option>
+                            <option value="HKD">HKD (HK$)</option>
+                            <option value="CHF">CHF (CHF)</option>
+                            <option value="SEK">SEK (kr)</option>
+                            <option value="NOK">NOK (kr)</option>
+                            <option value="DKK">DKK (kr)</option>
+                            <option value="PLN">PLN (zł)</option>
+                            <option value="RUB">RUB (₽)</option>
+                            <option value="BRL">BRL (R$)</option>
+                            <option value="MXN">MXN ($)</option>
+                          </select>
+                          <span id="invTotalDue" style="font-size: 1.15rem; font-weight: 700; color: #1e293b;">224.00</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Reusable Footer Softrate branding watermark -->
+                  <div style="margin-top: 4rem; text-align: center; border-top: 1px solid #e2e8f0; padding-top: 2rem; display: flex; flex-direction: column; align-items: center; gap: 8px;">
+                    <div style="display: flex; align-items: center; gap: 8px; justify-content: center; font-size: 0.85rem; color: #64748b;">
+                      <span>Crafted with ease using</span>
+                      <div style="display: flex; align-items: center; gap: 4px;">
+                        <i data-lucide="file-text" style="width: 16px; height: 16px; color: #2563eb;"></i>
+                        <span style="font-weight: 600; color: #0f172a;">Softrate <span style="color: #2563eb;">Invoice</span></span>
+                      </div>
+                    </div>
+                    <span style="font-size: 0.8rem; color: #94a3b8;">Visit <a href="/invoice-generator" style="color: #2563eb; text-decoration: none;">softrate.com/invoice</a> to create truly professional invoices.</span>
+                  </div>
+                </form>
+              </div>
             </div>
 
-            <!-- Invoice Body Form -->
-            <form id="invoiceForm" onsubmit="return false;">
-              <!-- Header Details -->
-              <div class="inv-header-grid">
-                <!-- Company Info (Bill From) -->
-                <div class="inv-billing-col">
-                  <h3>Bill From</h3>
-                  <input type="text" class="inv-field-bold" id="invFromCompany" placeholder="Your Company Name" value="Softrate Tech Park Pvt. Ltd.">
-                  <input type="text" class="inv-field" id="invFromAddress" placeholder="Company Address" value="123 tech park, Block A">
-                  <input type="text" class="inv-field" id="invFromCity" placeholder="City, State Zip" value="London, EC1A 1BB">
-                  <input type="text" class="inv-field" id="invFromCountry" placeholder="Country" value="United Kingdom">
-                  <input type="text" class="inv-field" id="invFromPhone" placeholder="Phone" value="+44 20 7946 0958">
+            <!-- Right Column: Download Panel / Options -->
+            <div class="inv-right-panel" style="width: 320px; flex-shrink: 0;">
+              <div class="panel-card sticky-panel" style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.5rem; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02); display: flex; flex-direction: column; gap: 1.25rem;">
+                <h3 class="panel-section-title" style="font-size: 1.1rem; font-weight: 600; color: #1e293b; margin: 0; text-transform: none; border-bottom: 1px solid #f1f5f9; padding-bottom: 10px;">Download Invoice</h3>
+                
+                <!-- Swatch color section -->
+                <div>
+                  <h4 style="font-size: 0.85rem; font-weight: 600; color: #64748b; margin-bottom: 10px; text-transform: none;">Theme</h4>
+                  <div class="color-swatches-grid" style="display: flex; gap: 10px; align-items: center;">
+                    <span class="color-swatch active" data-color="#1e293b" style="background-color: #1e293b; width: 20px; height: 20px; border-radius: 50%; display: inline-block; cursor: pointer; position: relative;">
+                      <i data-lucide="check" style="width: 12px; height: 12px; color: #ffffff; position: absolute; top: 4px; left: 4px;"></i>
+                    </span>
+                    <span class="color-swatch" data-color="#3b82f6" style="background-color: #3b82f6; width: 20px; height: 20px; border-radius: 50%; display: inline-block; cursor: pointer;"></span>
+                    <span class="color-swatch" data-color="#f97316" style="background-color: #f97316; width: 20px; height: 20px; border-radius: 50%; display: inline-block; cursor: pointer;"></span>
+                    <span class="color-swatch" data-color="#10b981" style="background-color: #10b981; width: 20px; height: 20px; border-radius: 50%; display: inline-block; cursor: pointer;"></span>
+                    <span class="color-swatch" data-color="#ef4444" style="background-color: #ef4444; width: 20px; height: 20px; border-radius: 50%; display: inline-block; cursor: pointer;"></span>
+                  </div>
                 </div>
 
-                <!-- Client Info (Bill To) -->
-                <div class="inv-billing-col">
-                  <h3>Bill To</h3>
-                  <input type="text" class="inv-field-bold" id="invToClient" placeholder="Client Name / Company" value="Acme Corp Ltd.">
-                  <input type="text" class="inv-field" id="invToAddress" placeholder="Client Address" value="456 Innovation Way">
-                  <input type="text" class="inv-field" id="invToCity" placeholder="City, State Zip" value="Manchester, M1 1AG">
-                  <input type="text" class="inv-field" id="invToCountry" placeholder="Country" value="United Kingdom">
-                  <input type="text" class="inv-field" id="invToEmail" placeholder="Client Email" value="billing@acme.com">
+                <hr style="border: 0; border-top: 1px solid #f1f5f9; margin: 0;">
+
+                <!-- Template list -->
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                  <div class="template-card active" data-template="standard" style="border: 1px solid #3b82f6; border-radius: 6px; padding: 12px; cursor: pointer; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 6px;">
+                    <div style="width: 100%; height: 50px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 4px; display: flex; flex-direction: column; gap: 4px; padding: 6px;">
+                      <div style="width: 30%; height: 6px; background: #cbd5e1; border-radius: 1px;"></div>
+                      <div style="width: 100%; height: 16px; background: #1e293b; border-radius: 2px;"></div>
+                      <div style="display: flex; gap: 4px; justify-content: space-between; margin-top: auto;">
+                        <div style="width: 40%; height: 4px; background: #cbd5e1; border-radius: 1px;"></div>
+                        <div style="width: 40%; height: 4px; background: #cbd5e1; border-radius: 1px;"></div>
+                      </div>
+                    </div>
+                    <span style="font-size: 0.75rem; font-weight: 500; color: #2563eb;">Standard</span>
+                  </div>
+                  <div class="template-card" data-template="spreadsheet" style="border: 1px solid #e2e8f0; border-radius: 6px; padding: 12px; cursor: pointer; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 6px;">
+                    <div style="width: 100%; height: 50px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 4px; display: flex; flex-direction: column; gap: 4px; padding: 6px;">
+                      <div style="width: 25%; height: 6px; background: #cbd5e1; border-radius: 1px;"></div>
+                      <div style="display: flex; flex-direction: column; gap: 2px; border: 1px solid #cbd5e1; padding: 2px; border-radius: 2px; margin-top: auto;">
+                        <div style="width: 100%; height: 4px; background: #e2e8f0;"></div>
+                        <div style="width: 100%; height: 4px; background: #e2e8f0;"></div>
+                      </div>
+                    </div>
+                    <span style="font-size: 0.75rem; font-weight: 500; color: #64748b;">Spreadsheet</span>
+                  </div>
+                  <div class="template-card" data-template="compact" style="border: 1px solid #e2e8f0; border-radius: 6px; padding: 12px; cursor: pointer; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 6px;">
+                    <div style="width: 100%; height: 50px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 4px; display: flex; flex-direction: column; gap: 4px; padding: 6px;">
+                      <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div style="width: 20%; height: 6px; background: #cbd5e1; border-radius: 1px;"></div>
+                        <div style="width: 20%; height: 6px; background: #cbd5e1; border-radius: 1px;"></div>
+                      </div>
+                      <div style="display: flex; flex-direction: column; gap: 2px; margin-top: 4px;">
+                        <div style="width: 100%; height: 4px; background: #e2e8f0;"></div>
+                        <div style="width: 100%; height: 4px; background: #e2e8f0;"></div>
+                        <div style="width: 100%; height: 4px; background: #e2e8f0;"></div>
+                      </div>
+                    </div>
+                    <span style="font-size: 0.75rem; font-weight: 500; color: #64748b;">Compact</span>
+                  </div>
+                  <div style="border: 1px solid #e2e8f0; border-radius: 6px; padding: 12px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; background: #f8fafc;">
+                    <span style="font-size: 0.75rem; font-weight: 600; color: #475569;">+80 more</span>
+                    <span style="font-size: 0.65rem; color: #2563eb; text-decoration: underline;">templates <i data-lucide="external-link" style="width: 10px; height: 10px; display: inline-block;"></i></span>
+                  </div>
                 </div>
 
-                <!-- Invoice Meta Details -->
-                <div class="inv-meta-col">
-                  <input type="text" class="inv-title-input" id="invTitleText" value="INVOICE">
-                  
-                  <div class="inv-meta-row">
-                    <label for="invNumber">Invoice #</label>
-                    <input type="text" id="invNumber" value="INV-0001">
+                <!-- Info Alert box -->
+                <div style="background: #eff6ff; border: 1px solid #dbeafe; border-radius: 6px; padding: 12px; display: flex; gap: 8px; align-items: flex-start; margin-top: 10px;">
+                  <i data-lucide="info" style="width: 16px; height: 16px; color: #1d4ed8; flex-shrink: 0; margin-top: 2px;"></i>
+                  <span style="font-size: 0.75rem; color: #1e40af; line-height: 1.4;">Access other fully customizable invoice templates. <a href="/invoice-generator" style="color: #2563eb; text-decoration: underline;">Try it now <i data-lucide="external-link" style="width: 10px; height: 10px; display: inline-block;"></i></a></span>
+                </div>
+
+                <!-- Action buttons matching image -->
+                <div style="display: flex; gap: 12px; margin-top: 15px;">
+                  <button type="button" id="invSaveBtn" style="flex: 1.1; background: #2563eb; color: #ffffff; border: none; padding: 10px; border-radius: 4px; font-weight: 500; font-size: 0.85rem; cursor: pointer; display: flex; align-items: center; justify-content: center;">Save and Send</button>
+                  <div style="position: relative; display: flex; flex: 1;">
+                    <button type="button" id="invDownloadBtn" style="width: 100%; background: #ffffff; color: #1e293b; border: 1px solid #cbd5e1; padding: 10px; border-radius: 4px 0 0 4px; font-weight: 500; font-size: 0.85rem; cursor: pointer; display: flex; align-items: center; justify-content: center;">Download/Print</button>
+                    <button type="button" style="background: #ffffff; color: #1e293b; border: 1px solid #cbd5e1; border-left: none; padding: 10px 6px; border-radius: 0 4px 4px 0; cursor: pointer; display: flex; align-items: center; justify-content: center;">
+                      <i data-lucide="chevron-down" style="width: 14px; height: 14px;"></i>
+                    </button>
                   </div>
-                  <div class="inv-meta-row">
-                    <label for="invDate">Date</label>
-                    <input type="date" id="invDate">
+                </div>
+
+                <!-- Install Mobile App banner -->
+                <div style="border-top: 1px solid #f1f5f9; padding-top: 1.5rem; margin-top: 1rem; display: flex; gap: 12px; align-items: center;">
+                  <div style="width: 50px; height: 50px; background: #cbd5e1; border-radius: 4px; display: flex; align-items: center; justify-content: center;">
+                    <i data-lucide="qr-code" style="width: 32px; height: 32px; color: #475569;"></i>
                   </div>
-                  <div class="inv-meta-row">
-                    <label for="invDueDate">Due Date</label>
-                    <input type="date" id="invDueDate">
+                  <div style="display: flex; flex-direction: column;">
+                    <span style="font-size: 0.8rem; font-weight: 600; color: #1e293b;">Install the mobile app</span>
+                    <span style="font-size: 0.7rem; color: #64748b; margin-bottom: 4px;">Generate your invoices and save them online.</span>
+                    <div style="display: flex; gap: 4px;">
+                      <div style="width: 48px; height: 16px; background: #e2e8f0; border-radius: 2px;"></div>
+                      <div style="width: 48px; height: 16px; background: #e2e8f0; border-radius: 2px;"></div>
+                      <div style="width: 48px; height: 16px; background: #e2e8f0; border-radius: 2px;"></div>
+                    </div>
                   </div>
-                  <div class="inv-meta-row">
-                    <label for="invPO">PO Number</label>
-                    <input type="text" id="invPO" placeholder="e.g. PO-987">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section: What is an Invoice -->
+          <div class="inv-info-card-two-col" style="max-width: 900px; margin: 5rem auto 3rem; padding: 0 1.5rem; background: transparent; border: none; box-shadow: none; display: block;">
+            <h2 style="font-size: 2.25rem !important; font-weight: 300 !important; color: #0f172a !important; font-family: 'Outfit', sans-serif !important; margin-bottom: 1.25rem !important;">What is an invoice?</h2>
+            <p style="font-size: 1rem !important; line-height: 1.8 !important; color: #475569 !important; margin-bottom: 1rem !important;">
+              An invoice is a statement delivered to a buyer to tell them what they owe for a good or service. It contains all the necessary information relating to a purchase, such as the seller's and buyer's information, products purchased and their prices, the payment due date, and other relevant information. Maintaining invoices helps businesses stay transparent with their customers about their pricing and payment expectations. It not only helps them track income but also comes in handy when filing taxes.
+            </p>
+          </div>
+
+          <!-- Section: How to Create an Invoice Using an Invoice Generator -->
+          <div class="inv-timeline-section" style="max-width: 900px; margin: 5rem auto; padding: 0 1.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem; align-items: center;">
+            <div style="display: flex; flex-direction: column; gap: 1.25rem;">
+              <h2 style="font-size: 2.25rem !important; font-weight: 300 !important; color: #0f172a !important; text-align: left !important; font-family: 'Outfit', sans-serif !important; margin-bottom: 0 !important;">How to create an invoice using an invoice generator</h2>
+              <p style="font-size: 0.95rem !important; line-height: 1.7 !important; color: #475569 !important; margin-bottom: 1.5rem !important;">
+                Creating professional invoices with a free invoice generator is now easy. Follow these steps to create an invoice that aligns with your brand identity.
+              </p>
+              
+              <!-- Left Column illustration mockup phone -->
+              <div style="background: #f1f5f9; border-radius: 12px; width: 100%; height: 350px; display: flex; align-items: center; justify-content: center; overflow: hidden; padding-top: 40px; position: relative; border: 1px solid #e2e8f0;">
+                <div style="width: 170px; height: 320px; background: #ffffff; border: 6px solid #1e293b; border-radius: 24px; position: relative; box-shadow: 0 15px 35px rgba(0,0,0,0.1); display: flex; flex-direction: column; padding: 12px;">
+                  <div style="width: 40px; height: 4px; background: #1e293b; border-radius: 2px; align-self: center; margin-bottom: 12px;"></div>
+                  <div style="display: flex; justify-content: space-between; font-size: 0.5rem; color: #94a3b8; margin-bottom: 8px;">
+                    <span>Template</span>
+                    <span>INV-008</span>
+                  </div>
+                  <div style="width: 100%; height: 40px; background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 4px; padding: 4px; display: flex; flex-direction: column; gap: 3px; margin-bottom: 8px;">
+                    <div style="width: 30%; height: 4px; background: #cbd5e1; border-radius: 1px;"></div>
+                    <div style="width: 60%; height: 4px; background: #cbd5e1; border-radius: 1px;"></div>
+                  </div>
+                  <div style="display: flex; gap: 4px; margin-bottom: 8px;">
+                    <span style="width: 8px; height: 8px; border-radius: 50%; background: #3b82f6; display: inline-block;"></span>
+                    <span style="width: 8px; height: 8px; border-radius: 50%; background: #f97316; display: inline-block;"></span>
+                    <span style="width: 8px; height: 8px; border-radius: 50%; background: #10b981; display: inline-block;"></span>
+                  </div>
+                  <div style="border-top: 1px solid #f1f5f9; padding-top: 8px; display: flex; flex-direction: column; gap: 4px; margin-top: auto;">
+                    <div style="display: flex; justify-content: space-between; font-size: 0.5rem;">
+                      <span style="color: #64748b;">Subtotal</span>
+                      <span style="font-weight: 600;">₹4,200.00</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-size: 0.5rem; color: #22c55e;">
+                      <span>Discount</span>
+                      <span>-₹200.00</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Column steps timeline -->
+            <div style="display: flex; flex-direction: column; gap: 0px; border-left: 2px solid #3b82f6; padding-left: 2rem; position: relative;">
+              <!-- Step 1 -->
+              <div style="position: relative; padding-bottom: 2rem;">
+                <div style="position: absolute; left: calc(-2rem - 9px); top: 0; width: 16px; height: 16px; background: #ffffff; border: 4px solid #3b82f6; border-radius: 50%;"></div>
+                <div style="background: #3b82f6; color: #ffffff; font-size: 0.75rem; font-weight: 600; padding: 4px 12px; border-radius: 12px; display: inline-block; margin-bottom: 8px;">Step 1</div>
+                <p style="font-size: 0.9rem !important; color: #0f172a !important; font-weight: 600 !important; margin-bottom: 4px !important; line-height: 1.4 !important;">
+                  Select the color theme and invoice format (Standard, Spreadsheet, or Compact) in which you wish to display your invoice. Once done, upload your business logo so your invoices reflect your brand's image.
+                </p>
+              </div>
+              
+              <!-- Step 2 -->
+              <div style="position: relative; padding-bottom: 2rem;">
+                <div style="position: absolute; left: calc(-2rem - 9px); top: 0; width: 16px; height: 16px; background: #ffffff; border: 4px solid #e2e8f0; border-radius: 50%;"></div>
+                <div style="background: #f1f5f9; color: #475569; font-size: 0.75rem; font-weight: 600; padding: 4px 12px; border-radius: 12px; display: inline-block; margin-bottom: 8px;">Step 2</div>
+              </div>
+
+              <!-- Step 3 -->
+              <div style="position: relative; padding-bottom: 2rem;">
+                <div style="position: absolute; left: calc(-2rem - 9px); top: 0; width: 16px; height: 16px; background: #ffffff; border: 4px solid #e2e8f0; border-radius: 50%;"></div>
+                <div style="background: #f1f5f9; color: #475569; font-size: 0.75rem; font-weight: 600; padding: 4px 12px; border-radius: 12px; display: inline-block; margin-bottom: 8px;">Step 3</div>
+              </div>
+
+              <!-- Step 4 -->
+              <div style="position: relative;">
+                <div style="position: absolute; left: calc(-2rem - 9px); top: 0; width: 16px; height: 16px; background: #ffffff; border: 4px solid #e2e8f0; border-radius: 50%;"></div>
+                <div style="background: #f1f5f9; color: #475569; font-size: 0.75rem; font-weight: 600; padding: 4px 12px; border-radius: 12px; display: inline-block; margin-bottom: 8px;">Step 4</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section: Invoice Format Section -->
+          <div class="invoice-format-section" style="max-width: 900px; margin: 5rem auto; padding: 0 1.5rem;">
+            <h2 style="font-size: 2.25rem !important; font-weight: 300 !important; color: #0f172a !important; text-align: center !important; font-family: 'Outfit', sans-serif !important; margin-bottom: 1rem !important;">Invoice format</h2>
+            <p style="font-size: 0.95rem !important; line-height: 1.7 !important; color: #64748b !important; text-align: center !important; margin-bottom: 4rem !important;">
+              A usual business invoice contains the following components:
+            </p>
+            
+            <div class="format-illustration-container" style="display: flex; gap: 4rem; align-items: center; justify-content: center; position: relative;">
+              <!-- Left side labels -->
+              <div style="display: flex; flex-direction: column; gap: 5.5rem; width: 220px; text-align: right;">
+                <div style="position: relative;">
+                  <span style="font-size: 0.85rem; color: #000; font-weight: 500; line-height: 1.4; display: block;">The business's logo, name, and address; and the customer's contact information.</span>
+                  <!-- Pointer Line -->
+                  <div style="position: absolute; right: -2.5rem; top: 12px; width: 2.2rem; height: 1px; background: #cbd5e1;"></div>
+                  <div style="position: absolute; right: -2.5rem; top: 10px; width: 5px; height: 5px; background: #64748b; border-radius: 50%;"></div>
+                </div>
+                
+                <div style="position: relative; margin-top: 1rem;">
+                  <span style="font-size: 0.85rem; color: #000; font-weight: 500; line-height: 1.4; display: block;">The item names, descriptions, quantities, and rates.</span>
+                  <div style="position: absolute; right: -2.5rem; top: 12px; width: 2.2rem; height: 1px; background: #cbd5e1;"></div>
+                  <div style="position: absolute; right: -2.5rem; top: 10px; width: 5px; height: 5px; background: #64748b; border-radius: 50%;"></div>
+                </div>
+
+                <div style="position: relative; margin-top: 1.5rem;">
+                  <span style="font-size: 0.85rem; color: #000; font-weight: 500; line-height: 1.4; display: block;">The notes and terms and conditions section.</span>
+                  <div style="position: absolute; right: -2.5rem; top: 12px; width: 2.2rem; height: 1px; background: #cbd5e1;"></div>
+                  <div style="position: absolute; right: -2.5rem; top: 10px; width: 5px; height: 5px; background: #64748b; border-radius: 50%;"></div>
+                </div>
+              </div>
+
+              <!-- Center paper mockup -->
+              <div style="width: 280px; height: 380px; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); padding: 1.5rem; display: flex; flex-direction: column; gap: 10px;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
+                  <span style="width: 24px; height: 24px; border-radius: 50%; background: #1e293b; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 0.65rem; font-weight: bold;">Z</span>
+                  <div style="text-align: right; display: flex; flex-direction: column; gap: 2px;">
+                    <span style="font-size: 0.75rem; font-weight: bold; color: #1e293b;">INVOICE</span>
+                    <span style="font-size: 0.45rem; color: #64748b;">INV-21</span>
+                  </div>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 0.45rem; line-height: 1.3; color: #64748b;">
+                  <div>
+                    <span style="display: block; font-weight: 600; color: #0f172a; margin-bottom: 2px;">From:</span>
+                    <span>Softrate Tech Park Pvt Ltd</span>
+                  </div>
+                  <div>
+                    <span style="display: block; font-weight: 600; color: #0f172a; margin-bottom: 2px;">Bill To:</span>
+                    <span>Acme Corp Ltd</span>
+                  </div>
+                </div>
+                <!-- Mini Table -->
+                <div style="border-top: 1px solid #f1f5f9; margin-top: 10px; display: flex; flex-direction: column; gap: 4px;">
+                  <div style="display: flex; justify-content: space-between; font-size: 0.45rem; font-weight: bold; color: #0f172a; padding: 4px 0; border-bottom: 1px solid #f1f5f9;">
+                    <span>Item</span>
+                    <span>Total</span>
+                  </div>
+                  <div style="display: flex; justify-content: space-between; font-size: 0.45rem; color: #64748b;">
+                    <span>Brochure Design</span>
+                    <span>200.00</span>
+                  </div>
+                </div>
+                <!-- Mini Summary -->
+                <div style="display: flex; flex-direction: column; gap: 2px; align-items: flex-end; margin-top: auto; font-size: 0.45rem; border-top: 1px solid #f1f5f9; padding-top: 4px;">
+                  <div style="display: flex; justify-content: space-between; width: 100px;">
+                    <span>Subtotal</span>
+                    <span>200.00</span>
+                  </div>
+                  <div style="display: flex; justify-content: space-between; width: 100px; font-weight: bold; color: #0f172a; margin-top: 2px;">
+                    <span>Grand Total</span>
+                    <span>224.00</span>
                   </div>
                 </div>
               </div>
 
-              <!-- Line Items Table -->
-              <div class="inv-table-wrap">
-                <table class="inv-items-table" id="invItemsTable">
-                  <thead>
-                    <tr>
-                      <th width="45%">Item Description</th>
-                      <th width="12%">Quantity</th>
-                      <th width="15%">Rate (&pound;)</th>
-                      <th width="12%">Tax (%)</th>
-                      <th width="14%" class="text-right">Amount (&pound;)</th>
-                      <th width="2%"></th>
-                    </tr>
-                  </thead>
-                  <tbody id="invItemRows">
-                    <!-- Dynamic Rows -->
-                    <tr>
-                      <td><input type="text" class="inv-item-desc" placeholder="Software Engineering Services" value="Consulting Services"></td>
-                      <td><input type="number" class="inv-item-qty" placeholder="1" min="0" step="1" value="10"></td>
-                      <td><input type="number" class="inv-item-rate" placeholder="0.00" min="0" step="0.01" value="85.00"></td>
-                      <td><input type="number" class="inv-item-tax" placeholder="20" min="0" max="100" step="0.1" value="20"></td>
-                      <td class="inv-item-total text-right">&pound;850.00</td>
-                      <td><button type="button" class="inv-remove-row" title="Delete Row">&times;</button></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <button type="button" class="inv-add-row-btn" id="invAddRow">&#x2295; Add Line Item</button>
-
-              <!-- Footer Summary -->
-              <div class="inv-footer-grid">
-                <!-- Notes -->
-                <div class="inv-notes-col">
-                  <label for="invNotes">Notes / Payment Terms</label>
-                  <textarea id="invNotes" placeholder="Enter bank details, payment instructions or thanks notes here...">Thank you for your business! Bank transfer details: Softrate Bank, Account: 12345678, Sort Code: 12-34-56.</textarea>
+              <!-- Right side labels -->
+              <div style="display: flex; flex-direction: column; gap: 6.5rem; width: 220px; text-align: left;">
+                <div style="position: relative;">
+                  <!-- Pointer Line -->
+                  <div style="position: absolute; left: -2.5rem; top: 12px; width: 2.2rem; height: 1px; background: #cbd5e1;"></div>
+                  <div style="position: absolute; left: -2.5rem; top: 10px; width: 5px; height: 5px; background: #64748b; border-radius: 50%;"></div>
+                  <span style="font-size: 0.85rem; color: #000; font-weight: 500; line-height: 1.4; display: block;">The invoice number, invoice date, and the due date.</span>
                 </div>
-
-                <!-- Summary Values -->
-                <div class="inv-summary-col">
-                  <div class="inv-sum-row">
-                    <span>Sub Total:</span>
-                    <span id="invSubTotal">&pound;0.00</span>
-                  </div>
-                  <div class="inv-sum-row">
-                    <span>Tax Total:</span>
-                    <span id="invTaxTotal">&pound;0.00</span>
-                  </div>
-                  <div class="inv-sum-row">
-                    <span>Discount (Flat &pound;):</span>
-                    <input type="number" id="invDiscount" min="0" step="0.01" value="0.00" style="width: 100px; text-align: right; padding: 4px;">
-                  </div>
-                  <div class="inv-sum-row">
-                    <span>Shipping:</span>
-                    <input type="number" id="invShipping" min="0" step="0.01" value="0.00" style="width: 100px; text-align: right; padding: 4px;">
-                  </div>
-                  <div class="inv-sum-row inv-total-row">
-                    <span>Balance Due (&pound;):</span>
-                    <span id="invTotalDue">&pound;0.00</span>
-                  </div>
+                
+                <div style="position: relative; margin-top: 1rem;">
+                  <div style="position: absolute; left: -2.5rem; top: 12px; width: 2.2rem; height: 1px; background: #cbd5e1;"></div>
+                  <div style="position: absolute; left: -2.5rem; top: 10px; width: 5px; height: 5px; background: #64748b; border-radius: 50%;"></div>
+                  <span style="font-size: 0.85rem; color: #000; font-weight: 500; line-height: 1.4; display: block;">The subtotal, taxes, and total amount that needs to be paid.</span>
                 </div>
               </div>
-            </form>
+            </div>
+          </div>
+
+          <!-- Section: What Elements Should an Invoice Include -->
+          <div class="inv-elements-section" style="max-width: 900px; margin: 6rem auto; padding: 0 1.5rem;">
+            <h2 style="font-size: 2.25rem !important; font-weight: 300 !important; color: #0f172a !important; text-align: center !important; font-family: 'Outfit', sans-serif !important; margin-bottom: 4rem !important;">What elements should an invoice include?</h2>
+            
+            <div class="elements-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem 4rem;">
+              <!-- Business Logo -->
+              <div class="element-card" style="border: none; padding: 0; box-shadow: none; display: flex; gap: 1.25rem; align-items: flex-start;">
+                <div class="element-icon" style="width: 44px; height: 44px; border-radius: 50%; background: #2563eb; color: #ffffff; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-bottom: 0;">
+                  <i data-lucide="image" style="width: 20px; height: 20px;"></i>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 6px;">
+                  <h4 style="font-size: 1.1rem; font-weight: 600; color: #0f172a; margin: 0;">Business logo</h4>
+                  <p style="font-size: 0.9rem !important; line-height: 1.6 !important; color: #475569 !important; margin: 0 !important;">
+                    A business logo is a unique symbol that represents an organization. Adding a business logo to your invoices not only reinforces your brand's identity among your customers but also projects your business as a legitimate one.
+                  </p>
+                </div>
+              </div>
+              
+              <!-- Invoice Number -->
+              <div class="element-card" style="border: none; padding: 0; box-shadow: none; display: flex; gap: 1.25rem; align-items: flex-start;">
+                <div class="element-icon" style="width: 44px; height: 44px; border-radius: 50%; background: #2563eb; color: #ffffff; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-bottom: 0;">
+                  <i data-lucide="hash" style="width: 20px; height: 20px;"></i>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 6px;">
+                  <h4 style="font-size: 1.1rem; font-weight: 600; color: #0f172a; margin: 0;">Invoice number</h4>
+                  <p style="font-size: 0.9rem !important; line-height: 1.6 !important; color: #475569 !important; margin: 0 !important;">
+                    Businesses might send out huge volumes of invoices. In such cases, tracking each invoice becomes a tedious task. This is where an invoice number comes in handy. An invoice number is a sequential number that uniquely identifies each invoice. Sequentially numbering each invoice helps businesses track a specific transaction.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Business Name -->
+              <div class="element-card" style="border: none; padding: 0; box-shadow: none; display: flex; gap: 1.25rem; align-items: flex-start;">
+                <div class="element-icon" style="width: 44px; height: 44px; border-radius: 50%; background: #2563eb; color: #ffffff; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-bottom: 0;">
+                  <i data-lucide="building-2" style="width: 20px; height: 20px;"></i>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 6px;">
+                  <h4 style="font-size: 1.1rem; font-weight: 600; color: #0f172a; margin: 0;">Business name</h4>
+                  <p style="font-size: 0.9rem !important; line-height: 1.6 !important; color: #475569 !important; margin: 0 !important;">
+                    This is the name that your organization goes by. Having your business name and address on your invoice not only makes it easy for your customers to communicate with you but also reassures them that they are dealing with a credible business.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Product Description -->
+              <div class="element-card" style="border: none; padding: 0; box-shadow: none; display: flex; gap: 1.25rem; align-items: flex-start;">
+                <div class="element-icon" style="width: 44px; height: 44px; border-radius: 50%; background: #2563eb; color: #ffffff; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-bottom: 0;">
+                  <i data-lucide="file-spreadsheet" style="width: 20px; height: 20px;"></i>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 6px;">
+                  <h4 style="font-size: 1.1rem; font-weight: 600; color: #0f172a; margin: 0;">Product description</h4>
+                  <p style="font-size: 0.9rem !important; line-height: 1.6 !important; color: #475569 !important; margin: 0 !important;">
+                    A product description is a compelling marketing copy that showcases all the information of the product. This may include details like the product's size, dimensions, color, and other information. Describing the product in your invoices gives your customers a clear idea of what they are buying.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Invoice Date -->
+              <div class="element-card" style="border: none; padding: 0; box-shadow: none; display: flex; gap: 1.25rem; align-items: flex-start;">
+                <div class="element-icon" style="width: 44px; height: 44px; border-radius: 50%; background: #2563eb; color: #ffffff; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-bottom: 0;">
+                  <i data-lucide="calendar" style="width: 20px; height: 20px;"></i>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 6px;">
+                  <h4 style="font-size: 1.1rem; font-weight: 600; color: #0f172a; margin: 0;">Invoice date</h4>
+                  <p style="font-size: 0.9rem !important; line-height: 1.6 !important; color: #475569 !important; margin: 0 !important;">
+                    The invoice date is the date in which an invoice is issued. Apart from this, an invoice also contains the payment due date, which is the date by which a customer should pay the invoice.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Terms and Conditions -->
+              <div class="element-card" style="border: none; padding: 0; box-shadow: none; display: flex; gap: 1.25rem; align-items: flex-start;">
+                <div class="element-icon" style="width: 44px; height: 44px; border-radius: 50%; background: #2563eb; color: #ffffff; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-bottom: 0;">
+                  <i data-lucide="info" style="width: 20px; height: 20px;"></i>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 6px;">
+                  <h4 style="font-size: 1.1rem; font-weight: 600; color: #0f172a; margin: 0;">Terms and conditions</h4>
+                  <p style="font-size: 0.9rem !important; line-height: 1.6 !important; color: #475569 !important; margin: 0 !important;">
+                    Terms and conditions are a set of rules that both the buyer and seller should abide by. These rules might define the payment terms, late fees, or explain the return and refund policies for goods or services.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section: FAQ Section -->
+          <div class="inv-faq-section" style="max-width: 900px; margin: 6rem auto 4rem; padding: 0 1.5rem;">
+            <h2 style="font-size: 2.25rem !important; font-weight: 300 !important; color: #0f172a !important; text-align: center !important; font-family: 'Outfit', sans-serif !important; margin-bottom: 4rem !important; background: linear-gradient(90deg, #1e3a8a, #2563eb); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Frequently Asked Questions</h2>
+            
+            <div class="faq-accordion" style="display: flex; flex-direction: column; gap: 1.5rem;">
+              <div class="faq-accordion-item" style="border: none; border-bottom: 1px solid #e2e8f0; border-radius: 0; background: transparent; overflow: hidden; padding-bottom: 1.5rem;">
+                <button class="faq-accordion-header" type="button" style="width: 100%; display: flex; align-items: center; justify-content: space-between; background: none; border: none; cursor: pointer; text-align: left; font-size: 1.15rem; font-weight: 600; color: #0f172a; padding: 0; transition: color 0.2s;">
+                  <span>What is a tax invoice?</span>
+                  <i data-lucide="minus" class="faq-icon" style="width: 18px; height: 18px; color: #64748b;"></i>
+                </button>
+                <div class="faq-accordion-content" style="max-height: 250px; overflow: hidden; padding: 12px 0 0 0; transition: all 0.2s ease;">
+                  <p style="font-size: 0.95rem !important; line-height: 1.7 !important; color: #475569 !important; margin: 0 !important;">
+                    A tax invoice is the invoice created by a GST registered business owner when he sells taxable goods and services. Tax invoices are mandatory for claiming Input Tax Credit.
+                  </p>
+                </div>
+              </div>
+            <div class="faq-accordion-item" style="border: none; border-bottom: 1px solid #e2e8f0; border-radius: 0; background: transparent; overflow: hidden; padding-bottom: 1.5rem;">
+              <button class="faq-accordion-header" type="button" style="width: 100%; display: flex; align-items: center; justify-content: space-between; background: none; border: none; cursor: pointer; text-align: left; font-size: 1.15rem; font-weight: 600; color: #0f172a; padding: 0; transition: color 0.2s;">
+                <span>What is a bill of supply?</span>
+                <i data-lucide="plus" class="faq-icon" style="width: 18px; height: 18px; color: #64748b;"></i>
+              </button>
+              <div class="faq-accordion-content" style="max-height: 0; overflow: hidden; padding: 12px 0 0 0; transition: all 0.2s ease;">
+                <p style="font-size: 0.95rem !important; line-height: 1.7 !important; color: #475569 !important; margin: 0 !important;">
+                  A bill of supply is issued instead of a tax invoice by registered taxpayers who are either selling exempt goods/services or are registered under the GST Composition Scheme. No tax is charged on a bill of supply.
+                </p>
+              </div>
+            </div>
+            <div class="faq-accordion-item" style="border: none; border-bottom: 1px solid #e2e8f0; border-radius: 0; background: transparent; overflow: hidden; padding-bottom: 1.5rem;">
+              <button class="faq-accordion-header" type="button" style="width: 100%; display: flex; align-items: center; justify-content: space-between; background: none; border: none; cursor: pointer; text-align: left; font-size: 1.15rem; font-weight: 600; color: #0f172a; padding: 0; transition: color 0.2s;">
+                <span>What is a proforma invoice?</span>
+                <i data-lucide="plus" class="faq-icon" style="width: 18px; height: 18px; color: #64748b;"></i>
+              </button>
+              <div class="faq-accordion-content" style="max-height: 0; overflow: hidden; padding: 12px 0 0 0; transition: all 0.2s ease;">
+                <p style="font-size: 0.95rem !important; line-height: 1.7 !important; color: #475569 !important; margin: 0 !important;">
+                  A proforma invoice is a draft or preliminary invoice sent to buyers before shipment or delivery. It specifies the description and quantity of goods, value, and terms of sale, but does not carry tax obligations or serve as a payment demand.
+                </p>
+              </div>
+            </div>
+            <div class="faq-accordion-item" style="border: none; border-bottom: 1px solid #e2e8f0; border-radius: 0; background: transparent; overflow: hidden; padding-bottom: 1.5rem;">
+              <button class="faq-accordion-header" type="button" style="width: 100%; display: flex; align-items: center; justify-content: space-between; background: none; border: none; cursor: pointer; text-align: left; font-size: 1.15rem; font-weight: 600; color: #0f172a; padding: 0; transition: color 0.2s;">
+                <span>What is GSTIN and how can I get one?</span>
+                <i data-lucide="plus" class="faq-icon" style="width: 18px; height: 18px; color: #64748b;"></i>
+              </button>
+              <div class="faq-accordion-content" style="max-height: 0; overflow: hidden; padding: 12px 0 0 0; transition: all 0.2s ease;">
+                <p style="font-size: 0.95rem !important; line-height: 1.7 !important; color: #475569 !important; margin: 0 !important;">
+                  GSTIN is a 15-digit unique Goods and Services Tax Identification Number. You can obtain one by registering online through the official GST Common Portal (gst.gov.in) with valid proof of identity and place of business.
+                </p>
+              </div>
+            </div>
+            <div class="faq-accordion-item" style="border: none; border-bottom: 1px solid #e2e8f0; border-radius: 0; background: transparent; overflow: hidden; padding-bottom: 1.5rem;">
+              <button class="faq-accordion-header" type="button" style="width: 100%; display: flex; align-items: center; justify-content: space-between; background: none; border: none; cursor: pointer; text-align: left; font-size: 1.15rem; font-weight: 600; color: #0f172a; padding: 0; transition: color 0.2s;">
+                <span>How are interstate and intrastate transactions treated under GST?</span>
+                <i data-lucide="plus" class="faq-icon" style="width: 18px; height: 18px; color: #64748b;"></i>
+              </button>
+              <div class="faq-accordion-content" style="max-height: 0; overflow: hidden; padding: 12px 0 0 0; transition: all 0.2s ease;">
+                <p style="font-size: 0.95rem !important; line-height: 1.7 !important; color: #475569 !important; margin: 0 !important;">
+                  Intrastate transactions (within the same state) are charged with CGST (Central GST) and SGST (State GST) split equally. Interstate transactions (between two different states) are charged with IGST (Integrated GST) in full.
+                </p>
+              </div>
+            </div>
+            <div class="faq-accordion-item" style="border: none; border-bottom: 1px solid #e2e8f0; border-radius: 0; background: transparent; overflow: hidden; padding-bottom: 1.5rem;">
+              <button class="faq-accordion-header" type="button" style="width: 100%; display: flex; align-items: center; justify-content: space-between; background: none; border: none; cursor: pointer; text-align: left; font-size: 1.15rem; font-weight: 600; color: #0f172a; padding: 0; transition: color 0.2s;">
+                <span>What is the time limit to issue invoices in GST?</span>
+                <i data-lucide="plus" class="faq-icon" style="width: 18px; height: 18px; color: #64748b;"></i>
+              </button>
+              <div class="faq-accordion-content" style="max-height: 0; overflow: hidden; padding: 12px 0 0 0; transition: all 0.2s ease;">
+                <p style="font-size: 0.95rem !important; line-height: 1.7 !important; color: #475569 !important; margin: 0 !important;">
+                  For goods, a tax invoice must be issued before or at the time of removal of goods. For services, the invoice must be issued within 30 days of the completion of service (45 days for banks/financial institutions).
+                </p>
+              </div>
+            </div>
+            <div class="faq-accordion-item" style="border: none; border-bottom: 1px solid #e2e8f0; border-radius: 0; background: transparent; overflow: hidden; padding-bottom: 1.5rem;">
+              <button class="faq-accordion-header" type="button" style="width: 100%; display: flex; align-items: center; justify-content: space-between; background: none; border: none; cursor: pointer; text-align: left; font-size: 1.15rem; font-weight: 600; color: #0f172a; padding: 0; transition: color 0.2s;">
+                <span>How many copies of invoices are required?</span>
+                <i data-lucide="plus" class="faq-icon" style="width: 18px; height: 18px; color: #64748b;"></i>
+              </button>
+              <div class="faq-accordion-content" style="max-height: 0; overflow: hidden; padding: 12px 0 0 0; transition: all 0.2s ease;">
+                <p style="font-size: 0.95rem !important; line-height: 1.7 !important; color: #475569 !important; margin: 0 !important;">
+                  For supply of goods, invoices must be prepared in triplicate (Original for Recipient, Duplicate for Transporter, Triplicate for Supplier). For supply of services, invoices must be prepared in duplicate (Original and Duplicate).
+                </p>
+              </div>
+            </div>
+            <div class="faq-accordion-item" style="border: none; border-bottom: 1px solid #e2e8f0; border-radius: 0; background: transparent; overflow: hidden; padding-bottom: 1.5rem;">
+              <button class="faq-accordion-header" type="button" style="width: 100%; display: flex; align-items: center; justify-content: space-between; background: none; border: none; cursor: pointer; text-align: left; font-size: 1.15rem; font-weight: 600; color: #0f172a; padding: 0; transition: color 0.2s;">
+                <span>What is HSN Code and SAC?</span>
+                <i data-lucide="plus" class="faq-icon" style="width: 18px; height: 18px; color: #64748b;"></i>
+              </button>
+              <div class="faq-accordion-content" style="max-height: 0; overflow: hidden; padding: 12px 0 0 0; transition: all 0.2s ease;">
+                <p style="font-size: 0.95rem !important; line-height: 1.7 !important; color: #475569 !important; margin: 0 !important;">
+                  HSN (Harmonised System of Nomenclature) is an international classification code for goods. SAC (Service Accounting Code) is a classification system for services under GST.
+                </p>
+              </div>
+            </div>
+            <div class="faq-accordion-item" style="border: none; border-bottom: 1px solid #e2e8f0; border-radius: 0; background: transparent; overflow: hidden; padding-bottom: 1.5rem;">
+              <button class="faq-accordion-header" type="button" style="width: 100%; display: flex; align-items: center; justify-content: space-between; background: none; border: none; cursor: pointer; text-align: left; font-size: 1.15rem; font-weight: 600; color: #0f172a; padding: 0; transition: color 0.2s;">
+                <span>What is place of supply under GST?</span>
+                <i data-lucide="plus" class="faq-icon" style="width: 18px; height: 18px; color: #64748b;"></i>
+              </button>
+              <div class="faq-accordion-content" style="max-height: 0; overflow: hidden; padding: 12px 0 0 0; transition: all 0.2s ease;">
+                <p style="font-size: 0.95rem !important; line-height: 1.7 !important; color: #475569 !important; margin: 0 !important;">
+                  Place of Supply determines whether a transaction is interstate or intrastate. It is generally the location where goods are delivered or where services are performed.
+                </p>
+              </div>
+            </div>
+            <div class="faq-accordion-item" style="border: none; border-bottom: 1px solid #e2e8f0; border-radius: 0; background: transparent; overflow: hidden; padding-bottom: 1.5rem;">
+              <button class="faq-accordion-header" type="button" style="width: 100%; display: flex; align-items: center; justify-content: space-between; background: none; border: none; cursor: pointer; text-align: left; font-size: 1.15rem; font-weight: 600; color: #0f172a; padding: 0; transition: color 0.2s;">
+                <span>What is reverse charge?</span>
+                <i data-lucide="plus" class="faq-icon" style="width: 18px; height: 18px; color: #64748b;"></i>
+              </button>
+              <div class="faq-accordion-content" style="max-height: 0; overflow: hidden; padding: 12px 0 0 0; transition: all 0.2s ease;">
+                <p style="font-size: 0.95rem !important; line-height: 1.7 !important; color: #475569 !important; margin: 0 !important;">
+                  Reverse charge is a mechanism under GST where the liability to pay tax is on the buyer or recipient instead of the seller. It applies to specific goods/services and purchases from unregistered dealers.
+                </p>
+              </div>
+            </div>
+            <div class="faq-accordion-item" style="border: none; border-bottom: 1px solid #e2e8f0; border-radius: 0; background: transparent; overflow: hidden; padding-bottom: 1.5rem;">
+              <button class="faq-accordion-header" type="button" style="width: 100%; display: flex; align-items: center; justify-content: space-between; background: none; border: none; cursor: pointer; text-align: left; font-size: 1.15rem; font-weight: 600; color: #0f172a; padding: 0; transition: color 0.2s;">
+                <span>What is mixed and composite supply?</span>
+                <i data-lucide="plus" class="faq-icon" style="width: 18px; height: 18px; color: #64748b;"></i>
+              </button>
+              <div class="faq-accordion-content" style="max-height: 0; overflow: hidden; padding: 12px 0 0 0; transition: all 0.2s ease;">
+                <p style="font-size: 0.95rem !important; line-height: 1.7 !important; color: #475569 !important; margin: 0 !important;">
+                  Composite supply refers to supplying two or more naturally bundled goods/services together (e.g., laptop with charger). Mixed supply refers to supplying goods/services together that are not naturally bundled (e.g., gift pack of chocolates, canned juices, and cakes).
+                </p>
+              </div>
+            </div>
+            <div class="faq-accordion-item" style="border: none; border-bottom: 1px solid #e2e8f0; border-radius: 0; background: transparent; overflow: hidden; padding-bottom: 1.5rem;">
+              <button class="faq-accordion-header" type="button" style="width: 100%; display: flex; align-items: center; justify-content: space-between; background: none; border: none; cursor: pointer; text-align: left; font-size: 1.15rem; font-weight: 600; color: #0f172a; padding: 0; transition: color 0.2s;">
+                <span>What is Input Tax Credit (ITC)?</span>
+                <i data-lucide="plus" class="faq-icon" style="width: 18px; height: 18px; color: #64748b;"></i>
+              </button>
+              <div class="faq-accordion-content" style="max-height: 0; overflow: hidden; padding: 12px 0 0 0; transition: all 0.2s ease;">
+                <p style="font-size: 0.95rem !important; line-height: 1.7 !important; color: #475569 !important; margin: 0 !important;">
+                  Input Tax Credit allows a business to reduce the tax it has already paid on inputs (purchases) from the tax it collects on outputs (sales), preventing double taxation.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>

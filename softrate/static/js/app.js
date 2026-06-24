@@ -367,7 +367,6 @@ document.addEventListener("DOMContentLoaded", () => {
           window.history.pushState({ route: "hmrc" }, "", "/in/payroll/hmrc-furlough-calculator/");
         }
       }
-    }
     } else if (isUkVatRoute) {
       if (updateHistory) {
         if (window.location.pathname !== "/in/payroll/uk-vat-calculator/") {
@@ -392,7 +391,6 @@ document.addEventListener("DOMContentLoaded", () => {
           window.history.pushState({ route: "uk-corp" }, "", "/in/payroll/uk-corp-tax-calculator/");
         }
       }
-    }
     } else if (isInvoiceRoute) {
       if (updateHistory) {
         if (window.location.pathname !== "/in/payroll/invoice-generator/") {
@@ -580,7 +578,6 @@ document.addEventListener("DOMContentLoaded", () => {
       labelText = "Income Tax Calculator";
     } else if (isHmrcRoute) {
       labelText = "HMRC Furlough Claim Calculator";
-    }
     } else if (isUkVatRoute) {
       labelText = "UK VAT Calculator";
     } else if (isUaeVatRoute) {
@@ -589,7 +586,6 @@ document.addEventListener("DOMContentLoaded", () => {
       labelText = "UK Flat Rate VAT Calculator";
     } else if (isUkCorpRoute) {
       labelText = "UK Corporation Tax Calculator";
-    }
     } else if (isInvoiceRoute) {
       labelText = "Invoice Generator";
     } else if (isQuoteRoute) {

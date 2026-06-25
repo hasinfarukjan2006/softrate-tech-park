@@ -742,6 +742,80 @@ def save_financial_report():
         return jsonify({"status": "error", "message": f"Database insertion failed: {str(e)}"}), 500
 
 
+# Uk Vat page
+@app.route("/uk-vat-calculator")
+@app.route("/in/payroll/uk-vat-calculator/")
+def uk_vat_calculator_page():
+    return render_template("index.html")
+
+
+# Uae Vat page
+@app.route("/uae-vat-calculator")
+@app.route("/in/payroll/uae-vat-calculator/")
+def uae_vat_calculator_page():
+    return render_template("index.html")
+
+
+# Uk Flat page
+@app.route("/uk-flat-rate-vat-calculator")
+@app.route("/in/payroll/uk-flat-rate-vat-calculator/")
+def uk_flat_rate_vat_calculator_page():
+    return render_template("index.html")
+
+
+# Invoice page
+@app.route("/invoice-generator")
+@app.route("/in/payroll/invoice-generator/")
+def invoice_generator_page():
+    return render_template("index.html")
+
+
+# Quote page
+@app.route("/quote-generator")
+@app.route("/in/payroll/quote-generator/")
+def quote_generator_page():
+    return render_template("index.html")
+
+
+# Receipts page
+@app.route("/receipt-generator")
+@app.route("/in/payroll/receipt-generator/")
+def receipt_generator_page():
+    return render_template("index.html")
+
+
+# Forecaster page
+@app.route("/revenue-forecaster")
+@app.route("/in/payroll/revenue-forecaster/")
+def revenue_forecaster_page():
+    return render_template("index.html")
+
+# UK Corporation Tax Calculator page
+@app.route("/uk-corp-tax-calculator")
+@app.route("/in/payroll/uk-corp-tax-calculator/")
+def uk_corp_tax_page():
+    return render_template("index.html")
+
+# HMRC Furlough Claim Calculator page
+@app.route("/hmrc-furlough-calculator")
+@app.route("/in/payroll/hmrc-furlough-calculator/")
+def hmrc_furlough_page():
+    return render_template("index.html")
+
+# Income Tax Calculator page
+@app.route("/income-tax-calculator")
+@app.route("/in/payroll/income-tax-calculator/")
+def income_tax_calculator_page():
+    """Render the Income Tax Calculator page inside the main SPA."""
+    return render_template("index.html")
+
+# Paycheck Calculator page
+@app.route("/paycheck-calculator")
+@app.route("/in/payroll/paycheck-calculator/")
+def paycheck_calculator_page():
+    """Render the Paycheck Calculator page inside the main SPA."""
+    return render_template("index.html")
+
 
 
 
@@ -793,7 +867,526 @@ def api_wholesale_price():
         print(f"Error saving wholesale price: {e}")
     return jsonify({"status": "success", "data": record})
 
+# ==================================================
+# GLOBAL SEO OPTIMIZATION - METADATA & SCHEMA GENERATION
+# ==================================================
+
+import json
+from flask import request
+
+SEO_METADATA = {
+    "/": {
+        "title": "India GST Calculator | Softrate Finance Tools",
+        "description": "Calculate CGST, SGST, and IGST in real-time with the Softrate India GST Calculator. Learn how GST applies to inclusive and exclusive values.",
+        "keywords": "gst calculator, gst tax calculator, india gst calculator, tax calculation",
+        "canonical": "/",
+        "category": "Accounting",
+        "faq": [
+            {"q": "What is India GST?", "a": "GST (Goods and Services Tax) is an indirect tax levied in India on the supply of goods and services. It is divided into CGST, SGST, and IGST depending on state transactions."},
+            {"q": "How is GST calculated?", "a": "For exclusive GST, multiply the base amount by the GST rate (e.g., 18%). For inclusive GST, divide the total amount by (1 + GST rate) to retrieve the base cost."}
+        ]
+    },
+    "/invoice-generator": {
+        "title": "Invoice Generator | Softrate Finance Tools",
+        "description": "Create professional invoices online with Softrate Invoice Generator. Customize templates, calculate taxes, and download print-ready PDFs.",
+        "keywords": "invoice generator, gst invoice, billing software, invoice maker, tax invoice, online invoice",
+        "canonical": "/invoice-generator",
+        "category": "Billing",
+        "faq": [
+            {"q": "Can I download receipts as PDF?", "a": "Yes, you can generate and download print-ready PDF invoices directly to your device."},
+            {"q": "Can I add taxes automatically?", "a": "Yes, our tool computes CGST, SGST, IGST, and cess automatically based on the selected tax rates."}
+        ]
+    },
+    "/quote-generator": {
+        "title": "Quote Generator | Softrate Finance Tools",
+        "description": "Generate professional quotes and estimates instantly with Softrate Quote Generator. Manage client billing templates with real-time tax calculations.",
+        "keywords": "quote generator, billing tools, financial software, estimate maker, invoice quote",
+        "canonical": "/quote-generator",
+        "category": "Billing",
+        "faq": [
+            {"q": "Can I convert quotes to invoices?", "a": "Yes, you can easily copy estimate parameters over to the Invoice Generator for formal billing."}
+        ]
+    },
+    "/receipt-generator": {
+        "title": "Receipt Generator | Softrate Finance Tools",
+        "description": "Create and download professional transaction receipts using Softrate Receipt Generator. Ideal for bookkeeping, tracking payments, and audits.",
+        "keywords": "receipt generator, proof of payment, transaction records, cash receipt, digital receipt",
+        "canonical": "/receipt-generator",
+        "category": "Billing",
+        "faq": [
+            {"q": "Can I print receipts directly?", "a": "Yes, click the print action button to open your browser's native print interface instantly."}
+        ]
+    },
+    "/revenue-forecaster": {
+        "title": "Revenue Forecaster | Softrate Finance Tools",
+        "description": "Project your monthly recurring revenue growth and CAGR with the Softrate Revenue Forecaster. Compare growth paths against customer churn rates.",
+        "keywords": "revenue forecasting, business forecast, financial planning, growth prediction, mrr forecaster",
+        "canonical": "/revenue-forecaster",
+        "category": "Billing",
+        "faq": [
+            {"q": "Why do I need a revenue forecaster tool?", "a": "A revenue forecaster helps predict future recurring revenue, budgets, and operational growth vectors."},
+            {"q": "How accurate are revenue forecasts?", "a": "Projections are mathematical estimations based on current parameters. Actual outcomes can vary based on market shifts."}
+        ]
+    },
+    "/uk-vat-calculator": {
+        "title": "UK VAT Calculator | Softrate Finance Tools",
+        "description": "Calculate UK Value Added Tax easily with Softrate UK VAT Calculator. Supports Standard and Reduced VAT rates for corporate billing.",
+        "keywords": "uk vat calculator, value added tax, vat calculation, uk tax tools",
+        "canonical": "/uk-vat-calculator",
+        "category": "Accounting"
+    },
+    "/uae-vat-calculator": {
+        "title": "UAE VAT Calculator | Softrate Finance Tools",
+        "description": "Compute UAE VAT in compliance with Federal Tax Authority guidelines. Softrate UAE VAT Calculator simplifies standard 5% tax calculations.",
+        "keywords": "uae vat calculator, fta vat, uae tax calculator, middle east tax",
+        "canonical": "/uae-vat-calculator",
+        "category": "Accounting"
+    },
+    "/uk-flat-rate-vat-calculator": {
+        "title": "UK Flat Rate Calculator | Softrate Finance Tools",
+        "description": "Project savings under the UK Flat Rate VAT scheme using the Softrate UK Flat Rate Calculator. Ideal for UK small businesses and contractors.",
+        "keywords": "uk flat rate calculator, flat rate vat, small business tax, uk tax scheme",
+        "canonical": "/uk-flat-rate-vat-calculator",
+        "category": "Accounting"
+    },
+    "/uk-corp-tax-calculator": {
+        "title": "UK Corporation Tax Calculator | Softrate Finance Tools",
+        "description": "Estimate UK corporation tax liabilities based on profits with Softrate UK Corporation Tax Calculator. Plan corporate tax schedules.",
+        "keywords": "uk corporation tax calculator, corp tax uk, business tax calculation",
+        "canonical": "/uk-corp-tax-calculator",
+        "category": "Accounting"
+    },
+    "/hmrc-furlough-calculator": {
+        "title": "HMRC Furlough Claim Calculator | Softrate Finance Tools",
+        "description": "Calculate government wage support grants under Coronavirus Job Retention Scheme rules with the Softrate HMRC Furlough Claim Calculator.",
+        "keywords": "hmrc furlough claim calculator, cjrs furlough, wage grant calculator",
+        "canonical": "/hmrc-furlough-calculator",
+        "category": "Accounting"
+    },
+    "/income-tax-calculator": {
+        "title": "Income Tax Calculator | Softrate Finance Tools",
+        "description": "Project personal income tax liabilities, standard deductions, and net payouts using the Softrate Income Tax Calculator.",
+        "keywords": "income tax calculator, salary tax calculator, tax deduction planner",
+        "canonical": "/income-tax-calculator",
+        "category": "Accounting"
+    },
+    "/financial-report-generator": {
+        "title": "Financial Report Templates | Softrate Finance Tools",
+        "description": "Generate and download balance sheets and cash flow reports with Softrate Financial Report Templates. Standardize financial filings.",
+        "keywords": "financial reports, balance sheet template, cash flow generator",
+        "canonical": "/financial-report-generator",
+        "category": "Accounting"
+    },
+    "/free-project-estimate-calculator": {
+        "title": "Free Project Cost Estimate Calculator | Softrate Finance Tools",
+        "description": "Calculate project cost estimations, resource costs, and profit margins. softrate Project Cost Calculator simplifies budget drafts.",
+        "keywords": "project cost calculator, cost estimation tool, resource budget planner",
+        "canonical": "/free-project-estimate-calculator",
+        "category": "Accounting"
+    },
+    "/form-w9-generator": {
+        "title": "Form W9 Generator | Softrate Finance Tools",
+        "description": "Create and download W-9 forms securely with the Softrate W-9 Generator. Easily request Taxpayer Identification Numbers (TINs) online.",
+        "keywords": "form w9 generator, request tin, irs tax forms, w-9 creator",
+        "canonical": "/form-w9-generator",
+        "category": "Accounting"
+    },
+    "/expense-report-generator": {
+        "title": "Expense Report Generator | Softrate Finance Tools",
+        "description": "Record business expenses, capture mileage costs, and export claims with the Softrate Expense Report Generator.",
+        "keywords": "expense report generator, track expenses, reimbursement claim creator",
+        "canonical": "/expense-report-generator",
+        "category": "Expense"
+    },
+    "/per-diem-calculator": {
+        "title": "Expense Report Template | Softrate Finance Tools",
+        "description": "Plan standard business trip expenses and per-diem allowances with the Softrate Per-Diem Calculator.",
+        "keywords": "expense report template, per diem allowance, travel reimbursement",
+        "canonical": "/per-diem-calculator",
+        "category": "Expense"
+    },
+    "/sku-generator": {
+        "title": "SKU Generator | Softrate Finance Tools",
+        "description": "Create structured Stock Keeping Unit codes for your catalog items with Softrate SKU Generator. Organize inventory databases.",
+        "keywords": "sku generator, stock keeping unit creator, inventory codes",
+        "canonical": "/sku-generator",
+        "category": "Inventory"
+    },
+    "/purchase-order-generator": {
+        "title": "Purchase Order Generator | Softrate Finance Tools",
+        "description": "Draft professional purchase orders instantly with Softrate Purchase Order Generator. Send formatted PO PDFs to vendors.",
+        "keywords": "purchase order generator, buy orders, vendor billing software",
+        "canonical": "/purchase-order-generator",
+        "category": "Inventory"
+    },
+    "/reorder-point": {
+        "title": "Reorder Point Calculator | Softrate Finance Tools",
+        "description": "Calculate optimal stock reorder thresholds based on lead time and safety stocks using the Softrate Reorder Point Calculator.",
+        "keywords": "reorder point calculator, stock replenishing thresholds, lead time safety",
+        "canonical": "/reorder-point",
+        "category": "Inventory"
+    },
+    "/economic-order-quantity": {
+        "title": "Economic Order Quantity Calculator | Softrate Finance Tools",
+        "description": "Find the cost-optimal ordering volume with Softrate Economic Order Quantity (EOQ) Calculator. Maximize warehouse budget efficiency.",
+        "keywords": "economic order quantity calculator, eoq calculator, inventory optimization, stock planning",
+        "canonical": "/economic-order-quantity",
+        "category": "Inventory",
+        "faq": [
+            {"q": "What is Economic Order Quantity?", "a": "Economic Order Quantity (EOQ) is the optimal order quantity that minimizes total inventory holding and ordering costs."}
+        ]
+    },
+    "/break-even-point": {
+        "title": "Break-Even Point Calculator | Softrate Finance Tools",
+        "description": "Calculate the break-even volume and pricing thresholds for your products with the Softrate Break-Even Point Calculator.",
+        "keywords": "break-even point calculator, find break even, cost volume profit analysis",
+        "canonical": "/break-even-point",
+        "category": "Inventory",
+        "faq": [
+            {"q": "How is Break-Even calculated?", "a": "Break-even point is calculated by dividing fixed costs by the difference between unit price and unit variable cost."}
+        ]
+    },
+    "/inventory-turnover": {
+        "title": "Inventory Turnover Ratio Calculator | Softrate Finance Tools",
+        "description": "Evaluate stock liquidity and cost of goods sold efficiency with the Softrate Inventory Turnover Ratio Calculator.",
+        "keywords": "inventory turnover ratio calculator, evaluate stock liquidity, cogs efficiency",
+        "canonical": "/inventory-turnover",
+        "category": "Inventory"
+    },
+    "/packing-slip-generator": {
+        "title": "Packing Slip Generator | Softrate Finance Tools",
+        "description": "Generate and print professional shipment packaging slips with Softrate Packing Slip Generator. Streamline warehousing.",
+        "keywords": "packing slip generator, shipping labels, packaging invoices",
+        "canonical": "/packing-slip-generator",
+        "category": "Inventory"
+    },
+    "/barcode-generator": {
+        "title": "Barcode Generator | Softrate Finance Tools",
+        "description": "Create Code128, EAN, or UPC barcodes online with Softrate Barcode Generator. Export labels as high-resolution PNGs.",
+        "keywords": "barcode generator, create code128, barcode maker, print barcode",
+        "canonical": "/barcode-generator",
+        "category": "Inventory"
+    },
+    "/shipping-label-generator": {
+        "title": "Shipping Label Generator | Softrate Finance Tools",
+        "description": "Create standard warehouse shipping labels with Softrate Shipping Label Generator. Fast delivery slip layout creator.",
+        "keywords": "shipping label generator, print shipping slips, postage layout builder",
+        "canonical": "/shipping-label-generator",
+        "category": "Inventory"
+    },
+    "/wholesale-price": {
+        "title": "Wholesale Price Calculator | Softrate Finance Tools",
+        "description": "Compute wholesale prices, markup values, and recommended retail prices (RRPs) with the Softrate Wholesale Price Calculator.",
+        "keywords": "wholesale price calculator, markup pricing tool, retail margins",
+        "canonical": "/wholesale-price",
+        "category": "Inventory"
+    },
+    "/free-payslip-generator": {
+        "title": "Payslip Generator | Softrate Finance Tools",
+        "description": "Create professional salary payslips with tax splits and allowances. Softrate Payslip Generator outputs print-ready PDFs.",
+        "keywords": "payslip generator, salary slips, payroll billing tool",
+        "canonical": "/free-payslip-generator",
+        "category": "Payroll",
+        "faq": [
+            {"q": "What details go into a payslip?", "a": "A payslip includes base pay, standard deductions, HRA allocations, pension cuts, and net home pay splits."}
+        ]
+    },
+    "/paycheck-calculator": {
+        "title": "Paycheck Calculator | Softrate Finance Tools",
+        "description": "Estimate take-home pay, federal/state withholdings, and payroll deductions with the Softrate Paycheck Calculator.",
+        "keywords": "paycheck calculator, take home pay calculator, net pay estimator",
+        "canonical": "/paycheck-calculator",
+        "category": "Payroll"
+    },
+    "/gratuity-calculator": {
+        "title": "Gratuity Calculator | Softrate Finance Tools",
+        "description": "Estimate corporate gratuity payouts under retirement benefits acts with the Softrate Gratuity Calculator.",
+        "keywords": "gratuity calculator, retirement benefits act estimation",
+        "canonical": "/gratuity-calculator",
+        "category": "Payroll"
+    },
+    "/statutory-bonus-calculator": {
+        "title": "Statutory Bonus Calculator | Softrate Finance Tools",
+        "description": "Compute statutory employee bonus allocations in line with payroll regulations using the Statutory Bonus Calculator.",
+        "keywords": "statutory bonus calculator, payroll bonus allocator",
+        "canonical": "/statutory-bonus-calculator",
+        "category": "Payroll"
+    },
+    "/hra-exemption-calculator": {
+        "title": "HRA Exemption Calculator | Softrate Finance Tools",
+        "description": "Optimize tax savings on house rent allowances with the Softrate House Rent Allowance (HRA) Exemption Calculator.",
+        "keywords": "hra exemption calculator, tax savings on rent, allowance deduction calculator",
+        "canonical": "/hra-exemption-calculator",
+        "category": "Payroll"
+    },
+    "/eps-pension-calculator": {
+        "title": "EPS Pension Calculator | Softrate Finance Tools",
+        "description": "Estimate monthly employee pension scheme payouts on retirement with the Softrate EPS Pension Calculator.",
+        "keywords": "eps pension calculator, employee pension scheme retirement",
+        "canonical": "/eps-pension-calculator",
+        "category": "Payroll"
+    },
+    "/nps-calculator": {
+        "title": "NPS Calculator | Softrate Finance Tools",
+        "description": "Calculate compound returns and annuity allocations under the National Pension System with the Softrate NPS Calculator.",
+        "keywords": "nps calculator, national pension system compound returns",
+        "canonical": "/nps-calculator",
+        "category": "Payroll"
+    },
+    "/about-us": {
+        "title": "About Us | Softrate Finance Platform",
+        "description": "Learn more about Softrate Tech Park Pvt Ltd, our vision, and our mission to provide smart enterprise finance tools and billing systems.",
+        "keywords": "about softrate, finance park, billing software mission",
+        "canonical": "/about-us",
+        "category": "Trust"
+    },
+    "/contact-us": {
+        "title": "Contact Us | Softrate Finance Platform",
+        "description": "Get in touch with the support team at Softrate Tech Park Pvt Ltd. Reach out via email or phone for inquiry help.",
+        "keywords": "contact softrate, customer support, billing platform helpline",
+        "canonical": "/contact-us",
+        "category": "Trust"
+    },
+    "/privacy-policy": {
+        "title": "Privacy Policy | Softrate Finance Platform",
+        "description": "Read the Privacy Policy of Softrate Tech Park Pvt Ltd. Understand how we protect your personal and corporate finance data.",
+        "keywords": "privacy policy, data protection, data privacy policy",
+        "canonical": "/privacy-policy",
+        "category": "Trust"
+    },
+    "/terms-conditions": {
+        "title": "Terms & Conditions | Softrate Finance Platform",
+        "description": "Read the terms of use and conditions governing the Softrate Business Finance software portal.",
+        "keywords": "terms and conditions, user agreement, licensing terms",
+        "canonical": "/terms-conditions",
+        "category": "Trust"
+    },
+    "/disclaimer": {
+        "title": "Disclaimer | Softrate Finance Platform",
+        "description": "Financial disclaimer statement for calculations and projections made on the Softrate calculator tools.",
+        "keywords": "disclaimer, calculator accuracy, financial advice disclaimer",
+        "canonical": "/disclaimer",
+        "category": "Trust"
+    },
+    "/sitemap": {
+        "title": "Sitemap | Softrate Finance Platform",
+        "description": "Table of links containing every calculator, billing generator, and corporate page inside the Softrate site directory.",
+        "keywords": "sitemap, website directory, navigation checklist",
+        "canonical": "/sitemap",
+        "category": "Trust"
+    }
+}
+
+def normalize_seo_path(path):
+    p = path.strip("/")
+    if p.startswith("in/payroll/"):
+        p = p[len("in/payroll/"):]
+    elif p.startswith("in/payroll"):
+        p = p[len("in/payroll"):]
+    p = p.strip("/")
+    
+    if p == "per-diem-calculator":
+        p = "per-diem-calculator"
+    elif p == "wholesale-price":
+        p = "wholesale-price"
+    elif p == "free-payslip-generator" or p == "free-payslip-generator/":
+        p = "free-payslip-generator"
+    elif p == "":
+        return "/"
+    
+    return "/" + p
+
+@app.context_processor
+def inject_seo():
+    path = normalize_seo_path(request.path)
+    meta = SEO_METADATA.get(path)
+    if not meta:
+        meta = {
+            "title": "Softrate Tech Park Pvt Ltd | Smart Business Finance Solutions",
+            "description": "Softrate Tech Park offers smart business finance solutions, calculators, invoice generators, and payroll systems for enterprises.",
+            "keywords": "finance tools, calculators, billing, invoice generator, gst, vat",
+            "canonical": "/",
+            "category": "Home"
+        }
+    
+    base_url = "https://softrate-tech-park.netlify.app"
+    full_canonical = base_url + meta["canonical"]
+    
+    graphs = []
+    graphs.append({
+        "@type": "Organization",
+        "@id": base_url + "/#organization",
+        "name": "Softrate Tech Park Pvt Ltd",
+        "url": base_url + "/",
+        "logo": base_url + "/static/images/logo.png",
+        "email": "support@softrate.com",
+        "sameAs": [
+            "https://www.facebook.com/softrate",
+            "https://twitter.com/softrate",
+            "https://www.linkedin.com/company/softrate",
+            "https://www.instagram.com/softrate"
+        ]
+    })
+    
+    graphs.append({
+        "@type": "WebSite",
+        "@id": base_url + "/#website",
+        "url": base_url + "/",
+        "name": "Softrate Finance Tools",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": {
+                "@type": "EntryPoint",
+                "urlTemplate": base_url + "/?q={search_term_string}"
+            },
+            "query-input": "required name=search_term_string"
+        }
+    })
+    
+    graphs.append({
+        "@type": "LocalBusiness",
+        "@id": base_url + "/#localbusiness",
+        "name": "Softrate Tech Park Pvt Ltd",
+        "image": base_url + "/static/images/logo.png",
+        "email": "support@softrate.com",
+        "telephone": "+918000000000",
+        "url": base_url + "/"
+    })
+    
+    breadcrumb_elements = [
+        {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": base_url + "/"
+        }
+    ]
+    if meta["canonical"] != "/":
+        breadcrumb_elements.append({
+            "@type": "ListItem",
+            "position": 2,
+            "name": meta["category"],
+            "item": base_url + meta["canonical"]
+        })
+        breadcrumb_elements.append({
+            "@type": "ListItem",
+            "position": 3,
+            "name": meta["title"].split("|")[0].strip(),
+            "item": base_url + meta["canonical"]
+        })
+    
+    graphs.append({
+        "@type": "BreadcrumbList",
+        "itemListElement": breadcrumb_elements
+    })
+    
+    if meta["category"] in ["Billing", "Accounting", "Expense", "Inventory", "Payroll"] or meta["canonical"] == "/":
+        graphs.append({
+            "@type": "SoftwareApplication",
+            "name": "Softrate " + meta["title"].split("|")[0].strip(),
+            "operatingSystem": "All",
+            "applicationCategory": "FinanceApplication",
+            "browserRequirements": "Requires JavaScript. Requires HTML5.",
+            "description": meta["description"],
+            "offers": {
+                "@type": "Offer",
+                "price": "0.00",
+                "priceCurrency": "USD"
+            }
+        })
+        
+    if "faq" in meta:
+        faq_entities = []
+        for item in meta["faq"]:
+            faq_entities.append({
+                "@type": "Question",
+                "name": item["q"],
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": item["a"]
+                }
+            })
+        graphs.append({
+            "@type": "FAQPage",
+            "mainEntity": faq_entities
+        })
+        
+    schema_graph = {
+        "@context": "https://schema.org",
+        "@graph": graphs
+    }
+    
+    seo_data = {
+        "title": meta["title"],
+        "description": meta["description"],
+        "keywords": meta["keywords"],
+        "canonical": full_canonical,
+        "image": base_url + "/static/images/logo.png",
+        "schema_json": json.dumps(schema_graph)
+    }
+    
+    return dict(seo=seo_data)
+
+# Additional explicit calculator GET routes
+@app.route("/per-diem-calculator")
+def per_diem_calculator_page():
+    return render_template("index.html")
+
+@app.route("/expense-report-generator")
+def expense_report_generator_page():
+    return render_template("index.html")
+
+@app.route("/free-payslip-generator")
+def free_payslip_generator_page_alias():
+    return render_template("index.html")
+
+# Trust Pages Routes
+@app.route("/about-us")
+def about_us_page():
+    return render_template("index.html")
+
+@app.route("/contact-us")
+def contact_us_page():
+    return render_template("index.html")
+
+@app.route("/privacy-policy")
+def privacy_policy_page():
+    return render_template("index.html")
+
+@app.route("/terms-conditions")
+def terms_conditions_page():
+    return render_template("index.html")
+
+@app.route("/disclaimer")
+def disclaimer_page():
+    return render_template("index.html")
+
+@app.route("/sitemap")
+def sitemap_page():
+    return render_template("index.html")
+
+# Sitemap.xml & Robots.txt Routes
+from flask import Response
+
+@app.route("/robots.txt")
+def robots_txt():
+    content = "User-agent: *\nAllow: /\nSitemap: https://softrate-tech-park.netlify.app/sitemap.xml"
+    return Response(content, mimetype="text/plain")
+
+@app.route("/sitemap.xml")
+def sitemap_xml():
+    xml = '<?xml version="1.0" encoding="UTF-8"?>\n'
+    xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+    canonical_paths = set(d["canonical"] for d in SEO_METADATA.values())
+    for path in canonical_paths:
+        xml += '  <url>\n'
+        xml += f'    <loc>https://softrate-tech-park.netlify.app{path}</loc>\n'
+        xml += '    <changefreq>weekly</changefreq>\n'
+        xml += '    <priority>0.8</priority>\n'
+        xml += '  </url>\n'
+    xml += '</urlset>\n'
+    return Response(xml, mimetype="application/xml")
+
 if __name__ == "__main__":
     # Start Flask Server
     app.run(host="0.0.0.0", port=5000, debug=True)
-

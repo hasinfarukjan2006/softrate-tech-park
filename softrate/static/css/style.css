@@ -539,9 +539,9 @@ body.dark .cta-btn:hover {
   top: 60px;
   left: 0;
   bottom: 0;
-  width: 262px !important;
-  min-width: 262px !important;
-  max-width: 262px !important;
+  width: 250px !important;
+  min-width: 250px !important;
+  max-width: 250px !important;
   height: calc(100vh - 60px);
   border-right: 1px solid #11111a;
   background-color: #1a1a24; /* dark charcoal */
@@ -556,8 +556,8 @@ body.dark .cta-btn:hover {
 }
 
 .sidebar.collapsed {
-  width: 262px !important;
-  margin-left: -262px !important;
+  width: 250px !important;
+  margin-left: -250px !important;
   padding-left: 0;
   padding-right: 0;
   border-right-color: transparent;
@@ -638,18 +638,21 @@ body.dark .cta-btn:hover {
   padding: 0.65rem 1.25rem 0.65rem 2.25rem;
   color: #e2e8f0; /* light gray menu text */
   font-weight: 600 !important;
-  font-size: 14px !important;
+  font-size: 13.5px !important;
   line-height: 1.35;
   border-radius: 0;
   transition: all var(--transition-fast);
-  white-space: normal !important;
+  white-space: nowrap !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .sidebar-link span {
   flex: 1;
   min-width: 0;
-  white-space: normal !important;
-  word-break: break-word;
+  white-space: nowrap !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .sidebar-link i {
@@ -751,7 +754,7 @@ body.dark .db-status-banner.offline {
   flex-grow: 1;
   padding: 2.5rem 2.5rem 0 2.5rem;
   overflow-x: hidden;
-  margin-left: 262px !important;
+  margin-left: 250px !important;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -764,9 +767,61 @@ body.dark .db-status-banner.offline {
 }
 
 .page-container {
-  max-width: 1400px;
-  margin: 0 auto;
-  width: 100%;
+  max-width: 1600px !important;
+  margin: 0 auto !important;
+  width: 100% !important;
+}
+
+.content-section {
+  max-width: 1600px !important;
+  width: 100% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  box-sizing: border-box !important;
+}
+
+/* Standardize all inner page wrappers and layouts to 1600px */
+.invoice-wrapper,
+.quote-wrapper,
+.receipt-wrapper,
+.forecaster-wrapper,
+.wholesale-wrapper,
+.payslip-wrapper,
+.paycheck-wrapper,
+.hra-wrapper,
+.bonus-wrapper,
+.eps-wrapper,
+.nps-wrapper,
+.gratuity-wrapper,
+.w9-wrapper,
+.project-estimate-wrapper,
+.financial-report-wrapper,
+.uk-corp-wrapper,
+.hmrc-wrapper,
+.income-tax-wrapper,
+.per-diem-page,
+.billing-container,
+.calculator-container,
+.expense-container,
+.inventory-container,
+.payroll-container,
+.rates-container,
+.about-container,
+.contact-container,
+.coming-soon-container {
+  max-width: 1600px !important;
+  width: 100% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  box-sizing: border-box !important;
+}
+
+/* Align breadcrumb wrappers to the 1600px layouts */
+section > div[style*="max-width"],
+section > div:has(.breadcrumbs) {
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 0 1.25rem 0 !important;
 }
 
 .content-section {
@@ -2554,7 +2609,7 @@ html, body {
     top: 60px !important;
     left: 0 !important;
     bottom: 0 !important;
-    width: 262px !important;
+    width: 250px !important;
     height: calc(100vh - 60px) !important;
     z-index: 1001 !important;
     margin-left: 0 !important;
@@ -3373,9 +3428,10 @@ body.dark .expense-doc-paper {
 }
 
 .per-diem-page {
-  max-width: 1000px;
+  max-width: 1600px;
   margin: 0 auto;
-  padding: 1rem 0 3rem 0;
+  padding: 1rem 1.5rem 3rem 1.5rem;
+  box-sizing: border-box;
   --pd-accent: #991b1b;
   --pd-accent-light: #ef4444;
   --pd-pink-light: #fff5f5;
@@ -3490,7 +3546,7 @@ body.dark .expense-doc-paper {
   letter-spacing: 0.5px;
 }
 
-.pd-city-select, .pd-start-date, .pd-end-date {
+.pd-city-input, .pd-city-select, .pd-start-date, .pd-end-date {
   border: 1px solid #ffd1d1;
   border-radius: 8px;
   padding: 0.65rem 0.8rem;
@@ -3499,9 +3555,11 @@ body.dark .expense-doc-paper {
   background-color: #ffffff;
   outline: none;
   transition: all 0.2s;
+  height: 40px;
+  box-sizing: border-box;
 }
 
-.pd-city-select:focus, .pd-start-date:focus, .pd-end-date:focus {
+.pd-city-input:focus, .pd-city-select:focus, .pd-start-date:focus, .pd-end-date:focus {
   border-color: var(--pd-accent);
   box-shadow: 0 0 0 3px rgba(153, 27, 27, 0.08);
 }
@@ -3515,12 +3573,14 @@ body.dark .expense-doc-paper {
   border: none;
   color: #ef4444;
   cursor: pointer;
-  padding: 0.65rem;
+  height: 40px;
+  width: 40px;
   border-radius: 8px;
   transition: all 0.2s;
   display: flex;
   align-items: center;
   justify-content: center;
+  box-sizing: border-box;
 }
 
 .btn-delete-itinerary:hover:not(:disabled) {
@@ -3665,7 +3725,7 @@ body.dark .expense-doc-paper {
 
 /* About Section */
 .pd-section-about {
-  text-align: center;
+  text-align: left;
   margin-bottom: 3.5rem;
 }
 
@@ -3674,6 +3734,7 @@ body.dark .expense-doc-paper {
   font-weight: 800;
   color: var(--pd-accent);
   margin-bottom: 0.75rem;
+  text-align: left;
 }
 
 .pd-section-about p {
@@ -3681,7 +3742,8 @@ body.dark .expense-doc-paper {
   font-size: 1.05rem;
   line-height: 1.6;
   max-width: 800px;
-  margin: 0 auto;
+  margin: 0;
+  text-align: left;
 }
 
 /* Category Grid */
@@ -4028,12 +4090,16 @@ body.dark .expense-doc-paper {
   border-left: 4px solid transparent !important;
   background-color: transparent !important;
   transition: all 0.15s ease-in-out !important;
-  white-space: normal !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
 }
 
 #perDiemSidebar .sidebar-link span {
-  white-space: normal !important;
-  word-break: break-word !important;
+  white-space: nowrap !important;
+  word-break: normal !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
 }
 
 #perDiemSidebar .sidebar-link:hover {
@@ -4069,5 +4135,121 @@ body.dark .expense-doc-paper {
   color: #94a3b8;
   font-style: italic;
 }
+
+/* ==================================================
+   RESPONSIVE DESIGN & ALIGNMENT OPTIMIZATIONS
+   ================================================== */
+
+/* Prevent horizontal viewport scrolling */
+html, body {
+  overflow-x: hidden !important;
+  max-width: 100% !important;
+  width: 100% !important;
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+/* Breadcrumbs Styling */
+.breadcrumbs {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.82rem;
+  margin-top: 0.5rem;
+}
+.breadcrumb-list {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  gap: 8px;
+  align-items: center;
+}
+.breadcrumb-item a {
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.15s ease-in-out;
+}
+.breadcrumb-item a:hover {
+  color: #1d4ed8 !important;
+  text-decoration: underline !important;
+}
+.breadcrumb-item.active {
+  color: #475569;
+  font-weight: 600;
+}
+
+/* Responsive Tables wrapping and scaling */
+table {
+  max-width: 100% !important;
+}
+.table-responsive, 
+.table-container, 
+.table-wrapper, 
+.responsive-table-wrapper,
+.rates-table-container,
+.forecast-table-wrapper {
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: auto !important;
+  display: block !important;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: 1.5rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+}
+
+/* Enforce column stacking and proper margins/paddings on mobile */
+@media (max-width: 768px) {
+  .form-row, 
+  .input-row, 
+  .flex-inputs, 
+  .flex-container, 
+  .grid-inputs, 
+  .calculator-grid, 
+  .inputs-grid,
+  .dashboard-layout {
+    flex-direction: column !important;
+    display: flex !important;
+  }
+  
+  .form-row > *, 
+  .input-row > *, 
+  .flex-inputs > *, 
+  .grid-inputs > *, 
+  .calculator-grid > *, 
+  .inputs-grid > * {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+    margin-bottom: 1rem !important;
+  }
+
+  /* Make sure cards, wrappers and sections have proper gutters without overflow */
+  .container, 
+  .wrapper, 
+  .card, 
+  .content-section,
+  .receipt-wrapper,
+  .quote-wrapper,
+  .invoice-wrapper {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Adjust Chart.js canvas height dynamically on small screens */
+  canvas {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+}
+
 
 

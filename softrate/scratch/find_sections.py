@@ -1,12 +1,12 @@
-import os
+def find_markers():
+    with open('templates/index.html', 'r', encoding='utf-8') as f:
+        lines = f.readlines()
+    
+    for i, line in enumerate(lines):
+        if 'id="quote-section"' in line:
+            print(f"quote-section starts at line {i+1}: {line.strip()}")
+        if 'id="invoice-section"' in line:
+            print(f"invoice-section starts at line {i+1}: {line.strip()}")
 
-files = ["dist/js/app.js", "softrate/static/js/app.js", "static/js/app.js"]
-
-for f in files:
-    if os.path.exists(f):
-        with open(f, "r", encoding="utf-8") as file:
-            content = file.read()
-        found = "isPayslipRoute" in content
-        print(f"File '{f}': isPayslipRoute found = {found}")
-    else:
-        print(f"File '{f}': does not exist")
+if __name__ == '__main__':
+    find_markers()

@@ -609,7 +609,89 @@ document.addEventListener("DOMContentLoaded", () => {
         headerSubtitleEl.textContent = "By Softrate";
       }
     }
-    document.title = `${labelText} | Softrate Tech Park Pvt. Ltd.`;
+    const seoTitles = {
+      "gst": "India GST Calculator | Softrate Finance Tools",
+      "invoice": "Invoice Generator | Softrate Finance Tools",
+      "quote": "Quote Generator | Softrate Finance Tools",
+      "receipts": "Receipt Generator | Softrate Finance Tools",
+      "forecaster": "Revenue Forecaster | Softrate Finance Tools",
+      "uk-vat": "UK VAT Calculator | Softrate Finance Tools",
+      "uae-vat": "UAE VAT Calculator | Softrate Finance Tools",
+      "uk-flat": "UK Flat Rate Calculator | Softrate Finance Tools",
+      "uk-corp": "UK Corporation Tax Calculator | Softrate Finance Tools",
+      "hmrc": "HMRC Furlough Claim Calculator | Softrate Finance Tools",
+      "income-tax": "Income Tax Calculator | Softrate Finance Tools",
+      "financial-report": "Financial Report Templates | Softrate Finance Tools",
+      "project-estimate": "Free Project Cost Estimate Calculator | Softrate Finance Tools",
+      "w9": "Form W9 Generator | Softrate Finance Tools",
+      "expense": "Expense Report Generator | Softrate Finance Tools",
+      "per-diem": "Expense Report Template | Softrate Finance Tools",
+      "sku": "SKU Generator | Softrate Finance Tools",
+      "po": "Purchase Order Generator | Softrate Finance Tools",
+      "reorder": "Reorder Point Calculator | Softrate Finance Tools",
+      "eoq": "Economic Order Quantity Calculator | Softrate Finance Tools",
+      "break-even": "Break-Even Point Calculator | Softrate Finance Tools",
+      "inventory-turnover": "Inventory Turnover Ratio Calculator | Softrate Finance Tools",
+      "packing-slip": "Packing Slip Generator | Softrate Finance Tools",
+      "barcode": "Barcode Generator | Softrate Finance Tools",
+      "shipping-label": "Shipping Label Generator | Softrate Finance Tools",
+      "wholesale": "Wholesale Price Calculator | Softrate Finance Tools",
+      "payslip": "Payslip Generator | Softrate Finance Tools",
+      "paycheck": "Paycheck Calculator | Softrate Finance Tools",
+      "gratuity": "Gratuity Calculator | Softrate Finance Tools",
+      "bonus": "Statutory Bonus Calculator | Softrate Finance Tools",
+      "hra": "HRA Exemption Calculator | Softrate Finance Tools",
+      "eps": "EPS Pension Calculator | Softrate Finance Tools",
+      "nps": "NPS Calculator | Softrate Finance Tools",
+      "about-us": "About Us | Softrate Finance Platform",
+      "contact-us": "Contact Us | Softrate Finance Platform",
+      "privacy-policy": "Privacy Policy | Softrate Finance Platform",
+      "terms-conditions": "Terms & Conditions | Softrate Finance Platform",
+      "disclaimer": "Disclaimer | Softrate Finance Platform",
+      "sitemap": "Sitemap | Softrate Finance Platform"
+    };
+
+    let seoKey = "gst";
+    if (isInvoiceRoute) seoKey = "invoice";
+    else if (isQuoteRoute) seoKey = "quote";
+    else if (isReceiptsRoute) seoKey = "receipts";
+    else if (isForecasterRoute) seoKey = "forecaster";
+    else if (isUkVatRoute) seoKey = "uk-vat";
+    else if (isUaeVatRoute) seoKey = "uae-vat";
+    else if (isUkFlatRoute) seoKey = "uk-flat";
+    else if (isUkCorpRoute) seoKey = "uk-corp";
+    else if (isHmrcRoute) seoKey = "hmrc";
+    else if (isIncomeTaxRoute) seoKey = "income-tax";
+    else if (isFinancialReportRoute) seoKey = "financial-report";
+    else if (isProjectEstimateRoute) seoKey = "project-estimate";
+    else if (isW9Route) seoKey = "w9";
+    else if (activeRouteStr === "expense" || activeRouteStr === "expense-report-generator") seoKey = "expense";
+    else if (isPerDiemRoute) seoKey = "per-diem";
+    else if (isSkuRoute) seoKey = "sku";
+    else if (isPurchaseOrderRoute) seoKey = "po";
+    else if (isReorderRoute) seoKey = "reorder";
+    else if (isEoqRoute) seoKey = "eoq";
+    else if (isBreakEvenRoute) seoKey = "break-even";
+    else if (isInventoryTurnoverRoute) seoKey = "inventory-turnover";
+    else if (isPackingSlipRoute) seoKey = "packing-slip";
+    else if (isBarcodeRoute) seoKey = "barcode";
+    else if (isShippingLabelRoute) seoKey = "shipping-label";
+    else if (isWholesaleRoute) seoKey = "wholesale";
+    else if (isPayslipRoute) seoKey = "payslip";
+    else if (isPaycheckRoute) seoKey = "paycheck";
+    else if (isGratuityRoute) seoKey = "gratuity";
+    else if (isBonusRoute) seoKey = "bonus";
+    else if (isHraRoute) seoKey = "hra";
+    else if (isEpsRoute) seoKey = "eps";
+    else if (isNpsRoute) seoKey = "nps";
+    else if (activeRouteStr === "about-us" || activeRouteStr === "about") seoKey = "about-us";
+    else if (activeRouteStr === "contact-us" || activeRouteStr === "contact") seoKey = "contact-us";
+    else if (activeRouteStr === "privacy-policy" || activeRouteStr === "privacy") seoKey = "privacy-policy";
+    else if (activeRouteStr === "terms-conditions" || activeRouteStr === "terms") seoKey = "terms-conditions";
+    else if (activeRouteStr === "disclaimer") seoKey = "disclaimer";
+    else if (activeRouteStr === "sitemap") seoKey = "sitemap";
+
+    document.title = seoTitles[seoKey] || `${labelText} | Softrate Finance Tools`;
 
     // Views
     const calcSection = document.getElementById("calculator-section");

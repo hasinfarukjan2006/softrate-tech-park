@@ -4252,4 +4252,534 @@ table {
 }
 
 
+/* ==========================================================================
+   GLOBAL LAYOUT AND RESPONSIVE ALIGNMENT OVERRIDES (Antigravity Optimization)
+   ========================================================================== */
+
+/* 1. Header & Sidebar Alignment Mismatches */
+.top-header-bar {
+  height: 70px !important;
+}
+
+body .dashboard-layout {
+  margin-top: 70px !important;
+  min-height: calc(100vh - 70px) !important;
+}
+
+body .sidebar, 
+body #perDiemSidebar {
+  top: 70px !important;
+  height: calc(100vh - 70px) !important;
+  width: 250px !important;
+  min-width: 250px !important;
+  max-width: 250px !important;
+}
+
+/* 2. Global Content Container and Uniform Margins/Paddings */
+body .page-container {
+  max-width: 1600px !important;
+  width: 100% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding: 0 1.5rem !important;
+  box-sizing: border-box !important;
+}
+
+body .main-content {
+  flex-grow: 1 !important;
+  padding: 2rem 0 !important;
+  overflow-x: hidden !important;
+  margin-left: 250px !important;
+  min-height: calc(100vh - 70px) !important;
+  box-sizing: border-box !important;
+  transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* 3. Mobile Sidebar Overlay Slide-In Drawer (< 768px) */
+@media (max-width: 768px) {
+  body .sidebar, 
+  body #perDiemSidebar {
+    position: fixed !important;
+    top: 70px !important;
+    left: 0 !important;
+    bottom: 0 !important;
+    width: 260px !important;
+    min-width: 260px !important;
+    max-width: 260px !important;
+    height: calc(100vh - 70px) !important;
+    z-index: 1001 !important;
+    transform: translateX(-100%) !important;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    margin-left: 0 !important;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.25) !important;
+    border-right: 1px solid #11111a !important;
+  }
+
+  body .sidebar.collapsed, 
+  body #perDiemSidebar.collapsed {
+    transform: translateX(-100%) !important;
+    margin-left: 0 !important;
+  }
+
+  body .sidebar:not(.collapsed), 
+  body #perDiemSidebar:not(.collapsed) {
+    transform: translateX(0) !important;
+  }
+
+  body .main-content {
+    margin-left: 0 !important;
+    padding: 1.5rem 0 !important;
+  }
+
+  body .page-container {
+    padding: 0 1rem !important;
+  }
+
+  /* Dim background when mobile drawer is open */
+  body:has(.sidebar:not(.collapsed)) .main-content::after,
+  body:has(#perDiemSidebar:not(.collapsed)) .main-content::after {
+    content: '' !important;
+    position: fixed !important;
+    top: 70px !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    background: rgba(0, 0, 0, 0.4) !important;
+    z-index: 1000 !important;
+    pointer-events: none !important;
+  }
+}
+
+/* 4. Sidebar Link Indentation & Icon Spacing consistency */
+body .sidebar-link,
+body #perDiemSidebar .sidebar-link {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.75rem !important;
+  padding: 0.75rem 1.25rem 0.75rem 2.25rem !important; /* uniform indentation */
+  border-radius: 0 !important;
+  font-size: 14px !important;
+  line-height: 1.5 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+body .sidebar-link span,
+body #perDiemSidebar .sidebar-link span {
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+body .sidebar-link i,
+body #perDiemSidebar .sidebar-link i {
+  width: 16px !important;
+  height: 16px !important;
+  flex-shrink: 0 !important;
+  color: #718096 !important;
+}
+
+body .sidebar-link.active,
+body #perDiemSidebar .sidebar-link.active {
+  background-color: #2e2e3a !important;
+  color: #ffffff !important;
+  border-left: 4px solid #facc15 !important;
+  font-weight: 700 !important;
+  padding-left: calc(2.25rem - 4px) !important; /* prevent shifting layout */
+}
+
+body .sidebar-link.active i,
+body #perDiemSidebar .sidebar-link.active i {
+  color: #facc15 !important;
+}
+
+/* 5. Card Sizing, Border Radius, and Shadow Uniformity */
+body .card,
+body .calc-card,
+body .result-card,
+body .it-card,
+body .it-calc-card,
+body .it-visual-card,
+body .it-strategy-card,
+body .nps-info-card,
+body .nps-info-card.formula-box,
+body .ps-card,
+body .pc-card,
+body .pe-calculator-card,
+body .pe-mockup-card,
+body .rop-info-card,
+body .sl-label-card,
+body .sl-help-card,
+body .sl-benefit-card,
+body .sub-feature-card,
+body .benefit-card,
+body .capability-card,
+body .pd-calc-card,
+body .pd-result-stat-card,
+body .pd-total-card,
+body .pd-category-card,
+body .pd-highlight-card,
+body .uae-card,
+body .uae-detail-card,
+body .ct-card,
+body .frs-card,
+body .uk-card,
+body .uk-white-card,
+body .uk-promo-card,
+body .vat-card,
+body .vat-comparison-card,
+body .w9-form-card,
+body .w9-info-card,
+body .ws-calc-card,
+body .ws-know-card,
+body .ws-diff-card,
+body .fr-chart-card {
+  border-radius: 16px !important;
+  box-shadow: var(--shadow-md) !important;
+  background-color: var(--surface-color) !important;
+  border: 1px solid var(--border-color) !important;
+  padding: 2rem !important;
+  box-sizing: border-box !important;
+  transition: background-color var(--transition-normal), border-color var(--transition-normal), box-shadow var(--transition-normal), transform var(--transition-normal) !important;
+}
+
+/* Card hover animation overrides */
+body .card:hover,
+body .sub-feature-card:hover,
+body .benefit-card:hover,
+body .capability-card:hover,
+body .pd-category-card:hover,
+body .ws-know-card:hover {
+  box-shadow: var(--shadow-lg) !important;
+}
+
+@media (max-width: 576px) {
+  body .card,
+  body .calc-card,
+  body .result-card,
+  body .it-card,
+  body .it-calc-card,
+  body .it-visual-card,
+  body .it-strategy-card,
+  body .nps-info-card,
+  body .nps-info-card.formula-box,
+  body .ps-card,
+  body .pc-card,
+  body .pe-calculator-card,
+  body .pe-mockup-card,
+  body .rop-info-card,
+  body .sl-label-card,
+  body .sl-help-card,
+  body .sl-benefit-card,
+  body .sub-feature-card,
+  body .benefit-card,
+  body .capability-card,
+  body .pd-calc-card,
+  body .pd-result-stat-card,
+  body .pd-total-card,
+  body .pd-category-card,
+  body .pd-highlight-card,
+  body .uae-card,
+  body .uae-detail-card,
+  body .ct-card,
+  body .frs-card,
+  body .uk-card,
+  body .uk-white-card,
+  body .uk-promo-card,
+  body .vat-card,
+  body .vat-comparison-card,
+  body .w9-form-card,
+  body .w9-info-card,
+  body .ws-calc-card,
+  body .ws-know-card,
+  body .ws-diff-card,
+  body .fr-chart-card {
+    padding: 1.25rem !important;
+  }
+}
+
+/* 6. Form elements spacing, heights, and mobile layout stacking */
+body input[type="number"],
+body input[type="text"],
+body input[type="email"],
+body input[type="password"],
+body input[type="tel"],
+body input[type="date"],
+body select,
+body textarea {
+  width: 100% !important;
+  height: 46px !important;
+  padding: 0.65rem 1rem !important;
+  border: 1px solid var(--border-color) !important;
+  background-color: var(--surface-alt) !important;
+  color: var(--text-main) !important;
+  border-radius: 8px !important;
+  font-size: 16px !important;
+  box-sizing: border-box !important;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast) !important;
+}
+
+body textarea {
+  height: auto !important;
+  min-height: 100px !important;
+}
+
+body input:focus, body select:focus, body textarea:focus {
+  outline: none !important;
+  border-color: var(--primary-color) !important;
+  box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.15) !important;
+  background-color: var(--surface-color) !important;
+}
+
+body.dark input:focus, body.dark select:focus, body.dark textarea:focus {
+  border-color: var(--secondary-color) !important;
+  box-shadow: 0 0 0 3px rgba(var(--secondary-rgb), 0.2) !important;
+}
+
+body .select-wrapper {
+  position: relative !important;
+}
+
+body .select-wrapper::after {
+  content: '▼' !important;
+  font-size: 0.75rem !important;
+  color: var(--text-muted) !important;
+  right: 1rem !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  position: absolute !important;
+  pointer-events: none !important;
+}
+
+body select {
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  padding-right: 2.5rem !important;
+}
+
+body .form-group {
+  margin-bottom: 1rem !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.4rem !important;
+}
+
+body .form-group label {
+  font-size: 0.88rem !important;
+  font-weight: 600 !important;
+  color: var(--text-main) !important;
+}
+
+/* Forms layout stacking under tablet/mobile */
+@media (max-width: 992px) {
+  body .form-row,
+  body .form-row-2,
+  body .flex-inputs,
+  body .inputs-grid,
+  body .calculator-grid,
+  body .grid-inputs,
+  body .inv-header-grid {
+    grid-template-columns: 1fr !important;
+    flex-direction: column !important;
+    display: flex !important;
+    gap: 1rem !important;
+  }
+
+  body .form-row > *,
+  body .form-row-2 > *,
+  body .flex-inputs > *,
+  body .inputs-grid > *,
+  body .calculator-grid > *,
+  body .grid-inputs > *,
+  body .inv-header-grid > * {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+  }
+}
+
+/* 7. Buttons formatting and mobile stacking */
+body .btn,
+body .cta-btn,
+body .trial-btn,
+body .inv-btn-primary,
+body .inv-btn-secondary,
+body .btn-submit,
+body .btn-pd-primary,
+body .btn-pd-outline {
+  height: 46px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 1.5rem !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  border-radius: 8px !important;
+  border: 1px solid transparent !important;
+  cursor: pointer !important;
+  transition: all var(--transition-fast) !important;
+  touch-action: manipulation !important;
+  text-align: center !important;
+  box-sizing: border-box !important;
+  white-space: nowrap !important;
+}
+
+@media (max-width: 576px) {
+  body .btn,
+  body .cta-btn,
+  body .trial-btn,
+  body .inv-btn-primary,
+  body .inv-btn-secondary,
+  body .btn-submit,
+  body .btn-pd-primary,
+  body .btn-pd-outline {
+    width: 100% !important;
+    display: flex !important;
+  }
+  body .form-actions {
+    flex-direction: column !important;
+    gap: 0.5rem !important;
+  }
+  body .form-actions .btn {
+    width: 100% !important;
+  }
+}
+
+/* 8. Table containers internal scrolling and styling */
+body .table-responsive, 
+body .table-container, 
+body .table-wrapper, 
+body .responsive-table-wrapper,
+body .rates-table-container,
+body .forecast-table-wrapper,
+body .history-table-container,
+body .rate-table-card,
+body .inv-table-wrap {
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: auto !important;
+  display: block !important;
+  -webkit-overflow-scrolling: touch !important;
+  margin-bottom: 1.5rem !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 8px !important;
+  box-sizing: border-box !important;
+}
+
+body table {
+  width: 100% !important;
+  border-collapse: collapse !important;
+  margin: 0 !important;
+}
+
+body th {
+  position: sticky !important;
+  top: 0 !important;
+  background-color: var(--surface-alt) !important;
+  z-index: 1 !important;
+}
+
+/* 9. Typography Scaling */
+@media (max-width: 768px) {
+  body h1 {
+    font-size: 26px !important;
+    line-height: 1.3 !important;
+  }
+  body h2 {
+    font-size: 22px !important;
+    line-height: 1.4 !important;
+  }
+  body h3 {
+    font-size: 19px !important;
+    line-height: 1.4 !important;
+  }
+  body p, body span, body label, body input, body select, body textarea, body li {
+    font-size: 15px !important;
+    line-height: 1.6 !important;
+  }
+  body .welcome-banner h1 {
+    font-size: 26px !important;
+  }
+  body .welcome-banner p {
+    font-size: 14px !important;
+  }
+}
+
+/* 10. Images Scaling */
+body img:not(.header-logo-img):not(.sidebar-brand-logo):not(.brand-logo):not(.footer-logo):not(.mobile-badge) {
+  max-width: 100% !important;
+  height: auto !important;
+  object-fit: contain !important;
+}
+
+/* 11. FAQ Accordions smooth wrapping */
+body .faq-trigger {
+  white-space: normal !important;
+  word-break: break-word !important;
+}
+
+body .faq-content {
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
+}
+
+/* 12. Breadcrumbs Formatting */
+body .breadcrumbs {
+  font-family: Arial, Helvetica, sans-serif !important;
+  font-size: 13.5px !important;
+  margin-top: 0.5rem !important;
+  margin-bottom: 1.5rem !important;
+  padding: 0 !important;
+}
+
+body .breadcrumb-list {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  gap: 8px !important;
+  align-items: center !important;
+}
+
+body .breadcrumb-item a {
+  color: var(--primary-color) !important;
+  text-decoration: none !important;
+  font-weight: 600 !important;
+  transition: color var(--transition-fast) !important;
+}
+
+body.dark .breadcrumb-item a {
+  color: var(--secondary-color) !important;
+}
+
+body .breadcrumb-item a:hover {
+  color: var(--secondary-color) !important;
+  text-decoration: underline !important;
+}
+
+body.dark .breadcrumb-item a:hover {
+  color: #FFFFFF !important;
+}
+
+body .breadcrumb-item.active {
+  color: var(--text-muted) !important;
+  font-weight: 700 !important;
+}
+
+/* 13. Charts Layout adjustments */
+#foreChartWrap {
+  width: 100% !important;
+  position: relative !important;
+}
+
+@media (max-width: 576px) {
+  #foreChartWrap {
+    height: 250px !important;
+  }
+}
+
+
 

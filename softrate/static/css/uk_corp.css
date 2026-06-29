@@ -114,14 +114,12 @@
 
 /* ====== KEY: Expense rows — label LEFT, small input RIGHT, menu button ====== */
 #uk-corp-section .ct-expense-row {
-  display: flex !important;
-  flex-direction: row !important;
+  display: grid !important;
+  grid-template-columns: 1fr 160px 30px !important;
   align-items: center !important;
-  justify-content: space-between !important;
   padding: .6rem 0 !important;
   border-bottom: 1px solid #f3f3f3 !important;
   gap: 1rem !important;
-  flex-wrap: nowrap !important;
 }
 .dark #uk-corp-section .ct-expense-row { border-bottom-color: var(--border-color) !important; }
 
@@ -338,7 +336,7 @@
 /* Responsive */
 @media (max-width: 640px) {
   #uk-corp-section .ct-hero-illust { display: none !important; }
-  #uk-corp-section .ct-expense-row { flex-wrap: wrap !important; gap: .4rem !important; }
+  #uk-corp-section .ct-expense-row { display: flex !important; flex-wrap: wrap !important; gap: .4rem !important; }
   #uk-corp-section .ct-input-wrap { width: 100% !important; min-width: 100% !important; max-width: 100% !important; }
   #uk-corp-section .ct-input-wrap input,
   #uk-corp-section .ct-input-wrap input[type="number"] { width: 100% !important; max-width: 100% !important; min-width: 100% !important; }

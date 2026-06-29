@@ -50,9 +50,11 @@
 
 /* Wrappers */
 .inv-wrapper, .rec-wrapper, .fore-wrapper {
-  max-width: 780px;
-  margin: 0 auto;
-  padding: 0 1.5rem 3rem;
+  max-width: 1600px !important;
+  margin: 0 auto !important;
+  padding: 0 1.5rem 3rem !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
 }
 
 /* Cards */
@@ -65,7 +67,7 @@
   margin-top: -1rem;
   position: relative;
   z-index: 1;
-  max-width: 820px !important;
+  max-width: 100% !important;
   width: 100% !important;
   margin-left: auto !important;
   margin-right: auto !important;

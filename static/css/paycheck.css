@@ -1,0 +1,99 @@
+/* paycheck.css — Zoho Payroll reference match */
+
+/* Hero */
+.pc-hero{text-align:center;padding:2.5rem 1rem 1rem;background:#fff;}
+.dark .pc-hero{background:var(--bg-color);}
+.pc-hero h1{font-size:1.85rem;font-weight:400;color:#333;margin:0 0 .35rem;}
+.dark .pc-hero h1{color:var(--text-color);}
+.pc-hero .pc-red{color:#e8453c;font-weight:700;}
+.pc-hero p{font-size:.88rem;color:#666;margin:0;font-style:italic;}
+.dark .pc-hero p{color:var(--text-muted);}
+
+/* Wrapper */
+.pc-wrapper{max-width:720px;margin:0 auto;padding:0 1.5rem 3rem;}
+
+/* Card */
+.pc-card{background:#fff;border:1px solid #e8e8e8;border-radius:6px;padding:2rem 2.25rem;box-shadow:0 1px 4px rgba(0,0,0,.06);}
+.dark .pc-card{background:var(--bg-surface);border-color:var(--border-color);}
+
+/* Fieldset */
+.pc-fieldset{border:none;border-top:1px solid #ddd;margin:1.75rem 0 0;padding:1.25rem 0 0;}
+.pc-fieldset legend{font-size:1rem;font-weight:700;color:#333;padding:0 .5rem 0 0;}
+.dark .pc-fieldset{border-top-color:var(--border-color);}
+.dark .pc-fieldset legend{color:var(--text-color);}
+
+/* Field rows */
+.pc-field-row{display:flex;gap:1.25rem;margin-bottom:1.25rem;flex-wrap:wrap;}
+.pc-cols-2>.pc-field{flex:1 1 45%;}
+.pc-cols-3>.pc-field{flex:1 1 30%;}
+.pc-w40{max-width:40%;min-width:200px;}
+
+/* Field */
+.pc-field{display:flex;flex-direction:column;gap:.3rem;}
+.pc-field label{font-size:.78rem;font-weight:600;color:#555;}
+.dark .pc-field label{color:var(--text-muted);}
+.pc-field input,.pc-field select{width:100%;padding:.5rem .6rem;font-size:.88rem;border:1px solid #ccc;border-radius:3px;background:#fff;color:#333;box-sizing:border-box;}
+.dark .pc-field input,.dark .pc-field select{background:var(--bg-surface);color:var(--text-color);border-color:var(--border-color);}
+.pc-field input:focus,.pc-field select:focus{outline:none;border-color:#4a90d9;box-shadow:0 0 0 2px rgba(74,144,217,.12);}
+
+/* Input with suffix */
+.pc-input-suffix-wrap{display:flex;}
+.pc-input-suffix-wrap input{border-radius:3px 0 0 3px;flex:1;}
+.pc-suffix{display:flex;align-items:center;padding:0 .6rem;background:#f5f5f5;border:1px solid #ccc;border-left:none;border-radius:0 3px 3px 0;font-size:.78rem;color:#888;white-space:nowrap;}
+.dark .pc-suffix{background:var(--bg-color);border-color:var(--border-color);color:var(--text-muted);}
+
+/* Deductions */
+.pc-ded-header{display:grid;grid-template-columns:2fr 1.5fr 1.5fr 28px;gap:.75rem;font-size:.78rem;font-weight:600;color:#555;margin-bottom:.5rem;}
+.dark .pc-ded-header{color:var(--text-muted);}
+.pc-ded-row{display:grid;grid-template-columns:2fr 1.5fr 1.5fr 28px;gap:.75rem;align-items:center;margin-bottom:.5rem;}
+.pc-ded-row select,.pc-ded-row input{width:100%;padding:.45rem .55rem;font-size:.85rem;border:1px solid #ccc;border-radius:3px;background:#fff;color:#333;box-sizing:border-box;}
+.dark .pc-ded-row select,.dark .pc-ded-row input{background:var(--bg-surface);color:var(--text-color);border-color:var(--border-color);}
+.pc-del-btn{background:none;border:none;color:#ccc;cursor:pointer;font-size:1.1rem;padding:2px;border-radius:50%;line-height:1;}
+.pc-del-btn:hover{color:#e8453c;}
+.pc-add-ded{background:none;border:none;color:#4a90d9;font-size:.82rem;font-weight:500;cursor:pointer;padding:.3rem 0;display:inline-flex;align-items:center;gap:.3rem;}
+.pc-add-ded:hover{text-decoration:underline;}
+.pc-add-icon{font-size:1rem;}
+
+/* Calculate button */
+.pc-calc-btn-wrap{text-align:center;margin-top:1.75rem;}
+.pc-calc-btn{background:#e8453c;color:#fff;border:none;border-radius:3px;padding:.55rem 2.5rem;font-size:.88rem;font-weight:600;letter-spacing:.04em;cursor:pointer;transition:background .2s;}
+.pc-calc-btn:hover{background:#d13a32;}
+
+/* Results */
+.pc-results{background:#fff;border:1px solid #e8e8e8;border-radius:6px;padding:2rem 2.25rem;margin-top:1.5rem;box-shadow:0 1px 4px rgba(0,0,0,.06);animation:pcSlide .35s ease-out;}
+.dark .pc-results{background:var(--bg-surface);border-color:var(--border-color);}
+@keyframes pcSlide{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
+.pc-res-title{text-align:center;font-size:1.15rem;font-weight:600;color:#333;margin:0 0 .25rem;}
+.dark .pc-res-title{color:var(--text-color);}
+.pc-res-sub{text-align:center;font-size:.82rem;color:#888;margin:0 0 1rem;}
+.pc-res-net{text-align:center;font-size:2.25rem;font-weight:700;color:#10b981;margin:.5rem 0;}
+.pc-res-net-label{text-align:center;font-size:.85rem;font-weight:500;color:#555;margin:0 0 1.25rem;}
+.dark .pc-res-net-label{color:var(--text-muted);}
+.pc-res-table{width:100%;border-collapse:collapse;margin-bottom:1rem;}
+.pc-res-table th{text-align:left;padding:.55rem 0;font-size:.78rem;font-weight:600;color:#555;border-bottom:2px solid #e8e8e8;}
+.dark .pc-res-table th{color:var(--text-muted);border-bottom-color:var(--border-color);}
+.pc-res-table td{padding:.55rem 0;font-size:.84rem;color:#555;border-bottom:1px solid #f0f0f0;}
+.dark .pc-res-table td{color:var(--text-muted);border-bottom-color:var(--border-color);}
+.pc-res-table td:last-child{text-align:right;font-weight:500;color:#333;}
+.dark .pc-res-table td:last-child{color:var(--text-color);}
+.pc-res-table tr.pc-total td{font-weight:700;color:#333;border-top:2px solid #e8e8e8;border-bottom:none;}
+.dark .pc-res-table tr.pc-total td{color:var(--text-color);border-top-color:var(--border-color);}
+.pc-res-table tr.pc-total td:last-child{color:#10b981;}
+.pc-res-actions{text-align:center;margin-top:1rem;}
+.pc-res-btn{background:#fff;color:#555;border:1px solid #ccc;border-radius:3px;padding:.4rem 1rem;font-size:.8rem;cursor:pointer;transition:background .2s;}
+.dark .pc-res-btn{background:var(--bg-surface);color:var(--text-color);border-color:var(--border-color);}
+.pc-res-btn:hover{background:#f5f5f5;}
+.dark .pc-res-btn:hover{background:rgba(255,255,255,.08);}
+
+/* Responsive */
+@media(max-width:640px){
+  .pc-field-row{flex-direction:column;gap:.75rem;}
+  .pc-w40{max-width:100%;}
+  .pc-cols-2>.pc-field,.pc-cols-3>.pc-field{flex:1 1 100%;}
+  .pc-ded-header{display:none;}
+  .pc-ded-row{grid-template-columns:1fr;gap:.4rem;padding:.75rem;border:1px solid #e8e8e8;border-radius:4px;position:relative;}
+  .dark .pc-ded-row{border-color:var(--border-color);}
+  .pc-del-btn{position:absolute;top:.3rem;right:.3rem;}
+  .pc-wrapper{padding:0 .75rem 2rem;}
+  .pc-card{padding:1.25rem;}
+}

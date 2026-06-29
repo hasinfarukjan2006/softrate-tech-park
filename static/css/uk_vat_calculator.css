@@ -1,0 +1,441 @@
+/* uk_vat_calculator.css — UK VAT Calculator Stylesheet */
+
+#uk-vat-section {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+  color: #333 !important;
+}
+
+#uk-vat-section .uk-hero {
+  background: #eef3ff !important;
+  padding: 4rem 2rem 5rem !important;
+  overflow: hidden;
+  position: relative;
+}
+
+.uk-hero-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  position: relative;
+}
+
+.uk-hero-text {
+  flex: 1;
+  text-align: center;
+  z-index: 2;
+}
+
+.uk-hero-text h1 {
+  font-size: 3rem !important;
+  font-weight: 700 !important;
+  color: #03254c !important;
+  margin-bottom: 1rem !important;
+  border: none !important;
+  line-height: 1.2 !important;
+}
+
+.uk-hero-text p {
+  font-size: 1.15rem !important;
+  color: #475569 !important;
+  max-width: 600px;
+  margin: 0 auto !important;
+  line-height: 1.6 !important;
+}
+
+.uk-hero-illust {
+  flex-shrink: 0;
+  width: 160px;
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+@media (max-width: 768px) {
+  .uk-hero-illust {
+    display: none;
+  }
+  .uk-hero-text h1 {
+    font-size: 2.25rem !important;
+  }
+  .uk-hero-text p {
+    font-size: 1rem !important;
+  }
+}
+
+/* Wrapper */
+.uk-wrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 2rem 5rem;
+}
+
+/* Card */
+.uk-card {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 12px !important;
+  padding: 3rem 2.5rem !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05) !important;
+  margin-top: -3.5rem;
+  position: relative;
+  z-index: 10;
+  max-width: 840px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.uk-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.2fr;
+  gap: 2rem;
+  margin-bottom: 2.5rem;
+}
+
+@media (max-width: 768px) {
+  .uk-form-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+.uk-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.uk-field label {
+  font-size: 0.95rem !important;
+  font-weight: 600 !important;
+  color: #03254c !important;
+  margin-bottom: 0.75rem !important;
+}
+
+.uk-input-wrap {
+  border: 1px solid #cbd5e1 !important;
+  border-radius: 4px !important;
+  background: #fff !important;
+  display: flex;
+  align-items: center;
+  transition: border-color 0.2s;
+}
+
+.uk-input-wrap:focus-within {
+  border-color: #2F3FC7 !important;
+}
+
+.uk-input-wrap input {
+  border: none !important;
+  outline: none !important;
+  width: 100%;
+  padding: 12px 16px !important;
+  font-size: 1.05rem !important;
+  color: #1e293b !important;
+  background: transparent !important;
+}
+
+/* Toggle buttons */
+.uk-toggle-group {
+  display: flex;
+  border: 1px solid #cbd5e1 !important;
+  border-radius: 4px !important;
+  overflow: hidden;
+}
+
+.uk-toggle-btn {
+  flex: 1;
+  border: none !important;
+  background: #fff !important;
+  color: #03254c !important;
+  padding: 12px 8px !important;
+  font-size: 0.95rem !important;
+  font-weight: 600 !important;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: center;
+  outline: none !important;
+}
+
+.uk-toggle-btn.active {
+  background: #03254c !important;
+  color: #fff !important;
+}
+
+/* Output Row */
+.uk-calc-output-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 2rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid #f1f5f9;
+}
+
+@media (max-width: 600px) {
+  .uk-calc-output-row {
+    flex-direction: column;
+    gap: 2rem;
+  }
+}
+
+.uk-output-block {
+  text-align: center;
+  flex: 1;
+}
+
+.uk-output-val {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #03254c;
+  line-height: 1.2;
+}
+
+.uk-curr {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #03254c;
+  margin-right: 2px;
+}
+
+.uk-output-lbl {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-top: 8px;
+}
+
+/* Green output label for VAT Amount */
+#ukLblVat {
+  color: #00be70 !important;
+}
+
+/* Blue output label for Inclusive/Exclusive Amount */
+#ukLblTotal {
+  color: #007aff !important;
+}
+
+.uk-divider {
+  width: 1px;
+  height: 64px;
+  background: #e2e8f0;
+}
+
+@media (max-width: 600px) {
+  .uk-divider {
+    display: none;
+  }
+}
+
+/* Information section */
+.uk-info {
+  margin-top: 4rem;
+  max-width: 840px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.uk-info h2 {
+  font-size: 1.85rem !important;
+  font-weight: 700 !important;
+  color: #03254c !important;
+  margin: 4rem 0 1.5rem !important;
+  border: none !important;
+}
+
+.uk-info p {
+  font-size: 1.05rem !important;
+  line-height: 1.7 !important;
+  color: #475569 !important;
+  margin-bottom: 1.5rem !important;
+}
+
+/* Grey Information Box */
+.uk-grey-box {
+  background: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 8px !important;
+  padding: 2.5rem !important;
+  margin-bottom: 3rem !important;
+}
+
+.uk-box-lead {
+  font-size: 1.05rem !important;
+  font-weight: 600 !important;
+  color: #1e293b !important;
+  margin-bottom: 2rem !important;
+}
+
+/* Timeline */
+.uk-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+  position: relative;
+  padding-left: 0.5rem;
+}
+
+.uk-timeline::before {
+  content: "";
+  position: absolute;
+  left: 17px;
+  top: 14px;
+  bottom: 14px;
+  width: 1px;
+  background: #03254c;
+  z-index: 0;
+}
+
+.uk-timeline-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.uk-timeline-num {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #03254c;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  font-weight: bold;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 4px #f8fafc;
+}
+
+.uk-timeline-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #fff;
+  border: 3px solid #03254c;
+  margin: 11px;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 4px #f8fafc;
+}
+
+.uk-timeline-item.dot-connector::before {
+  content: "";
+  position: absolute;
+  left: 17px;
+  top: -1.75rem;
+  bottom: 100%;
+  width: 1px;
+  border-left: 1px dashed #03254c;
+}
+
+.uk-timeline-txt {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #334155;
+  padding-top: 6px;
+}
+
+/* White card details */
+.uk-white-card {
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 8px !important;
+  padding: 2.25rem !important;
+  background: #fff !important;
+  margin-bottom: 2rem !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.02) !important;
+}
+
+.uk-white-card ul {
+  padding-left: 1.5rem !important;
+  margin: 0 !important;
+  list-style-type: disc !important;
+}
+
+.uk-white-card li {
+  font-size: 1.02rem !important;
+  line-height: 1.7 !important;
+  color: #475569 !important;
+  margin-bottom: 1.25rem !important;
+}
+
+.uk-white-card li:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* Promo Card & Features */
+.uk-promo-card {
+  background: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 12px !important;
+  padding: 3.5rem !important;
+  margin-top: 5rem !important;
+}
+
+.uk-promo-card h2 {
+  font-size: 2rem !important;
+  font-weight: 700 !important;
+  color: #03254c !important;
+  margin: 0 0 1.25rem !important;
+  border: none !important;
+}
+
+.uk-promo-card p {
+  font-size: 1.05rem !important;
+  line-height: 1.7 !important;
+  color: #475569 !important;
+  margin-bottom: 3rem !important;
+}
+
+.uk-promo-card h3 {
+  font-size: 1.45rem !important;
+  font-weight: 700 !important;
+  color: #03254c !important;
+  margin: 3rem 0 2rem !important;
+  border: none !important;
+  text-align: center !important;
+}
+
+.uk-features-grid {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  gap: 3rem 2rem !important;
+}
+
+.uk-feature-item {
+  flex: 0 0 30% !important;
+  max-width: 30% !important;
+  text-align: center !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+}
+
+@media (max-width: 768px) {
+  .uk-feature-item {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+  }
+}
+
+.uk-feat-icon {
+  margin-bottom: 1.25rem !important;
+  width: 48px !important;
+  height: 48px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: #eef3ff !important;
+  border-radius: 50% !important;
+}
+
+.uk-feat-text {
+  font-size: 1.02rem !important;
+  font-weight: 600 !important;
+  color: #03254c !important;
+  line-height: 1.5 !important;
+}

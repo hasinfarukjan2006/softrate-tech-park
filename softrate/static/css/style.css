@@ -4432,7 +4432,6 @@ body .vat-comparison-card,
 body .w9-form-card,
 body .w9-info-card,
 body .ws-calc-card,
-body .ws-know-card,
 body .ws-diff-card,
 body .fr-chart-card {
   border-radius: 16px !important;
@@ -4449,8 +4448,7 @@ body .card:hover,
 body .sub-feature-card:hover,
 body .benefit-card:hover,
 body .capability-card:hover,
-body .pd-category-card:hover,
-body .ws-know-card:hover {
+body .pd-category-card:hover {
   box-shadow: var(--shadow-lg) !important;
 }
 
@@ -4492,7 +4490,6 @@ body .ws-know-card:hover {
   body .w9-form-card,
   body .w9-info-card,
   body .ws-calc-card,
-  body .ws-know-card,
   body .ws-diff-card,
   body .fr-chart-card {
     padding: 1.25rem !important;
@@ -4921,6 +4918,19 @@ body .breadcrumb-item.active {
   
   body .header-logo-img {
     height: 28px !important;
+  }
+}
+
+/* Prevent Per Diem Calculator card min-width from overflowing page container on mobile */
+@media (max-width: 768px) {
+  .pd-hero {
+    padding: 2rem 1.25rem !important;
+  }
+  .pd-hero-left,
+  .pd-hero-right {
+    min-width: 0 !important;
+    width: 100% !important;
+    flex: 1 1 100% !important;
   }
 }
 

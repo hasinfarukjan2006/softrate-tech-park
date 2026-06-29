@@ -1702,3 +1702,84 @@
   transform: rotate(45deg);
 }
 
+/* Mobile responsive layout overrides for Invoice, Quote, and Receipt Generators */
+@media (max-width: 768px) {
+  /* Stack wrapper to put breadcrumbs on top of the form card */
+  .inv-wrapper {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.5rem !important;
+  }
+  
+  /* Stack logo, sender info, meta details, and client grids vertically */
+  .inv-logo-header-row,
+  #quoteForm > div:first-child,
+  #receiptForm > div:first-child,
+  .inv-card form > div[style*="display: grid"],
+  .inv-card form > div[style*="display: flex"] {
+    display: flex !important;
+    flex-direction: column !important;
+    grid-template-columns: 1fr !important;
+    align-items: stretch !important;
+    width: 100% !important;
+    gap: 1.5rem !important;
+  }
+  
+  /* Reset logo container margins */
+  .inv-logo-upload-container,
+  #qtLogoContainer,
+  #recLogoContainer {
+    align-self: flex-start !important;
+  }
+  
+  /* Reset right-side metadata card to 100% width and left align */
+  .inv-meta-col,
+  .inv-card form > div > div[style*="width: 300px"],
+  .inv-card form > div > div[style*="align-items: flex-end"] {
+    align-items: flex-start !important;
+    text-align: left !important;
+    width: 100% !important;
+  }
+  
+  /* Reset meta row display to space-between instead of flex-end */
+  .inv-meta-row {
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    gap: 1rem !important;
+  }
+  
+  .inv-meta-row label {
+    text-align: left !important;
+    width: auto !important;
+  }
+  
+  .inv-meta-row input,
+  .inv-meta-row select,
+  .inv-meta-row div[style*="width: 150px"] {
+    width: 160px !important;
+    text-align: left !important;
+  }
+  
+  /* Reset place of supply row container */
+  .inv-card form > div[style*="grid-template-columns: 1fr 1fr"] {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.5rem !important;
+  }
+  
+  .inv-card form div[style*="justify-content: flex-end"] {
+    justify-content: flex-start !important;
+  }
+  
+  #invSupply {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  
+  /* Item details inputs styling - prevent overflow inside card */
+  .inv-card {
+    padding: 1.5rem 1rem !important;
+  }
+}

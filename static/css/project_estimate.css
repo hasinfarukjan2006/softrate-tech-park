@@ -1064,3 +1064,18 @@ body.dark .pe-faq-content {
     margin: 1.5cm;
   }
 }
+
+/* Prevent replica mockup card table from overflowing parent layout on mobile */
+@media (max-width: 768px) {
+  .pe-mockup-card {
+    max-width: 100% !important;
+    overflow-x: auto !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .pe-mockup-form-row {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+}

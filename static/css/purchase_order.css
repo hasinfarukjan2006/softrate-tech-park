@@ -672,3 +672,63 @@
   margin: 5px auto;
   text-shadow: 1px 1px 1px hsla(0,0%,100%,.8);
 }
+
+/* Mobile responsive layout overrides for Purchase Order Generator */
+@media (max-width: 991px) {
+  #purchase-order-section .lft-main-div,
+  #purchase-order-section .rgt-main-div {
+    width: 100% !important;
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+  }
+  #purchase-order-section .main-div {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+    padding-top: 20px !important;
+  }
+  #purchase-order-section .po-generator {
+    padding: 20px 15px !important;
+    min-height: auto !important;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Convert layout tables into block containers to stack fields */
+  #purchase-order-section form td[width]:not(.bdr-non) {
+    display: block !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  #purchase-order-section form tr {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+  }
+  
+  /* Preserve tabular structures for calculation tables */
+  #purchase-order-section .bill td,
+  #purchase-order-section .column td {
+    display: table-cell !important;
+    width: auto !important;
+  }
+  #purchase-order-section .bill tr,
+  #purchase-order-section .column tr {
+    display: table-row !important;
+    flex-direction: row !important;
+  }
+  
+  /* Make item tables scrollable horizontally to prevent screen breaking */
+  #purchase-order-section .lineItemDIV {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    width: 100% !important;
+    margin-bottom: 1.5rem !important;
+  }
+  
+  #purchase-order-section .adr-lft,
+  #purchase-order-section .adr-rgt {
+    width: 100% !important;
+    float: none !important;
+    margin-bottom: 1.5rem !important;
+  }
+}

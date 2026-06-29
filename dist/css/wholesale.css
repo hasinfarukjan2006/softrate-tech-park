@@ -807,3 +807,20 @@
     text-align: center;
   }
 }
+
+/* Mobile overrides for Searchable Currency Dropdown */
+@media (max-width: 600px) {
+  .ws-currency-dropdown {
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    display: flex !important;
+    justify-content: flex-end !important;
+    margin-bottom: 1.5rem !important;
+    z-index: 11 !important;
+  }
+  .ws-currency-panel {
+    right: 0 !important;
+    left: auto !important;
+  }
+}

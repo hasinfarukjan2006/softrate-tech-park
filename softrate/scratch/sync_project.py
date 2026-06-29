@@ -75,6 +75,37 @@ def main():
     sync_dir(os.path.join(current_dir, "static", "js"), os.path.join(parent_dir, "dist", "js"))
     sync_dir(os.path.join(current_dir, "static", "images"), os.path.join(parent_dir, "dist", "images"))
 
+    # 8. Export sitemap.xml and robots.txt statically for Netlify
+    print("\nExporting static sitemap.xml and robots.txt for Netlify...")
+    import urllib.request
+    try:
+        # Fetch sitemap.xml
+        with urllib.request.urlopen("http://127.0.0.1:5000/sitemap.xml", timeout=5) as response:
+            sitemap_content = response.read().decode('utf-8')
+        
+        # Save to dist/sitemap.xml
+        dist_sitemap = os.path.join(parent_dir, "dist", "sitemap.xml")
+        with open(dist_sitemap, "w", encoding="utf-8") as f:
+            f.write(sitemap_content)
+        print(f"Exported static sitemap.xml -> {dist_sitemap}")
+        
+        # Fetch robots.txt
+        with urllib.request.urlopen("http://127.0.0.1:5000/robots.txt", timeout=5) as response:
+            robots_content = response.read().decode('utf-8')
+            
+        # Save to dist/robots.txt
+        dist_robots = os.path.join(parent_dir, "dist", "robots.txt")
+        with open(dist_robots, "w", encoding="utf-8") as f:
+            f.write(robots_content)
+        print(f"Exported static robots.txt -> {dist_robots}")
+    except Exception as e:
+        print(f"Failed to fetch dynamic sitemap/robots from local Flask app: {e}")
+        print("Falling back to writing standard robots.txt.")
+        # Fallback robots.txt
+        dist_robots = os.path.join(parent_dir, "dist", "robots.txt")
+        with open(dist_robots, "w", encoding="utf-8") as f:
+            f.write("User-agent: *\nAllow: /\nSitemap: https://softrate-tech-park.netlify.app/sitemap.xml")
+
     print("\nSynchronisation complete!")
 
 if __name__ == "__main__":

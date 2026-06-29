@@ -444,3 +444,18 @@
 .hide {
   display: none !important;
 }
+
+/* Mobile overrides for VAT Rate Options and Action Toggles */
+@media (max-width: 480px) {
+  .vat-rate-options {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .vat-action-toggles {
+    flex-direction: column !important;
+    gap: 4px !important;
+  }
+  .vat-action-toggles label {
+    padding: 6px 8px !important;
+    font-size: 0.8rem !important;
+  }
+}

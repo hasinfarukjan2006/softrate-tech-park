@@ -653,3 +653,16 @@
     background-color: transparent !important;
   }
 }
+
+/* Mobile overrides for Packing Slip Document Header */
+@media (max-width: 600px) {
+  .ps-doc-header {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 1rem !important;
+  }
+  .ps-doc-title-area {
+    text-align: left !important;
+    width: 100% !important;
+  }
+}

@@ -4782,4 +4782,147 @@ body .breadcrumb-item.active {
 }
 
 
+/* ==========================================================================
+   EXPLICIT RESPONSIVE BREAKPOINTS (COMPLETE RESPONSIVE AUDIT & FIX)
+   ========================================================================== */
+
+/* 1920px+ (Ultra Wide Desktop Layout) */
+@media (min-width: 1920px) {
+  body .page-container {
+    max-width: 1600px !important;
+  }
+}
+
+/* 1600px (Wide Desktop Layout) */
+@media (max-width: 1600px) {
+  body .page-container {
+    max-width: 1440px !important;
+  }
+}
+
+/* 1440px (Standard Desktop Layout) */
+@media (max-width: 1440px) {
+  body .page-container {
+    max-width: 1280px !important;
+  }
+}
+
+/* 1366px (Typical Laptop Layout) */
+@media (max-width: 1366px) {
+  body .page-container {
+    max-width: 1200px !important;
+  }
+}
+
+/* 1200px (Small Laptop / Desktop Layout) */
+@media (max-width: 1200px) {
+  body .page-container {
+    max-width: 1140px !important;
+  }
+}
+
+/* 992px (Tablet Landscape / Large Screen) */
+@media (max-width: 992px) {
+  body .page-container {
+    max-width: 960px !important;
+  }
+  
+  /* Form layout columns wrap */
+  body .form-row,
+  body .form-row-2,
+  body .grid-inputs,
+  body .calculator-grid,
+  body .inputs-grid {
+    grid-template-columns: 1fr !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1rem !important;
+  }
+}
+
+/* 820px (iPad / Portrait Tablet screen sizes) */
+@media (max-width: 820px) {
+  body .page-container {
+    max-width: 780px !important;
+  }
+}
+
+/* 768px (Standard Tablet Screen size) */
+@media (max-width: 768px) {
+  body .page-container {
+    max-width: 100% !important;
+    padding: 0 1rem !important;
+  }
+  
+  /* Collapsible / Drawer sidebar overrides */
+  body .sidebar, 
+  body #perDiemSidebar {
+    width: 260px !important;
+  }
+}
+
+/* 576px (Small Tablet / Landscape Mobile) */
+@media (max-width: 576px) {
+  body .header-titles {
+    display: none !important; /* Hide header text to prevent overlaps */
+  }
+  
+  body .top-header-bar {
+    padding: 0 0.5rem !important;
+  }
+  
+  body .trial-btn {
+    font-size: 11px !important;
+    padding: 0 0.75rem !important;
+    height: 38px !important;
+  }
+}
+
+/* 480px (Standard Mobile Screen) */
+@media (max-width: 480px) {
+  body .form-actions {
+    flex-direction: column !important;
+    gap: 0.5rem !important;
+  }
+}
+
+/* 390px (iPhone 12/13/14 Pro sizes) */
+@media (max-width: 390px) {
+  body .btn, 
+  body .cta-btn, 
+  body .trial-btn {
+    font-size: 13px !important;
+  }
+}
+
+/* 375px (iPhone X / 11 / SE Landscape/Portrait) */
+@media (max-width: 375px) {
+  body .trial-btn {
+    font-size: 10px !important;
+    padding: 0 0.5rem !important;
+    height: 36px !important;
+  }
+}
+
+/* 360px (Standard Android Device width) */
+@media (max-width: 360px) {
+  body .page-container {
+    padding: 0 0.75rem !important;
+  }
+}
+
+/* 320px (Small Android / iPhone SE Portrait / Split screen) */
+@media (max-width: 320px) {
+  body .trial-btn {
+    font-size: 9px !important;
+    padding: 0 0.4rem !important;
+    height: 32px !important;
+  }
+  
+  body .header-logo-img {
+    height: 28px !important;
+  }
+}
+
+
 
